@@ -13,6 +13,9 @@
     <!-- iOS (for "Add to Homescreen") -->
     <meta name="mobile-web-app-capable" content="yes">
     <title>Room | App by Company</title>
+
+   
+    
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet"> 
     <!-- Google Analytics -->
@@ -25,6 +28,7 @@
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
     }
     </script>
+    
     <style>
         /* Ease the transition to the load screen by displaying a default overlay */
         #preload-overlay {
@@ -54,6 +58,193 @@
 <body>
     <div id="support-root"></div>
 
+    <style type="text/css">
+        @-webkit-keyframes bg-color {
+            0% { background-color: #e74c3c; }
+        20% { background-color: #ffffff; }
+        40% { background-color: #e74c3c; }
+        60% { background-color: #ffffff; }
+        80% { background-color: #e74c3c; }
+        100% { background-color: #ffffff; }
+        }
+        @keyframes bg-color {
+        0% { background-color: #e74c3c; }
+        20% { background-color: #ffffff; }
+        40% { background-color: #e74c3c; }
+        60% { background-color: #ffffff; }
+        80% { background-color: #e74c3c; }
+        100% { background-color: #ffffff; }
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        #life-frame {
+            margin: 20px auto 0 10px;
+            width: 40%;
+            background-color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            padding: 3px 3px;
+        }
+
+        #life-bar {
+            height: 7px;
+            width: calc(100% - 7px);
+            background-color: rgb(60, 255, 0);
+            transition: 300ms
+        }
+
+        #life-mark {
+            width: 7px;
+            height: 7px;
+            border-radius: 7px;
+            background-color: rgb(255, 255, 255);
+            filter: saturate(500%);
+            box-shadow: 0 0 5px 3px rgb(72, 253, 0),
+                        0 0 7px 7px rgb(11, 221, 64);
+        }
+
+        #btns-wrap {
+            width: 100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        
+
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+        html {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 62.5%;
+        }
+
+        .btn,
+        a.btn,
+        button.btn {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.5;
+            position: relative;
+            display: inline-block;
+            padding: 1rem 4rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            text-align: center;
+            vertical-align: middle;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            color: #212529;
+            border-radius: 0.5rem;
+        }
+
+        .btn-wrap {
+            margin: 30px 0;
+        }
+
+        a.btn-c {
+            font-size: 2.2rem;
+
+            position: relative;
+
+            padding: 0.25rem 2rem 1.5rem 3.5rem;
+
+            color: #fff;
+            background: #00e1ffc7;
+            -webkit-box-shadow: 0 5px 0 #03a7bd63;
+            box-shadow: 0 5px 0 #03a7bd63;
+        }
+
+        a.btn-c span {
+            font-size: 1.5rem;
+
+            position: absolute;
+            top: -10px;
+            left: calc(50% - 150px);
+
+            display: block;
+
+            width: 300px;
+            padding: 0.2rem 0;
+
+            color: #00e1ffc7;
+            border: 2px solid #00e1ffc2;
+            border-radius: 0.5rem;
+            background: #fff;
+            -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        a.btn-c:hover {
+            -webkit-transform: translate(0, 3px);
+            transform: translate(0, 3px);
+
+            color: #fff;
+            background: #00e1ff63;
+            -webkit-box-shadow: 0 2px 0 #2c9d60;
+            box-shadow: 0 2px 0 #2c9d60;
+        }
+
+        a.btn-c:hover:before {
+            left: 2rem;
+        }
+        .none {
+            display: none;
+        }
+    </style>
+        
+    <div id="Player-UI"
+            style="width: 100vw; height: 100vh; z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;"
+        >
+        <div id="Player_map" style="width: 200px;height: 200px;background-color: transparent;border: 5px solid #00e1ff63;position: absolute;top: 10px;right: 100px;">
+            <img src="./assets/minimap.jpg" alt="">
+        </div>
+        <input id="hit_target_container" onchange="onSendMessage(this.value)"></input>
+        <div id="life-frame">
+            <div id="life-bar"></div>
+            <div id="life-mark"></div>
+        </div>
+        <div class="btn-wrap">
+            <a href="" class="btn btn-c" style="position: fixed;bottom: 100px;left: 10px;">
+              <span>シューティングゲームをプレイ！</span>
+              <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
+            
+            </a>
+        </div>
+        <div class="btn-wrap" style="position: fixed;top: 0;right: 15px;">
+            <a id="menu" class="btn btn-c" style="padding:0 15px 10px 15px;">
+                <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
+                <br><img src="./assets/images/iconmonstr-menu-1-240.png" alt="" style="width: 30px;height: 30px;">
+              </a>
+        </div>
+        <div id="Player_tool" style="position: absolute; bottom: 100px; right: 0;opacity: 0.8;">
+            <img src="./assets/gun.png" alt="使用道具">
+        </div>
+    </div>
+
+    <div id="Player-Respawn"
+        style="width: 100vw; height: 100vh; z-index: 1001;background-color: #000000;position: fixed;top: 0;left: 0;display: none;"
+        >
+        <input style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;
+  background: #00e1ffc7;
+  -webkit-box-shadow: 0 5px 0 #03a7bd63;
+  box-shadow: 0 5px 0 #03a7bd63;position: absolute;
+	top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="リスポーンする" onclick="respawn()"></input>
+        
+    </div>
+
     <a-scene
         disable-resize
         embedded
@@ -79,7 +270,6 @@
         freeze-controller
         personal-space-bubble="debug: false;"
         rotate-selected-object
-        environment-map
         light="defaultLightsEnabled: false"
     >
         <a-assets>
@@ -89,6 +279,9 @@
 
             <a-asset-item id="drawing-pen" response-type="arraybuffer" src="./assets/models/DrawingPen.glb"></a-asset-item>
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
+
+            <a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>
+            <a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>
 
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
@@ -121,6 +314,16 @@
                 <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
+                        <a-box 
+                        position="0 -0.5 0"
+                        rotation="0 0 0"
+                        color="#fff"
+                        opacity="0"
+                        scale="1 1.5 1"
+                        visible="true"
+                        class="collidable"
+                        >
+                        </a-box>
                     </a-entity>
 
                     <a-entity class="left-controller" matrix-auto-update></a-entity>
@@ -220,7 +423,8 @@
 
                         <template data-name="Head">
                             <a-entity
-                                avatar-audio-source="rolloffFactor: 2.0;"
+                                avatar-audio-source
+                                audio-zone-source
                                 personal-space-invader="radius: 0.15; useMaterial: true;"
                                 bone-visibility
                                 body-helper="type: kinematic; collisionFilterGroup: 4; collisionFilterMask: 1;"
@@ -236,6 +440,20 @@
                             <a-entity personal-space-invader="radius: 0.1" bone-visibility="updateWhileInvisible: true;"></a-entity>
                         </template>
                     </a-entity>
+
+                    <a-entity gltf-model="#hanabi"
+                    position="0 1.1 0.7" 
+                    rotation="0 0 0" 
+                    scale="0.4 0.4 0.4"
+                    class="collidable">
+                    </a-entity>
+
+                    <!--<a-entity gltf-model="#aircanon"
+                    position="0 0.5 -0.3" 
+                    rotation="90 0 0" 
+                    scale="0.2 0.2 0.2">
+                    </a-entity>-->
+                    
                 </a-entity>
             </template>
 
@@ -318,7 +536,6 @@
                     position-at-border__freeze="target:.freeze-menu"
                     position-at-border__freeze-unprivileged="target:.freeze-unprivileged-menu"
                     listed-media
-                    use-audio-system-settings
                 >
                     <a-entity class="ui interactable-ui">
                         <a-entity class="freeze-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_and_move_media">
@@ -612,7 +829,7 @@
             <template id="interactable-pen">
                 <a-entity
                     class="pen interactable"
-                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15; gravity: 0 0 0;"
+                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15 ; gravity: 0 0 0;"
                     gltf-model-plus="src: #drawing-pen; inflate: true;"
                     owned-object-limiter="counter: #pen-counter"
                     set-unowned-body-kinematic
@@ -970,7 +1187,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
 
@@ -982,7 +1200,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
 
@@ -994,7 +1213,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #action-button"
             ></a-mixin>
 
@@ -1006,7 +1226,8 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #action-button"
             ></a-mixin>
 
@@ -1024,10 +1245,12 @@
                     top: 64;
                     right: 66;
                     bottom: 66;
-                    opacity: 1.0;
+                    transparent: false;
+                    alphaTest: 0.1;
                     src: #button"
             ></a-mixin>
         </a-assets>
+
 
         <!-- HACK - We use this object to trigger initial batch preparation -->
         <a-entity id="batch-prep" visible="false"></a-entity>
@@ -1102,6 +1325,17 @@
             tags="inspectable: true; preventAudioBoost: true"
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
+            <a-entity gltf-model="#hanabi"
+            position="0 1.1 0.7" 
+            rotation="0 0 0" 
+            scale="0.4 0.4 0.4">
+            </a-entity>
+
+            <!--<a-entity gltf-model="#aircanon"
+            position="0 0.5 -0.3" 
+            rotation="90 0 0" 
+            scale="0.2 0.2 0,2">
+            </a-entity>-->
             <a-entity
                 id="player-hud"
                 hud-controller="head: #viewing-camera;"
@@ -1201,6 +1435,7 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
+                
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"
@@ -1238,7 +1473,7 @@
             >
             </a-entity>
 
-            <a-entity gltf-model-plus="inflate: true;" class="model">
+            <a-entity gltf-model-plus="inflate: true;" class="model"> 
                 <template data-name="AvatarRoot">
                     <a-entity
                         ik-controller="alwaysUpdate: true"
@@ -1348,5 +1583,6 @@
     <div id="ui-root"></div>
     <div id="preload-overlay"></div>
 </body>
+
 
 </html>
