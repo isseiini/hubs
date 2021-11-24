@@ -9,6 +9,14 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
+import { App } from "../../App";
+
+window.APP = new App();
+
+
+var hit_target_container = document.getElementById("hit_target_container");
+
+
 const pathsMap = {
   "player-right-controller": {
     startDrawing: paths.actions.rightHand.startDrawing,
@@ -64,12 +72,14 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
-}
+};
+
 
 AFRAME.registerComponent("pen", {
   schema: {
-    drawFrequency: { default: 5 }, //frequency of polling for drawing points
-    minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point
+    drawFrequency: { default: 5 }, //frequency of polling for drawing points 
+
+    minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point 
     camera: { type: "selector" },
     drawingManager: { type: "string" },
     color: { type: "color", default: "#FF0033" },
@@ -95,10 +105,10 @@ AFRAME.registerComponent("pen", {
     radius: { default: 0.01 }, //drawing geometry radius
     minRadius: { default: 0.005 },
     maxRadius: { default: 0.2 },
-    far: { default: 100 },
+    far: { default: 1000 }, //Change points. origin:100
     near: { default: 0.01 },
     drawMode: { default: DRAW_MODE.DEFAULT_3D, oneOf: [DRAW_MODE.DEFAULT_3D, DRAW_MODE.PROJECTION] },
-    penVisible: { default: true },
+    penVisible: { default: false }, //Change points. origin:true
     penTipPosition: { default: { x: 0, y: 0, z: 0 } }
   },
 
@@ -139,11 +149,6 @@ AFRAME.registerComponent("pen", {
     this.penTip.matrixNeedsUpdate = true;
 
     this.el.setObject3D("mesh", this.penTip);
-
-    const environmentMapComponent = this.el.sceneEl.components["environment-map"];
-    if (environmentMapComponent) {
-      environmentMapComponent.applyEnvironmentMap(this.el.parentEl.object3D);
-    }
 
     this.penLaserAttributesUpdated = false;
     this.penLaserAttributes = {
@@ -229,6 +234,7 @@ AFRAME.registerComponent("pen", {
       this.el.setAttribute("pen", { penVisible: penVisible });
 
       this._doDraw(intersection, dt);
+      
 
       if (this.penLaserAttributesUpdated) {
         this.penLaserAttributesUpdated = false;
@@ -413,6 +419,18 @@ AFRAME.registerComponent("pen", {
       ) {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
+        //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
+        
+        var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
+        
+
+        if (targetbox[5][1].networked) {
+          var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
+          hit_target_container.value = hit_target;
+        };
+        
+        
+        //App.MessageDispatch.dispatch("Hit!!");
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
@@ -489,7 +507,7 @@ AFRAME.registerComponent("pen", {
   populateEntities(targets) {
     targets.length = 0;
     // TODO: Do not querySelectorAll on the entire scene every time anything changes!
-    const els = AFRAME.scenes[0].querySelectorAll(".collidable, .interactable, #environment-root");
+    const els = AFRAME.scenes[0].querySelectorAll(".collidable, .interactable, #environment-root"); 
     for (let i = 0; i < els.length; i++) {
       if (!els[i].classList.contains("pen") && els[i].object3D) {
         targets.push(els[i].object3D);
