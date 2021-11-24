@@ -7,7 +7,7 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
-import { entries } from "core-js/core/array";
+
 
 let uiRoot;
 
