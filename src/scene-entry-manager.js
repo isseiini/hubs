@@ -22,7 +22,8 @@ import { ObjectContentOrigins } from "./object-types";
 import { getAvatarSrc, getAvatarType } from "./utils/avatar-utils";
 import { SOUND_ENTER_SCENE } from "./systems/sound-effects-system";
 
-const isIOS = detectIOS();
+//const isIOS = detectIOS();
+const isIOS = AFRAME.utils.device.isIOS();
 
 export default class SceneEntryManager {
   constructor(hubChannel, authChannel, history) {
@@ -63,7 +64,7 @@ export default class SceneEntryManager {
     console.log(NAF.connection.entities);
    
     //sessionStorage.setItem('naf-mine', )
-    
+
     if (isDebug && NAF.connection.adapter.session) {
       NAF.connection.adapter.session.options.verbose = true;
     }
