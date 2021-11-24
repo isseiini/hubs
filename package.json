@@ -7,7 +7,7 @@
   "homepage": "https://github.com/mozilla/hubs#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla/hubs.git"
+    "url": "git+https://github.com/mozilla/hubs.git"
   },
   "bugs": {
     "url": "https://github.com/mozilla/hubs/issues"
@@ -144,7 +144,8 @@
     "use-clipboard-copy": "^0.1.2",
     "uuid": "^3.2.1",
     "webrtc-adapter": "^7.7.0",
-    "zip-loader": "^1.1.0"
+    "zip-loader": "^1.1.0",
+    "fsevents": "^2.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
@@ -222,5 +223,10 @@
   },
   "optionalDependencies": {
     "fsevents": "^2.2.1"
-  }
+  },
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "author": ""
 }
