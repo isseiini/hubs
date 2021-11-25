@@ -15,6 +15,7 @@ window.APP = new App();
 
 
 var hit_target_container = document.getElementById("hit_target_container");
+console.log(hit_target_container)
 
 
 const pathsMap = {
@@ -426,7 +427,8 @@ AFRAME.registerComponent("pen", {
 
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
-          hit_target_container.value = hit_target;
+          console.log(hit_target)
+          //hit_target_container.value = hit_target;
         };
         
         
