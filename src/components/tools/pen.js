@@ -9,15 +9,15 @@ import {
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import { send_hit_log } from "../../hub";
-
 import { App } from "../../App";
 
 window.APP = new App();
 
+document.addEventListener("DOMContentLoaded", async () => {
+  var hit_target_container = document.getElementById("hit_target_container");
+  console.log(hit_target_container)
+});
 
-var hit_target_container = document.getElementById("hit_target_container");
-console.log(hit_target_container)
 
 
 const pathsMap = {
@@ -430,8 +430,8 @@ AFRAME.registerComponent("pen", {
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
           console.log(hit_target);
-          send_hit_log(hit_target);
-          //hit_target_container.value = hit_target;
+          
+          hit_target_container.value = hit_target;
         };
         
         

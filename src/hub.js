@@ -1629,7 +1629,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  export function send_hit_log(name) {
-    hubChannel.sendMessage(name);
-  }
+
 });
