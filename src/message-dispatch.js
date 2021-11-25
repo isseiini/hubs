@@ -13,10 +13,10 @@ let uiRoot;
 
 
 
-var Player_UI = document.getElementById("Player-UI")
+//var Player_UI = document.getElementById("Player-UI")
 
-const lifeBar = document.getElementById('life-bar')         // ライフバー
-const lifeMark = document.getElementById('life-mark')       // ライフの光部分
+//const lifeBar = document.getElementById('life-bar')         // ライフバー
+//const lifeMark = document.getElementById('life-mark')       // ライフの光部分
   
 
 
