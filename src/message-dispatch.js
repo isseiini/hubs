@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
-// Handles user-entered messages
+  // Handles user-entered messages
   export default class MessageDispatch extends EventTarget {
     constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
       super();
