@@ -673,10 +673,6 @@ function checkForAccountRequired() {
   )}`;
 }
 
-export function send_hit_log(name) {
-    hubChannel.sendMessage(name);
-  }
-
 document.addEventListener("DOMContentLoaded", async () => {
   if (isOAuthModal) {
     return;
@@ -1633,5 +1629,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  
+  export function send_hit_log(name) {
+    hubChannel.sendMessage(name);
+  }
 });
