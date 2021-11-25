@@ -69,9 +69,10 @@ export default class SceneEntryManager {
     //console.log(typeof Object.entries(NAF.connection.entities));
     console.log(NAF.connection.entities);
     var my_naf = "a-entity#avatar-rig"
-    var result = Object.keys(naf_tree).filter(function(k) { return naf_tree[k] == my_naf })[0];
-    console.log(result)
+    //var result = Object.keys(naf_tree).filter(function(k) { return naf_tree[k] == my_naf })[0];
+    console.log(Object.keys(naf_tree))
    
+
     //sessionStorage.setItem('naf-mine', )
 
     if (isDebug && NAF.connection.adapter.session) {

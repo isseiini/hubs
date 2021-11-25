@@ -230,15 +230,6 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-const naf_tree = NAF.connection.entities.entities
-console.log(NAF.connection.entities.entities);
-//console.log(Object.entries(NAF.connection.entities[0][1]));
-//console.log(typeof Object.entries(NAF.connection.entities));
-console.log(NAF.connection.entities);
-var my_naf = "a-entity#avatar-rig"
-var result = Object.keys(naf_tree).filter(function(k) { return naf_tree[k] == my_naf })[0];
-console.log(result)
-
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
 if (window.opener && window.opener.doingTwitterOAuth) {
