@@ -12,14 +12,14 @@ import { LogMessageType } from "./react-components/room/ChatSidebar";
 let uiRoot;
 
 
-document.addEventListener("DOMContentLoaded", async () => {
-  var Player_UI = document.getElementById("Player-UI")
 
-  const lifeBar = document.getElementById('life-bar')         // ライフバー
-  const lifeMark = document.getElementById('life-mark')       // ライフの光部分
+var Player_UI = document.getElementById("Player-UI")
+
+const lifeBar = document.getElementById('life-bar')         // ライフバー
+const lifeMark = document.getElementById('life-mark')       // ライフの光部分
   
 
-});
+
 
 
 
