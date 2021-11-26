@@ -283,17 +283,17 @@ AFRAME.registerComponent("ik-controller", {
     }
 
     document.addEventListener('keydown', event => {
-      if (event.code === 'Keyb') {
+      if (event.code === 'KeyB') {
         console.log(cameraYRotation)
       }
     });
     document.addEventListener('keydown', event => {
-      if (event.code === 'Keyn') {
+      if (event.code === 'KeyN') {
         console.log(cameraYQuaternion)
       }
     });
     document.addEventListener('keydown', event => {
-      if (event.code === 'Keym') {
+      if (event.code === 'KeyM') {
         console.log(avatar.position)
       }
     });
