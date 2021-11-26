@@ -59,12 +59,12 @@ export default class SceneEntryManager {
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
 
 
-    const naf_tree = NAF.connection.entities.entities
+    //const naf_tree = NAF.connection.entities.entities
   
-    const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
-    console.log(my_NAF_ID);
+    //const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
+    //console.log(my_NAF_ID);
 
-    sessionStorage.setItem('naf-mine', my_NAF_ID)
+    //sessionStorage.setItem('naf-mine', my_NAF_ID)
 
     if (isDebug && NAF.connection.adapter.session) {
       NAF.connection.adapter.session.options.verbose = true;
