@@ -430,9 +430,9 @@ AFRAME.registerComponent("pen", {
         if (targetbox[5][1].networked) {
           var hit_target = "naf-" + targetbox[5][1].networked.attrValue.networkId;
           console.log(hit_target);
-          //const event = new Event('change');
+          const event = new Event('change');
           hit_target_container.value = hit_target;
-          //hit_target_container.dispatchEvent(event);
+          hit_target_container.dispatchEvent(event);
         };
         
         
