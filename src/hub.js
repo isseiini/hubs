@@ -1260,7 +1260,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           NAF.connection.adapter.syncOccupants(requestedOccupants);
         };
 
-        const occupantCount = sessionIds.length;
+        const occupantCount = Object.getOwnPropertyNames(presence.state).length;
         const naf_tree = NAF.connection.entities.entities
         const my_NAF_ID = "naf-" + Object.keys(naf_tree)[occupantCount - 1];
         console.log(Object.keys(naf_tree))
