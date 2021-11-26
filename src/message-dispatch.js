@@ -36,12 +36,12 @@ export default class MessageDispatch extends EventTarget {
   }
 
   damage() {
+    var Player_Respawn = document.getElementById("Player-Respawn");
+    const lifeBar = document.getElementById('life-bar')         
+    const lifeMark = document.getElementById('life-mark')    
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
 
-    const lifeBar = document.getElementById('life-bar')         // ライフバー
-    const lifeMark = document.getElementById('life-mark')       // ライフの光部分                                            // ライフ初期値
-    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                              // ライフ初期幅
-
-    var life = HP - 20;
+    var life = HP - 10;
 
     if ( life <= 0 ){
 

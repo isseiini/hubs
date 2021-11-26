@@ -478,6 +478,7 @@ function handleHubChannelJoined(entryManager, hubChannel, messageDispatch, data)
     // would require significant changes to the hub channel events and socket management.
     if (scene.is("entered")) {
       hubChannel.sendEnteredEvent();
+      console.log(NAF.connection);
     }
 
     // Send complete sync on phoenix re-join.
