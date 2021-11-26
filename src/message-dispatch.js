@@ -8,22 +8,8 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-import {my_NAF_ID} from "./scene-entry-manager";
 let uiRoot;
 
-
-
-//var Player_UI = document.getElementById("Player-UI")
-
-//const lifeBar = document.getElementById('life-bar')         // ライフバー
-//const lifeMark = document.getElementById('life-mark')       // ライフの光部分
-  
-
-
-
-
-
-// Handles user-entered messages
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
     super();
