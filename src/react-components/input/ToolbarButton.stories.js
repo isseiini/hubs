@@ -56,14 +56,33 @@ export const RoomToolbar = () => (
 );
 
 export const EntryToolbar = () => (
+  //<RoomLayout
+    //toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
+    //toolbarCenter={
+      //<>
+        //<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" className={styleUtils.hideLg} />
+        //<ToolbarButton icon={<ChatIcon />} label="Chat" preset="accent4" />
+      //</>
+    //}
+    //toolbarRight={<ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" />}
+  ///>
+
   <RoomLayout
     toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
     toolbarCenter={
       <>
-        <ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" className={styleUtils.hideLg} />
+        <ToolbarButton icon={<MicrophoneIcon />} label="Voice" preset="basic" />
+        <ToolbarButton icon={<ShareIcon />} label="Share" preset="accent5" />
+        <ToolbarButton icon={<ObjectIcon />} label="Place" preset="accent3" />
+        <ToolbarButton icon={<ReactionIcon />} label="React" preset="accent2" />
         <ToolbarButton icon={<ChatIcon />} label="Chat" preset="accent4" />
       </>
     }
-    toolbarRight={<ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" />}
+    toolbarRight={
+      <>
+        <ToolbarButton icon={<LeaveIcon />} label="Leave" preset="accent1" />
+        <ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" />
+      </>
+    }
   />
 );
