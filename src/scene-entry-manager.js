@@ -62,7 +62,7 @@ export default class SceneEntryManager {
     //console.log(Object.entries(NAF.connection.entities[0][1]));
     //console.log(typeof Object.entries(NAF.connection.entities));
     //console.log(NAF.connection.entities);
-    console.log(Naf.connection)
+    console.log(NAF.connection)
     const naf_tree = NAF.connection.entities.entities
     //console.log(NAF.connection.entities.entities);
     //console.log(Object.entries(NAF.connection.entities[0][1]));
