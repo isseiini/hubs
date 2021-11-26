@@ -276,11 +276,6 @@ AFRAME.registerComponent("ik-controller", {
       });
       document.addEventListener('keyup', event => {
         if (event.code === 'KeyN') {
-          console.log(cameraForward)
-        }
-      });
-      document.addEventListener('keyup', event => {
-        if (event.code === 'KeyM') {
           console.log(avatar.position)
         }
       });
