@@ -1302,8 +1302,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Change to existing presence
                 const isSelf = sessionId === socket.params().session_id;
                 const currentMeta = current.metas[0];
-                console.log(sessionId)
-                console.log(socket.params().session_id)
+
+                const naf_tree = NAF.connection.entities.entities
+                var my_naf = "a-entity#avatar-rig"
+                const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
+                console.log(my_NAF_ID);
+                sessionStorage.setItem('naf-mine', my_NAF_ID)
                 if (
                   !isSelf &&
                   currentMeta.presence !== meta.presence &&
@@ -1316,10 +1320,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     name: meta.profile.displayName
                   });
 
-                  const naf_tree = NAF.connection.entities.entities
-                  var my_naf = "a-entity#avatar-rig"
-                  const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
-                  console.log(my_NAF_ID);
                 }
 
                 if (
