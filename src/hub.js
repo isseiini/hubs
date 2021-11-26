@@ -478,7 +478,6 @@ function handleHubChannelJoined(entryManager, hubChannel, messageDispatch, data)
     // would require significant changes to the hub channel events and socket management.
     if (scene.is("entered")) {
       hubChannel.sendEnteredEvent();
-      console.log(NAF.connection);
     }
 
     // Send complete sync on phoenix re-join.
@@ -1187,8 +1186,50 @@ document.addEventListener("DOMContentLoaded", async () => {
   const hubPhxChannel = socket.channel(`hub:${hubId}`, createHubChannelParams(oauthFlowPermsToken));
 
   const presenceLogEntries = [];
+  
+  function damage() {
+    var Player_Respawn = document.getElementById("Player-Respawn");
+    const lifeBar = document.getElementById('life-bar')         
+    const lifeMark = document.getElementById('life-mark')    
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
+
+    var life = HP - 10;
+
+    if ( life <= 0 ){
+
+    // 算出の結果 0 以下になった場合
+    life = 0
+    // 0.3秒後に光部分を非表示にする
+    setTimeout(function(){
+        lifeMark.style.visibility = 'hidden'
+        Player_Respawn.style.display = "block";
+        life = 100  
+    }, 300)
+    } else {
+    // 算出の結果 100 を超過した場合
+    if ( life > 100 ) {
+        life = 100
+    }
+    // 光部分を表示する
+    lifeMark.style.visibility = 'visible'
+    }
+
+    lifeBar.style.width = life + "%"
+      
+    
+  };
+
+  
   const addToPresenceLog = entry => {
     entry.key = Date.now().toString();
+
+    if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
+      //if (naf_Mine == entry.body) {
+      this.damage();
+      console.log(entry.body)
+      //};
+      return
+    };
 
     presenceLogEntries.push(entry);
     remountUI({ presenceLogEntries });
