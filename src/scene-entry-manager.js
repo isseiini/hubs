@@ -58,21 +58,14 @@ export default class SceneEntryManager {
     console.log("Entering scene...");
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
 
-    //console.log(NAF.connection.entities.entities);
-    //console.log(Object.entries(NAF.connection.entities[0][1]));
-    //console.log(typeof Object.entries(NAF.connection.entities));
-    //console.log(NAF.connection.entities);
-    console.log(NAF.connection)
+
     const naf_tree = NAF.connection.entities.entities
-    //console.log(NAF.connection.entities.entities);
-    //console.log(Object.entries(NAF.connection.entities[0][1]));
-    //console.log(typeof Object.entries(NAF.connection.entities));
-    //console.log(NAF.connection.entities);
     var my_naf = "a-entity#avatar-rig"
-    var result = Object.keys(naf_tree).filter(function(k) { return naf_tree[k] == my_naf })[0];
-    console.log(Object.keys(naf_tree))
-    console.log(result)
-   
+    //var result = Object.keys(naf_tree).filter(function(k) { return naf_tree[k] == my_naf })[0];
+    const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
+    console.log(my_NAF_ID);
+ 
+    export {my_NAF_ID}
 
     //sessionStorage.setItem('naf-mine', )
 
