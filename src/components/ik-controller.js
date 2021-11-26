@@ -252,7 +252,7 @@ AFRAME.registerComponent("ik-controller", {
       } else {
         avatar.quaternion.copy(cameraYQuaternion);
       }
-
+      
       this.hasConvergedHips = quaternionAlmostEquals(0.0001, cameraYQuaternion, avatar.quaternion);
 
       // Take the head orientation computed from the hmd, remove the Y rotation already applied to it by the hips,
@@ -281,6 +281,22 @@ AFRAME.registerComponent("ik-controller", {
       this.ikRoot.el.object3D.visible = true;
       this._hadFirstTick = true;
     }
+
+    document.addEventListener('keydown', event => {
+      if (event.code === 'Keyb') {
+        console.log(cameraYRotation)
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.code === 'Keyn') {
+        console.log(cameraYQuaternion)
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.code === 'Keym') {
+        console.log(avatar.position)
+      }
+    });
   },
 
   updateHand(handRotation, handObject3D, controllerObject3D, isLeft, isInView) {

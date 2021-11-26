@@ -1566,9 +1566,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   var Player_Respawn = document.getElementById("Player-Respawn");
 
-  function respawn() {
+  Player_Respawn.addEventListener("click", function(){
     Player_Respawn.style.display = "none";
-  };
+  })
 
   var Player_UI = document.getElementById("Player-UI")
 
