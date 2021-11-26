@@ -60,7 +60,7 @@ export default class SceneEntryManager {
 
 
     const naf_tree = NAF.connection.entities.entities
-    var my_naf = "a-entity#avatar-rig"
+  
     const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
     console.log(my_NAF_ID);
 
