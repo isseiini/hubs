@@ -1260,6 +1260,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           NAF.connection.adapter.syncOccupants(requestedOccupants);
         };
 
+        const occupantCount = sessionIds.length;
+        const naf_tree = NAF.connection.entities.entities
+        const my_NAF_ID = "naf-" + Object.keys(naf_tree)[occupantCount - 1];
+        console.log(Object.keys(naf_tree))
+        console.log(my_NAF_ID);
+        sessionStorage.setItem('naf-mine', my_NAF_ID)
+
         hubChannel.presence.onSync(() => {
           const presence = hubChannel.presence;
 
@@ -1289,11 +1296,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           presenceSync.resolve();
 
-          const naf_tree = NAF.connection.entities.entities
-          const my_NAF_ID = "naf-" + Object.keys(naf_tree)[occupantCount - 1];
-          console.log(Object.keys(naf_tree))
-          console.log(my_NAF_ID);
-          sessionStorage.setItem('naf-mine', my_NAF_ID)
+          
 
           presence.onJoin((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync (o/w the user
