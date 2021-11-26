@@ -268,6 +268,22 @@ AFRAME.registerComponent("ik-controller", {
       neck.matrixNeedsUpdate = true;
       head.matrixNeedsUpdate = true;
       chest.matrixNeedsUpdate = true;
+
+      document.addEventListener('keyup', event => {
+        if (event.code === 'KeyB') {
+          console.log(cameraYRotation)
+        }
+      });
+      document.addEventListener('keyup', event => {
+        if (event.code === 'KeyN') {
+          console.log(cameraForward)
+        }
+      });
+      document.addEventListener('keyup', event => {
+        if (event.code === 'KeyM') {
+          console.log(avatar.position)
+        }
+      });
     }
 
     const { leftHand, rightHand } = this;
@@ -282,21 +298,7 @@ AFRAME.registerComponent("ik-controller", {
       this._hadFirstTick = true;
     }
 
-    document.addEventListener('keydown', event => {
-      if (event.code === 'KeyB') {
-        console.log(cameraYRotation)
-      }
-    });
-    document.addEventListener('keydown', event => {
-      if (event.code === 'KeyN') {
-        console.log(cameraYQuaternion)
-      }
-    });
-    document.addEventListener('keydown', event => {
-      if (event.code === 'KeyM') {
-        console.log(avatar.position)
-      }
-    });
+    
   },
 
   updateHand(handRotation, handObject3D, controllerObject3D, isLeft, isInView) {

@@ -36,7 +36,7 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
         is_talk = true;
       }
 
-      document.addEventListener('keydown', event => {
+      document.addEventListener('keyup', event => {
         if (event.code === 'KeyV') {
           console.log("会話回数 : " + talk_count);
           console.log("会話時間 : " + talk_time);
