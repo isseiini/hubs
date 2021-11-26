@@ -34,11 +34,11 @@ export default class MessageDispatch extends EventTarget {
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
   }
-
-  damage() {
-    var Player_Respawn = document.getElementById("Player-Respawn");
+ 
+  damage() {  
+    const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeBar = document.getElementById('life-bar')         
-    const lifeMark = document.getElementById('life-mark')    
+    const lifeMark = document.getElementById('life-mark') 
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
 
     var life = HP - 10;
