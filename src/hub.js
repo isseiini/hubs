@@ -1302,7 +1302,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Change to existing presence
                 const isSelf = sessionId === socket.params().session_id;
                 const currentMeta = current.metas[0];
-
+                console.log(sessionId)
+                console.log(socket.params().session_id)
                 if (
                   !isSelf &&
                   currentMeta.presence !== meta.presence &&
