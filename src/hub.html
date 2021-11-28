@@ -303,6 +303,16 @@
                 <a-entity tags="inspectable: true; preventAudioBoost: true" inspect-pivot-child-selector="selector:.inspect-pivot" networked-avatar ik-root player-info matrix-auto-update visible="false">
                     <a-entity class="camera" matrix-auto-update>
                         <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
+                        <a-box 
+                        position="0 -0.5 0"
+                        rotation="0 0 0"
+                        color="#fff"
+                        opacity="0"
+                        scale="1 1.5 1"
+                        visible="true"
+                        class="collidable"
+                        >
+                        </a-box>
                     </a-entity>
 
                     <a-entity class="left-controller" matrix-auto-update></a-entity>
