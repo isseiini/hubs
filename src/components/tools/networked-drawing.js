@@ -830,7 +830,7 @@ AFRAME.registerComponent("deserialize-drawing-button", {
       const canPin = window.APP.hubChannel.can("pin_objects") && window.APP.hubChannel.signedIn;
       this.el.object3D.visible = (!isPinned || canPin) && window.APP.hubChannel.can("spawn_drawing");
     } else {
-      this.el.object3D.visible = false;
+      this.el.object3D.visible = true;
     }
   }
 });
