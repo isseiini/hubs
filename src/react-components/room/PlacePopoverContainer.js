@@ -24,7 +24,8 @@ export function PlacePopoverContainer({ scene, mediaSearchStore, showNonHistorie
         const hasActivePen = !!scene.systems["pen-tools"].getMyPen();
 
         let nextItems = [
-          hubChannel.can("spawn_drawing") && {
+          //hubChannel.can("spawn_drawing") && 
+          {
             id: "pen",
             icon: PenIcon,
             color: "accent5",
