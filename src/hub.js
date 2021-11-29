@@ -1315,7 +1315,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           console.log(sessionStorage.getItem("naf-mine"))
 
-          if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined){
+          if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined || sessionStorage.getItem("naf-mine") == "naf-undefined"){
             sessionStorage.setItem('naf-mine', my_NAF_ID)
           }
           
