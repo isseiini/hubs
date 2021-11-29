@@ -1358,9 +1358,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const isSelf = sessionId === socket.params().session_id;
                 const currentMeta = current.metas[0];
 
-                
+                //↓roomに入場する際の処理
                 if (
                   !isSelf &&
+                  currentMeta.presence !== meta.presence &&
+                  meta.presence === "room" &&
+                  meta.profile.displayName
+                ) {
+                  messageDispatch.receive({
+                    type: "entered",
+                    presence: meta.presence,
+                    name: meta.profile.displayName
+                  });
+                }
+
+                if (
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName
