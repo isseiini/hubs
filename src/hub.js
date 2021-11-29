@@ -230,6 +230,8 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
+window.sessionStorage.clear();
+
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
 if (window.opener && window.opener.doingTwitterOAuth) {
@@ -1244,7 +1246,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         presenceSync.resolve = resolve;
       });
 
-      var my_NAF_ID = null;
+    
 
       if (isInitialJoin) {
         store.addEventListener("profilechanged", hubChannel.sendProfileUpdate.bind(hubChannel));
@@ -1303,11 +1305,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
           
-          if (my_NAF_ID === null){
-            my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+          
+          let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+
+          if(my_NAF_ID != "naf-undefined" && window.sessionStorage.length == 0){
+            sessionStorage.setItem('naf-mine', my_NAF_ID)
           }
+          
           console.log(my_NAF_ID);
-          sessionStorage.setItem('naf-mine', my_NAF_ID)
+          
 
           presence.onJoin((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync (o/w the user
