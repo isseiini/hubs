@@ -230,6 +230,9 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
+window.sessionStorage.clear();
+console.log(window.sessionStorage.length)
+
 
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
@@ -1279,13 +1282,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             entryDisallowed: !hubChannel.canEnterRoom(uiProps.hub)
           });
 
-          console.log(socket.params().session_id)
           const sessionIds = Object.getOwnPropertyNames(presence.state);
           const occupantCount = sessionIds.length;
           vrHudPresenceCount.setAttribute("text", "value", occupantCount.toString());
 
           console.log(presence.state[socket.params().session_id].metas)
-          console.log(presence.state[socket.params().session_id].metas[0].profile.avatarId)
+          console.log(hubChannel.connect)
 
           if (occupantCount > 1) {
             scene.addState("copresent");
