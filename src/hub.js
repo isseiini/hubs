@@ -230,7 +230,6 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-window.sessionStorage.clear();
 
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
@@ -1308,7 +1307,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           
           let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
-          if(my_NAF_ID != "naf-undefined" && window.sessionStorage.length == 0){
+          console.log(sessionStorage.getItem("naf-mine"))
+
+          if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined){
             sessionStorage.setItem('naf-mine', my_NAF_ID)
           }
           
