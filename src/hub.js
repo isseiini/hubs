@@ -1244,7 +1244,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         presenceSync.resolve = resolve;
       });
 
-      let my_NAF_ID = null;
+      var my_NAF_ID = null;
 
       if (isInitialJoin) {
         store.addEventListener("profilechanged", hubChannel.sendProfileUpdate.bind(hubChannel));
