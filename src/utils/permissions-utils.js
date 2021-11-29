@@ -30,8 +30,8 @@ export function canMove(entity) {
       ? window.APP.hubChannel.can("spawn_emoji")
       : window.APP.hubChannel.can("spawn_and_move_media")) &&
       (!isPinned || window.APP.hubChannel.can("pin_objects")) &&
-      (!isCamera || window.APP.hubChannel.can("spawn_camera")) //&&
-      //(!isPen || window.APP.hubChannel.can("spawn_drawing"))
+      (!isCamera || window.APP.hubChannel.can("spawn_camera")) &&
+      (!isPen || window.APP.hubChannel.can("spawn_drawing") || !window.APP.hubChannel.can("spawn_drawing"))
       )
   );
 }
