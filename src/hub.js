@@ -1330,27 +1330,39 @@ document.addEventListener("DOMContentLoaded", async () => {
             const meta = info.metas[info.metas.length - 1];
             const occupantCount = Object.entries(hubChannel.presence.state).length;
 
-            const naf_tree = Object.keys(NAF.connection.entities.entities)
-            console.log(naf_tree)
+            
+            //console.log(naf_tree)
             //console.log(Object.getOwnPropertyNames(presence.state))
             //console.log(typeof Object.getOwnPropertyNames(presence.state))
             
             
-            let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+            
 
-            console.log(sessionStorage.getItem(socket.params().session_id))
-            console.log(socket.params().session_id)
-            console.log(hubChannel.channel.joinPush.receivedResp.response.session_id)
+            //console.log(sessionStorage.getItem(socket.params().session_id))
+            //console.log(socket.params().session_id)
+            //console.log(hubChannel.channel.joinPush.receivedResp.response.session_id)
 
-            console.log(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id));
+            
 
-            if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
-              if(naf_tree.length >= occupantCount && meta.presence === "room"){
-                sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
-              }
+            //if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
+              //if(naf_tree.length >= occupantCount && meta.presence === "room"){
+                //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+              //}
+            //}
+
+            if (
+              !sessionId === socket.params().session_id &&
+              current.metas[0].presence !== meta.presence &&
+              meta.presence === "room" &&
+              meta.profile.displayName
+            ) {
+              const naf_tree = Object.keys(NAF.connection.entities.entities)
+              let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+              sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
             }
             
             console.log(my_NAF_ID);
+            console.log(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id));
 
             if (occupantCount <= NOISY_OCCUPANT_COUNT) {
               if (current) {
