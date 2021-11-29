@@ -1298,7 +1298,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log(naf_tree)
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
-          const my_NAF_ID;
+          let my_NAF_ID;
           if (my_NAF_ID == undefined){
             my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
           }
