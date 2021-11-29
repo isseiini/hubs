@@ -1339,11 +1339,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
             console.log(sessionStorage.getItem(socket.params().session_id))
+            console.log(socket.params().session_id)
+            console.log(hubChannel.channel.joinPush.receivedResp.response.session_id)
           
             
 
-            if(sessionStorage.getItem(socket.params().session_id) == null || sessionStorage.getItem(socket.params().session_id) == undefined || sessionStorage.getItem(socket.params().session_id) == "naf-undefined"){
-              sessionStorage.setItem(socket.params().session_id, my_NAF_ID)
+            if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
+              sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
             }
             
             console.log(my_NAF_ID);
