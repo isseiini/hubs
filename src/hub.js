@@ -1347,7 +1347,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(typeof hubChannel.channel.joinPush.receivedResp.response.session_id)
 
             if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
-              sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+              if(naf_tree.length >= occupantCount){
+                sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+              }
             }
             
             console.log(my_NAF_ID);
