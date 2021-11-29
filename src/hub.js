@@ -1223,7 +1223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   
-  const addToPresenceLog = entry => {
+  export const addToPresenceLog = entry => {
     entry.key = Date.now().toString();
 
     var naf_Mine = socket.params().session_id;

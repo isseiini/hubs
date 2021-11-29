@@ -7,6 +7,7 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
+import {addToPresenceLog} from "./hub"
 
 let uiRoot;
 
@@ -22,7 +23,7 @@ export default class MessageDispatch extends EventTarget {
   }
 
   receive(message) {
-    this.addToPresenceLog(message);
+    addToPresenceLog(message);
     this.dispatchEvent(new CustomEvent("message", { detail: message }));
   }
 
