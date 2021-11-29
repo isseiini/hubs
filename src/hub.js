@@ -1230,7 +1230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   hubChannel.setPhoenixChannel(hubPhxChannel);
 
-  let my_NAF_ID;
+  let my_NAF_ID = null;
 
   hubPhxChannel
     .join()
@@ -1301,7 +1301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
           
-          if (typeof my_NAF_ID === "undefined"){
+          if (my_NAF_ID === null){
             my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
           }
           console.log(my_NAF_ID);
