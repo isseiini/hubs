@@ -1271,7 +1271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const presence = hubChannel.presence;
         const occupantCount = Object.getOwnPropertyNames(presence.state).length;
         //var my_entry_number = occupantCount - 1;
-        console.log(hubChannel.presence.state)
+        //console.log(hubChannel.presence.state)
 
         hubChannel.presence.onSync(() => {
           const presence = hubChannel.presence;
@@ -1286,8 +1286,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           const occupantCount = sessionIds.length;
           vrHudPresenceCount.setAttribute("text", "value", occupantCount.toString());
 
-          console.log(presence.state[socket.params().session_id].metas)
-          console.log(hubChannel.connect)
+          //console.log(presence.state[socket.params().session_id].metas)
+          //console.log(hubChannel.connect)
 
           if (occupantCount > 1) {
             scene.addState("copresent");
@@ -1305,21 +1305,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           presenceSync.resolve();
 
-          const naf_tree = Object.keys(NAF.connection.entities.entities)
-          console.log(naf_tree)
+          //const naf_tree = Object.keys(NAF.connection.entities.entities)
+          //console.log(naf_tree)
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
           
           
-          let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+          //let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
-          console.log(sessionStorage.getItem("naf-mine"))
+          //console.log(sessionStorage.getItem("naf-mine"))
 
-          if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined || sessionStorage.getItem("naf-mine") == "naf-undefined"){
-            sessionStorage.setItem('naf-mine', my_NAF_ID)
-          }
+          //if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined || sessionStorage.getItem("naf-mine") == "naf-undefined"){
+            //sessionStorage.setItem('naf-mine', my_NAF_ID)
+          //}
           
-          console.log(my_NAF_ID);
+          //console.log(my_NAF_ID);
           
 
           presence.onJoin((sessionId, current, info) => {
@@ -1329,6 +1329,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const meta = info.metas[info.metas.length - 1];
             const occupantCount = Object.entries(hubChannel.presence.state).length;
+
+            const naf_tree = Object.keys(NAF.connection.entities.entities)
+            console.log(naf_tree)
+            //console.log(Object.getOwnPropertyNames(presence.state))
+            //console.log(typeof Object.getOwnPropertyNames(presence.state))
+            
+            
+            let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+
+            console.log(sessionStorage.getItem("naf-mine"))
+
+            if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined || sessionStorage.getItem("naf-mine") == "naf-undefined"){
+              sessionStorage.setItem('naf-mine', my_NAF_ID)
+            }
+            
+            console.log(my_NAF_ID);
 
             if (occupantCount <= NOISY_OCCUPANT_COUNT) {
               if (current) {
