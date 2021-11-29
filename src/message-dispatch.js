@@ -57,6 +57,9 @@ export default class MessageDispatch extends EventTarget {
     entry.key = Date.now().toString();
 
     console.log(this.hubChannel.channel.joinPush.receivedResp.response.session_id)
+
+    console.log(this.hubChannel.presence)
+    console.log(this.hubChannel)
     
     var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
 
