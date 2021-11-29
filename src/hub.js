@@ -1268,7 +1268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const presence = hubChannel.presence;
         const occupantCount = Object.getOwnPropertyNames(presence.state).length;
         //var my_entry_number = occupantCount - 1;
-        console.log(hubChannel.presence)
+        console.log(hubChannel.presence.state)
 
         hubChannel.presence.onSync(() => {
           const presence = hubChannel.presence;
@@ -1279,9 +1279,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             entryDisallowed: !hubChannel.canEnterRoom(uiProps.hub)
           });
 
+          console.log(sessionId)
           const sessionIds = Object.getOwnPropertyNames(presence.state);
           const occupantCount = sessionIds.length;
           vrHudPresenceCount.setAttribute("text", "value", occupantCount.toString());
+
+          console.log(presence.state[sessionId].metas)
+          console.log(presence.state[sessionId].metas[0].profile.avatarId)
 
           if (occupantCount > 1) {
             scene.addState("copresent");
