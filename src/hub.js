@@ -230,7 +230,7 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-window.sessionStorage.clear();
+
 console.log(window.sessionStorage.length)
 
 
