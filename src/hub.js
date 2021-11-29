@@ -1265,7 +1265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const presence = hubChannel.presence;
         const occupantCount = Object.getOwnPropertyNames(presence.state).length;
         //var my_entry_number = occupantCount - 1;
-        console.log(hubChannel)
+        console.log(hubChannel.presence)
 
         hubChannel.presence.onSync(() => {
           const presence = hubChannel.presence;
@@ -1301,7 +1301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
           
-          if (my_NAF_ID == undefined){
+          if (typeof my_NAF_ID === "undefined"){
             my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
           }
           console.log(my_NAF_ID);
