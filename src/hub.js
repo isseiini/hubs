@@ -1341,10 +1341,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log(sessionStorage.getItem(socket.params().session_id))
             console.log(socket.params().session_id)
             console.log(hubChannel.channel.joinPush.receivedResp.response.session_id)
+
+            console.log(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id));
           
             
 
-            if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
+            if(!sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
               sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
             }
             
