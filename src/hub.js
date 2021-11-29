@@ -1191,9 +1191,50 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const presenceLogEntries = [];
 
+  function damage() {  
+    const Player_Respawn = document.getElementById("Player-Respawn");
+    const lifeBar = document.getElementById('life-bar')         
+    const lifeMark = document.getElementById('life-mark') 
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
+
+    var life = HP - 10;
+
+    if ( life <= 0 ){
+
+    // 算出の結果 0 以下になった場合
+    life = 0
+    // 0.3秒後に光部分を非表示にする
+    setTimeout(function(){
+        lifeMark.style.visibility = 'hidden'
+        Player_Respawn.style.display = "block";
+        life = 100  
+    }, 300)
+    } else {
+    // 算出の結果 100 を超過した場合
+    if ( life > 100 ) {
+        life = 100
+    }
+    // 光部分を表示する
+    lifeMark.style.visibility = 'visible'
+    }
+
+    lifeBar.style.width = life + "%"
+      
+  }
+
   
   const addToPresenceLog = entry => {
     entry.key = Date.now().toString();
+
+    var naf_Mine = socket.params().session_id;
+
+    if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
+      if (naf_Mine == entry.body) {
+        damage();
+        console.log(entry.body)
+      };
+      return
+    };
 
     presenceLogEntries.push(entry);
     remountUI({ presenceLogEntries });
@@ -1340,9 +1381,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             console.log(sessionStorage.getItem(socket.params().session_id))
           
-            const my_session_Id = socket.params().session_id;
-
-            export {my_session_Id}
+            
 
             if(sessionStorage.getItem(socket.params().session_id) == null || sessionStorage.getItem(socket.params().session_id) == undefined || sessionStorage.getItem(socket.params().session_id) == "naf-undefined"){
               sessionStorage.setItem(socket.params().session_id, my_NAF_ID)
