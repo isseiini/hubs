@@ -1230,7 +1230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   hubChannel.setPhoenixChannel(hubPhxChannel);
 
-  let my_NAF_ID = null;
+  
 
   hubPhxChannel
     .join()
@@ -1243,6 +1243,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       presenceSync.promise = new Promise(resolve => {
         presenceSync.resolve = resolve;
       });
+
+      let my_NAF_ID = null;
 
       if (isInitialJoin) {
         store.addEventListener("profilechanged", hubChannel.sendProfileUpdate.bind(hubChannel));
