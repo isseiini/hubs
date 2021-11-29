@@ -1339,6 +1339,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
             console.log(sessionStorage.getItem(socket.params().session_id))
+          
+            const my_session_Id = socket.params().session_id;
+
+            export {my_session_Id}
 
             if(sessionStorage.getItem(socket.params().session_id) == null || sessionStorage.getItem(socket.params().session_id) == undefined || sessionStorage.getItem(socket.params().session_id) == "naf-undefined"){
               sessionStorage.setItem(socket.params().session_id, my_NAF_ID)

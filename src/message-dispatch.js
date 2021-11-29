@@ -7,6 +7,7 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
+import { my_session_Id } from "./hub";
 
 let uiRoot;
 
@@ -56,7 +57,7 @@ export default class MessageDispatch extends EventTarget {
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
     
-    var naf_Mine = sessionStorage.getItem(this.hubChannel.socket.params().session_id); 
+    var naf_Mine = sessionStorage.getItem(my_session_Id); 
 
     if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
       if (naf_Mine == entry.body) {
