@@ -1294,6 +1294,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           presenceSync.resolve();
 
           const naf_tree = Object.keys(NAF.connection.entities.entities)
+          console.log(naf_tree)
+          console.log(occupantCount)
+          console.log(my_entry_number)
           const my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
           console.log(my_NAF_ID);
           sessionStorage.setItem('naf-mine', my_NAF_ID)
