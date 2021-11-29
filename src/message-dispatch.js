@@ -7,7 +7,6 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
-import {addToPresenceLog} from "./hub"
 
 let uiRoot;
 
@@ -21,9 +20,74 @@ export default class MessageDispatch extends EventTarget {
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
   }
+ 
+  damage() {  
+    const Player_Respawn = document.getElementById("Player-Respawn");
+    const lifeBar = document.getElementById('life-bar')         
+    const lifeMark = document.getElementById('life-mark') 
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
+
+    var life = HP - 10;
+
+    if ( life <= 0 ){
+
+    // 算出の結果 0 以下になった場合
+    life = 0
+    // 0.3秒後に光部分を非表示にする
+    setTimeout(function(){
+        lifeMark.style.visibility = 'hidden'
+        Player_Respawn.style.display = "block";
+        life = 100  
+    }, 300)
+    } else {
+    // 算出の結果 100 を超過した場合
+    if ( life > 100 ) {
+        life = 100
+    }
+    // 光部分を表示する
+    lifeMark.style.visibility = 'visible'
+    }
+
+    lifeBar.style.width = life + "%"
+      
+    
+  }
+
+  addToPresenceLog(entry) {
+    entry.key = Date.now().toString();
+
+    console.log(this.hubChannel.channel)
+    
+    var naf_Mine = sessionStorage.getItem(); 
+
+    if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
+      if (naf_Mine == entry.body) {
+        this.damage();
+        console.log(entry.body)
+      };
+      return
+    };
+
+    this.presenceLogEntries.push(entry);
+    this.remountUI({ presenceLogEntries: this.presenceLogEntries });
+    if (entry.type === "chat" && this.scene.is("loaded")) {
+      this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_CHAT_MESSAGE);
+    }
+
+    // Fade out and then remove
+    setTimeout(() => {
+      entry.expired = true;
+      this.remountUI({ presenceLogEntries: this.presenceLogEntries });
+
+      setTimeout(() => {
+        this.presenceLogEntries.splice(this.presenceLogEntries.indexOf(entry), 1);
+        this.remountUI({ presenceLogEntries: this.presenceLogEntries });
+      }, 5000);
+    }, 20000);
+  }
 
   receive(message) {
-    addToPresenceLog(message);
+    this.addToPresenceLog(message);
     this.dispatchEvent(new CustomEvent("message", { detail: message }));
   }
 
