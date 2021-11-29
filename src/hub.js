@@ -1298,9 +1298,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log(naf_tree)
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
-          let my_NAF_ID;
+          
           if (my_NAF_ID == undefined){
-            my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
+            const my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
           }
           console.log(my_NAF_ID);
           sessionStorage.setItem('naf-mine', my_NAF_ID)
