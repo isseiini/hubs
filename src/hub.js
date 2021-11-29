@@ -1262,7 +1262,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const presence = hubChannel.presence;
         const occupantCount = Object.getOwnPropertyNames(presence.state).length;
-        var my_entry_number = occupantCount - 1;
+        //var my_entry_number = occupantCount - 1;
+        console.log(hubChannel)
 
         hubChannel.presence.onSync(() => {
           const presence = hubChannel.presence;
