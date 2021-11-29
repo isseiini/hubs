@@ -56,9 +56,11 @@ export default class MessageDispatch extends EventTarget {
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
 
-    console.log(this.hubChannel.channel)
+    console.log(this.hubChannel.channel.joinPush.receivedResp.response.session_id)
     
-    var naf_Mine = sessionStorage.getItem(); 
+    var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+
+    console.log(naf_Mine)
 
     if (entry.type ==="chat" && entry.body.indexOf("naf") === 0){
       if (naf_Mine == entry.body) {
