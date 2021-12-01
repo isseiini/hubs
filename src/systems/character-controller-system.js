@@ -302,7 +302,7 @@ export class CharacterControllerSystem {
         const triedToMove = this.relativeMotion.lengthSq() > 0.000001;
 
         if (triedToMove) {
-          const speedModifier = preferences.movementSpeedModifier || 1;
+          let speedModifier = preferences.movementSpeedModifier || 1;
           speedModifier += plus_speed
           calculateDisplacementToDesiredPOV(
             snapRotatedPOV,
