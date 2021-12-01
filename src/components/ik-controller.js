@@ -164,6 +164,7 @@ AFRAME.registerComponent("ik-controller", {
 
     this.invHipsToHeadVector
       .addVectors(this.chest.position, this.neck.position)
+      
       .add(this.head.position)
       .negate();
   },

@@ -909,6 +909,14 @@ class PreferencesScreen extends Component {
       });
     }
 
+    let max_speed = 2;
+
+    document.addEventListener('keyup', event => {
+      if (event.code === 'KeyH') {
+        max_speed += 1;
+      }
+    });
+
     const DEFINITIONS = new Map([
       [
         CATEGORY_TOUCHSCREEN,
