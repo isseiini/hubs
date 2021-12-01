@@ -17,6 +17,8 @@ const NAV_ZONE = "character";
 const qsAllowWaypointLerp = qsTruthy("waypointLerp");
 const isMobile = AFRAME.utils.device.isMobile();
 
+let plus_speed = 0;
+
 const calculateDisplacementToDesiredPOV = (function() {
   const translationCoordinateSpace = new THREE.Matrix4();
   const translated = new THREE.Matrix4();
@@ -165,7 +167,6 @@ export class CharacterControllerSystem {
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
 
-    let plus_speed = 0;
     document.addEventListener('keyup', event => {
       if (event.code === 'KeyH') {
         plus_speed += 0.5
