@@ -17,7 +17,7 @@ const NAV_ZONE = "character";
 const qsAllowWaypointLerp = qsTruthy("waypointLerp");
 const isMobile = AFRAME.utils.device.isMobile();
 
-let plus_speed = 0;
+var plus_speed = 0;
 
 const calculateDisplacementToDesiredPOV = (function() {
   const translationCoordinateSpace = new THREE.Matrix4();
