@@ -16,7 +16,7 @@ import qsTruthy from "../utils/qs_truthy";
 const NAV_ZONE = "character";
 const qsAllowWaypointLerp = qsTruthy("waypointLerp");
 const isMobile = AFRAME.utils.device.isMobile();
-
+//change points
 var plus_speed = 0;
 
 const calculateDisplacementToDesiredPOV = (function() {

@@ -1373,15 +1373,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 if (
+                  isSelf&&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName
                 ) {
-                  messageDispatch.receive({
-                    type: "entered",
-                    presence: meta.presence,
-                    name: meta.profile.displayName
-                  });
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
