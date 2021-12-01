@@ -165,6 +165,16 @@ export class CharacterControllerSystem {
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
 
+    let plus_speed = 0;
+    document.addEventListener('keyup', event => {
+      if (event.code === 'KeyH') {
+        plus_speed += 0.5
+      };
+      if (event.code === 'KeyG') {
+        plus_speed -= 0.5
+      }
+    });
+
     let uiRoot;
     return function tick(t, dt) {
       const entered = this.scene.is("entered");
@@ -292,6 +302,7 @@ export class CharacterControllerSystem {
 
         if (triedToMove) {
           const speedModifier = preferences.movementSpeedModifier || 1;
+          speedModifier += plus_speed
           calculateDisplacementToDesiredPOV(
             snapRotatedPOV,
             this.fly || !navMeshExists,

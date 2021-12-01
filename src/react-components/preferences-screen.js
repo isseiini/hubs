@@ -875,7 +875,7 @@ class PreferencesScreen extends Component {
     this.props.store.removeEventListener("statechanged", this.storeUpdated);
     this.props.scene.removeEventListener("devicechange", this.onMediaDevicesUpdated);
   }
-
+  
   createSections() {
     const intl = this.props.intl;
 
@@ -909,13 +909,7 @@ class PreferencesScreen extends Component {
       });
     }
 
-    let max_speed = 2;
-
-    document.addEventListener('keyup', event => {
-      if (event.code === 'KeyH') {
-        max_speed += 1;
-      }
-    });
+    
 
     const DEFINITIONS = new Map([
       [
@@ -947,7 +941,7 @@ class PreferencesScreen extends Component {
             key: "movementSpeedModifier",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
             min: 0,
-            max: max_speed,
+            max: 2,
             step: 0.1,
             digits: 1,
             defaultNumber: 1
