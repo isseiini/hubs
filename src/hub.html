@@ -270,7 +270,8 @@
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
             <a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>
-            <a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>
+            <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>-->
+            <a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/firework_with_bomb1.glb"></a-asset-item>
 
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
@@ -429,11 +430,21 @@
                         </template>
                     </a-entity>
 
-                    <a-entity gltf-model="#hanabi"
+                    <!--<a-entity gltf-model="#hanabi"
                     position="0 1.1 0.7" 
                     rotation="0 0 0" 
                     scale="0.4 0.4 0.4"
                     class="collidable">
+                    </a-entity>-->
+
+                    <a-entity 
+                    id="sanshakudama"
+                    gltf-model="#hanabi"
+                    position="0 1.1 0.7" 
+                    rotation="0 0 0" 
+                    scale="0.4 0.4 0.4"
+                    class="collidable"
+                    animation="loop: true; startEvents: fire_hanabi">
                     </a-entity>
 
                     <!--<a-entity gltf-model="#aircanon"
@@ -1307,11 +1318,11 @@
             tags="inspectable: true; preventAudioBoost: true"
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
-            <a-entity gltf-model="#hanabi"
+            <!--<a-entity gltf-model="#hanabi"
             position="0 1.1 0.7" 
             rotation="0 0 0" 
             scale="0.4 0.4 0.4">
-            </a-entity>
+            </a-entity>-->
 
             <!--<a-entity gltf-model="#aircanon"
             position="0 0.5 -0.3" 

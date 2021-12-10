@@ -1626,7 +1626,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
   })
 
-  var Player_UI = document.getElementById("Player-UI")
+  var Player_UI = document.getElementById("Player-UI");
+  const fire_hanabi = document.getElementById("sanshakudama");
 
   const lifeBar = document.getElementById('life-bar')         // ライフバー
   const lifeMark = document.getElementById('life-mark')       // ライフの光部分
@@ -1655,10 +1656,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       life = 0
       // 0.3秒後に光部分を非表示にする
       setTimeout(function(){
-          lifeMark.style.visibility = 'hidden'
-          Player_Respawn.style.display = "block";
-          life = 100  
-      }, 300)
+        lifeMark.style.visibility = 'hidden'
+        Player_Respawn.style.display = "block";
+        life = 100 ;
+        fire_hanabi.emit("fire_hanabi")
+      }, 0)
       } else {
       // 算出の結果 100 を超過した場合
       if ( life > 100 ) {
