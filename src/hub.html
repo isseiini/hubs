@@ -236,7 +236,7 @@
     </div>
 
     <a-scene
-        webxr
+        webxr="optionalFeatures: dom-overlay; overlayElement:#overlay;"
         disable-resize
         embedded
         vr-mode-ui="enabled: false"
@@ -264,6 +264,9 @@
         environment-map
         light="defaultLightsEnabled: false"
     >
+        <div id="overlay">
+            <p style="position:fixed;top: 50%;right: 10px;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        </div>
         <a-assets>
             <img id="presence-count" crossorigin="anonymous" src="./assets/hud/presence-count.png">
             <img id="action-button" crossorigin="anonymous" src="./assets/hud/action_button.9.png">
