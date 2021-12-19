@@ -602,7 +602,7 @@ class UIRoot extends Component {
 
     const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || false;
     this.props.store.update({
-      settings: { micMuted: false }
+      settings: { micMuted: true }
     });
     await this.props.enterScene(this.state.enterInVR, muteOnEntry);
 
@@ -866,7 +866,7 @@ class UIRoot extends Component {
   };
 
   renderAudioSetupPanel = () => {
-    const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || true;
+    const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || false;
     // TODO: Show HMD mic not chosen warning
     return (
       <MicSetupModalContainer

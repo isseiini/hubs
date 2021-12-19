@@ -40,7 +40,7 @@ export default class MessageDispatch extends EventTarget {
           lifeMark.style.visibility = 'hidden'
           Player_Respawn.style.display = "block";
           life = 100  
-          sanshakudama.setAttribute("animation-mixer")
+          //sanshakudama.setAttribute("animation-mixer")
       }, 300)
     } else {
     // 算出の結果 100 を超過した場合
