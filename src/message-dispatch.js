@@ -26,7 +26,7 @@ export default class MessageDispatch extends EventTarget {
     const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeBar = document.getElementById('life-bar')         
     const lifeMark = document.getElementById('life-mark') 
-    const sanshakudama = querySelector(".sanshakudama");
+    const sanshakudama = document.querySelector(".sanshakudama");
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
 
     var life = HP - 10;
