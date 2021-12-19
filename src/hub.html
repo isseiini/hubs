@@ -7,6 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/augmented-ui@2/augmented-ui.min.css">
+
     <link rel="icon" sizes="16x16 24x24 32x32 48x48 64x64" href="/favicon.ico">
     <!-- Web-App Manifest (https://w3c.github.io/manifest/) -->
     <link rel="manifest" href="/manifest.webmanifest">
@@ -200,6 +202,28 @@
 
 <body>
     <div id="support-root"></div>
+
+    <div class="pitch-mixin" data-augmented-ui="tl-clip tr-scoop b-clip-x both">
+        <p>a</p>
+    </div>
+    
+    <style type="text/css">
+        .pitch-mixin {
+            min-height: 1000px;
+            padding: 50px;
+            --aug-tr: 25px;
+            --aug-b-extend1: 50%;
+    
+            --aug-border-all: 7px;
+            --aug-border-bg: radial-gradient(
+            at top, gold 25%, transparent 50%),
+        
+    
+            --aug-inlay-all: 4px;
+            --aug-inlay-bg: radial-gradient(gold, black);
+            --aug-inlay-opacity: 0.5;
+        }
+    </style>
 
     <a-scene
         webxr="optionalFeatures: dom-overlay; overlayElement:#overlay;"
