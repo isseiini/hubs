@@ -1659,7 +1659,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         lifeMark.style.visibility = 'hidden'
         Player_Respawn.style.display = "block";
         life = 100 ;
-        fire_hanabi.emit("fire_hanabi")
+        fire_hanabi.setAttribute("animation-mixer")
       }, 0)
       } else {
       // 算出の結果 100 を超過した場合
