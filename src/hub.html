@@ -200,40 +200,6 @@
 
 <body>
     <div id="support-root"></div>
-        
-    <div id="Player-UI"
-            style="width: 100vw; height: 100vh; z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;"
-        >
-        <div id="Player_map" style="width: 200px;height: 200px;background-color: transparent;border: 5px solid #00e1ff63;position: absolute;top: 10px;right: 100px;">
-            <img src="./assets/minimap.jpg" alt="">
-        </div>
-        <input id="hit_target_container" style="display: none;"></input>
-        <div id="life-frame">
-            <div id="life-bar"></div>
-            <div id="life-mark"></div>
-        </div>
-        <div class="btn-wrap">
-            <a href="" class="btn btn-c" style="position: fixed;bottom: 100px;left: 10px;">
-                <span>シューティングゲームをプレイ！</span>
-                <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
-            
-            </a>
-        </div>
-        <div class="btn-wrap" style="position: fixed;top: 0;right: 15px;">
-            <a id="menu" class="btn btn-c" style="padding:0 15px 10px 15px;">
-                <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
-                <br><img src="./assets/images/iconmonstr-menu-1-240.png" alt="" style="width: 30px;height: 30px;">
-                </a>
-        </div>
-        <div id="Player_tool" style="position: absolute; bottom: 100px; right: 0;opacity: 0.8;">
-            <img src="./assets/gun.png" alt="使用道具">
-        </div>
-    </div>
-
-    <div id="Player-Respawn" style="width: 100vw; height: 100vh; z-index: 1001;background-color: #000000;position: fixed;top: 0;left: 0;display: none;">
-        <input style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="リスポーンする"></input>
-                    
-    </div>
 
     <a-scene
         webxr="optionalFeatures: dom-overlay; overlayElement:#overlay;"
@@ -264,8 +230,38 @@
         environment-map
         light="defaultLightsEnabled: false"
     >
-        <div id="overlay">
-            <p style="position:fixed;top: 50%;right: 10px;z-index: 1000;">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <div id="overlay" style="z-index: 1000;">
+            <div id="Player-UI" style="width: 100vw; height: 100vh; z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;">
+                <div id="Player_map" style="width: 200px;height: 200px;background-color: transparent;border: 5px solid #00e1ff63;position: absolute;top: 10px;right: 100px;">
+                    <img src="./assets/minimap.jpg" alt="">
+                </div>
+                <input id="hit_target_container" style="display: none;"></input>
+                <div id="life-frame">
+                    <div id="life-bar"></div>
+                    <div id="life-mark"></div>
+                </div>
+                <div class="btn-wrap">
+                    <a href="" class="btn btn-c" style="position: fixed;bottom: 100px;left: 10px;">
+                        <span>シューティングゲームをプレイ！</span>
+                        <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
+                    
+                    </a>
+                </div>
+                <div class="btn-wrap" style="position: fixed;top: 0;right: 15px;">
+                    <a id="menu" class="btn btn-c" style="padding:0 15px 10px 15px;">
+                        <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
+                        <br><img src="./assets/images/iconmonstr-menu-1-240.png" alt="" style="width: 30px;height: 30px;">
+                        </a>
+                </div>
+                <div id="Player_tool" style="position: absolute; bottom: 100px; right: 0;opacity: 0.8;">
+                    <img src="./assets/gun.png" alt="使用道具">
+                </div>
+            </div>
+
+            <div id="Player-Respawn" style="width: 100vw; height: 100vh; z-index: 1001;background-color: #000000;position: fixed;top: 0;left: 0;display: none;">
+                <input style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="リスポーンする"></input>
+                            
+            </div>
         </div>
         <a-assets>
             <img id="presence-count" crossorigin="anonymous" src="./assets/hud/presence-count.png">
