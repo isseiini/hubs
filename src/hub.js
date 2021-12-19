@@ -224,7 +224,7 @@ import { OAuthScreenContainer } from "./react-components/auth/OAuthScreenContain
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { ThemeProvider } from "./react-components/styles/theme";
 
-import hanabi_animation from "assets/models/firework_with_bomb1";
+import hanabi_animation from "assets/models/firework_with_bomb1.glb";
 import { loadModel } from "components/gltf-model-plus";
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
