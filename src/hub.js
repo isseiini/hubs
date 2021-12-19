@@ -224,6 +224,9 @@ import { OAuthScreenContainer } from "./react-components/auth/OAuthScreenContain
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { ThemeProvider } from "./react-components/styles/theme";
 
+import hanabi_animation from "assets/models/firework_with_bomb1";
+import { loadModel } from "components/gltf-model-plus";
+
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
 NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
@@ -1659,7 +1662,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         lifeMark.style.visibility = 'hidden'
         Player_Respawn.style.display = "block";
         life = 100 ;
-        fire_hanabi.setAttribute("animation-mixer", "loop:once")
+        loadModel(hanabi_animation);
       }, 0)
       } else {
       // 算出の結果 100 を超過した場合
