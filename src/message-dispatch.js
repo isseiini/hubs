@@ -8,6 +8,9 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
+import hanabianimationSrc from "assets/models/firework_with_bomb1.glb";
+import { loadModel } from "components/gltf-model-plus";
+
 let uiRoot;
 
 export default class MessageDispatch extends EventTarget {
@@ -31,14 +34,15 @@ export default class MessageDispatch extends EventTarget {
 
     if ( life <= 0 ){
 
-    // 算出の結果 0 以下になった場合
-    life = 0
-    // 0.3秒後に光部分を非表示にする
-    setTimeout(function(){
-        lifeMark.style.visibility = 'hidden'
-        Player_Respawn.style.display = "block";
-        life = 100  
-    }, 300)
+      // 算出の結果 0 以下になった場合
+      life = 0
+      // 0.3秒後に光部分を非表示にする
+      setTimeout(function(){
+          lifeMark.style.visibility = 'hidden'
+          Player_Respawn.style.display = "block";
+          life = 100  
+          loadModel(hanabianimationSrc);
+      }, 300)
     } else {
     // 算出の結果 100 を超過した場合
     if ( life > 100 ) {
