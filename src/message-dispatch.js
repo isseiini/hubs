@@ -8,8 +8,6 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-import hanabianimationSrc from "assets/models/firework_with_bomb1.glb";
-import { loadModel } from "components/gltf-model-plus";
 
 let uiRoot;
 
@@ -28,6 +26,7 @@ export default class MessageDispatch extends EventTarget {
     const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeBar = document.getElementById('life-bar')         
     const lifeMark = document.getElementById('life-mark') 
+    const sanshakudama = querySelector(".sanshakudama");
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
 
     var life = HP - 10;
@@ -41,7 +40,7 @@ export default class MessageDispatch extends EventTarget {
           lifeMark.style.visibility = 'hidden'
           Player_Respawn.style.display = "block";
           life = 100  
-          loadModel(hanabianimationSrc);
+          sanshakudama.setAttribute("animation-mixer")
       }, 300)
     } else {
     // 算出の結果 100 を超過した場合
