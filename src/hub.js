@@ -1703,7 +1703,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const main_contents2 = document.getElementById("main-contents2");
 
 
-  document.getElementById('menu-button').onclick = () => {
+  document.getElementById('menu-button').addEventListener("click", function() {
     document.getElementById('menu-button').style.display ="none";
     document.getElementById("grid-mc").style.display = "flex";
     setTimeout(() => {
@@ -1725,28 +1725,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("grid-mr").style.display = "flex";
     }, 600);
     
-  };
+  });
 
-  document.getElementById('grid-tl').onclick = () => {
+  document.getElementById('grid-tl').addEventListener("click", function() {
     main_contents1.classList.add("change_scene");
     main_contents2.classList.add("change_scene");
     document.documentElement.style.setProperty('--main-color', 'rgb(76, 183, 233)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(76, 183, 233, 0.3)');
     main_contents1.classList.remove("change_scene");
     main_contents2.classList.remove("change_scene");
-  };
+  });
 
-  document.getElementById('grid-tr').onclick = () => {
+  document.getElementById('grid-tr').addEventListener("click", function(){
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 124, 124)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(255, 124, 124, 0.3)');
-  };
+  });
 
-  document.getElementById('grid-ml').onclick = () => {
+  document.getElementById('grid-ml').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 253, 108)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(255, 253, 108, 0.3)');
-  };
+  });
 
-  document.getElementById('grid-mc').onclick = () => {
+  document.getElementById('grid-mc').addEventListener("click", function() {
     document.getElementById('menu-button').style.display ="flex";
     document.getElementById("grid-tl").style.display = "none";
     document.getElementById("grid-tr").style.display = "none";
@@ -1755,22 +1755,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("grid-mr").style.display = "none";
     document.getElementById("grid-bl").style.display = "none";
     document.getElementById("grid-br").style.display = "none";
-  };
+  });
 
-  document.getElementById('grid-mr').onclick = () => {
+  document.getElementById('grid-mr').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(93, 255, 128)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(93, 255, 128, 0.3)');
-  };
+  });
 
-  document.getElementById('grid-bl').onclick = () => {
+  document.getElementById('grid-bl').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(255, 93, 215, 0.3)');
-  };
+  });
 
-  document.getElementById('grid-br').onclick = () => {
+  document.getElementById('grid-br').addEventListener("click", function(){
     document.documentElement.style.setProperty('--main-color', 'rgb(185, 185, 185)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(185, 185, 185, 0.3)');
-  };
+  });
 
-
+    
 });
