@@ -1697,13 +1697,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  const grid_tr = document.getElementById("grid-tr");
-  const grid_tl = document.getElementById("grid-tl");
-  const grid_ml = document.getElementById("grid-ml");
-  const grid_mc = document.getElementById("grid-mc");
-  const grid_mr = document.getElementById("grid-mr");
-  const grid_bl = document.getElementById("grid-bl");
-  const grid_br = document.getElementById("grid-br");
+  
 
   const main_contents1 = document.getElementById("main-contents1");
   const main_contents2 = document.getElementById("main-contents2");
