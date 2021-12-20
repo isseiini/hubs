@@ -262,8 +262,6 @@
           padding: 0;
         }
     
-        
-    
         :root {
           /* color */
           --blue: rgb(76, 183, 233);
@@ -287,14 +285,16 @@
           background-color: rgba(0, 0, 0, 0.671);
           width: 100vw;
           
-          position: relative;
+          position: fixed;
+          top: 0;
+          left: 0;
           display: flex;
           flex-direction: row;
           justify-content: center;
           flex-wrap: wrap;
           gap: 10px 15px;
           padding-top: 50px;
-          
+          z-index: 10000;
           
         }
     
@@ -461,7 +461,6 @@
         #menu-button img {
           margin: 0 auto;
           width: 40%;
-          
         }
     
         .menu-description {
@@ -505,51 +504,51 @@
     
         @keyframes building1 {
           100% {transform: perspective(1000px) rotateX(0deg) rotateY(-360deg);}
-          
         }
     
         @keyframes building2 {
           100% {transform: perspective(1000px) rotateX(0deg) rotateY(360deg);}
-          
         }
     
         @keyframes retro-future-tv-lines {
-          100% {animation-duration: 500ms;
-        animation-timing-function: linear;
-        animation-delay: 0s;
-        animation-iteration-count: infinite;
-        animation-direction: normal;
-        animation-fill-mode: none;
-        animation-play-state: var(--playstate, running);
-        animation-name: retro-future-tv-lines;}
+          100% {
+            animation-duration: 500ms;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-fill-mode: none;
+            animation-play-state: var(--playstate, running);
+            animation-name: retro-future-tv-lines;
+          }
         }
     
         /* Animate neon flicker */
         @keyframes flicker {
         
-        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        
-          text-shadow:
-            -0.2rem -0.2rem 1rem #fff,
-            0.2rem 0.2rem 1rem #fff,
-            0 0 1rem var(--neon-text-color),
-            0 0 1.5rem var(--neon-text-color),
-            0 0 2.5rem var(--neon-text-color),
-            0 0 3.5rem var(--neon-text-color),
-            0 0 4.5rem var(--neon-text-color);
-          
-          box-shadow:
-            0 0 .5rem #fff,
-            inset 0 0 .5rem #fff,
-            0 0 1rem var(--neon-border-color),
-            inset 0 0 1rem var(--neon-border-color),
-            0 0 2rem var(--neon-border-color),
-            inset 0 0 2rem var(--neon-border-color);        
-          } 20%, 24%, 55% {        
-          text-shadow: none;
-          box-shadow: none;
-        }  
-      } 
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            
+            text-shadow:
+                -0.2rem -0.2rem 1rem #fff,
+                0.2rem 0.2rem 1rem #fff,
+                0 0 1rem var(--neon-text-color),
+                0 0 1.5rem var(--neon-text-color),
+                0 0 2.5rem var(--neon-text-color),
+                0 0 3.5rem var(--neon-text-color),
+                0 0 4.5rem var(--neon-text-color);
+            
+            box-shadow:
+                0 0 .5rem #fff,
+                inset 0 0 .5rem #fff,
+                0 0 1rem var(--neon-border-color),
+                inset 0 0 1rem var(--neon-border-color),
+                0 0 2rem var(--neon-border-color),
+                inset 0 0 2rem var(--neon-border-color);        
+            } 20%, 24%, 55% {        
+            text-shadow: none;
+            box-shadow: none;
+            }  
+        } 
     
       
       </style>
