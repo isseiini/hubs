@@ -1843,10 +1843,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   createAccountBtn.addEventListener("click", () => {
 
     const username = document.getElementById("email-signup").value;
-    const name = document.getElementById("name-signup").value;
+    //const name = document.getElementById("name-signup").value;
     const password = document.getElementById('password-signup').value;
 
-    if (!username | !name | !password) {
+    if (!username | /*!name | */!password) {
       alert("未入力項目があります。");
       return false;
     }
