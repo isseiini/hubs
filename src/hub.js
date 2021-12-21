@@ -1805,6 +1805,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     IdentityPoolId: 'us-east-1:3c01cde5-90e4-4518-b40f-1fc07ec39fa1',
   });
 
+  const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
   var ddb = new AWS.DynamoDB({
     apiVersion: '2012-08-10'
   });
@@ -1826,6 +1828,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  const poolData = {
+    UserPoolId: "us-east-1_vARmK4mUU",
+    ClientId: "3mjhp0gn2hc39i9lrrfv953pam"
+  };
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+  console.log(userPool);
   
   
   
