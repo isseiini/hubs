@@ -1805,7 +1805,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   AWS.config.region = 'us-east-1'; // リージョン
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:1fdb1309-10bc-4471-aa50-b8e5ec97a688',
+    IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
   });
 
   const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -1832,8 +1832,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const poolData = {
-    UserPoolId: "us-east-1_vARmK4mUU",
-    ClientId: "3mjhp0gn2hc39i9lrrfv953pam"
+    UserPoolId: "us-east-1_Gd2wKpTxA",
+    ClientId: "466pt7430sslkonppplmi65aut"
   };
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
@@ -1843,10 +1843,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   createAccountBtn.addEventListener("click", () => {
 
     const username = document.getElementById("email-signup").value;
-    //const name = document.getElementById("name-signup").value;
+    const name = document.getElementById("name-signup").value;
     const password = document.getElementById('password-signup').value;
 
-    if (!username | /*!name | */!password) {
+    if (!username | !name | !password) {
       alert("未入力項目があります。");
       return false;
     }
