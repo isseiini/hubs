@@ -1700,6 +1700,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById('menu-button').addEventListener("click", function() {
     document.getElementById('menu-button').style.display ="none";
+    document.getElementById("hex-grid").style.display = "grid";
     document.getElementById("grid-mc").style.display = "flex";
     setTimeout(() => {
       document.getElementById("grid-br").style.display = "flex";
@@ -1759,6 +1760,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById('grid-mc').addEventListener("click", function() {
     document.getElementById('menu-button').style.display ="flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.getElementById("grid-tl").style.display = "none";
     document.getElementById("grid-tr").style.display = "none";
     document.getElementById("grid-ml").style.display = "none";
@@ -1844,9 +1846,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const name = document.getElementById("name").value;
     const password = document.getElementById('password').value;
 
-    const message = document.getElementById("message-span");
     if (!username | !name | !password) {
-      message.innerHTML = "未入力項目があります。";
+      alert("未入力項目があります。");
       return false;
     }
 
@@ -1886,9 +1887,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const password = document.getElementById('password').value;
 
     // 何か1つでも未入力の項目がある場合、メッセージを表示して処理を中断
-    const message = document.getElementById('message-span');
     if (!email | !password) {
-      message.innerHTML = "入力に不備があります。";
+      alert("入力に不備があります。");
       return false;
     }
 
