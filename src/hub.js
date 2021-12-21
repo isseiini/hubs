@@ -3092,8 +3092,8 @@ BigInteger.prototype.square = bnSquare;
   var endpoint = [idp, IdentityPoolId.AWSCognito].join("/");
 
   // Initialize the Amazon Cognito credentials provider
-  AWS.config.region = region; // Region
-  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId.AWS.config.region = region; // Region
+  IdentityPoolId.AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: IdentityPoolId.AWS
   });
 
