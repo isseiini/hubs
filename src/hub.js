@@ -1833,8 +1833,101 @@ document.addEventListener("DOMContentLoaded", async () => {
     ClientId: "3mjhp0gn2hc39i9lrrfv953pam"
   };
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-  console.log(userPool);
-  
+
+  const attributeList = [];
+
+  const createAccountBtn = document.getElementById("createAccount");
+  createAccountBtn.addEventListener("click", () => {
+
+    const username = document.getElementById("email").value;
+    const name = document.getElementById("name").value;
+    const password = document.getElementById('password').value;
+
+    const message = document.getElementById("message-span");
+    if (!username | !name | !password) {
+      message.innerHTML = "未入力項目があります。";
+      return false;
+    }
+
+    const dataName = {
+      Name: "name",
+      Value: name
+    };
+    const dataRole = {
+      Name: "custom:role",
+      Value: "5"
+    };
+    const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
+      dataName
+    );
+    const attributeRole = new AmazonCognitoIdentity.CognitoUserAttribute(
+      dataRole
+    );
+
+    attributeList.push(attributeName);
+    attributeList.push(attributeRole);
+
+    userPool.signUp(username, password, attributeList, null, (err, result) => {
+      if (err) {
+        message.innerHTML = err.message;
+        return;
+      } else {
+        alert(
+          "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
+        );
+        location.href = "signin.html";
+      }
+    });
+  });
+ 
+  document.getElementById("signinButton").addEventListener("click", () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // 何か1つでも未入力の項目がある場合、メッセージを表示して処理を中断
+    const message = document.getElementById('message-span');
+    if (!email | !password) {
+      message.innerHTML = "入力に不備があります。";
+      return false;
+    }
+
+    // 認証データの作成
+    const authenticationData = {
+      Username: email,
+      Password: password
+    };
+    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
+      authenticationData
+    );
+
+    const userData = {
+      Username: email,
+      Pool: userPool
+    };
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    // 認証処理
+    cognitoUser.authenticateUser(authenticationDetails, {
+      onSuccess: result => {
+        const idToken = result.getIdToken().getJwtToken(); // IDトークン
+        const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
+        const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
+
+        console.log("idToken : " + idToken);
+        console.log("accessToken : " + accessToken);
+        console.log("refreshToken : " + refreshToken);
+
+        // サインイン成功の場合、次の画面へ遷移
+        
+      },
+
+      onFailure: err => {
+        // サインイン失敗の場合、エラーメッセージを画面に表示
+        console.log(err);
+        message.innerHTML = err.message;
+      }
+    });
+  });
   
   
 });
