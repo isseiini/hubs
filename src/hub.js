@@ -224,6 +224,7 @@ import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { OAuthScreenContainer } from "./react-components/auth/OAuthScreenContainer";
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { ThemeProvider } from "./react-components/styles/theme";
+import { addLeadingSlash } from "history/PathUtils";
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
@@ -1802,7 +1803,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   AWS.config.region = 'us-east-1'; // リージョン
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:3c01cde5-90e4-4518-b40f-1fc07ec39fa1',
+    IdentityPoolId: 'us-east-1:1fdb1309-10bc-4471-aa50-b8e5ec97a688',
   });
 
   const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -1869,7 +1870,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     userPool.signUp(username, password, attributeList, null, (err, result) => {
       if (err) {
-        message.innerHTML = err.message;
+        alert(err.message);
         return;
       } else {
         alert(
@@ -1924,7 +1925,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       onFailure: err => {
         // サインイン失敗の場合、エラーメッセージを画面に表示
         console.log(err);
-        message.innerHTML = err.message;
+        alert(err.message);
       }
     });
   });
