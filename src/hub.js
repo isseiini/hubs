@@ -20199,7 +20199,7 @@ BigInteger.prototype.square = bnSquare;
               return c
           }
           ,
-          d.crypto && crypto.getRandomValues && (c = function(a) {
+          crypto.getRandomValues && (c = function(a) {
               var b = new Uint8Array(a);
               return crypto.getRandomValues(b),
               b
