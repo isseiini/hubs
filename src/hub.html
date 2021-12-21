@@ -63,6 +63,13 @@
       /* style */
       --main-color: var(--blue);
       --sub-color:var(--blue_sub);
+
+      --display1:"none";
+      --display2:"none";
+      --display3:"none";
+      --display4:"none";
+      --display5:"none";
+      --display6:"none";
     }
 
     #hex-background {
@@ -499,6 +506,32 @@
     .none {
       display: none;
     }
+
+    .topic-1 {
+      display: var(--display1);
+    }
+
+    .topic-2 {
+      display: var(--display2);
+    }
+
+    .topic-3 {
+      display: var(--display3);
+    }
+
+    .topic-4 {
+      display: var(--display4);
+    }
+
+    .topic-5 {
+      display: var(--display5);
+    }
+
+    .topic-6 {
+      display: var(--display6);
+    }
+      
+    
   </style>
 </head>
 
@@ -506,6 +539,8 @@
     <div id="support-root"></div>
 
     <div id="hex-background">
+
+
       <div id="path-to-world" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-round-inset bl-round-inset both" class="styleme">
         <h1>バーチャル道頓堀に入場する</h1>
         <div id="path-to-hubs" data-augmented-ui="tl-2-clip-xy tr-2-rect-y br-2-rect-y both" class="styleme">
@@ -515,28 +550,37 @@
           
         </div>
       </div>
-  
+
       <div id="main-contents1" data-augmented-ui="tl-clip-x tr-clip-x br-clip bl-round-inset l-rect-y both" class="styleme">
-        <h1>バーチャル道頓堀とは</h1>
-        <div id="message"><span id="message-span" style="color: red;"></span></div>
-        <form name="form-signin">
-          <span style="display: inline-block; width: 150px;">Eメール</span>
-          <input type="text" id="email" placeholder="" />
-          <br />
-          <span style="display: inline-block; width: 150px;">パスワード</span>
-          <input type="password" id="password" placeholder="" /><br><br>
-
-          <a href="reset.html" style="color: #0000ee;">パスワードを忘れた場合はこちら</a>
-
-          <div class="fold" style="width: 100px;padding: 0;margin-top: 20px;">
-            <input type="button" id="signinButton" value="ログイン" />
-          </div>
-          
-        </form>
+        <h1 class="topic-1">バーチャル道頓堀とは</h1>
+        <h1 class="topic-2">操作方法１</h1>
+        <h1 class="topic-3">登録情報</h1>
+        <h1 class="topic-4">運営組織</h1>
+        <h1 class="topic-5">特典コード入力</h1>
+        <h1 class="topic-6">ログインはこちら</h1>
+        <div class="main-description topic-1">サンプル</div>
+        <div class="main-description topic-2">サンプル</div>
+        <div class="main-description topic-3">サンプル</div>
+        <div class="main-description topic-4">サンプル</div>
+        <div class="main-description topic-5">サンプル</div>
+        <div class="main-description topic-6">サンプル</div>
       </div>
       <div id="main-contents2" data-augmented-ui="tl-clip-x tr-clip-x r-rect-y br-round-inset bl-clip both" class="styleme">
-        <h1>バーチャル道頓堀でなにができるのか</h1>
+        <h1 class="topic-1">バーチャル道頓堀でなにができるのか</h1>
+        <h1 class="topic-2">操作方法</h1>
+        <h1 class="topic-3">実績</h1>
+        <h1 class="topic-4">運営組織</h1>
+        <h1 class="topic-5">特典獲得状況</h1>
+        <h1 class="topic-6">新規登録はこちら</h1>
+        <div class="main-description topic-1">サンプル</div>
+        <div class="main-description topic-2">サンプル</div>
+        <div class="main-description topic-3">サンプル</div>
+        <div class="main-description topic-4">サンプル</div>
+        <div class="main-description topic-5">サンプル</div>
+        <div class="main-description topic-6">サンプル</div>
       </div>
+
+
       <div id="menu-button" data-augmented-ui="all-hex border">
         <img src="assets/images/iconmonstr-menu-1-240.png" alt="">
         <span class="menu-description">メニュー</span>
