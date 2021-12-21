@@ -518,27 +518,21 @@
   
       <div id="main-contents1" data-augmented-ui="tl-clip-x tr-clip-x br-clip bl-round-inset l-rect-y both" class="styleme">
         <h1>バーチャル道頓堀とは</h1>
-        <div class="app">
-          <h1>Apache Cordova</h1>
-          <div id="deviceready" class="blink">
-              <p class="event listening">Connecting to Device</p>
-              <p class="event received">Device is Ready</p>
+        <div id="message"><span id="message-span" style="color: red;"></span></div>
+        <form name="form-signin">
+          <span style="display: inline-block; width: 150px;">Eメール</span>
+          <input type="text" id="email" placeholder="" />
+          <br />
+          <span style="display: inline-block; width: 150px;">パスワード</span>
+          <input type="password" id="password" placeholder="" /><br><br>
+
+          <a href="reset.html" style="color: #0000ee;">パスワードを忘れた場合はこちら</a>
+
+          <div class="fold" style="width: 100px;padding: 0;margin-top: 20px;">
+            <input type="button" id="signinButton" value="ログイン" />
           </div>
-      </div>
-  
-      <form>
-          <h2>サインアップ</h2>
-          <div id="message" class="alert" style="display:none;"></div>
-          <label for="inputUsername" class="sr-only">ユーザー名</label>
-          <input type="text" id="inputUsername" class="form-control" placeholder="User name" required autofocus></input>
-          <label for="inputPassword" class="sr-only">パスワード</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required></input>
-          <label for="inputEmail" class="sr-only">メールアドレス</label>
-          <input type="text" id="inputEmail" class="form-control" placeholder="EMail" required></input>
-          <label for="inputLocale" class="sr-only">ロケール</label>
-          <input type="text" id="inputLocale" class="form-control" placeholder="Locale" required></input>
-          <input type="button" class="btn btn-lg btn-primary btn-bloc" id="user_add_btn" value="ユーザーを作成する"></input>
-      </form>
+          
+        </form>
       </div>
       <div id="main-contents2" data-augmented-ui="tl-clip-x tr-clip-x r-rect-y br-round-inset bl-clip both" class="styleme">
         <h1>バーチャル道頓堀でなにができるのか</h1>
