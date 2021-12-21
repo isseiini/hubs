@@ -1781,12 +1781,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   var docClient = new AWS.DynamoDB.DocumentClient();
 
+  const poolData = {
+    UserPoolId: "us-east-1_h1mwAM07G",
+    ClientId: "5bpqnf0gltgmbpee7vfn36koms"
+  };
+  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
   var params = {
-    TableName: 'demo-userpool',
+    TableName: 'demo-user',
     Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
       username: "a"
     }
   };
+
   docClient.get(params, function(err, data){
     if(err){
       console.log(err);
