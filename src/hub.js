@@ -1770,5 +1770,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--sub-color', 'rgb(185, 185, 185, 0.3)');
   });
 
+  AWS.config.region = 'us-east-1'; // リージョン
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:3c01cde5-90e4-4518-b40f-1fc07ec39fa1',
+  });
+
+  var ddb = new AWS.DynamoDB({
+    apiVersion: '2012-08-10'
+  });
+  
+  var docClient = new AWS.DynamoDB.DocumentClient();
+
+  var params = {
+    TableName: 'demo-userpool',
+    Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
+      username: "a"
+    }
+  };
+  docClient.get(params, function(err, data){
+    if(err){
+      console.log(err);
+    }else{
+      console.log(data);
+    }
+  });
   
 });
