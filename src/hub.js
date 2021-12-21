@@ -3060,13 +3060,6 @@ BigInteger.prototype.square = bnSquare;
   
   var docClient = new AWS.DynamoDB.DocumentClient();
 
-  const poolData = {
-    UserPoolId: " us-east-1_vARmK4mUU",
-    ClientId: "3mjhp0gn2hc39i9lrrfv953pam"
-  };
-  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-  console.log(userPool)
-
   var params = {
     TableName: 'demo-user',
     Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -3081,5 +3074,79 @@ BigInteger.prototype.square = bnSquare;
       console.log(data);
     }
   });
+
+
   
+  var region = 'us-east-1'; // 東京リージョン
+
+  var IdentityPoolId = {
+    AWS: 'us-east-1:3c01cde5-90e4-4518-b40f-1fc07ec39fa1', // <YOUR_IDENTITY_POOL_ID>
+    AWSCognito: 'us-east-1_vARmK4mUU' // <YOUR_USER_POOL_ID>
+  };
+
+  var ClientId = '3mjhp0gn2hc39i9lrrfv953pam'; // アプリID
+
+  ///////////////////
+
+  var idp = ['cognito-idp', region, 'amazonaws', 'com'].join(".");
+  var endpoint = [idp, IdentityPoolId.AWSCognito].join("/");
+
+  // Initialize the Amazon Cognito credentials provider
+  AWS.config.region = region; // Region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: IdentityPoolId.AWS
+  });
+
+  // Initialize the Amazon Cognito credentials provider
+  AWSCognito.config.region = region; // Region
+  AWSCognito.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: IdentityPoolId.AWSCognito
+  });
+
+  var data = {
+    UserPoolId: IdentityPoolId.AWSCognito,
+    ClientId: ClientId
+  };
+  var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(data);
+
+  var cognitoUser;
+
+  function message(div, message_text, message_class) {
+    div.text(message_text);
+    div.addClass(message_class);
+    div.show();
+    setTimeout(function () {
+      div.fadeOut();
+      div.removeClass(message_class);
+    }, 5000);
+  }
+
+  // Use case 1. Registering a user with the application.
+  document.getElementById("user_add_btn").addEventListener("click", function() {
+    var username = document.getElementById("inputUsername").value;
+    var password = document.getElementById("inputPassword").value;
+
+    var email = document.getElementById("inputEmail").value;
+    var locale = document.getElementById("inputLocale").value;
+
+    var attributeList = [];
+    attributeList.push({Name: "email", Value: email});
+    attributeList.push({Name: "locale", Value: locale});
+
+    if (!username || !password) {
+      return false;
+    }
+
+    userPool.signUp(username, password, attributeList, null, function (err, result) {
+      if (err) {
+        console.log(err);
+        message(document.getElementById("message"), err, "alert-danger");
+      } else {
+        cognitoUser = result.user;
+        console.log('user name is ' + cognitoUser.getUsername());
+        var message_text = cognitoUser.getUsername() + "が作成されました";
+        message(document.getElementById("message"), message_text, "alert-success");
+      }
+    });
+  });
 });
