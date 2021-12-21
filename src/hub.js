@@ -3061,14 +3061,14 @@ BigInteger.prototype.square = bnSquare;
   
   var docClient = new AWS.DynamoDB.DocumentClient();
 
-  var params = {
+  var params1 = {
     TableName: 'demo-user',
     Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
       username: "a"
     }
   };
 
-  docClient.get(params, function(err, data){
+  docClient.get(params1, function(err, data){
     if(err){
       console.log(err);
     }else{
