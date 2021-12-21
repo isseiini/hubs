@@ -1842,9 +1842,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const createAccountBtn = document.getElementById("createAccount");
   createAccountBtn.addEventListener("click", () => {
 
-    const username = document.getElementById("email").value;
-    const name = document.getElementById("name").value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById("email-signup").value;
+    const name = document.getElementById("name-signup").value;
+    const password = document.getElementById('password-signup').value;
 
     if (!username | !name | !password) {
       alert("未入力項目があります。");
@@ -1883,26 +1883,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
  
   document.getElementById("signinButton").addEventListener("click", () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const email_signin = document.getElementById('email-signin').value;
+    const password_signin = document.getElementById('password-signin').value;
 
     // 何か1つでも未入力の項目がある場合、メッセージを表示して処理を中断
-    if (!email | !password) {
+    if (!email_signin | !password_signin) {
       alert("入力に不備があります。");
       return false;
     }
 
     // 認証データの作成
     const authenticationData = {
-      Username: email,
-      Password: password
+      Username: email_signin,
+      Password: password_signin
     };
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
       authenticationData
     );
 
     const userData = {
-      Username: email,
+      Username: email_signin,
       Pool: userPool
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
