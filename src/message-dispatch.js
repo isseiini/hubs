@@ -70,6 +70,21 @@ export default class MessageDispatch extends EventTarget {
           console.log('success');
         }
       });
+      var params = {
+        TableName: 'demo-matching-table',
+        Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
+          URL: current_room,
+        }
+      };
+      docClient.get(params, function(err, data){
+        if(err){
+          console.log(err);
+        }else{
+          if(data.Red-Points >= 10) {
+            hubChannel.sendMessage("_Win-Red");
+          }
+        }
+    });
     } else {
     // 算出の結果 100 を超過した場合
     if ( life > 100 ) {
@@ -93,6 +108,12 @@ export default class MessageDispatch extends EventTarget {
       if ("_" + naf_Mine == entry.body) {
         this.damage();
       };
+      return
+    };
+
+    if (entry.type ==="chat" && entry.body.indexOf("_Win-") === 0){
+      const waypointSystem = this.scene.systems["hubs-systems"].waypointSystem;
+      waypointSystem.moveToSpawnPoint();
       return
     };
 
