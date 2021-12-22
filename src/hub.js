@@ -178,7 +178,7 @@ if (room_name == "playful-whirlwind-dominion") {
   document.getElementById("life-frame").style.display = "none";
 } else {
   location.reload();
-}
+};
 
 
 window.APP = new App();
