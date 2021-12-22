@@ -1858,9 +1858,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
       dataName
     );
-    const attributeRole = new AmazonCognitoIdentity.CognitoUserAttribute(
-      dataRole
-    );
 
     attributeList.push(attributeName);
 
