@@ -1873,7 +1873,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cognito_mine = userPool.getCurrentUser();
         cognito_mine.getUserAttributes((err, result) => {
           if (err) {
-            return
+            alert("エラーが発生しました。もう一度お試しください。")
           }
 
           for (i = 0; i < result.length; i++) {
