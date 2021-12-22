@@ -168,6 +168,18 @@ import MediaDevicesManager from "./utils/media-devices-manager";
 import { sleep } from "./utils/async-utils";
 import { platformUnsupported } from "./support";
 
+var current_url = location.href.split("/");
+var room_name = current_url[current_url.length - 1];
+
+if (room_name == "playful-whirlwind-dominion") {
+  document.getElementById("hex-background").style.display = "none";
+  document.getElementById("go-to-game").style.display = "none";
+} else if (room_name == "talkative-quarterly-dominion") {
+  document.getElementById("life-frame").style.display = "none";
+} else {
+  location.reload();
+}
+
 
 window.APP = new App();
 window.APP.RENDER_ORDER = {
@@ -1954,7 +1966,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }else{
         data3.Items.sort((a, b) => b.Sum - a.Sum);
         var goal_url = "https://d-06-virtual.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
-        console.log(goal_url);
         if (confirm('マッチしました。対戦ワールドへ移動します。')) {
           location.href = goal_url;
         } else {
