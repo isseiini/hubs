@@ -56,7 +56,7 @@ export default class MessageDispatch extends EventTarget {
           URL: current_room
         },
         ExpressionAttributeNames: {
-          '#red': "Red-Points",
+          '#red': "RedPoints",
         },
         ExpressionAttributeValues: {
           ':newScore': 1,
@@ -80,7 +80,7 @@ export default class MessageDispatch extends EventTarget {
         if(err){
           console.log(err);
         }else{
-          if(data.Item.Red-Points >= 10) {
+          if(data.Item.RedPoints >= 10) {
             this.hubChannel.sendMessage("_Win-Red");
           }
         }
