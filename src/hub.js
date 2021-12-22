@@ -1817,21 +1817,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   var docClient = new AWS.DynamoDB.DocumentClient();
 
-  var params1 = {
-    TableName: 'demo-userpool',
-    Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
-      username: "a"
-    }
-  };
-
-  docClient.get(params1, function(err, data){
-    if(err){
-      console.log(err);
-    }else{
-      console.log(data);
-    }
-  });
-
   const poolData = {
     UserPoolId: "us-east-1_Gd2wKpTxA",
     ClientId: "466pt7430sslkonppplmi65aut"
@@ -1962,14 +1947,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
       TableName: 'demo-matching-table',
-    };
+    };            
     docClient.scan(matching_params, function(err, data3){
       if(err){
         console.log(err);
       }else{
         console.log(data3)
-        const filteredArray4 = data3.filter((e) => e.Item.Sum <= 10);
-        console.log(filteredArray4);
+        //const filteredArray4 = data3.filter((e) => e.Item.Sum <= 10);
+        //console.log(filteredArray4);
+        //var result = sortBy(filteredArray4, 'DESC', 'Sum');
+        //var goal_url = result[0]
       }
     });
   });
