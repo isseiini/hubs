@@ -1964,7 +1964,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       TableName: 'demo-matching-table'
     };
 
-    docClient.get(matching_params, function(err, data2){
+    docClient.scan(matching_params, function(err, data2){
       if(err){
         console.log('error');
       }else{
