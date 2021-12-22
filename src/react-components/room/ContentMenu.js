@@ -21,7 +21,6 @@ ContentMenuButton.propTypes = {
 };
 
 export function ObjectsMenuButton(props) {
-  return; //change points
   return (
     <ContentMenuButton {...props}>
       <ObjectsIcon />
@@ -33,7 +32,6 @@ export function ObjectsMenuButton(props) {
 }
 
 export function PeopleMenuButton(props) {
-  return; //change points
   return (
     <ContentMenuButton {...props}>
       <PeopleIcon />

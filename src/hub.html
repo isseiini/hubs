@@ -755,9 +755,10 @@
             <a-asset-item id="drawing-pen" response-type="arraybuffer" src="./assets/models/DrawingPen.glb"></a-asset-item>
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
-            <a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>
+            <!--<a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>-->
             <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>-->
             <a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/firework_with_bomb1.glb"></a-asset-item>
+            <a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/aircanon_with_gunfire.glb"></a-asset-item>
 
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
@@ -1332,7 +1333,16 @@
                         position="0 -0.18 0"
                         pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
                         pen-laser
-                    ></a-entity>
+                    >
+                      <a-entity 
+                        class="aircanon"
+                        gltf-model="#aircanon"
+                        animation-mixer
+                        position="0 1.1 -0.2" 
+                        rotation="0 0 0" 
+                        scale="0.2 0.2 0.2">
+                      </a-entity>
+                    </a-entity>
                     <a-entity class="ui delete-button pen-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_drawing" >
                         <a-entity mixin="rounded-button" is-remote-hover-target tags="singleActionButton: true" remove-networked-object-button position="0 0 0.001">
                             <a-entity
