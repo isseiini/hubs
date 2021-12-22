@@ -117,7 +117,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win-") === 0){
-      document.getElementById("avatar-rig").removeAttribute("ik-root")
+      document.getElementById("avatar-rig").removeAttribute("ik-root");
       return
     };
 
