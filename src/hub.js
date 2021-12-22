@@ -1954,5 +1954,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     }
   })
+
+  document.getElementById("path-to-VRChat").addEventListener("click", function() {
+    location.href = "https://vrch.at/wrld_4432ea9b-729c-46e3-8eaf-846aa0a37fdd";
+  })
   
+  document.getElementById("go-to-game").addEventListener("click", function() {
+
+    
+  })
 });
