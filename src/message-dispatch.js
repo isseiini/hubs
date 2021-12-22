@@ -81,10 +81,10 @@ export default class MessageDispatch extends EventTarget {
           console.log(err);
         }else{
           if(data.Item.RedPoints >= 10) {
-            hubChannel.sendMessage("_Win-Red");
+            this.dispatch("_Win_Red");
           }
         }
-    });
+      });
     } else {
     // 算出の結果 100 を超過した場合
     if ( life > 100 ) {

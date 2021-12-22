@@ -1968,7 +1968,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       KeyConditionExpression: '#c <= :val'//検索対象が満たすべき条件を指定
     };
 
-    docClient.put(matching_params, function(err, data2){
+    docClient.query(matching_params, function(err, data2){
       if(err){
         console.log('error');
       }else{
