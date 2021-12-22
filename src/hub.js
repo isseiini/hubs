@@ -1953,10 +1953,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       }else{
         console.log(data3)
-        //const filteredArray4 = data3.filter((e) => e.Item.Sum <= 10);
-        //console.log(filteredArray4);
-        //var result = sortBy(filteredArray4, 'DESC', 'Sum');
-        //var goal_url = result[0]
+        var sort_matching = sortBy(data3.Items, 'DESC', 'Sum');
+        console.log(sort_matching);
+        var goal_url = sort_matching[0].URL;
+        console.log(goal_url)
       }
     });
   });
