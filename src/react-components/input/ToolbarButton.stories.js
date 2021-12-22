@@ -49,11 +49,13 @@ export const RoomToolbar = () => (
     toolbarRight={
       <>
         <ToolbarButton icon={<LeaveIcon />} label="Leave" preset="accent1" />
-        <ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" />
+        
       </>
     }
   />
 );
+
+//<ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" /> //change points
 
 export const EntryToolbar = () => (
   //<RoomLayout
@@ -81,8 +83,10 @@ export const EntryToolbar = () => (
     toolbarRight={
       <>
         <ToolbarButton icon={<LeaveIcon />} label="Leave" preset="accent1" />
-        <ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" />
+        
       </>
     }
   />
 );
+
+//<ToolbarButton icon={<MoreIcon />} label="More" preset="transparent" /> //change points
