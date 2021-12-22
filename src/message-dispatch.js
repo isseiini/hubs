@@ -80,7 +80,7 @@ export default class MessageDispatch extends EventTarget {
         if(err){
           console.log(err);
         }else{
-          if(data.item.Red-Points >= 10) {
+          if(data.items.Red-Points >= 10) {
             this.hubChannel.sendMessage("_Win-Red");
           }
         }
