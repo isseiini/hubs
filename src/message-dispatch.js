@@ -8,8 +8,6 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-
-
 AWS.config.region = 'us-east-1'; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
@@ -82,10 +80,10 @@ export default class MessageDispatch extends EventTarget {
           console.log(err);
         }else{
           if(data.Item.RedPoints >= 10) {
-            var hit_target = "_Win_Red";
-            const event = new Event('change');
-            hit_target_container.value = hit_target;
-            hit_target_container.dispatchEvent(event);
+            var hit_target2 = "_Win_Red";
+            const event2 = new Event('change');
+            hit_target_container.value = hit_target2;
+            hit_target_container.dispatchEvent(event2);
           }
         }
       });
