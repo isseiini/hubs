@@ -1891,6 +1891,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               location: location_signup
             }
           };
+
           docClient.put(params2, function(err, data){
             if(err){
               console.log('error');
@@ -1898,10 +1899,12 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.log('success');
             }
           });
-        })
-        alert(
-          "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
-        );
+
+          alert(
+            "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
+          );
+
+        }); 
       }
     });
   });
