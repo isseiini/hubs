@@ -1855,10 +1855,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       Name: "name",
       Value: name_signup
     };
-    const dataRole = {
-      Name: "custom:role",
-      Value: "5"
-    };
     const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
       dataName
     );
@@ -1867,13 +1863,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     attributeList.push(attributeName);
-    attributeList.push(attributeRole);
 
     userPool.signUp(username_signup, password_signup, attributeList, null, (err, result) => {
       if (err) {
         alert(err.message);
         return;
       } else {
+        
         alert(
           "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
         );
