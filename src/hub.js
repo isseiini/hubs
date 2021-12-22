@@ -1865,7 +1865,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     attributeList.push(attributeName);
 
-    userPool.signUp(username_signup, password_signup, attributeList, null, (err, result) => {
+    userPool.signUp(username_signup, password_signup, attributeList, null, (err, data1) => {
       if (err) {
         alert(err.message);
       } else {
@@ -1896,7 +1896,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         };
 
-        docClient.put(params2, function(err, data){
+        docClient.put(params2, function(err, data2){
           if(err){
             console.log('error');
           }else{
