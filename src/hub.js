@@ -1952,11 +1952,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       if(err){
         console.log(err);
       }else{
-        console.log(data3)
         data3.Items.sort((a, b) => b.Sum - a.Sum);
-        console.log(data3.Items[0]);
-        var goal_url = data3.Items[0].Sum;
-        console.log(goal_url)
+        var goal_url = "https://d-06-virtual.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+        console.log(goal_url);
+        if (confirm('マッチしました。対戦ワールドへ移動します。')) {
+          location.href = goal_url;
+        } else {
+          alert('キャンセルしました。')
+        }
+      
       }
     });
   });
