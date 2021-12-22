@@ -692,6 +692,15 @@ function checkForAccountRequired() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (room_name == "playful-whirlwind-dominion") {
+    document.getElementById("hex-background").style.display = "none";
+    document.getElementById("go-to-game").style.display = "none";
+  } else if (room_name == "talkative-quarterly-dominion") {
+    document.getElementById("life-frame").style.display = "none";
+  } else {
+    location.reload();
+  };
+
   if (isOAuthModal) {
     return;
   }
