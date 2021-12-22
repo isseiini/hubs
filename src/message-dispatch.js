@@ -112,8 +112,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win-") === 0){
-      const waypointSystem = this.scene.systems["hubs-systems"].waypointSystem;
-      waypointSystem.moveToSpawnPoint();
+      document.getElementById("avatarrig").removeAttribute("ik-root")
       return
     };
 
