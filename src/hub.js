@@ -1869,42 +1869,41 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (err) {
         alert(err.message);
       } else {
-        const cognito_mine = userPool.getCurrentUser();
-        cognito_mine.getUserAttributes((err, result) => {
-          if (err) {
-            alert("エラーが発生しました。もう一度お試しください。")
+        alert(
+          "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
+        );
+      }; 
+
+      const cognito_mine = userPool.getCurrentUser();
+      cognito_mine.getUserAttributes((err, result) => {
+        if (err) {
+          alert("エラーが発生しました。もう一度お試しください。")
+        }
+
+        for (i = 0; i < result.length; i++) {
+          currentUserData[result[i].getName()] = result[i].getValue();
+        }
+
+        var params2 = {
+          TableName: 'demo-userpool',
+          Item:{
+            id: currentUserData["sub"],
+            email: username_signup,
+            username: name_signup,
+            age: age_signup,
+            sex: sex_signup,
+            location: location_signup
           }
+        };
 
-          for (i = 0; i < result.length; i++) {
-            currentUserData[result[i].getName()] = result[i].getValue();
+        docClient.put(params2, function(err, data){
+          if(err){
+            console.log('error');
+          }else{
+            console.log('success');
           }
-
-          var params2 = {
-            TableName: 'demo-userpool',
-            Item:{
-              id: currentUserData["sub"],
-              email: username_signup,
-              username: name_signup,
-              age: age_signup,
-              sex: sex_signup,
-              location: location_signup
-            }
-          };
-
-          docClient.put(params2, function(err, data){
-            if(err){
-              console.log('error');
-            }else{
-              console.log('success');
-            }
-          });
-
-          alert(
-            "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
-          );
-
-        }); 
-      }
+        });
+      });
     });
   });
  
