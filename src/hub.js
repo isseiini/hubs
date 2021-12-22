@@ -1961,17 +1961,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
-      TableName: 'demo-matching-table'
+      TableName: 'demo-matching-table',
     };
-
-    docClient.scan(matching_params, function(err, data2){
+    docClient.scan(matching_params, function(err, data3){
       if(err){
-        console.log('error');
+        console.log(err);
       }else{
-        console.log(data2);
+        console.log(data3)
+        const filteredArray4 = data3.filter((e) => e.Item.Sum <= 10);
+        console.log(filteredArray4);
       }
     });
   });
-    
-  
 });
