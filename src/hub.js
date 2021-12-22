@@ -1961,14 +1961,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
-      TableName: 'demo-matching-table',
-      IndexName: 'Sum-index',//インデックス名を指定
-      ExpressionAttributeNames:{'#s': 'Sum'},
-      ExpressionAttributeValues:{':val': 10},
-      KeyConditionExpression: '#s <= :val'//検索対象が満たすべき条件を指定
+      TableName: 'demo-matching-table'
     };
 
-    docClient.query(matching_params, function(err, data2){
+    docClient.get(matching_params, function(err, data2){
       if(err){
         console.log('error');
       }else{
