@@ -8,6 +8,13 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
+AWS.config.region = 'us-east-1'; // リージョン
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
 
 let uiRoot;
 
@@ -68,7 +75,7 @@ export default class MessageDispatch extends EventTarget {
 
     console.log(naf_Mine)
 
-    if (entry.type ==="chat" && entry.body.indexOf("naf-") === 0){
+    if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
       if (naf_Mine == entry.body) {
         this.damage();
         console.log(entry.body)

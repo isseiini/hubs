@@ -1880,15 +1880,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           alert("エラーが発生しました。もう一度お試しください。")
         }
 
-        for (let i = 0; i < result.length; i++) {
-          currentUserData[result[i].getName()] = result[i].getValue();
-        }
-
         var params2 = {
           TableName: 'demo-userpool',
           Item:{
-            id: currentUserData["sub"],
-            email: username_signup,
             username: name_signup,
             age: age_signup,
             sex: sex_signup,
