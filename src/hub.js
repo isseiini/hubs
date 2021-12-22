@@ -1929,7 +1929,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           alert("ログインしてください。")
         } else {
-          document.getElementById("hex-background").style.display.none;
+          document.getElementById("hex-background").style.display = "none";
         }
       })
     }
