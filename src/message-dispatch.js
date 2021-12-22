@@ -17,7 +17,7 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 var current_url_parts = location.href.split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
-const hit_target_container = document.getElementById("hit_target_container")
+var hit_target_container = document.getElementById("hit_target_container")
 
 let uiRoot;
 
