@@ -81,7 +81,7 @@ export default class MessageDispatch extends EventTarget {
           console.log(err);
         }else{
           if(data.Item.RedPoints >= 10) {
-            this.dispatch("_Win_Red");
+            dispatch("_Win_Red");
           }
         }
       });
