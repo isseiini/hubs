@@ -1868,7 +1868,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     userPool.signUp(username_signup, password_signup, attributeList, null, (err, result) => {
       if (err) {
         alert(err.message);
-        return;
       } else {
         const cognito_mine = userPool.getCurrentUser();
         cognito_mine.getUserAttributes((err, result) => {
