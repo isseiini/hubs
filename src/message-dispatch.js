@@ -8,6 +8,9 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
+import { App } from "./App";
+import configs from "./utils/configs";
+
 AWS.config.region = 'us-east-1'; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
@@ -18,9 +21,21 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 var current_url_parts = location.href.split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
 
-console.log(current_room);
 
 let uiRoot;
+
+window.APP = new App();
+
+const store = window.APP.store;
+
+const qs = new URLSearchParams(location.search);
+const defaultRoomId = configs.feature("default_room_id");
+const hubId =
+    qs.get("hub_id") ||
+    (document.location.pathname === "/" && defaultRoomId
+      ? defaultRoomId
+      : document.location.pathname.substring(1).split("/")[0]);
+  console.log(`Hub ID: ${hubId}`);
 
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
@@ -81,7 +96,8 @@ export default class MessageDispatch extends EventTarget {
           console.log(err);
         }else{
           if(data.Item.RedPoints >= 10) {
-            dispatch("_Win_Red");
+            const hubChannel = new HubChannel(store, hubId);
+            hubChannel.sendMessage("_Win_Red");
           }
         }
       });

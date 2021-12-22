@@ -1965,7 +1965,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       IndexName: 'Sum-index',//インデックス名を指定
       ExpressionAttributeNames:{'#s': 'Sum'},
       ExpressionAttributeValues:{':val': 10},
-      KeyConditionExpression: '#c <= :val'//検索対象が満たすべき条件を指定
+      KeyConditionExpression: '#s <= :val'//検索対象が満たすべき条件を指定
     };
 
     docClient.query(matching_params, function(err, data2){
