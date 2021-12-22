@@ -1953,9 +1953,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       }else{
         console.log(data3)
-        var sort_matching = sortBy(data3.Items, 'DESC', 'Sum');
-        console.log(sort_matching);
-        var goal_url = sort_matching[0].URL;
+        data3.Items.sort((a, b) => b.Sum - a.Sum);
+        console.log(data3.Items[0]);
+        var goal_url = data3.Items[0].Sum;
         console.log(goal_url)
       }
     });
