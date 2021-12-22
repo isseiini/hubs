@@ -1842,18 +1842,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   const createAccountBtn = document.getElementById("createAccount");
   createAccountBtn.addEventListener("click", () => {
 
-    const username = document.getElementById("email-signup").value;
-    const name = document.getElementById("name-signup").value;
-    const password = document.getElementById('password-signup').value;
+    const username_signup = document.getElementById("email-signup").value;
+    const name_signup = document.getElementById("name-signup").value;
+    const password_signup = document.getElementById('password-signup').value;
 
-    if (!username | !name | !password) {
+    if (!username_signup | !name_signup | !password_signup) {
       alert("未入力項目があります。");
       return false;
     }
 
     const dataName = {
       Name: "name",
-      Value: name
+      Value: name_signup
     };
     const dataRole = {
       Name: "custom:role",
@@ -1869,7 +1869,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     attributeList.push(attributeName);
     attributeList.push(attributeRole);
 
-    userPool.signUp(username, password, attributeList, null, (err, result) => {
+    userPool.signUp(username_signup, password_signup, attributeList, null, (err, result) => {
       if (err) {
         alert(err.message);
         return;
@@ -1877,7 +1877,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert(
           "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
         );
-        location.href = "signin.html";
       }
     });
   });
