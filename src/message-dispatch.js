@@ -15,6 +15,10 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+var current_url_parts = location.href.split("/");
+var current_room = current_url_parts[current_url_parts.length - 1];
+
+console.log(current_room);
 
 let uiRoot;
 
@@ -40,15 +44,32 @@ export default class MessageDispatch extends EventTarget {
 
     if ( life <= 0 ){
 
-      // 算出の結果 0 以下になった場合
       life = 0
-      // 0.3秒後に光部分を非表示にする
-      setTimeout(function(){
-          lifeMark.style.visibility = 'hidden'
-          Player_Respawn.style.display = "block";
-          life = 100  
-          //sanshakudama.setAttribute("animation-mixer")
-      }, 300)
+ 
+      lifeMark.style.visibility = 'hidden'
+      Player_Respawn.style.display = "block";
+      life = 100  
+      //sanshakudama.setAttribute("animation-mixer")
+      var down_count = {
+        TableName: 'demo-matching-table',
+        Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+          URL: current_room
+        },
+        ExpressionAttributeNames: {
+          '#red': "red-points",
+        },
+        ExpressionAttributeValues: {
+          ':newScore': 1,
+        },
+        UpdateExpression: 'SET #red = #red + :newScore'
+      };
+      docClient.update(down_count, function(err, data2){
+        if(err){
+          console.log('error');
+        }else{
+          console.log('success');
+        }
+      });
     } else {
     // 算出の結果 100 を超過した場合
     if ( life > 100 ) {

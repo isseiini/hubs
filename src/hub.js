@@ -1874,29 +1874,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         );
       }; 
 
-      const cognito_mine = userPool.getCurrentUser();
-      cognito_mine.getUserAttributes((err, result) => {
-        if (err) {
-          alert("エラーが発生しました。もう一度お試しください。")
+      var params2 = {
+        TableName: 'demo-userpool',
+        Item:{
+          username: name_signup,
+          age: age_signup,
+          sex: sex_signup,
+          location: location_signup
         }
+      };
 
-        var params2 = {
-          TableName: 'demo-userpool',
-          Item:{
-            username: name_signup,
-            age: age_signup,
-            sex: sex_signup,
-            location: location_signup
-          }
-        };
-
-        docClient.put(params2, function(err, data2){
-          if(err){
-            console.log('error');
-          }else{
-            console.log('success');
-          }
-        });
+      docClient.put(params2, function(err, data2){
+        if(err){
+          console.log('error');
+        }else{
+          console.log('success');
+        }
       });
     });
   });
