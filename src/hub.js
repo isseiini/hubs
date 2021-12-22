@@ -1922,5 +1922,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
   
+  document.getElementById("path-to-hubs").addEventListener("click", function() {
+    const cognito_mine = userPool.getCurrentUser();
+    if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          alert("ログインしてください。")
+        } else {
+          document.getElementById("hex-background").style.display.none;
+        }
+      })
+    }
+  })
   
 });
