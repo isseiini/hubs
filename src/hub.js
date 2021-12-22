@@ -1809,6 +1809,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+  const currentUserData = {}; 
 
   var ddb = new AWS.DynamoDB({
     apiVersion: '2012-08-10'
@@ -1845,8 +1846,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const username_signup = document.getElementById("email-signup").value;
     const name_signup = document.getElementById("name-signup").value;
     const password_signup = document.getElementById('password-signup').value;
+    const age_signup = document.getElementById("age-signup").value;
+    const sex_signup = document.getElementById("sex-signup").value;
+    const location_signup = document.getElementById("location-signup").value;
 
-    if (!username_signup | !name_signup | !password_signup) {
+    if (!username_signup | !name_signup | !password_signup | !age_signup | !sex_signup | !location_signup) {
       alert("未入力項目があります。");
       return false;
     }
@@ -1866,7 +1870,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert(err.message);
         return;
       } else {
-        
+        const cognito_mine = userPool.getCurrentUser();
+        cognito_mine.getUserAttributes((err, result) => {
+          if (err) {
+            return
+          }
+
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          }
+
+          var params2 = {
+            TableName: 'demo-userpool',
+            Item:{
+              id: currentUserData["sub"],
+              email: username_signup,
+              username: name_signup,
+              age: age_signup,
+              sex: sex_signup,
+              location: location_signup
+            }
+          };
+          docClient.put(params2, function(err, data){
+            if(err){
+              console.log('error');
+            }else{
+              console.log('success');
+            }
+          });
+        })
         alert(
           "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
         );

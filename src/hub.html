@@ -147,12 +147,6 @@
       position: relative;
     }
 
-    #path-to-hubs h1 {  
-      position: absolute;
-      margin: 0 auto;
-      bottom: 20px;
-    }
-
     #path-to-VRChat {
       width: 45%;
       height:300px;
@@ -163,6 +157,14 @@
       margin: 20px 0;
       background-image: url(assets/images/Dotonbori_VRChat_001\ -\ Doutonbori_World\ -\ PC\,\ Mac\ &\ Linux\ Standalone\ -\ Unity\ 2019.4.29f1\ Personal\ [PREVIEW\ PACKAGES\ IN\ USE]\ _DX11_\ 2021_12_20\ 17_17_12.png);    /* 背景画像指定 */
       background-size:  cover;  
+      position: relative;
+    }
+
+    #path-to-hubs h1,
+    #path-to-VRChat h1 {  
+      position: absolute;
+      margin: 0 auto !important;
+      bottom: 20px;
     }
 
     #main-contents1,
@@ -560,11 +562,12 @@
       <div id="path-to-world" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-round-inset bl-round-inset both" class="styleme">
         <h1>バーチャル道頓堀に入場する</h1>
         <div id="path-to-hubs" data-augmented-ui="tl-2-clip-xy tr-2-rect-y br-2-rect-y both" class="styleme">
-          <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_14_27.png" alt="">
+          <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_14_27.png" style="object-fit:cover;" alt="">
           <h1>hubs</h1>
         </div>
         <div id="path-to-VRChat" data-augmented-ui="tl-2-rect-y tr-2-clip-xy bl-2-rect-y both" class="styleme">
-          <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_17_12.png" alt="">
+          <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_17_12.png" style="object-fit: cover;" alt="">
+          <h1>VRChat</h1>
         </div>
       </div>
 
@@ -619,6 +622,15 @@
             <br />
             <span style="display: inline-block; width: 150px;">パスワード</span>
             <input type="password" id="password-signup" placeholder="6文字以上" />
+            <br />
+            <span style="display: inline-block; width: 150px;">年齢</span>
+            <input type="password" id="age-signup" placeholder="6文字以上" />
+            <br />
+            <span style="display: inline-block; width: 150px;">性別</span>
+            <input type="password" id="sex-signup" placeholder="6文字以上" />
+            <br />
+            <span style="display: inline-block; width: 150px;">所在地</span>
+            <input type="password" id="location-signup" placeholder="6文字以上" />
             <br /><br />
 
             <div class="fold" style="width: 100px;padding: 0;">
