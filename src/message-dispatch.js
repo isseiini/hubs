@@ -17,9 +17,12 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 
 var current_url_parts = location.href.split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
-var hit_target_container = document.getElementById("hit_target_container")
 
 let uiRoot;
+
+document.addEventListener("DOMContentLoaded", async () => {
+  var hit_target_container = document.getElementById("hit_target_container");
+});
 
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
