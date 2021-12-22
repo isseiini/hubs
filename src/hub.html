@@ -1328,14 +1328,7 @@
                     position-at-border="target:.pen-menu"
                     set-yxz-order
                 >
-                <a-entity 
-                        class="aircanon"
-                        gltf-model="#aircanon"
-                        animation-mixer
-                        position="0 1.1 -0.2" 
-                        rotation="0 90 90" 
-                        scale="0.2 0.2 0.2">
-                      </a-entity>
+                
                     <a-entity
                         id="pen"
                         position="0 -0.18 0"
@@ -1343,14 +1336,7 @@
                         pen-laser
                     >
                     </a-entity>
-                    <a-entity 
-                        class="aircanon"
-                        gltf-model="#aircanon"
-                        animation-mixer
-                        position="0 1.1 -0.2" 
-                        rotation="0 0 0" 
-                        scale="0.2 0.2 0.2">
-                      </a-entity>
+                    
                     <a-entity class="ui delete-button pen-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_drawing" >
                         <a-entity mixin="rounded-button" is-remote-hover-target tags="singleActionButton: true" remove-networked-object-button position="0 0 0.001">
                             <a-entity
@@ -1766,7 +1752,16 @@
         <a-entity
             id="right-cursor-controller"
             cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
-        ></a-entity>
+        >
+          <a-entity 
+          class="aircanon"
+          gltf-model="#aircanon"
+          animation-mixer
+          position="0 0 -0.2" 
+          rotation="0 -90 -90" 
+          scale="0.3 0.3 0.3">
+        </a-entity>
+        </a-entity>
 
         <a-entity
             id="left-cursor-controller"
