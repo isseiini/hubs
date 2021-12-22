@@ -56,7 +56,7 @@ export default class MessageDispatch extends EventTarget {
           URL: current_room
         },
         ExpressionAttributeNames: {
-          '#red': "red-points",
+          '#red': "Red-Points",
         },
         ExpressionAttributeValues: {
           ':newScore': 1,
@@ -86,20 +86,12 @@ export default class MessageDispatch extends EventTarget {
 
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
-
-    console.log(this.hubChannel.channel.joinPush.receivedResp.response.session_id)
-
-    console.log(this.hubChannel.presence)
-    console.log(this.hubChannel)
     
     var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
 
-    console.log(naf_Mine)
-
     if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
-      if (naf_Mine == "_" + entry.body) {
+      if ("_" + naf_Mine == entry.body) {
         this.damage();
-        console.log(entry.body)
       };
       return
     };
