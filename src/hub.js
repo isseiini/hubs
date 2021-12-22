@@ -1880,7 +1880,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           alert("エラーが発生しました。もう一度お試しください。")
         }
 
-        for (i = 0; i < result.length; i++) {
+        for (let i = 0; i < result.length; i++) {
           currentUserData[result[i].getName()] = result[i].getValue();
         }
 
