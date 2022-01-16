@@ -8,9 +8,9 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-AWS.config.region = 'us-east-1'; // リージョン
+AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
+    IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -53,7 +53,7 @@ export default class MessageDispatch extends EventTarget {
       life = 100  
       //sanshakudama.setAttribute("animation-mixer")
       var down_count = {
-        TableName: 'demo-matching-table',
+        TableName: 'matching-table',
         Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
           URL: current_room
         },
@@ -73,7 +73,7 @@ export default class MessageDispatch extends EventTarget {
         }
       });
       var params = {
-        TableName: 'demo-matching-table',
+        TableName: 'matching-table',
         Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
           URL: current_room,
         }

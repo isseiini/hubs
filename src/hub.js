@@ -1817,9 +1817,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  AWS.config.region = 'us-east-1'; // リージョン
+  AWS.config.region = 'ap-northeast-1'; 
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-east-1:ae840fbc-2200-487f-835e-a3a6ec963c69',
+      IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
   });
 
   const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -1874,7 +1874,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }; 
 
       var params2 = {
-        TableName: 'demo-userpool',
+        TableName: 'userpool',
         Item:{
           username: name_signup,
           age: age_signup,
@@ -1960,7 +1960,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
-      TableName: 'demo-matching-table',
+      TableName: 'matching-table',
     };            
     docClient.scan(matching_params, function(err, data3){
       if(err){
