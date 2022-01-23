@@ -1832,8 +1832,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   var docClient = new AWS.DynamoDB.DocumentClient();
 
   const poolData = {
-    UserPoolId: "us-east-1_Gd2wKpTxA",
-    ClientId: "466pt7430sslkonppplmi65aut"
+    UserPoolId: "ap-northeast-1_OBc87MXYg",
+    ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
   };
   const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
