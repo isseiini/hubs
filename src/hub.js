@@ -1855,8 +1855,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const dataName = {
-      Name: "name",
-      Value: name_signup
+      Name: "email",
+      Value: username_signup
     };
     const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
       dataName
