@@ -1817,6 +1817,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
+  var AWS = require("aws-sdk");
+
   AWS.config.region = 'ap-northeast-1'; 
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
       IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
