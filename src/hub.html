@@ -802,14 +802,14 @@
                         class="collidable"
                         >
                         </a-box>
-                        <a-entity 
+                        <!--<a-entity 
                           class="aircanon"
                           gltf-model="#aircanon"
                           animation-mixer
                           position="0 0 -0.4" 
                           rotation="0 90 -90" 
                           scale="0.15 0.15 0.15">
-                        </a-entity>
+                        </a-entity>-->
 
                         <a-entity 
                           class="sanshakudama"
@@ -935,21 +935,6 @@
                             <a-entity personal-space-invader="radius: 0.1" bone-visibility="updateWhileInvisible: true;"></a-entity>
                         </template>
                     </a-entity>
-
-                    <!--<a-entity gltf-model="#hanabi"
-                    position="0 1.1 0.7" 
-                    rotation="0 0 0" 
-                    scale="0.4 0.4 0.4"
-                    class="collidable">
-                    </a-entity>-->
-
-                    
-
-                    <!--<a-entity gltf-model="#aircanon"
-                    position="0 0.5 -0.3" 
-                    rotation="90 0 0" 
-                    scale="0.2 0.2 0.2">
-                    </a-entity>-->
                 </a-entity>
             </template>
 
@@ -1821,17 +1806,6 @@
             tags="inspectable: true; preventAudioBoost: true"
             inspect-pivot-child-selector="selector:.inspect-pivot"
         >
-            <!--<a-entity gltf-model="#hanabi"
-            position="0 1.1 0.7" 
-            rotation="0 0 0" 
-            scale="0.4 0.4 0.4">
-            </a-entity>-->
-
-            <!--<a-entity gltf-model="#aircanon"
-            position="0 0.5 -0.3" 
-            rotation="90 0 0" 
-            scale="0.2 0.2 0,2">
-            </a-entity>-->
             <a-entity
                 id="player-hud"
                 hud-controller="head: #viewing-camera;"
@@ -1931,14 +1905,14 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                  <a-entity 
+                  <!--<a-entity 
                   class="aircanon"
                   gltf-model="#aircanon"
                   animation-mixer
                   position="0 0 -0.4" 
                   rotation="0 -90 90" 
                   scale="0.15 0.15 0.15">
-                </a-entity>
+                </a-entity>-->
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"

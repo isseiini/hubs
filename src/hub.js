@@ -1960,14 +1960,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
-      TableName: 'matching-table',
+      TableName: 'Matching-table',
     };            
     docClient.scan(matching_params, function(err, data3){
       if(err){
         console.log(err);
       }else{
         data3.Items.sort((a, b) => b.Sum - a.Sum);
-        var goal_url = "https://d-06-virtual.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
         if (confirm('マッチしました。対戦ワールドへ移動します。')) {
           location.href = goal_url;
         } else {

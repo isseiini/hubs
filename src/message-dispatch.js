@@ -53,7 +53,7 @@ export default class MessageDispatch extends EventTarget {
       life = 100  
       //sanshakudama.setAttribute("animation-mixer")
       var down_count = {
-        TableName: 'matching-table',
+        TableName: 'Matching-table',
         Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
           URL: current_room
         },
@@ -73,7 +73,7 @@ export default class MessageDispatch extends EventTarget {
         }
       });
       var params = {
-        TableName: 'matching-table',
+        TableName: 'Matching-table',
         Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
           URL: current_room,
         }
