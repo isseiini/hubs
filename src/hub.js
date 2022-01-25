@@ -1966,6 +1966,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (err) {
               console.log(err)
             } else {
+              let i;
               for (i = 0; i < result.length; i++) {
                 currentUserData[result[i].getName()] = result[i].getValue();
               };   
