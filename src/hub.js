@@ -1714,110 +1714,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const main_contents2 = document.getElementById("main-contents2");
 
 
-  document.getElementById('menu-button').addEventListener("click", function() {
-    document.getElementById('menu-button').style.display ="none";
-    document.getElementById("hex-grid").style.display = "grid";
-    document.getElementById("grid-mc").style.display = "flex";
-    setTimeout(() => {
-      document.getElementById("grid-br").style.display = "flex";
-    }, 100);
-    setTimeout(() => {
-      document.getElementById("grid-bl").style.display = "flex";
-    }, 200);
-    setTimeout(() => {
-      document.getElementById("grid-ml").style.display = "flex";
-    }, 300);
-    setTimeout(() => {
-      document.getElementById("grid-tl").style.display = "flex";
-    }, 400);
-    setTimeout(() => {
-      document.getElementById("grid-tr").style.display = "flex";
-    }, 500);
-    setTimeout(() => {
-      document.getElementById("grid-mr").style.display = "flex";
-    }, 600);
-    
-  });
-
-  document.documentElement.style.setProperty('--display1', 'block');
-
-  document.getElementById('grid-tl').addEventListener("click", function() {
-    document.documentElement.style.setProperty('--main-color', 'rgb(76, 183, 233)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(76, 183, 233, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'block');
-    document.documentElement.style.setProperty('--display2', 'none');
-    document.documentElement.style.setProperty('--display3', 'none');
-    document.documentElement.style.setProperty('--display4', 'none');
-    document.documentElement.style.setProperty('--display5', 'none');
-    document.documentElement.style.setProperty('--display6', 'none');
-  });
-
-  document.getElementById('grid-tr').addEventListener("click", function(){
-    document.documentElement.style.setProperty('--main-color', 'rgb(255, 124, 124)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 124, 124, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'none');
-    document.documentElement.style.setProperty('--display2', 'block');
-    document.documentElement.style.setProperty('--display3', 'none');
-    document.documentElement.style.setProperty('--display4', 'none');
-    document.documentElement.style.setProperty('--display5', 'none');
-    document.documentElement.style.setProperty('--display6', 'none');
-  });
-
-  document.getElementById('grid-ml').addEventListener("click", function() {
-    document.documentElement.style.setProperty('--main-color', 'rgb(255, 253, 108)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 253, 108, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'none');
-    document.documentElement.style.setProperty('--display2', 'none');
-    document.documentElement.style.setProperty('--display3', 'none');
-    document.documentElement.style.setProperty('--display4', 'none');
-    document.documentElement.style.setProperty('--display5', 'none');
-    document.documentElement.style.setProperty('--display6', 'block');
-  });
-
-  document.getElementById('grid-mc').addEventListener("click", function() {
-    document.getElementById('menu-button').style.display ="flex";
-    document.getElementById("hex-grid").style.display = "none";
-    document.getElementById("grid-tl").style.display = "none";
-    document.getElementById("grid-tr").style.display = "none";
-    document.getElementById("grid-ml").style.display = "none";
-    document.getElementById("grid-mc").style.display = "none";
-    document.getElementById("grid-mr").style.display = "none";
-    document.getElementById("grid-bl").style.display = "none";
-    document.getElementById("grid-br").style.display = "none";
-  });
-
-  document.getElementById('grid-mr').addEventListener("click", function() {
-    document.documentElement.style.setProperty('--main-color', 'rgb(93, 255, 128)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(93, 255, 128, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'none');
-    document.documentElement.style.setProperty('--display2', 'none');
-    document.documentElement.style.setProperty('--display3', 'block');
-    document.documentElement.style.setProperty('--display4', 'none');
-    document.documentElement.style.setProperty('--display5', 'none');
-    document.documentElement.style.setProperty('--display6', 'none');
-  });
-
-  document.getElementById('grid-bl').addEventListener("click", function() {
-    document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 93, 215, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'none');
-    document.documentElement.style.setProperty('--display2', 'none');
-    document.documentElement.style.setProperty('--display3', 'none');
-    document.documentElement.style.setProperty('--display4', 'none');
-    document.documentElement.style.setProperty('--display5', 'block');
-    document.documentElement.style.setProperty('--display6', 'none');
-  });
-
-  document.getElementById('grid-br').addEventListener("click", function(){
-    document.documentElement.style.setProperty('--main-color', 'rgb(185, 185, 185)');
-    document.documentElement.style.setProperty('--sub-color', 'rgb(185, 185, 185, 0.3)');
-    document.documentElement.style.setProperty('--display1', 'none');
-    document.documentElement.style.setProperty('--display2', 'none');
-    document.documentElement.style.setProperty('--display3', 'none');
-    document.documentElement.style.setProperty('--display4', 'block');
-    document.documentElement.style.setProperty('--display5', 'none');
-    document.documentElement.style.setProperty('--display6', 'none');
-  });
+  
 
   const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
@@ -1979,5 +1876,130 @@ document.addEventListener("DOMContentLoaded", async () => {
       
       }
     });
+  });
+
+  document.getElementById('menu-button').addEventListener("click", function() {
+    document.getElementById('menu-button').style.display ="none";
+    document.getElementById("hex-grid").style.display = "grid";
+    document.getElementById("grid-mc").style.display = "flex";
+    setTimeout(() => {
+      document.getElementById("grid-br").style.display = "flex";
+    }, 100);
+    setTimeout(() => {
+      document.getElementById("grid-bl").style.display = "flex";
+    }, 200);
+    setTimeout(() => {
+      document.getElementById("grid-ml").style.display = "flex";
+    }, 300);
+    setTimeout(() => {
+      document.getElementById("grid-tl").style.display = "flex";
+    }, 400);
+    setTimeout(() => {
+      document.getElementById("grid-tr").style.display = "flex";
+    }, 500);
+    setTimeout(() => {
+      document.getElementById("grid-mr").style.display = "flex";
+    }, 600);
+    
+  });
+
+  document.documentElement.style.setProperty('--display1', 'block');
+
+  document.getElementById('grid-tl').addEventListener("click", function() {
+    document.documentElement.style.setProperty('--main-color', 'rgb(76, 183, 233)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(76, 183, 233, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'block');
+    document.documentElement.style.setProperty('--display2', 'none');
+    document.documentElement.style.setProperty('--display3', 'none');
+    document.documentElement.style.setProperty('--display4', 'none');
+    document.documentElement.style.setProperty('--display5', 'none');
+    document.documentElement.style.setProperty('--display6', 'none');
+  });
+
+  document.getElementById('grid-tr').addEventListener("click", function(){
+    document.documentElement.style.setProperty('--main-color', 'rgb(255, 124, 124)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 124, 124, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'none');
+    document.documentElement.style.setProperty('--display2', 'block');
+    document.documentElement.style.setProperty('--display3', 'none');
+    document.documentElement.style.setProperty('--display4', 'none');
+    document.documentElement.style.setProperty('--display5', 'none');
+    document.documentElement.style.setProperty('--display6', 'none');
+  });
+
+  document.getElementById('grid-ml').addEventListener("click", function() {
+    document.documentElement.style.setProperty('--main-color', 'rgb(255, 253, 108)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 253, 108, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'none');
+    document.documentElement.style.setProperty('--display2', 'none');
+    document.documentElement.style.setProperty('--display3', 'none');
+    document.documentElement.style.setProperty('--display4', 'none');
+    document.documentElement.style.setProperty('--display5', 'none');
+    document.documentElement.style.setProperty('--display6', 'block');
+  });
+
+  document.getElementById('grid-mc').addEventListener("click", function() {
+    document.getElementById('menu-button').style.display ="flex";
+    document.getElementById("hex-grid").style.display = "none";
+    document.getElementById("grid-tl").style.display = "none";
+    document.getElementById("grid-tr").style.display = "none";
+    document.getElementById("grid-ml").style.display = "none";
+    document.getElementById("grid-mc").style.display = "none";
+    document.getElementById("grid-mr").style.display = "none";
+    document.getElementById("grid-bl").style.display = "none";
+    document.getElementById("grid-br").style.display = "none";
+  });
+
+  document.getElementById('grid-mr').addEventListener("click", function() {
+    document.documentElement.style.setProperty('--main-color', 'rgb(93, 255, 128)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(93, 255, 128, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'none');
+    document.documentElement.style.setProperty('--display2', 'none');
+    document.documentElement.style.setProperty('--display3', 'block');
+    const cognitoUser = userPool.getCurrentUser(); 
+    if (cognitoUser != null) {
+      cognitoUser.getSession(err, session) => {
+        if (err) {
+          console.log(err)
+        } else {
+          cognitoUser.getUserAttributes((err,result) => {
+            if (err) {
+              console.log(err)
+            } else {
+              for (i = 0; i < result.length; i++) {
+                currentUserData[result[i].getName()] = result[i].getValue();
+              };   
+            }
+
+            document.getElementById("my_data").innerText = "あなたのIDは" + currentUserData["sub"] + "です。"
+          });
+        }
+      }
+    }
+    document.documentElement.style.setProperty('--display4', 'none');
+    document.documentElement.style.setProperty('--display5', 'none');
+    document.documentElement.style.setProperty('--display6', 'none');
+  });
+
+  document.getElementById('grid-bl').addEventListener("click", function() {
+    document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(255, 93, 215, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'none');
+    document.documentElement.style.setProperty('--display2', 'none');
+    document.documentElement.style.setProperty('--display3', 'none');
+    document.documentElement.style.setProperty('--display4', 'none');
+    document.documentElement.style.setProperty('--display5', 'block');
+    document.documentElement.style.setProperty('--display6', 'none');
+  });
+
+  document.getElementById('grid-br').addEventListener("click", function(){
+    document.documentElement.style.setProperty('--main-color', 'rgb(185, 185, 185)');
+    document.documentElement.style.setProperty('--sub-color', 'rgb(185, 185, 185, 0.3)');
+    document.documentElement.style.setProperty('--display1', 'none');
+    document.documentElement.style.setProperty('--display2', 'none');
+    document.documentElement.style.setProperty('--display3', 'none');
+    document.documentElement.style.setProperty('--display4', 'block');
+    document.documentElement.style.setProperty('--display5', 'none');
+    document.documentElement.style.setProperty('--display6', 'none');
   });
 });
