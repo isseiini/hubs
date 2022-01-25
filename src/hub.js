@@ -1956,26 +1956,26 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display1', 'none');
     document.documentElement.style.setProperty('--display2', 'none');
     document.documentElement.style.setProperty('--display3', 'block');
-    const cognitoUser = userPool.getCurrentUser(); 
-    if (cognitoUser != null) {
-      cognitoUser.getSession(err, session) => {
+    let cognitoUser_me = userPool.getCurrentUser(); 
+    if (cognitoUser_me != null) {
+      cognitoUser_me.getSession((err, session) => {
         if (err) {
           console.log(err)
         } else {
-          cognitoUser.getUserAttributes((err,result) => {
+          cognitoUser_me.getUserAttributes((err,result) => {
             if (err) {
               console.log(err)
             } else {
               for (i = 0; i < result.length; i++) {
                 currentUserData[result[i].getName()] = result[i].getValue();
               };   
-            }
+            };
 
             document.getElementById("my_data").innerText = "あなたのIDは" + currentUserData["sub"] + "です。"
           });
-        }
-      }
-    }
+        };
+      });
+    };
     document.documentElement.style.setProperty('--display4', 'none');
     document.documentElement.style.setProperty('--display5', 'none');
     document.documentElement.style.setProperty('--display6', 'none');
