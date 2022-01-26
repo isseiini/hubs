@@ -1188,7 +1188,7 @@ class UIRoot extends Component {
               icon: LeaveIcon,
               onClick: () => {
                 this.showNonHistoriedDialog(LeaveRoomModal, {
-                  destinationUrl: "/",
+                  destinationUrl: "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup",
                   reason: LeaveReason.leaveRoom
                 });
               }

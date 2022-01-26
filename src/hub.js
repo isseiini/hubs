@@ -1785,29 +1785,30 @@ document.addEventListener("DOMContentLoaded", async () => {
                 };   
               };
 
-              console.log(currentUserData['sub'])
+              var params2 = {
+                TableName: 'userpool',
+                Item:{
+                  username: name_signup,
+                  userID: currentUserData['sub'],
+                  age: age_signup,
+                  sex: sex_signup,
+                  location: location_signup
+                }
+              };
+        
+              docClient.put(params2, function(err, data2){
+                if(err){
+                  console.log('error');
+                }else{
+                  console.log('success');
+                }
+              });
             });
           };
         });
         
 
-        var params2 = {
-          TableName: 'userpool',
-          Item:{
-            username: name_signup,
-            age: age_signup,
-            sex: sex_signup,
-            location: location_signup
-          }
-        };
-  
-        docClient.put(params2, function(err, data2){
-          if(err){
-            console.log('error');
-          }else{
-            console.log('success');
-          }
-        });
+        
       }; 
 
       
