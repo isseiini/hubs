@@ -1770,6 +1770,27 @@ document.addEventListener("DOMContentLoaded", async () => {
           "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
         );
 
+        let cognitoUser_me = userPool.getCurrentUser(); 
+        cognitoUser_me.getSession((err, session) => {
+          if (err) {
+            console.log(err)
+          } else {
+            cognitoUser_me.getUserAttributes((err,result) => {
+              if (err) {
+                console.log(err)
+              } else {
+                let i;
+                for (i = 0; i < result.length; i++) {
+                  currentUserData[result[i].getName()] = result[i].getValue();
+                };   
+              };
+
+              console.log(currentUserData['sub'])
+            });
+          };
+        });
+        
+
         var params2 = {
           TableName: 'userpool',
           Item:{
