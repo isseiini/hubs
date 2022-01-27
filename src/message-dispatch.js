@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   var hit_target_container = document.getElementById("hit_target_container");
 });
 
-if (current_room == "kooky--passionate-safari") {
+/*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
   cognitoUser_me.getSession((err, session) => {
     if (err) {
@@ -56,22 +56,7 @@ if (current_room == "kooky--passionate-safari") {
       });
     };
   });
-
-  var params = {
-    TableName: 'Matching-table',
-    Key:{
-      URL: "kooky--passionate-safari"
-    }
-  };
-  docClient.get(params, function(err, data){
-      if(err){
-          console.log(err);
-      }else{
-          var naf_Mine = data.Item.player[currentUserData2['sub']]
-          console.log("naf_NAF =" + naf_Mine)
-      }
-  });
-}
+};*/
 
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
@@ -155,8 +140,27 @@ export default class MessageDispatch extends EventTarget {
 
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
+
+    /*var naf_Mine;
+
+    if (naf_Mine == null || naf_Mine == undefined) {
+      var params = {
+        TableName: 'Matching-table',
+        Key:{
+          URL: "kooky--passionate-safari"
+        }
+      };
+      docClient.get(params, function(err, data){
+          if(err){
+              console.log(err);
+          }else{
+              naf_Mine = data.Item.player[currentUserData2['sub']]
+              console.log("naf_NAF =" + naf_Mine)
+          }
+      });
+    }*/
     
-    //var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+    var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
 
     if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
       if ("_" + naf_Mine == entry.body) {

@@ -1413,8 +1413,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
-                  //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
-                  let cognitoUser_me = userPool.getCurrentUser(); 
+                  sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+                  /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
                     if (err) {
                       console.log(err)
@@ -1454,7 +1454,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }else{
                       console.log('success')
                     }
-                  });
+                  });*/
                 
                 }
 
