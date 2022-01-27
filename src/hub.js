@@ -972,7 +972,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     text_chat_data.count();
     console.log(text_chat_data);
     var params = {
-      TableName: 'communication',
+      TableName: 'Communication',
       Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
         PlayID: "adagtewdfag",
         text_chat_counts: text_chat_data
