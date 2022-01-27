@@ -175,7 +175,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         setMessage("");
         use_text_chat_count += 1
         avatar_position_data.count();
-        console.log(avartar_position_data)
+        console.log(avatar_position_data)
       }
     },
     [sendMessage, setMessage]
