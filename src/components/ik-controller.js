@@ -281,9 +281,9 @@ AFRAME.registerComponent("ik-controller", {
         }
       });
 
-      export var avatar_position_data = {
+      /*export var avatar_position_data = {
         count(){avatar_position_data = avatar.position},
-      }
+      }*/
     }
 
     const { leftHand, rightHand } = this;
