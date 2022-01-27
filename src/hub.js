@@ -1074,16 +1074,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const socket = await connectToReticulum(isDebug);
 
   socket.onClose(e => {
-    // We don't currently have an easy way to distinguish between being kicked (server closes socket)
-    // and a variety of other network issues that seem to produce the 1000 closure code, but the
-    // latter are probably more common. Either way, we just tell the user they got disconnected.
-    const NORMAL_CLOSURE = 1000;
-
-    if (e.code === NORMAL_CLOSURE && !isReloading) {
-      entryManager.exitScene();
-      remountUI({ roomUnavailableReason: ExitReason.disconnected });
-    }
-
     text_chat_data.count();
     console.log(text_chat_data);
     var params = {
@@ -1100,6 +1090,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(success);
       }
     });
+    // We don't currently have an easy way to distinguish between being kicked (server closes socket)
+    // and a variety of other network issues that seem to produce the 1000 closure code, but the
+    // latter are probably more common. Either way, we just tell the user they got disconnected.
+    const NORMAL_CLOSURE = 1000;
+
+    if (e.code === NORMAL_CLOSURE && !isReloading) {
+      entryManager.exitScene();
+      remountUI({ roomUnavailableReason: ExitReason.disconnected });
+    }
+
+    
   });
 
   // Reticulum global channel
@@ -1437,7 +1438,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
-                  sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+                  export let my_NAF_data = {
+                    count(){my_NAF_data = my_NAF_ID},
+                  };
+                  //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
                     if (err) {
@@ -1930,6 +1934,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           alert("ログインしてください。")
         } else {
+          alert("ログインしました。")
           document.getElementById("hex-background").style.display = "none";
         }
       })

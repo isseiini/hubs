@@ -8,6 +8,8 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
+import {my_NAF_data} from "./hub";
+
 AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
@@ -37,6 +39,8 @@ let uiRoot;
 document.addEventListener("DOMContentLoaded", async () => {
   var hit_target_container = document.getElementById("hit_target_container");
 });
+
+let naf_Mine;
 
 /*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
@@ -160,7 +164,14 @@ export default class MessageDispatch extends EventTarget {
       });
     }*/
     
-    var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+    //var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+    
+    if (naf_Mine == null || naf_Mine == undefined){
+      my_NAF_data.count();
+      naf_Mine = my_NAF_data;
+    }
+
+    console.log(naf_Mine)
 
     if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
       if ("_" + naf_Mine == entry.body) {
