@@ -1576,7 +1576,7 @@ class UIRoot extends Component {
                         preset="cancel"
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
-                            destinationUrl: "/",
+                            destinationUrl: "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup",
                             reason: LeaveReason.leaveRoom
                           });
                         }}

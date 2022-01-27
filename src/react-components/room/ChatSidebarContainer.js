@@ -17,9 +17,11 @@ import { spawnChatMessage } from "../chat-message";
 import { discordBridgesForPresences } from "../../utils/phoenix-utils";
 import { useIntl } from "react-intl";
 
+import {avartar_position_data} from "../../components/ik-controller";
+
 const ChatContext = createContext({ messageGroups: [], sendMessage: () => {} });
 
-let use_text_chat_count = 0;
+var use_text_chat_count = 0;
 
 let uniqueMessageId = 0;
 
@@ -172,6 +174,9 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         sendMessage(e.target.value);
         setMessage("");
         use_text_chat_count += 1
+        console.log(avatar.position)
+        avartar_position_data.count();
+        console.log(avartar_position_data)
       }
     },
     [sendMessage, setMessage]
@@ -181,6 +186,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
     () => {
       sendMessage(message);
       setMessage("");
+      use_text_chat_count += 1
     },
     [message, sendMessage, setMessage]
   );
@@ -288,7 +294,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
   );
 }
 
-export let text_chat_data = {
+export var text_chat_data = {
 	count(){text_chat_data = use_text_chat_count},
 }
 ChatSidebarContainer.propTypes = {
