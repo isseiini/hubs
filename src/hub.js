@@ -1438,10 +1438,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
-                  export let my_NAF_data = {
-                    count(){my_NAF_data = my_NAF_ID},
-                  };
-                  //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+                  
+                  sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
                     if (err) {
