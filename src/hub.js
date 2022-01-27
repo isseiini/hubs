@@ -1439,12 +1439,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                     },
                     ExpressionAttributeNames: {
                       '#P': 'player',
-                      '#id': currentUserData['sub']
+                      '#id': "id",
+                      '#NAF': 'NAF'
                     },
                     ExpressionAttributeValues: {
+                      ':myID':currentUserData['sub'],
                       ':newNAF': my_NAF_ID
                     },
-                    UpdateExpression: 'SET #p.#id = :newNAF'
+                    UpdateExpression: 'SET #p.#id = :myID, #p.#NAF = :newNAF'
                   };
                   docClient.update(params, function(err, data2){
                     if(err){

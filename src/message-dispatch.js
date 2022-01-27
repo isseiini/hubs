@@ -15,7 +15,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
-const currentUserData = {}; 
+const currentUserData2 = {}; 
 
 var ddb = new AWS.DynamoDB({
   apiVersion: '2012-08-10'
@@ -50,7 +50,7 @@ if (current_room == "kooky--passionate-safari") {
         } else {
           let i;
           for (i = 0; i < result.length; i++) {
-            currentUserData[result[i].getName()] = result[i].getValue();
+            currentUserData2[result[i].getName()] = result[i].getValue();
           };   
         };
       });
@@ -67,7 +67,7 @@ if (current_room == "kooky--passionate-safari") {
       if(err){
           console.log(err);
       }else{
-          var naf_Mine = data.Item.player[currentUserData['sub']]
+          var naf_Mine = data.Item.player[currentUserData2['sub']]
           console.log("naf_NAF =" + naf_Mine)
       }
   });
