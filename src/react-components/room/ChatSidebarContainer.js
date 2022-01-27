@@ -19,7 +19,7 @@ import { useIntl } from "react-intl";
 
 const ChatContext = createContext({ messageGroups: [], sendMessage: () => {} });
 
-const use_text_chat_count = 0;
+let use_text_chat_count = 0;
 
 let uniqueMessageId = 0;
 
