@@ -17,7 +17,7 @@ import { spawnChatMessage } from "../chat-message";
 import { discordBridgesForPresences } from "../../utils/phoenix-utils";
 import { useIntl } from "react-intl";
 
-import {avartar_position_data} from "../../components/ik-controller";
+import {avatar_position_data} from "../../components/ik-controller";
 
 const ChatContext = createContext({ messageGroups: [], sendMessage: () => {} });
 
@@ -174,7 +174,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         sendMessage(e.target.value);
         setMessage("");
         use_text_chat_count += 1
-        avartar_position_data.count();
+        avatar_position_data.count();
         console.log(avartar_position_data)
       }
     },
