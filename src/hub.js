@@ -1446,7 +1446,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       ':myID':currentUserData['sub'],
                       ':newNAF': my_NAF_ID
                     },
-                    UpdateExpression: 'SET #p.#id = :myID, #p.#NAF = :newNAF'
+                    UpdateExpression: 'SET #p = {myID:newNAF}'
                   };
                   docClient.update(params, function(err, data2){
                     if(err){
