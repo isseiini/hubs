@@ -1,10 +1,6 @@
 import { waitForDOMContentLoaded } from "../utils/async-utils";
 const { Vector3, Quaternion, Matrix4, Euler } = THREE;
 
-export var avatar_position_data = {
-  count(){avatar_position_data = avatar.position},
-}
-
 function quaternionAlmostEquals(epsilon, u, v) {
   // Note: q and -q represent same rotation
   return (
@@ -284,6 +280,10 @@ AFRAME.registerComponent("ik-controller", {
           console.log(avatar.position)
         }
       });
+
+      export var avatar_position_data = {
+        count(){avatar_position_data = avatar.position},
+      }
     }
 
     const { leftHand, rightHand } = this;
