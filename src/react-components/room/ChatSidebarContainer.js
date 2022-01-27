@@ -174,7 +174,6 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         sendMessage(e.target.value);
         setMessage("");
         use_text_chat_count += 1
-        console.log(avatar.position)
         avartar_position_data.count();
         console.log(avartar_position_data)
       }
