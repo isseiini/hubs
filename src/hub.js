@@ -969,23 +969,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   scene.addEventListener("leave_room_requested", () => {
-    text_chat_data.count();
-    console.log(text_chat_data);
-    var params = {
-      TableName: 'Communication',
-      Item:{
-        playID: "dsagfawg",
-        text_chat: text_chat_data
-      }
-    };
-    docClient.put(params, function(err, data){
-      if(err){
-        console.log(err);
-      }else{
-        console.log(success);
-      }
-    });
-
     entryManager.exitScene();
     remountUI({ roomUnavailableReason: ExitReason.left });
   });
@@ -1100,6 +1083,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       entryManager.exitScene();
       remountUI({ roomUnavailableReason: ExitReason.disconnected });
     }
+
+    text_chat_data.count();
+    console.log(text_chat_data);
+    var params = {
+      TableName: 'Communication',
+      Item:{
+        playID: "dsagfawg",
+        text_chat: text_chat_data
+      }
+    };
+    docClient.put(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(success);
+      }
+    });
   });
 
   // Reticulum global channel
