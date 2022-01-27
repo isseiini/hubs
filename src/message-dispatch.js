@@ -8,7 +8,7 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 
-import {my_NAF_data} from "./hub";
+import { my_NAF_data }
 
 AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
