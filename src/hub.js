@@ -242,7 +242,21 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });
 
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
+const currentUserData = {}; 
+
+var ddb = new AWS.DynamoDB({
+  apiVersion: '2012-08-10'
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+const poolData = {
+  UserPoolId: "ap-northeast-1_OBc87MXYg",
+  ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+};
+const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
 if (window.opener && window.opener.doingTwitterOAuth) {
@@ -1394,12 +1408,51 @@ document.addEventListener("DOMContentLoaded", async () => {
                   isSelf&&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
-                  meta.profile.displayName
+                  meta.profile.displayName &&
+                  room_name == "kooky-passionate-safari"
                 ) {
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
-                  sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
-                }
+                  //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
+                  let cognitoUser_me = userPool.getCurrentUser(); 
+                  cognitoUser_me.getSession((err, session) => {
+                    if (err) {
+                      console.log(err)
+                    } else {
+                      cognitoUser_me.getUserAttributes((err,result) => {
+                        if (err) {
+                          console.log(err)
+                        } else {
+                          let i;
+                          for (i = 0; i < result.length; i++) {
+                            currentUserData[result[i].getName()] = result[i].getValue();
+                          };   
+                        };
+                      });
+                    };
+                  });
+
+                  var params = {
+                    TableName: 'Matching-table',
+                    Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+                      URL: "kooky-passionate-safari"
+                    },
+                    ExpressionAttributeNames: {
+                      '#P': 'player',
+                      '#id': currentUserData['sub']
+                    },
+                    ExpressionAttributeValues: {
+                      ':newNAF': my_NAF_ID
+                    },
+                    UpdateExpression: 'SET #p.#id = :newNAF'
+                };
+                docClient.update(params, function(err, data2){
+                  if(err){
+                    console.log('error');
+                  }else{
+                    console.log('success');
+                  }
+                });
 
                 if (
                   currentMeta.profile &&
@@ -1712,28 +1765,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const main_contents1 = document.getElementById("main-contents1");
   const main_contents2 = document.getElementById("main-contents2");
-
-
-  
-
-  const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-
-  
-
-  
-  const currentUserData = {}; 
-
-  var ddb = new AWS.DynamoDB({
-    apiVersion: '2012-08-10'
-  });
-  
-  var docClient = new AWS.DynamoDB.DocumentClient();
-
-  const poolData = {
-    UserPoolId: "ap-northeast-1_OBc87MXYg",
-    ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
-  };
-  const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
   const attributeList = [];
 

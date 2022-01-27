@@ -13,7 +13,21 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });
 
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
+const currentUserData = {}; 
+
+var ddb = new AWS.DynamoDB({
+  apiVersion: '2012-08-10'
+});
+
 var docClient = new AWS.DynamoDB.DocumentClient();
+
+const poolData = {
+  UserPoolId: "ap-northeast-1_OBc87MXYg",
+  ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+};
+const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 var current_url_parts = location.href.split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
@@ -23,6 +37,41 @@ let uiRoot;
 document.addEventListener("DOMContentLoaded", async () => {
   var hit_target_container = document.getElementById("hit_target_container");
 });
+
+if (current_room == "kooky--passionate-safari") {
+  let cognitoUser_me = userPool.getCurrentUser(); 
+  cognitoUser_me.getSession((err, session) => {
+    if (err) {
+      console.log(err)
+    } else {
+      cognitoUser_me.getUserAttributes((err,result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          let i;
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          };   
+        };
+      });
+    };
+  });
+
+  var params = {
+    TableName: 'Matching-table',
+    Key:{
+      URL: "kooky--passionate-safari"
+    }
+  };
+  docClient.get(params, function(err, data){
+      if(err){
+          console.log(err);
+      }else{
+          var naf_Mine = data.Item.player[currentUserData['sub']]
+          console.log("naf_NAF =" + naf_Mine)
+      }
+  });
+}
 
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
@@ -107,7 +156,7 @@ export default class MessageDispatch extends EventTarget {
   addToPresenceLog(entry) {
     entry.key = Date.now().toString();
     
-    var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+    //var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
 
     if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
       if ("_" + naf_Mine == entry.body) {
