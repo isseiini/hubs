@@ -168,10 +168,17 @@ import MediaDevicesManager from "./utils/media-devices-manager";
 import { sleep } from "./utils/async-utils";
 import { platformUnsupported } from "./support";
 
+import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
+
 var current_url = location.href.split("/");
 var room_name = current_url[current_url.length - 1];
 
-
+document.addEventListener('keyup', event => {
+  if (event.code === 'KeyO') {
+    text_chat_data.count();
+    console.log(text_chat_data)
+  }
+});
 
 
 window.APP = new App();

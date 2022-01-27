@@ -19,6 +19,8 @@ import { useIntl } from "react-intl";
 
 const ChatContext = createContext({ messageGroups: [], sendMessage: () => {} });
 
+const use_text_chat_count = 0;
+
 let uniqueMessageId = 0;
 
 const NEW_MESSAGE_GROUP_TIMEOUT = 1000 * 60;
@@ -169,6 +171,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         e.preventDefault();
         sendMessage(e.target.value);
         setMessage("");
+        use_text_chat_count += 1
       }
     },
     [sendMessage, setMessage]
@@ -285,6 +288,9 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
   );
 }
 
+export let text_chat_data = {
+	count(){text_chat_data = use_text_chat_count},
+}
 ChatSidebarContainer.propTypes = {
   canSpawnMessages: PropTypes.bool,
   presences: PropTypes.object.isRequired,
