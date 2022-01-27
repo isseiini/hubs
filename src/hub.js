@@ -1357,7 +1357,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           presence.onJoin((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync (o/w the user
             // will see join messages for every user.)
-            if (!hubChannel.presence.__hadInitialSync) return;
+            if (!hubChannel.presence.__hadInitialSync) return
 
             const meta = info.metas[info.metas.length - 1];
             const occupantCount = Object.entries(hubChannel.presence.state).length;
@@ -1445,14 +1445,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                       ':newNAF': my_NAF_ID
                     },
                     UpdateExpression: 'SET #p.#id = :newNAF'
-                };
-                docClient.update(params, function(err, data2){
-                  if(err){
-                    console.log('error');
-                  }else{
-                    console.log('success');
-                  }
-                });
+                  };
+                  docClient.update(params, function(err, data2){
+                    if(err){
+                      console.log('error')
+                    }else{
+                      console.log('success')
+                    }
+                  });
+                
+                }
 
                 if (
                   currentMeta.profile &&
@@ -1488,6 +1490,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               recording: meta.recording
             });
           });
+      
 
           presence.onLeave((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync
