@@ -2091,7 +2091,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   var canon = document.getElementById("canon_container");
     document.addEventListener('keyup', event => {
-      if (event.code === 'KeyO') {
+      if (event.code === 'KeyP') {
         canon.setAttribute("animation-mixer", {});
       }
     });
