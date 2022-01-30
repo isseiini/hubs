@@ -2088,4 +2088,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display5', 'none');
     document.documentElement.style.setProperty('--display6', 'none');
   });
+
+  var canon = document.getElementById("canon_container");
+    document.addEventListener('keyup', event => {
+      if (event.code === 'KeyO') {
+        canon.setAttribute("animation-mixer", {});
+      }
+    });
 });
