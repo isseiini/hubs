@@ -2089,10 +2089,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  var canon = document.getElementById("canon_container");
-    document.addEventListener('keyup', event => {
-      if (event.code === 'KeyP') {
-        canon.setAttribute("animation-mixer", {});
-      }
-    });
 });
