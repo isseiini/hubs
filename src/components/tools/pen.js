@@ -36,13 +36,11 @@ AFRAME.registerComponent("aircanon-animation", {
       console.log(AirCanonAnimations)
       var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime)
-    });
-  },
-  tick: function(){
-    document.addEventListener('keyup', event => {
-      if (event.code === 'KeyZ') {
-        anime.play();
-      }
+      document.addEventListener('keyup', event => {
+        if (event.code === 'KeyZ') {
+          anime.play();
+        }
+      });
     });
   }
 });
