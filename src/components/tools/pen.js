@@ -14,7 +14,7 @@ import { App } from "../../App";
 
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
-
+import { cloneObject3D } from "../../utils/three-utils";
 
 
 
@@ -29,10 +29,8 @@ AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
-      const scene = document.querySelector("a-scene");
       console.log(AirCanon);
-      scene.add(AirCanon.scene)
-      var AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
+      var AirCanonMixer = new THREE.AnimationMixer(cloneObject3D(AirCanon.scene));
       console.log(AirCanonMixer);
       var AirCanonAnimations = AirCanon.scene.animations;
       console.log(AirCanonAnimations);
