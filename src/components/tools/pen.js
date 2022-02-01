@@ -44,9 +44,21 @@ waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
+  
 });
 
-AFRAME.registerComponent('aircanon-animation', {
+AFRAME.registerComponent("aircanon-animation", {
+  init: function() {
+    this.el.addEventListener("model-loaded", () => {
+      this.loaderMixer = new THREE.AnimationMixer(this.object3D);
+      let AirCanonAnimations = AirCanon.animations;
+      var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
+      anime.play();
+    });
+  }
+});
+
+/*AFRAME.registerComponent("aircanon-animation", {
 	init(){
     var AirCanonMesh = AirCanon.scene;
 		this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
@@ -62,7 +74,7 @@ AFRAME.registerComponent('aircanon-animation', {
     }
   }
 	
-});
+});*/
 
 
 
