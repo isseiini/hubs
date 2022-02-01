@@ -30,11 +30,11 @@ AFRAME.registerComponent("aircanon-animation", {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
       console.log(AirCanon);
-      var AirCanonMixer = new THREE.AnimationMixer(AirCanon);
+      this.AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
       console.log(AirCanonMixer);
-      var AirCanonAnimations = AirCanon.animations;
+      var AirCanonAnimations = AirCanon.scene.animations;
       console.log(AirCanonAnimations);
-      var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
+      var anime = this.AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime);
       /*document.addEventListener('keyup', event => {
         if (event.code === 'KeyZ') {
@@ -44,7 +44,8 @@ AFRAME.registerComponent("aircanon-animation", {
       anime.enabled = true;
       anime.setLoop(THREE.LoopRepeat, Infinity).play();
     });
-  }
+  },
+
 });
 
 /*AFRAME.registerComponent("aircanon-animation", {

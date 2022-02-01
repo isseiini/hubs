@@ -708,6 +708,8 @@ function checkForAccountRequired() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  var Player_UI = document.getElementById("Player-UI");
+  Player_UI.style.display = "none";
   if (room_name == "kooky-passionate-safari") {
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
@@ -1432,6 +1434,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (
                   isSelf&&
                   currentMeta.presence !== meta.presence &&
+                  meta.presence === "room"
+                ) {
+                  Player_UI.style.display = "block"
+                }
+
+                if (
+                  isSelf&&
+                  currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
@@ -1728,7 +1738,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
   })
 
-  var Player_UI = document.getElementById("Player-UI");
+  
  
 
   const lifeBar = document.getElementById('life-bar')         // ライフバー
