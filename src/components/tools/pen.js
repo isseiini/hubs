@@ -42,7 +42,8 @@ AFRAME.registerComponent("aircanon-animation", {
         }
       });*/
       anime.enabled = true;
-      anime.setLoop(THREE.LoopRepeat, Infinity).play();
+      anime.setLoop(THREE.LoopRepeat, Infinity);
+      anime.play();
     });
   },
 
