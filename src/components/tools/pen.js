@@ -30,11 +30,11 @@ AFRAME.registerComponent("aircanon-animation", {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
       console.log(AirCanon);
-      this.AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
+      var AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
       console.log(AirCanonMixer);
       var AirCanonAnimations = AirCanon.scene.animations;
       console.log(AirCanonAnimations);
-      var anime = this.AirCanonMixer.clipAction(AirCanonAnimations[0]);
+      var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime);
       /*document.addEventListener('keyup', event => {
         if (event.code === 'KeyZ') {
