@@ -29,18 +29,20 @@ AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
-      console.log(AirCanon)
+      console.log(AirCanon);
       var AirCanonMixer = new THREE.AnimationMixer(AirCanon);
-      console.log(AirCanonMixer)
+      console.log(AirCanonMixer);
       var AirCanonAnimations = AirCanon.animations;
-      console.log(AirCanonAnimations)
+      console.log(AirCanonAnimations);
       var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
-      console.log(anime)
-      document.addEventListener('keyup', event => {
+      console.log(anime);
+      /*document.addEventListener('keyup', event => {
         if (event.code === 'KeyZ') {
           anime.play();
         }
-      });
+      });*/
+      anime.enabled = true;
+      anime.setLoop(THREE.LoopRepeat, Infinity).play();
     });
   }
 });
