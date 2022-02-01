@@ -11,32 +11,11 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { App } from "../../App";
 
-import { computeObjectAABB, getBox, getScaleCoefficient } from "../../utils/auto-box-collider";
-import {
-  resolveUrl,
-  getDefaultResolveQuality,
-  injectCustomShaderChunks,
-  addMeshScaleAnimation,
-  closeExistingMediaMirror
-} from "../../utils/media-utils";
-import {
-  isNonCorsProxyDomain,
-  guessContentType,
-  proxiedUrlFor,
-  isHubsRoomUrl,
-  isLocalHubsSceneUrl,
-  isLocalHubsAvatarUrl
-} from "../../utils/media-url-utils";
-import { addAnimationComponents } from "../../utils/animation";
-import qsTruthy from "../../utils/qs_truthy";
 
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
-import { SOUND_MEDIA_LOADING, SOUND_MEDIA_LOADED } from "../../systems/sound-effects-system";
-import { loadModel } from "../gltf-model-plus";
-import { cloneObject3D, setMatrixWorld } from "../../utils/three-utils";
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
+import { loadModel } from "../gltf-model-plus";
 
-import { SHAPE } from "./three-ammo/constants";
 
 let AirCanon;
 
