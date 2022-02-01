@@ -30,7 +30,7 @@ import {
 import { addAnimationComponents } from "../../utils/animation";
 import qsTruthy from "../../utils/qs_truthy";
 
-import AirCanonSrc from "../../assets/models/aircanon_with_gunfire";
+import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { SOUND_MEDIA_LOADING, SOUND_MEDIA_LOADED } from "../../systems/sound-effects-system";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D, setMatrixWorld } from "../../utils/three-utils";
