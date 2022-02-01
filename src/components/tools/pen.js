@@ -37,7 +37,6 @@ import { cloneObject3D, setMatrixWorld } from "../../utils/three-utils";
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 
 import { SHAPE } from "./three-ammo/constants";
-import anime from "animejs";
 
 let AirCanon;
 
