@@ -47,18 +47,19 @@ waitForDOMContentLoaded().then(() => {
 });
 
 AFRAME.registerComponent('aircanon-animation', {
-	init: function()
-	{
-    const AirCanonMesh = AirCanon.scene;
+	init(){
+    var AirCanonMesh = AirCanon.scene;
 		this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
 
     const AirCanonAnimations = AirCanon.animations;
   
-    const anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
+    var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
     anime.play();
 	},
-  tick: function() {
-    anime.play();
+  tick(t, dt) {
+    if (this.loaderMixer) {
+      this.loaderMixer.update(dt / 1000);
+    }
   }
 	
 });
