@@ -59,7 +59,7 @@ AFRAME.registerComponent('aircanon-animation', {
     anime.play();
 	},
   tick: function() {
-    anime.play
+    anime.play();
   }
 	
 });
