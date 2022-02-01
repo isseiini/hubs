@@ -838,16 +838,7 @@
 
                     <a-entity class="left-controller" matrix-auto-update></a-entity>
 
-                    <a-entity class="right-controller" matrix-auto-update>
-                      <a-entity 
-                        class="aircanon"
-                        gltf-model="#aircanon"
-                        position="0 0 0" 
-                        aircanon-animation
-                        rotation="0 -90 90" 
-                        scale="0.10 0.10 0.10">
-                      </a-entity>
-                    </a-entity>
+                    <a-entity class="right-controller" matrix-auto-update></a-entity>
 
                     <a-entity class="model" gltf-model-plus="inflate: true">
                         <template data-name="AvatarRoot">
@@ -1772,9 +1763,19 @@
         <a-entity
             id="right-cursor-controller"
             cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
-        >
+        ></a-entity>
+
+        <a-entity
+          cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
+          class="aircanon"
+          gltf-model="#aircanon"
+          aircanon-animation
+          position="0 0 -0.4" 
+          rotation="0 -90 90" 
+          scale="0.15 0.15 0.15"
+        ></a-entity>
           
-        </a-entity>
+        
 
         <a-entity
             id="left-cursor-controller"
