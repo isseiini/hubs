@@ -1765,7 +1765,7 @@
             cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
         ></a-entity>
 
-        <a-entity
+        <!--<a-entity
           cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
           class="aircanon"
           gltf-model="#aircanon"
@@ -1773,7 +1773,7 @@
           position="0 0 -0.4" 
           rotation="0 -90 90" 
           scale="0.15 0.15 0.15"
-        ></a-entity>
+        ></a-entity>-->
           
         
 
@@ -1930,14 +1930,13 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-                <!--<a-entity 
+                <a-entity 
                   class="aircanon"
-                  gltf-model="#aircanon"
                   aircanon-animation
                   position="0 0 -0.4" 
-                  rotation="0 -90 90" 
-                  scale="0.15 0.15 0.15">
-                </a-entity>-->
+                  rotation="180 -90 90" 
+                  scale="0.10 0.10 0.10">
+                </a-entity>
                 
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity

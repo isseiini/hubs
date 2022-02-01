@@ -30,6 +30,7 @@ AFRAME.registerComponent("aircanon-animation", {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
       console.log(AirCanon);
+      scene.add(AirCanon.scene)
       var AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
       console.log(AirCanonMixer);
       var AirCanonAnimations = AirCanon.scene.animations;
