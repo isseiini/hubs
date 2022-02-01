@@ -11,6 +11,63 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { App } from "../../App";
 
+import { computeObjectAABB, getBox, getScaleCoefficient } from "../../utils/auto-box-collider";
+import {
+  resolveUrl,
+  getDefaultResolveQuality,
+  injectCustomShaderChunks,
+  addMeshScaleAnimation,
+  closeExistingMediaMirror
+} from "../../utils/media-utils";
+import {
+  isNonCorsProxyDomain,
+  guessContentType,
+  proxiedUrlFor,
+  isHubsRoomUrl,
+  isLocalHubsSceneUrl,
+  isLocalHubsAvatarUrl
+} from "../../utils/media-url-utils";
+import { addAnimationComponents } from "../../utils/animation";
+import qsTruthy from "../../utils/qs_truthy";
+
+import AirCanonSrc from "../../assets/models/aircanon_with_gunfire";
+import { SOUND_MEDIA_LOADING, SOUND_MEDIA_LOADED } from "../../systems/sound-effects-system";
+import { loadModel } from "../gltf-model-plus";
+import { cloneObject3D, setMatrixWorld } from "../../utils/three-utils";
+import { waitForDOMContentLoaded } from "../../utils/async-utils";
+
+import { SHAPE } from "./three-ammo/constants";
+import anime from "animejs";
+
+let AirCanon;
+
+waitForDOMContentLoaded().then(() => {
+  loadModel(AirCanonSrc).then(gltf => {
+    AirCanon = gltf;
+  });
+});
+
+AFRAME.registerComponent('aircanon-animation', {
+	init: function()
+	{
+    const AirCanonMesh = AirCanon.scene;
+		this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
+
+    const AirCanonAnimations = AirCanon.animations;
+  
+    const anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
+    anime.play();
+	},
+  tick: function() {
+    anime.play
+  }
+	
+});
+
+
+
+
+
 window.APP = new App();
 
 document.addEventListener("DOMContentLoaded", async () => {
