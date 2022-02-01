@@ -29,12 +29,19 @@ AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
       AirCanon = gltf;
-      this.loaderMixer = new THREE.AnimationMixer(AirCanon.scene);
-      let AirCanonAnimations = AirCanon.animations;
-      var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
-      anime.play();
+      
     });
     
+  },
+  tick: function(){
+    document.addEventListener('keyup', event => {
+      if (event.code === 'KeyZ') {
+        this.loaderMixer = new THREE.AnimationMixer(AirCanon.scene);
+        let AirCanonAnimations = AirCanon.animations;
+        var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
+        anime.play();
+      }
+    });
   }
 });
 
