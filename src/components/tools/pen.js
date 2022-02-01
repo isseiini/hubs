@@ -32,7 +32,7 @@ AFRAME.registerComponent("aircanon-animation", {
       console.log(AirCanon);
       var AirCanonMixer = new THREE.AnimationMixer(cloneObject3D(AirCanon.scene));
       console.log(AirCanonMixer);
-      var AirCanonAnimations = AirCanon.scene.animations;
+      var AirCanonAnimations = cloneObject3D(AirCanon.scene).animations;
       console.log(AirCanonAnimations);
       var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime);
