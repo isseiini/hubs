@@ -29,7 +29,9 @@ AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
-      var AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
+      console.log(AirCanon)
+      var AirCanonMixer = new THREE.AnimationMixer(AirCanon);
+      console.log(AirCanonMixer)
       var AirCanonAnimations = AirCanon.animations;
       console.log(AirCanonAnimations)
       var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
@@ -39,7 +41,6 @@ AFRAME.registerComponent("aircanon-animation", {
   tick: function(){
     document.addEventListener('keyup', event => {
       if (event.code === 'KeyZ') {
-        
         anime.play();
       }
     });
