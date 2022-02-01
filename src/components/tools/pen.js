@@ -12,8 +12,7 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 import { App } from "../../App";
 
 
-/*import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
-import { waitForDOMContentLoaded } from "../../utils/async-utils";
+import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
 
 
@@ -35,7 +34,7 @@ AFRAME.registerComponent("aircanon-animation", {
       anime.play();
     });
   }
-});*/
+});
 
 /*AFRAME.registerComponent("aircanon-animation", {
 	init(){
