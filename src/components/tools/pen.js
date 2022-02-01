@@ -18,17 +18,20 @@ import { loadModel } from "../gltf-model-plus";
 
 let AirCanon;
 
-waitForDOMContentLoaded().then(() => {
+/*waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
   
-});
+});*/
 
 AFRAME.registerComponent("aircanon-animation", {
   init: function() {
+    loadModel(AirCanonSrc).then(gltf => {
+      AirCanon = gltf;
+    });
     this.el.addEventListener("model-loaded", () => {
-      this.loaderMixer = new THREE.AnimationMixer(this.object3D);
+      this.loaderMixer = new THREE.AnimationMixer(AirCanon.scene);
       let AirCanonAnimations = AirCanon.animations;
       var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
       anime.play();
