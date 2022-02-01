@@ -16,7 +16,7 @@ import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
 
 
-let AirCanon;
+
 
 /*waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -28,17 +28,18 @@ let AirCanon;
 AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
-      AirCanon = gltf;
-      
+      var AirCanon = gltf;
+      var AirCanonMixer = new THREE.AnimationMixer(AirCanon.scene);
+      var AirCanonAnimations = AirCanon.animations;
+      console.log(AirCanonAnimations)
+      var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
+      console.log(anime)
     });
-    
   },
   tick: function(){
     document.addEventListener('keyup', event => {
       if (event.code === 'KeyZ') {
-        this.loaderMixer = new THREE.AnimationMixer(AirCanon.scene);
-        let AirCanonAnimations = AirCanon.animations;
-        var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
+        
         anime.play();
       }
     });
