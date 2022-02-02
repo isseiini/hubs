@@ -41,14 +41,14 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh", AirCanonmesh);
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
     this.anime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
-    console.log(anime);
+    console.log(this.anime);
     this.onshoot();
   },
 
   onshoot() {
-    anime.setLoop(THREE.LoopRepeat, Infinity);
-    anime.play();
-    console.log(anime)
+    this.anime.setLoop(THREE.LoopRepeat, Infinity);
+    this.anime.play();
+    console.log(this.anime);
   }
 });
 
