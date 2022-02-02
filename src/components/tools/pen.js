@@ -37,7 +37,7 @@ AFRAME.registerComponent('aircanon-animation', {
     this.el.setObject3D("mesh", AirCanonMesh);
     console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
-    //console.log(AirCanonMesh, typeof AirCanonMesh);
+    console.log(AirCanonMesh, typeof AirCanonMesh);
     //console.log(AirCanonMesh2, typeof AirCanonMesh2);
     console.log(this, typeof this);
     console.log(this.el, typeof this.el);
