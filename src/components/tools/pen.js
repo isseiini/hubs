@@ -6,13 +6,12 @@ import {
   SOUND_PEN_UNDO_DRAW,
   SOUND_PEN_CHANGE_COLOR
 } from "../../systems/sound-effects-system";
-import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { App } from "../../App";
 
-
-import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
+import { waitForDOMContentLoaded } from "../../utils/async-utils";
+/*import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
@@ -50,7 +49,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.anime.play();
     console.log(this.anime);
   }
-});
+});*/
 
 /*AFRAME.registerComponent("aircanon-animation", {
 	init(){
