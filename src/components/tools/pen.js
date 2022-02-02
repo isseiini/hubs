@@ -35,7 +35,11 @@ AFRAME.registerComponent('aircanon-animation', {
     //const AirCanonMesh = cloneObject3D(AirCanon)
 
     this.el.setObject3D("mesh", AirCanonMesh);
-    console.log(AirCanon, typeof AirCanon);
+
+    this.el.setAttribute("animation-mixer", {});
+    this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
+
+    /*console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
     console.log(AirCanonMesh, typeof AirCanonMesh);
     //console.log(AirCanonMesh2, typeof AirCanonMesh2);
@@ -49,7 +53,7 @@ AFRAME.registerComponent('aircanon-animation', {
     this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonMesh.animations[0]);
     this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
 
-    console.log(this.AirCanonAnime)
+    console.log(this.AirCanonAnime)*/
     
   },
 
