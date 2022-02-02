@@ -15,37 +15,35 @@ import { App } from "../../App";
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
+import { func } from "prop-types";
 
+let AirCanon;
 
-
-/*waitForDOMContentLoaded().then(() => {
+waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
-  
-});*/
+});
 
 AFRAME.registerComponent("aircanon-animation", {
   init: function() {
-    loadModel(AirCanonSrc).then(gltf => {
-      var AirCanon = gltf;
-      const AirCanonmesh = cloneObject3D(AirCanon.scene)
-      this.el.setObject3D("mesh", AirCanonmesh);
-      var AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
-      var AirCanonAnimations = AirCanonmesh.animations;
-      var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
-      console.log(anime);
-      /*document.addEventListener('keyup', event => {
-        if (event.code === 'KeyZ') {
-          anime.play();
-        }
-      });*/
-      
-      anime.setLoop(THREE.LoopRepeat, Infinity);
-      anime.play();
-    });
+    this.onset = this.onset.bind(this);
   },
 
+  onset: (function() {
+    const AirCanonmesh = cloneObject3D(AirCanon.scene)
+    this.el.setObject3D("mesh", AirCanonmesh);
+    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
+    this.anime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
+    console.log(anime);
+    this.onshoot();
+  })(),
+
+  onshoot: (function() {
+    anime.setLoop(THREE.LoopRepeat, Infinity);
+    anime.play();
+    console.log(anime)
+  })()
 });
 
 /*AFRAME.registerComponent("aircanon-animation", {
