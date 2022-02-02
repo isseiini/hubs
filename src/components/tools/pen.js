@@ -31,13 +31,14 @@ AFRAME.registerComponent('aircanon-animation', {
 
   init: function () {
     // Do something when component first attached.
-    const AirCanonMesh = cloneObject3D(AirCanon.scene);
-    const AirCanonMesh2 = cloneObject3D(AirCanon)
+    //const AirCanonMesh = cloneObject3D(AirCanon.scene);
+    //const AirCanonMesh2 = cloneObject3D(AirCanon)
 
-    this.el.setObject3D("mesh", AirCanonMesh);
+    //this.el.setObject3D("mesh", AirCanonMesh);
     console.log(AirCanon, typeof AirCanon);
-    console.log(AirCanonMesh, typeof AirCanonMesh);
-    console.log(AirCanonMesh2, typeof AirCanonMesh2);
+    console.log(AirCanon.scene, typeof AirCanon.scene);
+    //console.log(AirCanonMesh, typeof AirCanonMesh);
+    //console.log(AirCanonMesh2, typeof AirCanonMesh2);
     console.log(this, typeof this);
     console.log(this.el, typeof this.el);
 
