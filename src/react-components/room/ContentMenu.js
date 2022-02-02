@@ -9,7 +9,7 @@ import { FormattedMessage } from "react-intl";
 
 export function ContentMenuButton({ active, children, ...props }) {
   return (
-    <button id="contentmenu_top" className={className(styles.contentMenuButton, { [styles.active]: active })} {...props}>
+    <button className={className(styles.contentMenuButton, { [styles.active]: active })} {...props}>
       {children}
     </button>
   );
@@ -46,7 +46,7 @@ PeopleMenuButton.propTypes = {
 };
 
 export function ContentMenu({ children }) {
-  return <div className={styles.contentMenu}>{joinChildren(children, () => <div className={styles.separator} />)}</div>;
+  return <div id="contentmenu_top" className={styles.contentMenu}>{joinChildren(children, () => <div className={styles.separator} />)}</div>;
 }
 
 ContentMenu.propTypes = {
