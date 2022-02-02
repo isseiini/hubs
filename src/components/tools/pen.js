@@ -30,20 +30,20 @@ AFRAME.registerComponent("aircanon-animation", {
     this.onset = this.onset.bind(this);
   },
 
-  onset: (function() {
+  onset(){
     const AirCanonmesh = cloneObject3D(AirCanon.scene)
     this.el.setObject3D("mesh", AirCanonmesh);
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
     this.anime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
     console.log(anime);
     this.onshoot();
-  })(),
+  },
 
-  onshoot: (function() {
+  onshoot() {
     anime.setLoop(THREE.LoopRepeat, Infinity);
     anime.play();
     console.log(anime)
-  })()
+  }
 });
 
 /*AFRAME.registerComponent("aircanon-animation", {
