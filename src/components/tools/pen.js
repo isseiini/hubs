@@ -4,7 +4,8 @@ import {
   SOUND_PEN_START_DRAW,
   SOUND_PEN_STOP_DRAW,
   SOUND_PEN_UNDO_DRAW,
-  SOUND_PEN_CHANGE_COLOR
+  SOUND_PEN_CHANGE_COLOR,
+  SOUND_SHOOT
 } from "../../systems/sound-effects-system";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
@@ -36,8 +37,8 @@ AFRAME.registerComponent('aircanon-animation', {
 
     this.el.setObject3D("mesh", AirCanonMesh);
 
-    this.el.setAttribute("animation-mixer", {});
-    this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
+    //this.el.setAttribute("animation-mixer", {});
+    //this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
 
     /*console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
@@ -64,7 +65,7 @@ AFRAME.registerComponent('aircanon-animation', {
     } else {
       //this.AirCanonAnime.play()
       var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-      sfx2.playSoundOneShot(SOUND_PEN_START_DRAW);
+      sfx2.playSoundLooped(SOUND_SHOOT);
     }
   },
 
