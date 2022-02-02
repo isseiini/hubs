@@ -26,8 +26,14 @@ waitForDOMContentLoaded().then(() => {
 });
 
 AFRAME.registerComponent("aircanon-animation", {
-  init: function() {
+
+  schema: {
+    animate: { default: true }
+  },
+
+  init(){
     this.onset = this.onset.bind(this);
+    this.onset();
   },
 
   onset(){
