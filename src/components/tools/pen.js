@@ -62,7 +62,7 @@ AFRAME.registerComponent('aircanon-animation', {
     if (this.data.action == "false") {
       return
     } else {
-      this.AirCanonAnime.play()
+      //this.AirCanonAnime.play()
       var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
       sfx2.playSoundOneShot(SOUND_PEN_START_DRAW);
     }
