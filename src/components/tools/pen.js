@@ -45,8 +45,12 @@ AFRAME.registerComponent('aircanon-animation', {
     //const AirCanonMesh = this.el.object3D.children;
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
     console.log(this.AirCanonMixer)
+    console.log(AirCanonMesh.animations[0]);
     this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonMesh.animations[0]);
     this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
+
+    console.log(this.AirCanonAnime)
+    const sfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
   update: function () {
@@ -55,6 +59,7 @@ AFRAME.registerComponent('aircanon-animation', {
       return
     } else {
       this.AirCanonAnime.play()
+      sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
     }
   },
 
