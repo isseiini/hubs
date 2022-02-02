@@ -9,7 +9,7 @@ import { FormattedMessage } from "react-intl";
 
 export function ContentMenuButton({ active, children, ...props }) {
   return (
-    <button className={className(styles.contentMenuButton, { [styles.active]: active })} {...props}>
+    <button id="contentmenu_top" className={className(styles.contentMenuButton, { [styles.active]: active })} {...props}>
       {children}
     </button>
   );

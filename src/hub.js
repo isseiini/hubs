@@ -710,6 +710,15 @@ function checkForAccountRequired() {
 document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
+  const toolbar_under = document.getElementById("toolbar_under");
+  toolbar_under.style.display = "none";
+  const menu = document.getElementById("menu");
+  menu.addEventListener("click", function(){
+    toolbar_under.style.display = "block";
+  });
+  const contentmenu_top = document.getElementById("toolbar_under");
+  contentmenu_top.style.display = "none";
+
   if (room_name == "kooky-passionate-safari") {
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
