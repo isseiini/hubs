@@ -716,7 +716,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   menu.addEventListener("click", function(){
     toolbar_under.style.display = "block";
   });
-  const contentmenu_top = document.getElementById("toolbar_under");
+  const contentmenu_top = document.getElementById("contentmenu_top");
   contentmenu_top.style.display = "none";
 
   if (room_name == "kooky-passionate-safari") {

@@ -29,11 +29,10 @@ AFRAME.registerComponent("aircanon-animation", {
   init: function() {
     loadModel(AirCanonSrc).then(gltf => {
       var AirCanon = gltf;
-      console.log(AirCanon);
-      var AirCanonMixer = new THREE.AnimationMixer(cloneObject3D(AirCanon.scene));
-      console.log(AirCanonMixer);
-      var AirCanonAnimations = cloneObject3D(AirCanon.scene).animations;
-      console.log(AirCanonAnimations);
+      const mesh = cloneObject3D(AirCanon.scene)
+      this.el.setObject3D("mesh", mesh);
+      var AirCanonMixer = new THREE.AnimationMixer(mesh);
+      var AirCanonAnimations = mesh.animations;
       var anime = AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime);
       /*document.addEventListener('keyup', event => {
