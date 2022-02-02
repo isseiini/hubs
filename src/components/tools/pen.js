@@ -37,13 +37,13 @@ AFRAME.registerComponent('aircanon-animation', {
     this.el.setObject3D("mesh", AirCanon);
     console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
-    console.log(AirCanonMesh, typeof AirCanonMesh);
+    //console.log(AirCanonMesh, typeof AirCanonMesh);
     //console.log(AirCanonMesh2, typeof AirCanonMesh2);
     console.log(this, typeof this);
     console.log(this.el, typeof this.el);
 
     //const AirCanonMesh = this.el.object3D.children;
-    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
+    this.AirCanonMixer = new THREE.AnimationMixer(AirCanon);
     console.log(this.AirCanonMixer)
     //this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
   },
