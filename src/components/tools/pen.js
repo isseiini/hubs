@@ -31,8 +31,15 @@ AFRAME.registerComponent('aircanon-animation', {
 
   init: function () {
     // Do something when component first attached.
-    console.log(this.el.object3D)
-    console.log(this.data.action)
+    console.log(this, typeof this);
+    console.log(this.el, typeof this.el);
+    console.log(this.el.object3D, typeof this.el.object3D);
+    console.log(this.el.object3D.children, typeof this.el.object3D.children);
+    console.log(this.el.object3D.children[0], typeof this.el.object3D.children[0]);
+    console.log(this.el.object3D.children[0][0], typeof this.el.object3D.children[0][0]);
+    //const AirCanonmesh = this.el.object3D.children;
+    //this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
+
   },
 
   update: function () {
