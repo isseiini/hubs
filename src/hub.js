@@ -1446,8 +1446,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                   Player_tips.style.display = "none";
                   const general_menu = document.getElementById("general_menu");
                   general_menu.addEventListener("click", function(){
-                    toolbar_under.style.display = "block";
-                    Player_tips.style.display = "block";
+                    if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
+                      toolbar_under.style.display = "block";
+                      Player_tips.style.display = "block";
+                    } else {
+                      toolbar_under.style.display = "none";
+                      Player_tips.style.display = "none";
+                    }
+                    
                   });
   
                 }
