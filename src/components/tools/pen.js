@@ -45,11 +45,17 @@ AFRAME.registerComponent('aircanon-animation', {
     //const AirCanonMesh = this.el.object3D.children;
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
     console.log(this.AirCanonMixer)
-    //this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
+    this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
+    this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
   },
 
   update: function () {
     // Do something when component's data is updated.
+    if (this.data.action == "false") {
+      return
+    } else {
+      this.AirCanonAnime.play()
+    }
   },
 
   remove: function () {

@@ -2118,4 +2118,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
+  document.addEventListener('keyup', event => {
+    if (event.code === 'KeyL') {
+      var AirCanonAction = document.getElementById("AirCanonContainer");
+      AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
+      AirCanonAction.emit("true");
+    }
+  });
 });
