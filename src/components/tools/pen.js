@@ -16,13 +16,13 @@ import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
-/*let AirCanon;
+let AirCanon;
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
-});*/
+});
 
 AFRAME.registerComponent('aircanon-animation', {
   schema: {
@@ -31,15 +31,19 @@ AFRAME.registerComponent('aircanon-animation', {
 
   init: function () {
     // Do something when component first attached.
+    const AirCanonMesh = cloneObject3D(AirCanon.scene);
+    const AirCanonMesh2 = cloneObject3D(AirCanon)
+
+    this.el.setObject3D("mesh", AirCanonMesh);
+    console.log(AirCanon, typeof AirCanon);
+    console.log(AirCanonMesh, typeof AirCanonMesh);
+    console.log(AirCanonMesh2, typeof AirCanonMesh2);
     console.log(this, typeof this);
     console.log(this.el, typeof this.el);
-    console.log(this.el.object3D, typeof this.el.object3D);
-    console.log(this.el.object3D.children, typeof this.el.object3D.children);
-    console.log(this.el.object3D.children[0], typeof this.el.object3D.children[0]);
-    console.log(this.el.object3D.children[0][0], typeof this.el.object3D.children[0][0]);
-    //const AirCanonmesh = this.el.object3D.children;
-    //this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
 
+    //const AirCanonMesh = this.el.object3D.children;
+    //this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
+    //this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
   },
 
   update: function () {
