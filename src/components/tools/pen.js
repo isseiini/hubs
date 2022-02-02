@@ -50,7 +50,7 @@ AFRAME.registerComponent('aircanon-animation', {
     this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
 
     console.log(this.AirCanonAnime)
-    const sfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+    
   },
 
   update: function () {
@@ -59,7 +59,8 @@ AFRAME.registerComponent('aircanon-animation', {
       return
     } else {
       this.AirCanonAnime.play()
-      sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
+      var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+      sfx2.playSoundOneShot(SOUND_PEN_START_DRAW);
     }
   },
 
