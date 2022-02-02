@@ -710,18 +710,6 @@ function checkForAccountRequired() {
 document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
-  const toolbar_under = document.getElementById("toolbar_under");
-  toolbar_under.style.display = "none";
-  const contentmenu_top = document.getElementById("contentmenu_top");
-  contentmenu_top.style.display = "none";
-  const Player_tips = document.getElementById("Player_tips");
-  Player_tips.style.display = "none";
-  const general_menu = document.getElementById("general_menu");
-  general_menu.addEventListener("click", function(){
-    toolbar_under.style.display = "block";
-    Player_tips.style.display = "block";
-  });
-  
 
   if (room_name == "kooky-passionate-safari") {
     document.getElementById("hex-background").style.display = "none";
@@ -1450,6 +1438,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.presence === "room"
                 ) {
                   Player_UI.style.display = "block"
+                  const toolbar_under = document.getElementById("toolbar_under");
+                  toolbar_under.style.display = "none";
+                  const contentmenu_top = document.getElementById("contentmenu_top");
+                  contentmenu_top.style.display = "none";
+                  const Player_tips = document.getElementById("Player_tips");
+                  Player_tips.style.display = "none";
+                  const general_menu = document.getElementById("general_menu");
+                  general_menu.addEventListener("click", function(){
+                    toolbar_under.style.display = "block";
+                    Player_tips.style.display = "block";
+                  });
+  
                 }
 
                 if (
