@@ -27,13 +27,18 @@ import { cloneObject3D } from "../../utils/three-utils";
 
 AFRAME.registerComponent("aircanon-animation", {
   init: function() {
+    let AirCanon;
+    let AirCanonmesh;
+    let AirCanonMixer;
+    let AirCanonAnimations;
+    let anime;
     loadModel(AirCanonSrc).then(gltf => {
-      var AirCanon = gltf;
-      const AirCanonmesh = cloneObject3D(AirCanon.scene)
-      this.el.setObject3D("mesh", AirCanonmesh);
+      AirCanon = gltf;
+      this.AirCanonmesh = cloneObject3D(AirCanon.scene);
+      this.setObject3D("AirCanonmesh", AirCanonmesh);
       this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
-      var AirCanonAnimations = AirCanonmesh.animations;
-      var anime = this.AirCanonMixer.clipAction(AirCanonAnimations[0]);
+      this.AirCanonAnimations = AirCanonmesh.animations;
+      this.anime = this.AirCanonMixer.clipAction(AirCanonAnimations[0]);
       console.log(anime);
       /*document.addEventListener('keyup', event => {
         if (event.code === 'KeyZ') {
