@@ -11,24 +11,44 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 import { App } from "../../App";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
-/*import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
+import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
-let AirCanon;
+/*let AirCanon;
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
+});*/
+
+AFRAME.registerComponent('aircanon-animation', {
+  schema: {
+    action: { default : "false" }
+  },
+
+  init: function () {
+    // Do something when component first attached.
+    console.log(this.el.object3D)
+    console.log(this.data.action)
+  },
+
+  update: function () {
+    // Do something when component's data is updated.
+  },
+
+  remove: function () {
+    // Do something the component or its entity is detached.
+  },
+
+  tick: function (time, timeDelta) {
+    // Do something on every scene tick or frame.
+  }
 });
 
-AFRAME.registerComponent("aircanon-animation", {
-
-  schema: {
-    animate: { default: true }
-  },
+/*AFRAME.registerComponent("aircanon-animation", {
 
   init(){
     this.onset = this.onset.bind(this);

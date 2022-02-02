@@ -1,22 +1,9 @@
 const InterpolationBuffer = require("buffered-interpolation");
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import { waitForDOMContentLoaded } from "../../utils/async-utils";
-import AirCanonSrc from "../../assets/models/aircanon_with_gunfire";
-import { loadModel } from "../gltf-model-plus";
-import {cloneObject3D} from "../../utils/three-utils"
-
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
-
-let AirCanon;
-
-waitForDOMContentLoaded().then(() => {
-  loadModel(AirCanonSrc).then(gltf => {
-    AirCanon = gltf;
-  });
-});
 
 AFRAME.registerComponent("pen-laser", {
   schema: {
@@ -57,23 +44,6 @@ AFRAME.registerComponent("pen-laser", {
 
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
-
-    this.onset();
-  },
-
-  onset(){
-    const AirCanonmesh = cloneObject3D(AirCanon.scene)
-    this.el.setObject3D("mesh", AirCanonmesh);
-    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
-    this.anime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
-    console.log(this.anime);
-    this.onshoot();
-  },
-
-  onshoot() {
-    this.anime.setLoop(THREE.LoopRepeat, Infinity);
-    this.anime.play();
-    console.log(this.anime);
   },
 
   update: (() => {
