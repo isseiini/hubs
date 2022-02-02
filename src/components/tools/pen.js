@@ -31,10 +31,10 @@ AFRAME.registerComponent('aircanon-animation', {
 
   init: function () {
     // Do something when component first attached.
-    //const AirCanonMesh = cloneObject3D(AirCanon.scene);
-    //const AirCanonMesh2 = cloneObject3D(AirCanon)
+    //const AirCanonMesh2 = cloneObject3D(AirCanon.scene);
+    const AirCanonMesh = cloneObject3D(AirCanon)
 
-    //this.el.setObject3D("mesh", AirCanonMesh);
+    this.el.setObject3D("mesh", AirCanonMesh);
     console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
     //console.log(AirCanonMesh, typeof AirCanonMesh);
@@ -43,7 +43,8 @@ AFRAME.registerComponent('aircanon-animation', {
     console.log(this.el, typeof this.el);
 
     //const AirCanonMesh = this.el.object3D.children;
-    //this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
+    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
+    console.log(this.AirCanonMixer)
     //this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
   },
 
