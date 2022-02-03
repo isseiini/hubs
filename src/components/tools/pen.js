@@ -25,39 +25,42 @@ waitForDOMContentLoaded().then(() => {
   });
 });
 
-AFRAME.registerComponent('aircanon-animation', {
+AFRAME.registerComponent("aircanon-animation", {
+  schema: {
+    action: { default : "false" }
+  },
+
+  init() {
+    this.showLoader = this.showLoader.bind(this);
+    this.showLoader();
+  },
+
+  tick(t, dt) {
+    if (this.loaderMixer) {
+      this.loaderMixer.update(dt / 1000);
+    }
+  },
+
+  showLoader() {
+    const mesh = cloneObject3D(AirCanon.scene)
+    this.el.setObject3D("mesh", mesh);
+
+    this.loaderMixer = new THREE.AnimationMixer(mesh);
+
+    this.loadingClip = this.loaderMixer.clipAction(mesh.animations[0]);
+
+    this.loadingClip.play();
+    console.log(this.loadingClip)
+  }
+});
+
+/*AFRAME.registerComponent('aircanon-animation', {
   schema: {
     action: { default : "false" }
   },
 
   init: function () {
-    // Do something when component first attached.
-    var AirCanonMesh = cloneObject3D(AirCanon.scene);
-    //const AirCanonMesh = cloneObject3D(AirCanon)
-
-    this.el.setObject3D("mesh", AirCanonMesh);
-
-    //this.el.setAttribute("animation-mixer", {});
-    //this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
-
-    /*console.log(AirCanon, typeof AirCanon);
-    console.log(AirCanon.scene, typeof AirCanon.scene);
-    console.log(AirCanonMesh, typeof AirCanonMesh);
-    //console.log(AirCanonMesh2, typeof AirCanonMesh2);
-    console.log(this, typeof this);
-    console.log(this.el, typeof this.el);
-    console.log(this.AirCanonMixer)
-    console.log(AirCanonMesh.animations[0]);*/
-
-    //const AirCanonMesh = this.el.object3D.children;
-
-    //console.log(this.AirCanonAnime)
-    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
     
-    this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonMesh.animations[0]);
-    this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
-
-    this.AirCanonAnime.play();
 
     
   },
@@ -81,7 +84,7 @@ AFRAME.registerComponent('aircanon-animation', {
       this.AirCanonMixer.update(dt / 1000);
     }
   },
-});
+});*/
 
 /*AFRAME.registerComponent("aircanon-animation", {
 
