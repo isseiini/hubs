@@ -52,10 +52,6 @@ AFRAME.registerComponent('aircanon-animation', {
     //const AirCanonMesh = this.el.object3D.children;
 
     //console.log(this.AirCanonAnime)
-    
-  },
-
-  AnimationStart() {
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
     
     this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonMesh.animations[0]);
@@ -69,7 +65,6 @@ AFRAME.registerComponent('aircanon-animation', {
     if (this.data.action == "false") {
       return
     } else {
-      this.AnimationStart();
       var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
       sfx2.playSoundLooped(SOUND_SHOOT);
     }
