@@ -16,8 +16,8 @@ import URL_MEDIA_LOADED from "../assets/sfx/A_bendUp.mp3";
 import URL_MEDIA_LOADING from "../assets/sfx/suspense.mp3";
 import URL_SPAWN_EMOJI from "../assets/sfx/emoji.mp3";
 import { setMatrixWorld } from "../utils/three-utils";
-import URL_SHOOT from "../assets/sfx/shoot1";;
-import URL_HANABI from "../assets/sfx/hanabi1";
+import URL_SHOOT from "../assets/sfx/shoot1.mp3";;
+import URL_HANABI from "../assets/sfx/hanabi1.mp3";
 
 let soundEnum = 0;
 export const SOUND_HOVER_OR_GRAB = soundEnum++;
