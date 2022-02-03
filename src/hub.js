@@ -1447,7 +1447,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const general_menu = document.getElementById("general_menu");
                   general_menu.addEventListener("click", function(){
                     if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
-                      toolbar_under.style.display = "block";
+                      toolbar_under.style.display = "flex";
                       Player_tips.style.display = "block";
                     } else {
                       toolbar_under.style.display = "none";
