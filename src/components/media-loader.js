@@ -206,8 +206,8 @@ AFRAME.registerComponent("media-loader", {
 
       console.log(mesh);
       console.log(this.el);
-      console.log(loaderMixer);
-      console.log(loadingClip);
+      console.log(this.loaderMixer);
+      console.log(this.loadingClip);
       this.loadingScaleClip = this.loaderMixer.clipAction(
         new THREE.AnimationClip(null, 1000, [
           new THREE.VectorKeyframeTrack(".scale", [0, 0.2], [0, 0, 0, mesh.scale.x, mesh.scale.y, mesh.scale.z])
