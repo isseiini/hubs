@@ -44,18 +44,7 @@ AFRAME.registerComponent("aircanon-animation", {
     
   },
 
-  /*update() {
-    if (this.data.action == "false") {
-      this.Shoot("stop");
-    }else if (this.data.action == "true") {
-      this.Shoot("start");
-    }
-  },*/
-
-  tick(t, dt) {
-    if (this.loaderMixer) {
-      this.loaderMixer.update(dt / 1000);
-    }
+  update() {
     if (this.data.action == "false") {
       this.Shoot("stop");
     }else if (this.data.action == "true") {
@@ -63,10 +52,17 @@ AFRAME.registerComponent("aircanon-animation", {
     }
   },
 
+  tick(t, dt) {
+    if (this.loaderMixer) {
+      this.loaderMixer.update(dt / 1000);
+    }
+    
+  },
+
   Shoot (command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
-      this.loaderClip.pause();
+      this.loaderClip.stop();
       ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
     } else if (command == "start") {
       this.loadingClip.play();
