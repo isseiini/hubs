@@ -45,7 +45,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
   update() {
     if (this.data.action == "false") {
-      this.Shoot("stop")
+      this.Shoot("stop");
     }else if (this.data.action == "true") {
       this.Shoot("start");
     }
@@ -57,7 +57,7 @@ AFRAME.registerComponent("aircanon-animation", {
     }
   },
 
-  Shoot(command) {
+  Shoot: (function(command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
       this.loaderMixer.stop();
@@ -66,7 +66,7 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loadingClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
     }
-  }
+  })()
 });
 
 /*AFRAME.registerComponent("hanabi-animation", {
@@ -75,18 +75,18 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.Shoot = this.Shoot.bind(this);
-    const mesh = cloneObject3D(Hanabi.scene)
-    this.el.setObject3D("mesh", mesh);
-    this.loaderMixer = new THREE.AnimationMixer(mesh);
-    this.loadingClip = this.loaderMixer.clipAction(mesh.animations[0]);
+    this.Fire = this.Fire.bind(this);
+    const HanabiMesh = cloneObject3D(Hanabi.scene)
+    this.el.setObject3D("mesh", HanabiMesh);
+    this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
+    this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
   },
 
   update() {
     if (this.data.action == "false") {
-      this.Shoot("stop")
+      this.Fire("stop")
     }else if (this.data.action == "true") {
-      this.Shoot("start");
+      this.Fire("start");
     }
   },
 
@@ -96,7 +96,8 @@ AFRAME.registerComponent("aircanon-animation", {
     }
   },
 
-  Shoot(command) {
+  Fire(command) {
+    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
       return
     } else if (command == "start") {
