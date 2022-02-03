@@ -36,7 +36,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.Shoot = this.Shoot.bind(this);
+    //this.Shoot = this.Shoot.bind(this);
     var AirCanonMesh = cloneObject3D(AirCanon.scene)
     this.el.setObject3D("mesh", AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
@@ -80,7 +80,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh", HanabiMesh);
     this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
-    this.L
+    this.LoadingClip.setLoop(THREE.LoopOnce);
   },
 
   update() {
@@ -103,83 +103,6 @@ AFRAME.registerComponent("aircanon-animation", {
     ShootingSfx.playSoundLooped(SOUND_SHOOT);
   })()
 });*/
-
-/*AFRAME.registerComponent('aircanon-animation', {
-  schema: {
-    action: { default : "false" }
-  },
-
-  init: function () {
-    
-
-    
-  },
-
-  update: function () {
-    // Do something when component's data is updated.
-    if (this.data.action == "false") {
-      return
-    } else {
-      var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-      sfx2.playSoundLooped(SOUND_SHOOT);
-    }
-  },
-
-  remove: function () {
-    // Do something the component or its entity is detached.
-  },
-
-  tick(t, dt) {
-    if (this.AirCanonMixer) {
-      this.AirCanonMixer.update(dt / 1000);
-    }
-  },
-});*/
-
-/*AFRAME.registerComponent("aircanon-animation", {
-
-  init(){
-    this.onset = this.onset.bind(this);
-    this.onset();
-  },
-
-  onset(){
-    const AirCanonmesh = cloneObject3D(AirCanon.scene)
-    this.el.setObject3D("mesh", AirCanonmesh);
-    this.AirCanonMixer = new THREE.AnimationMixer(AirCanonmesh);
-    this.anime = this.AirCanonMixer.clipAction(AirCanonmesh.animations[0]);
-    console.log(this.anime);
-    this.onshoot();
-  },
-
-  onshoot() {
-    this.anime.setLoop(THREE.LoopRepeat, Infinity);
-    this.anime.play();
-    console.log(this.anime);
-  }
-});*/
-
-/*AFRAME.registerComponent("aircanon-animation", {
-	init(){
-    var AirCanonMesh = AirCanon.scene;
-		this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
-
-    const AirCanonAnimations = AirCanon.animations;
-  
-    var anime = this.loaderMixer.clipAction(AirCanonAnimations[0]);
-    anime.play();
-	},
-  tick(t, dt) {
-    if (this.loaderMixer) {
-      this.loaderMixer.update(dt / 1000);
-    }
-  }
-	
-});*/
-
-
-
-
 
 window.APP = new App();
 
