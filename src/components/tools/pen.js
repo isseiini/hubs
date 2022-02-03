@@ -13,7 +13,7 @@ import { App } from "../../App";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
-import HanabiSrc from "../../assets/models/firework_with_bomb1"
+import HanabiSrc from "../../assets/models/firework_with_bomb1.glb"
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
@@ -75,7 +75,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.Fire = this.Fire.bind(this);
+    //this.Fire = this.Fire.bind(this);
     const HanabiMesh = cloneObject3D(Hanabi.scene)
     this.el.setObject3D("mesh", HanabiMesh);
     this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
