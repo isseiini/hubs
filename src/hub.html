@@ -777,8 +777,8 @@
 
             <!--<a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>-->
             <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>-->
-            <a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/firework_with_bomb1.glb"></a-asset-item>
-            <a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/aircanon_with_gunfire.glb"></a-asset-item>
+            <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/firework_with_bomb1.glb"></a-asset-item>-->
+            <!--<a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/aircanon_with_gunfire.glb"></a-asset-item>-->
 
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
@@ -839,8 +839,8 @@
                         </a-entity>
                         <a-entity 
                           class="sanshakudama"
-                          gltf-model="#hanabi"
-                          animation-mixer
+                          id="HanabiContainer"
+                          hanabi-animation
                           position="0 1 0.7" 
                           rotation="0 0 0" 
                           scale="0.4 0.4 0.4"

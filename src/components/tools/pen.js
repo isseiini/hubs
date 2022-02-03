@@ -13,17 +13,20 @@ import { App } from "../../App";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
+import HanabiSrc from "../../assets/models/firework_with_bomb1"
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
 let AirCanon;
-
-var ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+let Hanabi
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
+  });
+  loadModel(HanabiSrc).then(gltf => {
+    Hanabi = gltf;
   });
 });
 
@@ -34,7 +37,46 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.Shoot = this.Shoot.bind(this);
-    const mesh = cloneObject3D(AirCanon.scene)
+    var AirCanonMesh = cloneObject3D(AirCanon.scene)
+    this.el.setObject3D("mesh", AirCanonMesh);
+    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
+  },
+
+  update() {
+    if (this.data.action == "false") {
+      this.Shoot("stop")
+    }else if (this.data.action == "true") {
+      this.Shoot("start");
+    }
+  },
+
+  tick(t, dt) {
+    if (this.loaderMixer) {
+      this.loaderMixer.update(dt / 1000);
+    }
+  },
+
+  Shoot(command) {
+    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+    if (command == "stop") {
+      this.loaderMixer.stop();
+      ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
+    } else if (command == "start") {
+      this.loadingClip.play();
+      ShootingSfx.playSoundLooped(SOUND_SHOOT);
+    }
+  }
+});
+
+/*AFRAME.registerComponent("hanabi-animation", {
+  schema: {
+    action: { default : "false" }
+  },
+
+  init() {
+    this.Shoot = this.Shoot.bind(this);
+    const mesh = cloneObject3D(Hanabi.scene)
     this.el.setObject3D("mesh", mesh);
     this.loaderMixer = new THREE.AnimationMixer(mesh);
     this.loadingClip = this.loaderMixer.clipAction(mesh.animations[0]);
@@ -62,7 +104,7 @@ AFRAME.registerComponent("aircanon-animation", {
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
     }
   }
-});
+});*/
 
 /*AFRAME.registerComponent('aircanon-animation', {
   schema: {
