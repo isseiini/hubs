@@ -1082,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     var params = {
       TableName: 'Communication',
       Item:{
-        playID: "dsagfawg",
+        PlayID: "dsagfawg",
         text_chat: text_chat_data
       }
     };
