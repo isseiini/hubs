@@ -60,7 +60,7 @@ AFRAME.registerComponent("aircanon-animation", {
   Shoot: (function(command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
-      this.loaderMixer.stop();
+      this.loaderClip.pause();
       ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
     } else if (command == "start") {
       this.loadingClip.play();
@@ -80,6 +80,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh", HanabiMesh);
     this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
+    this.L
   },
 
   update() {
