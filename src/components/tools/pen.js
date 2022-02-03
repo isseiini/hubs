@@ -41,6 +41,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh", AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
+    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
   update() {
@@ -58,7 +59,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   Shoot: (function(command) {
-    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+    
     if (command == "stop") {
       this.loaderClip.pause();
       ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
