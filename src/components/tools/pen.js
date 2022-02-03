@@ -37,8 +37,8 @@ AFRAME.registerComponent('aircanon-animation', {
 
     this.el.setObject3D("mesh", AirCanonMesh);
 
-    this.el.setAttribute("animation-mixer", {});
-    this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
+    //this.el.setAttribute("animation-mixer", {});
+    //this.el.components["animation-mixer"].initMixer(this.AirCanonMesh.animations);
 
     /*console.log(AirCanon, typeof AirCanon);
     console.log(AirCanon.scene, typeof AirCanon.scene);
@@ -46,16 +46,22 @@ AFRAME.registerComponent('aircanon-animation', {
     //console.log(AirCanonMesh2, typeof AirCanonMesh2);
     console.log(this, typeof this);
     console.log(this.el, typeof this.el);
+    console.log(this.AirCanonMixer)
+    console.log(AirCanonMesh.animations[0]);*/
 
     //const AirCanonMesh = this.el.object3D.children;
+
+    //console.log(this.AirCanonAnime)
+    
+  },
+
+  AnimationStart() {
     this.AirCanonMixer = new THREE.AnimationMixer(AirCanonMesh);
-    console.log(this.AirCanonMixer)
-    console.log(AirCanonMesh.animations[0]);
+    
     this.AirCanonAnime = this.AirCanonMixer.clipAction(AirCanonMesh.animations[0]);
     this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
 
-    console.log(this.AirCanonAnime)*/
-    
+    this.AirCanonAnime.play();
   },
 
   update: function () {
@@ -63,7 +69,7 @@ AFRAME.registerComponent('aircanon-animation', {
     if (this.data.action == "false") {
       return
     } else {
-      //this.AirCanonAnime.play()
+      this.AnimationStart();
       var sfx2 = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
       sfx2.playSoundLooped(SOUND_SHOOT);
     }
