@@ -63,7 +63,7 @@ AFRAME.registerComponent("aircanon-animation", {
     }
   },
 
-  Shoot: (function(command) {
+  Shoot (command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
       this.loaderClip.pause();
@@ -72,7 +72,7 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loadingClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
     }
-  })()
+  }
 });
 
 /*AFRAME.registerComponent("hanabi-animation", {
