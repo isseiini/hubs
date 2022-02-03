@@ -58,6 +58,8 @@ AFRAME.registerComponent('aircanon-animation', {
     this.AirCanonAnime.setLoop(THREE.LoopRepeat, Infinity);
 
     this.AirCanonAnime.play();
+
+    
   },
 
   update: function () {
@@ -74,9 +76,11 @@ AFRAME.registerComponent('aircanon-animation', {
     // Do something the component or its entity is detached.
   },
 
-  tick: function (time, timeDelta) {
-    // Do something on every scene tick or frame.
-  }
+  tick(t, dt) {
+    if (this.AirCanonMixer) {
+      this.AirCanonMixer.update(dt / 1000);
+    }
+  },
 });
 
 /*AFRAME.registerComponent("aircanon-animation", {
