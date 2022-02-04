@@ -18,13 +18,17 @@ import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
-const AirCanonAction = document.getElementById("AirCanonContainer");
+var AirCanonAction = document.getElementById("AirCanonContainer");
+var HanabiAction = document.getElementById("HanabiContainer");
 
 let AirCanon;
 let Hanabi;
 
 var AirCanonMixer;
 var AirCanonClip;
+
+var HanabiMixer;
+var HanabiClip;
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -83,19 +87,20 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    //this.Fire = this.Fire.bind(this);
-    const HanabiMesh = cloneObject3D(Hanabi.scene)
-    this.el.setObject3D("mesh", HanabiMesh);
-    this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
-    this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
-    this.LoadingClip.setLoop(THREE.LoopOnce);
+    this.Fire = this.Fire.bind(this);
+    var AirCanonMesh = cloneObject3D(AirCanon.scene)
+    this.el.setObject3D("mesh", AirCanonMesh);
+    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
+    AirCanonMixer = this.loaderMixer;
+    AirCanonClip = this.loadingClip
   },
 
   update() {
     if (this.data.action == "false") {
-      return
+      this.Shoot("stop");
     }else if (this.data.action == "true") {
-      this.Fire();
+      this.Shoot("start");
     }
   },
 
@@ -103,13 +108,19 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.loaderMixer) {
       this.loaderMixer.update(dt / 1000);
     }
+
   },
 
-  Fire: (function() {
+  Fire () {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-    this.loadingClip.play();
-    ShootingSfx.playSoundLooped(SOUND_SHOOT);
-  })()
+    if (command == "stop") {
+      AirCanonClip.stop();
+      ShootingSfx.stopALLPositionalAudio();
+    } else if (command == "start") {
+      AirCanonClip.play();
+      ShootingSfx.playSoundLooped(SOUND_SHOOT);
+    }
+  }
 });*/
 
 window.APP = new App();

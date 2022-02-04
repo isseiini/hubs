@@ -156,7 +156,7 @@ export default class SceneEntryManager {
       TableName: 'Communication',
       Item:{
         PlayID: "dsagfawg",
-        text_chat: text_chat_data
+        text_chat: 5 //text_chat_data
       }
     };
     docClient.put(params, function(err, data){
