@@ -169,14 +169,14 @@ export default class SceneEntryManager {
           };
           docClient.put(params, function(err, data){
             if(err){
-              console.log(err);
+              console.log("err");
             }else{
-              console.log(success);
+              console.log("success");
             }
           });
           resolve();
         } catch(e) {
-          console.log(err);
+          console.log("err");
           reject();
         }
       })
@@ -195,7 +195,7 @@ export default class SceneEntryManager {
       }
       this.scene.parentNode.removeChild(this.scene);
     }).catch(e => {
-      console.log(err)
+      console.log("err")
     });
     //text_chat_data.count();
     //console.log(text_chat_data);
