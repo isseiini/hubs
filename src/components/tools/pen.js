@@ -31,6 +31,7 @@ var HanabiMixer;
 var HanabiClip;
 
 var ShootingSfx;
+var HanabiSfx; 
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -61,7 +62,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.data.action == "true") {
       this.Shoot();
     } else {
-      AirCanonClip.ClipresetDuration();
+      AirCanonClip.resetDuration();
     }
   },
 
@@ -89,7 +90,8 @@ AFRAME.registerComponent("aircanon-animation", {
     this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
-    HanabiClip = this.loadingClip
+    HanabiClip = this.loadingClip;
+    HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
   update() {
@@ -108,12 +110,12 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   Fire () {
-    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+    
     if (command == "stop") {
-      AirCanonClip.stop();
+      HanabiClip.stop();
       ShootingSfx.stopALLPositionalAudio();
     } else if (command == "start") {
-      AirCanonClip.play();
+      HanabiClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
     }
   }
