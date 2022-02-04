@@ -33,6 +33,8 @@ var HanabiClip;
 var ShootingSfx;
 var HanabiSfx; 
 
+var duration = 0.065
+
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
@@ -91,6 +93,8 @@ AFRAME.registerComponent("hanabi-animation", {
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
+    HanabiClip.setLoop(THREE.LoopOnce);
+    HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
@@ -108,9 +112,6 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
-    const duration = 0.065
-    HanabiClip.setLoop(LoopOnce, -1);
-    HanabiClip.clampWhenFinished = true;
     HanabiClip.fadeOut(duration);
     HanabiClip.play();
   }
