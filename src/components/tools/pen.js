@@ -18,7 +18,7 @@ import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
-var AirCanonAction = document.getElementById("AirCanonContainer");
+
 var HanabiAction = document.getElementById("HanabiContainer");
 
 let AirCanon;
@@ -545,7 +545,9 @@ AFRAME.registerComponent("pen", {
           hit_target_container.value = hit_target;
           hit_target_container.dispatchEvent(event);
         };
-        
+        if (!AirCanonAction) {
+          var AirCanonAction = document.getElementById("AirCanonContainer");
+        }
         AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
         AirCanonAction.emit("true");
         //App.MessageDispatch.dispatch("Hit!!");
