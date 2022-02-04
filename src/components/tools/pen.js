@@ -60,6 +60,8 @@ AFRAME.registerComponent("aircanon-animation", {
   update() {
     if (this.data.action == "true") {
       this.Shoot();
+    } else {
+      AirCanonClip.ClipresetDuration();
     }
   },
 
@@ -82,12 +84,12 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.Fire = this.Fire.bind(this);
-    var AirCanonMesh = cloneObject3D(AirCanon.scene)
-    this.el.setObject3D("mesh", AirCanonMesh);
-    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
-    AirCanonMixer = this.loaderMixer;
-    AirCanonClip = this.loadingClip
+    var HanabiMesh = cloneObject3D(Hanabi.scene)
+    this.el.setObject3D("mesh", HanabiMesh);
+    this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
+    this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
+    HanabiMixer = this.loaderMixer;
+    HanabiClip = this.loadingClip
   },
 
   update() {
