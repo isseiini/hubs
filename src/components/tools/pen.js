@@ -54,13 +54,13 @@ AFRAME.registerComponent("aircanon-animation", {
     AirCanonClip = this.loadingClip
   },
 
-  /*update() {
+  update() {
     if (this.data.action == "false") {
       this.Shoot("stop");
     }else if (this.data.action == "true") {
       this.Shoot("start");
     }
-  },*/
+  },
 
   tick(t, dt) {
     if (this.loaderMixer) {
