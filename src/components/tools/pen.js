@@ -62,7 +62,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.data.action == "true") {
       this.Shoot();
     } else {
-      AirCanonClip.resetDuration();
+      AirCanonClip.reset();
     }
   },
 
