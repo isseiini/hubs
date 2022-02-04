@@ -924,23 +924,26 @@
                       
                     </a-entity>
 
+                    
                     <a-entity 
-                        class="aircanon"
-                        id="AirCanonContainer"
-                        aircanon-animation
-                        position="0.08 1 -0.2" 
-                        rotation="180 -90 90" 
-                        scale="0.06 0.06 0.06">
-                      </a-entity>
-                      <a-entity 
-                        class="sanshakudama"
-                        id="HanabiContainer"
-                        hanabi-animation
-                        position="0 1 0.7" 
-                        rotation="0 0 0" 
-                        scale="0.4 0.4 0.4"
-                        class="collidable">
-                      </a-entity>
+                      matrix-auto-update
+                      class="aircanon"
+                      id="AirCanonContainer"
+                      aircanon-animation
+                      position="0.08 1 -0.2" 
+                      rotation="180 -90 90" 
+                      scale="0.06 0.06 0.06">
+                    </a-entity>
+                    <a-entity 
+                      matrix-auto-update
+                      class="sanshakudama"
+                      id="HanabiContainer"
+                      hanabi-animation
+                      position="0 1 0.7" 
+                      rotation="0 0 0" 
+                      scale="0.4 0.4 0.4"
+                      class="collidable">
+                    </a-entity>
 
                     <a-entity class="left-controller" matrix-auto-update></a-entity>
 
@@ -954,25 +957,7 @@
                                 hand-pose__left
                                 hand-pose__right
                                 networked-audio-analyser
-                            >
-                            <a-entity 
-                              class="aircanon"
-                              id="AirCanonContainer"
-                              aircanon-animation
-                              position="0.08 1 -0.2" 
-                              rotation="180 -90 90" 
-                              scale="0.06 0.06 0.06">
-                            </a-entity>
-                            <a-entity 
-                              class="sanshakudama"
-                              id="HanabiContainer"
-                              hanabi-animation
-                              position="0 1 0.7" 
-                              rotation="0 0 0" 
-                              scale="0.4 0.4 0.4"
-                              class="collidable">
-                            </a-entity>
-                          </a-entity>
+                            ></a-entity>
                         </template>
 
                         <template data-name="Neck">
