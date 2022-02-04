@@ -18,6 +18,8 @@ import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
+const AirCanonAction = document.getElementById("AirCanonContainer");
+
 let AirCanon;
 let Hanabi;
 
@@ -67,7 +69,7 @@ AFRAME.registerComponent("aircanon-animation", {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
       AirCanonClip.stop();
-      ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
+      ShootingSfx.stopALLPositionalAudio();
     } else if (command == "start") {
       AirCanonClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
@@ -533,7 +535,8 @@ AFRAME.registerComponent("pen", {
           hit_target_container.dispatchEvent(event);
         };
         
-        
+        AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
+        AirCanonAction.emit("true");
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
@@ -580,6 +583,8 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing.endDraw(this.worldPosition, this.direction, this.normal);
       this.drawingManager.returnDrawing(this);
       this.currentDrawing = null;
+      AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
+      AirCanonAction.emit("false");
     }
   },
 
