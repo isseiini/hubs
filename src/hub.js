@@ -1077,7 +1077,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const socket = await connectToReticulum(isDebug);
 
   socket.onClose(e => {
-    text_chat_data.count();
+    /*text_chat_data.count();
     console.log(text_chat_data);
     var params = {
       TableName: 'Communication',
@@ -1092,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }else{
         console.log(success);
       }
-    });
+    });*/
     // We don't currently have an easy way to distinguish between being kicked (server closes socket)
     // and a variety of other network issues that seem to produce the 1000 closure code, but the
     // latter are probably more common. Either way, we just tell the user they got disconnected.

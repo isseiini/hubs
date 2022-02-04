@@ -22,6 +22,8 @@ import { ObjectContentOrigins } from "./object-types";
 import { getAvatarSrc, getAvatarType } from "./utils/avatar-utils";
 import { SOUND_ENTER_SCENE } from "./systems/sound-effects-system";
 
+import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
+
 //const isIOS = detectIOS();
 const isIOS = AFRAME.utils.device.isIOS();
 
@@ -148,6 +150,22 @@ export default class SceneEntryManager {
   };
 
   exitScene = () => {
+    text_chat_data.count();
+    console.log(text_chat_data);
+    var params = {
+      TableName: 'Communication',
+      Item:{
+        PlayID: "dsagfawg",
+        text_chat: text_chat_data
+      }
+    };
+    docClient.put(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(success);
+      }
+    });
     this.scene.exitVR();
     if (APP.dialog && APP.dialog.localMediaStream) {
       APP.dialog.localMediaStream.getTracks().forEach(t => t.stop());
