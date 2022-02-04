@@ -596,11 +596,11 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing.endDraw(this.worldPosition, this.direction, this.normal);
       this.drawingManager.returnDrawing(this);
       this.currentDrawing = null;
-      if (!AirCanonAction) {
-        var AirCanonAction = document.getElementById("AirCanonContainer");
+      if (!AirCanonAction2) {
+        var AirCanonAction2 = document.getElementById("AirCanonContainer");
       }
-      AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
-      AirCanonAction.emit("false");
+      AirCanonAction2.setAttribute("aircanon-animation", {action: "false"});
+      AirCanonAction2.emit("false");
     }
   },
 
