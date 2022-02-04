@@ -596,6 +596,9 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing.endDraw(this.worldPosition, this.direction, this.normal);
       this.drawingManager.returnDrawing(this);
       this.currentDrawing = null;
+      if (!AirCanonAction) {
+        var AirCanonAction = document.getElementById("AirCanonContainer");
+      }
       AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
       AirCanonAction.emit("false");
     }
