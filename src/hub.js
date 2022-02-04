@@ -2162,6 +2162,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyK') {
       scene.pause();
+    };
+    if (event.code === 'KeyM') {
+      scene.play();
+    }
+    if (event.code === "KeyN") {
+      const scene = document.querySelector("a-scene");
+      const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+      waypointSystem.moveToSpawnPoint();
     }
   });
 });
