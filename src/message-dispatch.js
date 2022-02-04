@@ -58,6 +58,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 };*/
 
+var HanabiAction = document.getElementById("HanabiContainer");
+
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
     super();
@@ -85,6 +87,9 @@ export default class MessageDispatch extends EventTarget {
       lifeMark.style.visibility = 'hidden'
       Player_Respawn.style.display = "block";
       life = 100  
+
+      HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+      HanabiAction.emit("true");
       //sanshakudama.setAttribute("animation-mixer")
       var down_count = {
         TableName: 'Matching-table',

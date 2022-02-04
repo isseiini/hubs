@@ -19,7 +19,7 @@ import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 
 
-var HanabiAction = document.getElementById("HanabiContainer");
+
 
 let AirCanon;
 let Hanabi;
@@ -78,7 +78,7 @@ AFRAME.registerComponent("aircanon-animation", {
   }
 });
 
-/*AFRAME.registerComponent("hanabi-animation", {
+AFRAME.registerComponent("hanabi-animation", {
   schema: {
     action: { default : "false" }
   },
@@ -95,10 +95,8 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "false") {
-      this.Shoot("stop");
-    }else if (this.data.action == "true") {
-      this.Shoot("start");
+    if (this.data.action == "true") {
+      this.Fire();
     }
   },
 
@@ -110,16 +108,13 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   Fire () {
-    
-    if (command == "stop") {
-      HanabiClip.stop();
-      ShootingSfx.stopALLPositionalAudio();
-    } else if (command == "start") {
-      HanabiClip.play();
-      ShootingSfx.playSoundLooped(SOUND_SHOOT);
-    }
+    const duration = 0.065
+    HanabiClip.setLoop(LoopOnce, -1);
+    HanabiClip.clampWhenFinished = true;
+    HanabiClip.fadeOut(duration);
+    HanabiClip.play();
   }
-});*/
+});
 
 window.APP = new App();
 
