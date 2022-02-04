@@ -73,7 +73,7 @@ AFRAME.registerComponent("aircanon-animation", {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
       AirCanonClip.stop();
-      ShootingSfx.stopALLPositionalAudio();
+      ShootingSfx.stopSoundNode(SOUND_SHOOT);
     } else if (command == "start") {
       AirCanonClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
