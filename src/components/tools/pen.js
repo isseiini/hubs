@@ -30,6 +30,8 @@ var AirCanonClip;
 var HanabiMixer;
 var HanabiClip;
 
+var ShootingSfx;
+
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
@@ -51,31 +53,25 @@ AFRAME.registerComponent("aircanon-animation", {
     this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
     AirCanonMixer = this.loaderMixer;
-    AirCanonClip = this.loadingClip
+    AirCanonClip = this.loadingClip;
+    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
   update() {
-    if (this.data.action == "false") {
-      this.Shoot("stop");
-    }else if (this.data.action == "true") {
-      this.Shoot("start");
+    if (this.data.action == "true") {
+      this.Shoot();
     }
   },
 
   tick(t, dt) {
     if (this.loaderMixer && this.data.action == "true") {
       this.loaderMixer.update(dt / 1000);
+      ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
   },
 
-  Shoot (command) {
-    const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-    if (command == "stop") {
-      ShootingSfx.stopSoundNode(SOUND_SHOOT);
-    } else if (command == "start") {
-      AirCanonClip.play();
-      ShootingSfx.playSoundLooped(SOUND_SHOOT);
-    }
+  Shoot () {
+    AirCanonClip.play();
   }
 });
 
