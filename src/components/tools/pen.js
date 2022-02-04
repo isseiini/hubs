@@ -21,6 +21,9 @@ import { func } from "prop-types";
 let AirCanon;
 let Hanabi;
 
+var AirCanonMixer;
+var AirCanonClip;
+
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
@@ -41,7 +44,8 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh", AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
-    
+    AirCanonMixer = this.loaderMixer;
+    AirCanonClip = this.loadingClip
   },
 
   update() {
@@ -56,16 +60,16 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.loaderMixer) {
       this.loaderMixer.update(dt / 1000);
     }
-    
+
   },
 
   Shoot (command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
-      this.loaderClip.stop();
+      AirCanonClip.stop();
       ShootingSfx.stopPositionalAudio(SOUND_SHOOT);
     } else if (command == "start") {
-      this.loadingClip.play();
+      AirCanonClip.play();
       ShootingSfx.playSoundLooped(SOUND_SHOOT);
     }
   }
