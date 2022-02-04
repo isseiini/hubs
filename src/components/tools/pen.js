@@ -5,7 +5,8 @@ import {
   SOUND_PEN_STOP_DRAW,
   SOUND_PEN_UNDO_DRAW,
   SOUND_PEN_CHANGE_COLOR,
-  SOUND_SHOOT
+  SOUND_SHOOT,
+  SOUND_HANABI
 } from "../../systems/sound-effects-system";
 import { convertStandardMaterial } from "../../utils/material-utils";
 
@@ -33,7 +34,7 @@ var HanabiClip;
 var ShootingSfx;
 var HanabiSfx; 
 
-var duration = 0.065
+var duration = 0.065;
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -93,7 +94,7 @@ AFRAME.registerComponent("hanabi-animation", {
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
-    HanabiClip.setLoop(THREE.LoopOnce);
+    HanabiClip.setLoop(THREE.LoopOnce, 1);
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
@@ -101,6 +102,7 @@ AFRAME.registerComponent("hanabi-animation", {
   update() {
     if (this.data.action == "true") {
       this.Fire();
+      HanabiSfx.playSoundOneShot(SOUND_HANABI);
     }
   },
 
@@ -112,8 +114,8 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
-    HanabiClip.fadeOut(duration);
     HanabiClip.play();
+    HanabiClip.fadeOut(duration);
   }
 });
 

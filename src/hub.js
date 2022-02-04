@@ -2153,7 +2153,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyL') {
-      var HanabiAction = document.getElementById("HanabiContainer")
+      const HanabiAction = document.getElementById("HanabiContainer")
       HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       HanabiAction.emit("true");
     }
