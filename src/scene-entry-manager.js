@@ -157,50 +157,17 @@ export default class SceneEntryManager {
   };
 
   exitScene = () => {
-    function exit_and_put(){
-      return new Promise((resolve, reject) => {
-        try {
-          var params = {
-            TableName: 'Communication',
-            Item:{
-              PlayID: "dsagfawg",
-              text_chat: 5 //text_chat_data
-            }
-          };
-          docClient.put(params, function(err, data){
-            if(err){
-              console.log("err");
-            }else{
-              console.log("success");
-            }
-          });
-          resolve();
-        } catch(e) {
-          console.log("err");
-          reject();
-        }
-      })
-    };
-
-    exit_and_put().then(() => {
-      this.scene.exitVR();
-      if (APP.dialog && APP.dialog.localMediaStream) {
-        APP.dialog.localMediaStream.getTracks().forEach(t => t.stop());
-      }
-      if (this.hubChannel) {
-        this.hubChannel.disconnect();
-      }
-      if (this.scene.renderer) {
-        this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
-      }
-      this.scene.parentNode.removeChild(this.scene);
-    }).catch(e => {
-      console.log("err")
-    });
-    //text_chat_data.count();
-    //console.log(text_chat_data);
-    
-    
+    this.scene.exitVR();
+    if (APP.dialog && APP.dialog.localMediaStream) {
+      APP.dialog.localMediaStream.getTracks().forEach(t => t.stop());
+    }
+    if (this.hubChannel) {
+      this.hubChannel.disconnect();
+    }
+    if (this.scene.renderer) {
+      this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
+    }
+    this.scene.parentNode.removeChild(this.scene);
   };
 
   _setupPlayerRig = () => {

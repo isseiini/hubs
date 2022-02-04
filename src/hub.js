@@ -1101,6 +1101,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (e.code === NORMAL_CLOSURE && !isReloading) {
       entryManager.exitScene();
       remountUI({ roomUnavailableReason: ExitReason.disconnected });
+
+      function exit_and_put(){
+        return new Promise((resolve, reject) => {
+          try {
+            var params = {
+              TableName: 'Communication',
+              Item:{
+                PlayID: "dsagfawg",
+                text_chat: 5 //text_chat_data
+              }
+            };
+            docClient.put(params, function(err, data){
+              if(err){
+                console.log("err");
+              }else{
+                console.log("success");
+              }
+            });
+            resolve();
+          } catch(e) {
+            console.log("err");
+            reject();
+          }
+        })
+      };
+  
+      exit_and_put().then(() => {
+        
+      }).catch(e => {
+        console.log("err")
+      });
+      //text_chat_data.count();
+      //console.log(text_chat_data);
     }
 
     
