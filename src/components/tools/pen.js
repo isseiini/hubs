@@ -115,7 +115,7 @@ AFRAME.registerComponent("hanabi-animation", {
 
   Fire () {
     HanabiClip.play();
-    HanabiClip.fadeOut(duration);
+    //HanabiClip.fadeOut(duration);
   }
 });
 

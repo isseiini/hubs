@@ -81,6 +81,8 @@ export default class MessageDispatch extends EventTarget {
     var life = HP - 10;
 
     if ( life <= 0 ){
+      HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+      HanabiAction.emit("true");
 
       life = 0
  
