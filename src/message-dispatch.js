@@ -88,6 +88,8 @@ export default class MessageDispatch extends EventTarget {
  
       lifeMark.style.visibility = 'hidden'
       Player_Respawn.style.display = "block";
+      const general_scene = document.querySelector("a-scene");
+      general_scene.pause();
       life = 100  
 
       HanabiAction.setAttribute("hanabi-animation", {action: "true"});
