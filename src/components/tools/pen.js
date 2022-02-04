@@ -63,16 +63,14 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   tick(t, dt) {
-    if (this.loaderMixer) {
+    if (this.loaderMixer && this.data.action == "true") {
       this.loaderMixer.update(dt / 1000);
     }
-
   },
 
   Shoot (command) {
     const ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     if (command == "stop") {
-      AirCanonClip.stop();
       ShootingSfx.stopSoundNode(SOUND_SHOOT);
     } else if (command == "start") {
       AirCanonClip.play();
