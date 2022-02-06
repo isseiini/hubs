@@ -78,16 +78,18 @@ AFRAME.registerComponent("pen-laser", {
   },
 
   update: (() => {
-    if (this.data.action == "true") {
-      this.Shoot();
-    } else {
-      AirCanonClip.reset();
-    }
+    
 
     const originBufferPosition = new THREE.Vector3();
     const targetBufferPosition = new THREE.Vector3();
 
     return function(prevData) {
+      if (this.data.action == "true") {
+        this.Shoot();
+      } else {
+        AirCanonClip.reset();
+      }
+      
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
         this.laserTip.material.color.set(this.data.color);
