@@ -23,7 +23,7 @@ var ShootingSfx;
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
-    AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
+    //AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
 });
 
@@ -156,6 +156,7 @@ AFRAME.registerComponent("pen-laser", {
         this.laser.lookAt(target);
         this.AirCanonMesh.lookAt(target);
         this.AirCanonMesh.position.copy(origin);
+        this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
         this.laser.scale.set(1, 1, origin.distanceTo(target));
         this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
