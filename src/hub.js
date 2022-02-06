@@ -246,7 +246,7 @@ let isOAuthModal = false;
 
 AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
+  IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -264,6 +264,27 @@ const poolData = {
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+function get_cognito_data() {
+  let cognitoUser_me = userPool.getCurrentUser(); 
+  cognitoUser_me.getSession((err, session) => {
+    if (err) {
+      console.log(err)
+    } else {
+      cognitoUser_me.getUserAttributes((err,result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          let i;
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          };   
+        };
+      });
+    };
+  });
+}
+
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
 if (window.opener && window.opener.doingTwitterOAuth) {
@@ -2182,6 +2203,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
+      if (currentUserData.length <= 0) {
+        get_cognito_data();
+      }
+      
       function getUniqueStr(myStrong){
         var strong = 1000;
         if (myStrong) strong = myStrong;
@@ -2196,7 +2221,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           TableName: 'coupon',
           Item:{
             Play_ID: Play_ID,
-            coupon_number: 1
+            coupon_number: 1,
+            User_ID: currentUserData["sub"]
           }
         };
   
