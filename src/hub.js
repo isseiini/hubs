@@ -2203,9 +2203,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
-      if (currentUserData.length <= 0) {
-        get_cognito_data();
-      }
+      get_cognito_data();
+      
       
       function getUniqueStr(myStrong){
         var strong = 1000;
