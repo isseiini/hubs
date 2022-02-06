@@ -2179,4 +2179,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       waypointSystem.moveToSpawnPoint();
     }
   });
+
+  /*document.addEventListener('keyup', event => {
+    if (event.code === 'KeyC') {
+      if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
+        var params2 = {
+          TableName: 'coupon',
+          Item:{
+            Play_ID: ""
+          }
+        };
+  
+        docClient.put(params2, function(err, data2){
+          if(err){
+            console.log('error');
+          }else{
+            console.log('success');
+          }
+        });
+      }
+    };
+  });*/
+
+  
 });
