@@ -31,7 +31,7 @@ AFRAME.registerComponent("pen-laser", {
     color: { type: "color", default: "#FF0033" },
     laserVisible: { default: false },
     laserInHand: { default: false },
-    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
+    laserOrigin: { default: { x: 0, y: 0.5, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: "false"}
@@ -40,7 +40,7 @@ AFRAME.registerComponent("pen-laser", {
   init() {
     this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.rotation.set(180, -90, 90);
+    this.AirCanonMesh.rotation.set(0, 0, 0);
     this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
