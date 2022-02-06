@@ -2180,23 +2180,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  /*document.addEventListener('keyup', event => {
+  document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
       function getUniqueStr(myStrong){
         var strong = 1000;
         if (myStrong) strong = myStrong;
         return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
       }
-      
+
+      let Play_ID = getUniqueStr();
+      console.log(Play_ID);
+
       if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
-        var params2 = {
+        var coupon_params = {
           TableName: 'coupon',
           Item:{
-            Play_ID: ""
+            Play_ID: Play_ID,
+            coupon_number: 1
           }
         };
   
-        docClient.put(params2, function(err, data2){
+        docClient.put(coupon_params, function(err, data){
           if(err){
             console.log('error');
           }else{
@@ -2205,7 +2209,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
       }
     };
-  });*/
+  });
 
   
 });
