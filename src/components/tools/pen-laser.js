@@ -65,6 +65,7 @@ AFRAME.registerComponent("pen-laser", {
     if (environmentMapComponent) {
       environmentMapComponent.applyEnvironmentMap(this.laser);
       environmentMapComponent.applyEnvironmentMap(this.laserTip);
+      environmentMapComponent.applyEnvironmentMap(AirCanonMesh);
     }
 
     //prevents the line from being a raycast target for the cursor
@@ -89,7 +90,7 @@ AFRAME.registerComponent("pen-laser", {
       } else {
         AirCanonClip.reset();
       }
-      
+
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
         this.laserTip.material.color.set(this.data.color);
