@@ -23,7 +23,7 @@ var ShootingSfx;
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
-    AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
+    AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
 });
 
