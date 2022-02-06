@@ -92,8 +92,6 @@ export default class MessageDispatch extends EventTarget {
       general_scene.pause();
       life = 100  
 
-      HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-      HanabiAction.emit("true");
       //sanshakudama.setAttribute("animation-mixer")
       var down_count = {
         TableName: 'Matching-table',
