@@ -64,6 +64,7 @@ const angleOnXZPlaneBetweenMatrixRotations = (function() {
   };
 })();
 
+
 /**
  * Performs IK on a hip-rooted skeleton to align the hip, head and hands with camera and controller inputs.
  * @namespace avatar
