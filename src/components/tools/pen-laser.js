@@ -39,10 +39,10 @@ AFRAME.registerComponent("pen-laser", {
 
   init() {
     this.Shoot = this.Shoot.bind(this);
-    var AirCanonMesh = cloneObject3D(AirCanon.scene)
-    this.el.sceneEl.setObject3D("mesh", AirCanonMesh);
-    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
+    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
+    this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
+    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
     
     AirCanonClip = this.loadingClip;
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
@@ -65,7 +65,7 @@ AFRAME.registerComponent("pen-laser", {
     if (environmentMapComponent) {
       environmentMapComponent.applyEnvironmentMap(this.laser);
       environmentMapComponent.applyEnvironmentMap(this.laserTip);
-      environmentMapComponent.applyEnvironmentMap(AirCanonMesh);
+      environmentMapComponent.applyEnvironmentMap(this.AirCanonMesh);
     }
 
     //prevents the line from being a raycast target for the cursor
@@ -148,8 +148,8 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
-        AirCanonMesh.lookAt(target);
-        AirCanonMesh.position.copy(origin);
+        this.AirCanonMesh.lookAt(target);
+        this.AirCanonMesh.position.copy(origin);
         this.laser.scale.set(1, 1, origin.distanceTo(target));
         this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
