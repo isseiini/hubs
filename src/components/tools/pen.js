@@ -36,15 +36,15 @@ var HanabiSfx;
 
 var duration = 0.065;
 
-/*waitForDOMContentLoaded().then(() => {
-  loadModel(AirCanonSrc).then(gltf => {
+waitForDOMContentLoaded().then(() => {
+  /*loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
-  });
+  });*/
   loadModel(HanabiSrc).then(gltf => {
     Hanabi = gltf;
   });
 });
-
+/*
 AFRAME.registerComponent("aircanon-animation", {
   schema: {
     action: { default : "false" }
