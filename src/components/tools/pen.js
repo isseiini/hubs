@@ -545,11 +545,10 @@ AFRAME.registerComponent("pen", {
           hit_target_container.dispatchEvent(event);
         };
         if (!AirCanonAction) {
-          var AirCanonAction = document.getElementById("AirCanonContainer");
-          AirCanonAction.setAttribute("pen-laser", {action: "true"});
-          AirCanonAction.emit("true");
+          var AirCanonAction = document.getElementById("pen");
         }
-        
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
+        AirCanonAction.emit("true");
         //App.MessageDispatch.dispatch("Hit!!");
       }
 
@@ -597,11 +596,10 @@ AFRAME.registerComponent("pen", {
       this.drawingManager.returnDrawing(this);
       this.currentDrawing = null;
       if (!AirCanonAction2) {
-        var AirCanonAction2 = document.getElementById("AirCanonContainer");
-        AirCanonAction2.setAttribute("pen-laser", {action: "false"});
-        AirCanonAction2.emit("false");
+        var AirCanonAction2 = document.getElementById("pen");
       }
-      
+      AirCanonAction2.setAttribute("pen-laser", {action: "false"});
+      AirCanonAction2.emit("false");
     }
   },
 
