@@ -268,7 +268,8 @@ AFRAME.registerComponent("pen", {
       laserInHand: false,
       laserOrigin: { x: 0, y: 0, z: 0 },
       remoteLaserOrigin: { x: 0, y: 0, z: 0 },
-      laserTarget: { x: 0, y: 0, z: 0 }
+      laserTarget: { x: 0, y: 0, z: 0 },
+      action: "false"
     };
 
     // TODO: Use the MutationRecords passed into the callback function to determine added/removed nodes!

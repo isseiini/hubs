@@ -167,6 +167,7 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+    this.el.sceneEl.removeObject3D("mesh");
   },
 
   Shoot () {
