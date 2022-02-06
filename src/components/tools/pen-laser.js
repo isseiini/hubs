@@ -4,7 +4,6 @@ import { convertStandardMaterial } from "../../utils/material-utils";
 import {
   SOUND_SHOOT
 } from "../../systems/sound-effects-system";
-import { convertStandardMaterial } from "../../utils/material-utils";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
