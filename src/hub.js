@@ -714,7 +714,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (room_name == "kooky-passionate-safari") {
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
-    document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
+    //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life-frame").style.display = "none";
   } else {
