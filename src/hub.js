@@ -2182,6 +2182,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   /*document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
+      function getUniqueStr(myStrong){
+        var strong = 1000;
+        if (myStrong) strong = myStrong;
+        return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+      }
+      
       if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
         var params2 = {
           TableName: 'coupon',
