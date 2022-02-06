@@ -1,9 +1,32 @@
 const InterpolationBuffer = require("buffered-interpolation");
 import { convertStandardMaterial } from "../../utils/material-utils";
 
+import {
+  SOUND_SHOOT
+} from "../../systems/sound-effects-system";
+import { convertStandardMaterial } from "../../utils/material-utils";
+
+import { waitForDOMContentLoaded } from "../../utils/async-utils";
+import AirCanonSrc from "../../assets/models/aircanon_with_gunfire.glb";
+import { loadModel } from "../gltf-model-plus";
+import { cloneObject3D } from "../../utils/three-utils";
+
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
+
+let AirCanon;
+
+var AirCanonMixer;
+var AirCanonClip;
+
+var ShootingSfx;
+
+waitForDOMContentLoaded().then(() => {
+  loadModel(AirCanonSrc).then(gltf => {
+    AirCanon = gltf;
+  });
+});
 
 AFRAME.registerComponent("pen-laser", {
   schema: {
@@ -12,10 +35,20 @@ AFRAME.registerComponent("pen-laser", {
     laserInHand: { default: false },
     laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
-    laserTarget: { default: { x: 0, y: 0, z: 0 } }
+    laserTarget: { default: { x: 0, y: 0, z: 0 } },
+    action: {default: "false"}
   },
 
   init() {
+    this.Shoot = this.Shoot.bind(this);
+    var AirCanonMesh = cloneObject3D(AirCanon.scene)
+    this.el.sceneEl.setObject3D("mesh", AirCanonMesh);
+    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
+    AirCanonMixer = this.loaderMixer;
+    AirCanonClip = this.loadingClip;
+    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+
     let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
@@ -47,6 +80,12 @@ AFRAME.registerComponent("pen-laser", {
   },
 
   update: (() => {
+    if (this.data.action == "true") {
+      this.Shoot();
+    } else {
+      AirCanonClip.reset();
+    }
+
     const originBufferPosition = new THREE.Vector3();
     const targetBufferPosition = new THREE.Vector3();
 
@@ -78,6 +117,11 @@ AFRAME.registerComponent("pen-laser", {
     const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
     return function(t, dt) {
+      if (this.loaderMixer && this.data.action == "true") {
+        this.loaderMixer.update(dt / 1000);
+        ShootingSfx.playSoundOneShot(SOUND_SHOOT);
+      }
+
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
       let laserVisible = false;
@@ -103,6 +147,7 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
+        AirCanonMesh.lookAt(target);
         this.laser.scale.set(1, 1, origin.distanceTo(target));
         this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
@@ -123,5 +168,9 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+  },
+
+  Shoot () {
+    AirCanonClip.play();
   }
 });

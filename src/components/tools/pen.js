@@ -36,7 +36,7 @@ var HanabiSfx;
 
 var duration = 0.065;
 
-waitForDOMContentLoaded().then(() => {
+/*waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
   });
@@ -79,7 +79,7 @@ AFRAME.registerComponent("aircanon-animation", {
   Shoot () {
     AirCanonClip.play();
   }
-});
+});*/
 
 AFRAME.registerComponent("hanabi-animation", {
   schema: {
@@ -544,7 +544,7 @@ AFRAME.registerComponent("pen", {
         if (!AirCanonAction) {
           var AirCanonAction = document.getElementById("AirCanonContainer");
         }
-        AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
         AirCanonAction.emit("true");
         //App.MessageDispatch.dispatch("Hit!!");
       }
@@ -595,7 +595,7 @@ AFRAME.registerComponent("pen", {
       if (!AirCanonAction2) {
         var AirCanonAction2 = document.getElementById("AirCanonContainer");
       }
-      AirCanonAction2.setAttribute("aircanon-animation", {action: "false"});
+      AirCanonAction2.setAttribute("pen-laser", {action: "false"});
       AirCanonAction2.emit("false");
     }
   },
