@@ -16,7 +16,6 @@ function almostEquals(epsilon, u, v) {
 
 let AirCanon;
 
-var AirCanonMixer;
 var AirCanonClip;
 
 var ShootingSfx;
@@ -44,7 +43,7 @@ AFRAME.registerComponent("pen-laser", {
     this.el.sceneEl.setObject3D("mesh", AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
-    AirCanonMixer = this.loaderMixer;
+    
     AirCanonClip = this.loadingClip;
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
