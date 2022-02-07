@@ -266,23 +266,25 @@ const poolData = {
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 function get_cognito_data() {
-  let cognitoUser_me2 = userPool.getCurrentUser(); 
-  cognitoUser_me2.getSession((err, session) => {
-    if (err) {
-      console.log(err)
-    } else {
-      cognitoUser_me2.getUserAttributes((err,result) => {
-        if (err) {
-          console.log(err)
-        } else {
-          let i;
-          for (i = 0; i < result.length; i++) {
-            currentUserData[result[i].getName()] = result[i].getValue();
-          };   
-        };
-      });
-    };
-  });
+  if (currentUserData.length == 0) {
+    let cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
+      if (err) {
+        console.log(err)
+      } else {
+        cognitoUser_me2.getUserAttributes((err,result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            let i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            };   
+          };
+        });
+      };
+    });
+  }
 }
 
 // OAuth popup handler
