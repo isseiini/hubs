@@ -2233,7 +2233,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(coupon_available_list)
         console.log(coupon_used_list)
       
-        /*// creates a <table> element and a <tbody> element
+        // creates a <table> element and a <tbody> element
         var tbl = document.createElement("table");
         var tblBody = document.createElement("tbody");
       
@@ -2243,24 +2243,35 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row = document.createElement("tr");
       
           var cell_1_1 = document.createElement("td");
-          var cellText_1_1 = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
+          var cellText_1_1 = document.createTextNode("クーポン番号："+ coupon_available_list[i].coupon_number);
           cell_1_1.appendChild(cellText_1_1);
           row.appendChild(cell_1_1);
 
           var cell_1_2 = document.createElement("td");
-          var cellText_1_2 = document.createTextNode("クーポン内容:"+ coupon_available_list[1].coupon_number);
+          var cellText_1_2 = document.createTextNode("クーポン内容:"+ coupon_available_list[i].content);
           cell_1_2.appendChild(cellText_1_2);
           row.appendChild(cell_1_2);
+
+          var cell_1_3 = document.createElement("td");
+          var cellText_1_3 = document.createTextNode("獲得日時:"+ coupon_available_list[i].get_Date);
+          cell_1_3.appendChild(cellText_1_3);
+          row.appendChild(cell_1_3);
+
+          var cell_1_4 = document.createElement("td");
+          var cellText_1_4 = document.createTextNode("使用する。");
+          cell_1_4.appendChild(cellText_1_4);
+          row.appendChild(cell_1_4);
           
           // add the row to the end of the table body
           tblBody.appendChild(row);
         }
-      
+
         // put the <tbody> in the <table>
         tbl.appendChild(tblBody);
         // appends <table> into <body>
         coupon_available.appendChild(tbl);
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         // creates a <table> element and a <tbody> element
@@ -2268,27 +2279,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         var tblBody2 = document.createElement("tbody");
       
         // creating all cells
-        for (var i = 0; i < coupon_available_list.length; i++) {
+        for (var i = 0; i < coupon_used_list.length; i++) {
           // creates a table row
           var row2 = document.createElement("tr");
       
-          var cell2 = document.createElement("td");
-          var cellText2 = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
-          cell2.appendChild(cellText2);
-          row2.appendChild(cell2);
+          var cell_2_1 = document.createElement("td");
+          var cellText_2_1 = document.createTextNode("クーポン番号："+ coupon_used_list[i].coupon_number);
+          cell_2_1.appendChild(cellText_2_1);
+          row.appendChild(cell_2_1);
+
+          var cell_2_2 = document.createElement("td");
+          var cellText_2_2 = document.createTextNode("クーポン内容:"+ coupon_used_list[i].content);
+          cell_2_2.appendChild(cellText_2_2);
+          row.appendChild(cell_2_2);
+
+          var cell_2_3 = document.createElement("td");
+          var cellText_2_3 = document.createTextNode("使用日時:"+ coupon_used_list[i].get_Date);
+          cell_2_3.appendChild(cellText_2_3);
+          row.appendChild(cell_2_3);
+
+          var cell_2_4 = document.createElement("td");
+          var cellText_2_4 = document.createTextNode("ご利用いただきありがとうございます。");
+          cell_2_4.appendChild(cellText_2_4);
+          row.appendChild(cell_2_4);
           
           // add the row to the end of the table body
           tblBody2.appendChild(row2);
+        
         }
-      
+        
         // put the <tbody> in the <table>
         tbl2.appendChild(tblBody2);
         // appends <table> into <body>
         coupon_used.appendChild(tbl2);
-
-        // sets the border attribute of tbl to 2;
-        tbl.setAttribute("border", "1");
-        tbl2.setAttribute("border", "1");*/
+        
       }
     });
     
