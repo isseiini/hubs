@@ -2226,7 +2226,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         let coupon_available = document.getElementById("coupon-available");
         let coupon_used = document.getElementById("coupon-used");
 
-        let coupon_list = coupon_data.Item
+        let coupon_list = coupon_data.Items
         let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
         let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
 
@@ -2242,13 +2242,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           // creates a table row
           var row = document.createElement("tr");
       
-          var cell = document.createElement("td");
-          var cellText = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
-          cell.appendChild(cellText);
-          var cell = document.createElement("td");
-          var cellText = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
-          cell.appendChild(cellText);
-          row.appendChild(cell);
+          var cell_1_1 = document.createElement("td");
+          var cellText_1_1 = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
+          cell_1_1.appendChild(cellText_1_1);
+          row.appendChild(cell_1_1);
+
+          var cell_1_2 = document.createElement("td");
+          var cellText_1_2 = document.createTextNode("クーポン内容:"+ coupon_available_list[1].coupon_number);
+          cell_1_2.appendChild(cellText_1_2);
+          row.appendChild(cell_1_2);
           
           // add the row to the end of the table body
           tblBody.appendChild(row);
@@ -2376,6 +2378,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           Item:{
             Play_ID: Play_ID,
             coupon_number: 1,
+            content: "○○でご使用いただけるクーポンです。内容:○○が○○パーセントオフ!",
             User_ID: currentUserData["sub"],
             available_or_used: "available",
             get_Date: current_Date
