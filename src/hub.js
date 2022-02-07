@@ -280,6 +280,7 @@ function get_cognito_data() {
             for (i = 0; i < result.length; i++) {
               currentUserData[result[i].getName()] = result[i].getValue();
             };   
+            var Cognito_User_ID = currentUserData["sub"]
           };
         });
       };
@@ -2143,13 +2144,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   function generate_table() {
     get_cognito_data();
 
-    console.log(currentUserData["sub"])
+    console.log(Cognito_User_ID)
 
     var coupon_params = {
       TableName: 'coupon',
       IndexName: 'User_ID-index',
       ExpressionAttributeNames:{'#U': 'User_ID'},
-      ExpressionAttributeValues:{':val': currentUserData["sub"]},
+      ExpressionAttributeValues:{':val': Cognito_User_ID},
       KeyConditionExpression: '#U = :val'
     };            
     docClient.query(coupon_params, function(err, coupon_data){
@@ -2165,15 +2166,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     let coupon_used = document.getElementById("coupon-used");
 
     let coupon_list = data.Item
-    let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available')
-    let coupon_used_list =
+    let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
+    let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
+
+    console.log(coupon_available)
   
     // creates a <table> element and a <tbody> element
     var tbl = document.createElement("table");
     var tblBody = document.createElement("tbody");
   
     // creating all cells
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < coupon_available_list.length; i++) {
       // creates a table row
       var row = document.createElement("tr");
   
@@ -2264,7 +2267,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           Item:{
             Play_ID: Play_ID,
             coupon_number: 1,
-            User_ID: currentUserData["sub"]
+            User_ID: Cognito_User_ID
           }
         };
   
