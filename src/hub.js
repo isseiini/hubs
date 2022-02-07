@@ -2158,6 +2158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
+    get_cognito_data();
 
     var coupon_params = {
       TableName: 'coupon',
