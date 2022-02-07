@@ -2166,7 +2166,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display1', 'none');
     document.documentElement.style.setProperty('--display2', 'none');
     document.documentElement.style.setProperty('--display3', 'block');
-    get_cognito_data();
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
+      if (err) {
+        console.log(err)
+      } else {
+        cognitoUser_me2.getUserAttributes((err,result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            var i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            };   
+            return currentUserData["sub"];
+          };
+        });
+      };
+    });
     document.getElementById("my_data").innerText = "あなたのIDは" + currentUserData["sub"] + "です。"
     document.documentElement.style.setProperty('--display4', 'none');
     document.documentElement.style.setProperty('--display5', 'none');
@@ -2174,8 +2191,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
-    let User_ID;
-    User_ID = get_cognito_data();
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
+      if (err) {
+        console.log(err)
+      } else {
+        cognitoUser_me2.getUserAttributes((err,result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            var i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            };   
+            return currentUserData["sub"];
+          };
+        });
+      };
+    });
     const current_Date = get_current_Date();
 
     console.log(User_ID)
@@ -2184,7 +2217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       TableName: 'coupon',
       IndexName: 'User_ID-index',
       ExpressionAttributeNames:{'#U': 'User_ID'},
-      ExpressionAttributeValues:{':val': User_ID},
+      ExpressionAttributeValues:{':val': currentUserData["sub"]},
       KeyConditionExpression: '#U = :val'
     };            
     docClient.query(coupon_params, function(err, coupon_data){
@@ -2227,9 +2260,38 @@ document.addEventListener("DOMContentLoaded", async () => {
     // put the <tbody> in the <table>
     tbl.appendChild(tblBody);
     // appends <table> into <body>
-    body.appendChild(tbl);
+    coupon_available.appendChild(tbl);
+
+
+
+    // creates a <table> element and a <tbody> element
+    var tbl2 = document.createElement("table");
+    var tblBody2 = document.createElement("tbody");
+  
+    // creating all cells
+    for (var i = 0; i < coupon_available_list.length; i++) {
+      // creates a table row
+      var row2 = document.createElement("tr");
+  
+      var cell2 = document.createElement("td");
+      var cellText2 = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
+      cell2.appendChild(cellText2);
+      row2.appendChild(cell2);
+      
+      // add the row to the end of the table body
+      tblBody2.appendChild(row2);
+    }
+  
+    // put the <tbody> in the <table>
+    tbl2.appendChild(tblBody2);
+    // appends <table> into <body>
+    coupon_used.appendChild(tbl2);
+
     // sets the border attribute of tbl to 2;
-    tbl.setAttribute("border", "1");*/
+    tbl.setAttribute("border", "1");
+    tbl2.setAttribute("border", "1");*/
+
+
   }
 
   document.getElementById('grid-bl').addEventListener("click", function() {
@@ -2279,8 +2341,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
-      let User_ID;
-      User_ID = get_cognito_data();
+      var cognitoUser_me2 = userPool.getCurrentUser(); 
+      cognitoUser_me2.getSession((err, session) => {
+        if (err) {
+          console.log(err)
+        } else {
+          cognitoUser_me2.getUserAttributes((err,result) => {
+            if (err) {
+              console.log(err)
+            } else {
+              var i;
+              for (i = 0; i < result.length; i++) {
+                currentUserData[result[i].getName()] = result[i].getValue();
+              };   
+              return currentUserData["sub"];
+            };
+          });
+        };
+      });
       const current_Date = get_current_Date();
       
       function getUniqueStr(myStrong){
