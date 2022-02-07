@@ -265,29 +265,6 @@ const poolData = {
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-function get_cognito_data() {
-  if (currentUserData.length == 0) {
-    let cognitoUser_me2 = userPool.getCurrentUser(); 
-    cognitoUser_me2.getSession((err, session) => {
-      if (err) {
-        console.log(err)
-      } else {
-        cognitoUser_me2.getUserAttributes((err,result) => {
-          if (err) {
-            console.log(err)
-          } else {
-            let i;
-            for (i = 0; i < result.length; i++) {
-              currentUserData[result[i].getName()] = result[i].getValue();
-            };   
-            var Cognito_User_ID = currentUserData["sub"]
-          };
-        });
-      };
-    });
-  }
-}
-
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
 if (window.opener && window.opener.doingTwitterOAuth) {
@@ -744,6 +721,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     location.reload();
   };
+
+  
+  function get_cognito_data() {
+    if (currentUserData.length == 0) {
+      let cognitoUser_me2 = userPool.getCurrentUser(); 
+      cognitoUser_me2.getSession((err, session) => {
+        if (err) {
+          console.log(err)
+        } else {
+          cognitoUser_me2.getUserAttributes((err,result) => {
+            if (err) {
+              console.log(err)
+            } else {
+              let i;
+              for (i = 0; i < result.length; i++) {
+                currentUserData[result[i].getName()] = result[i].getValue();
+              };   
+              var Cognito_User_ID = currentUserData["sub"]
+            };
+          });
+        };
+      });
+    }
+  }
 
   if (isOAuthModal) {
     return;
