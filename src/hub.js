@@ -2157,9 +2157,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  /*function generate_table() {
+  function generate_table() {
+
+    var coupon_params = {
+      TableName: 'coupon',
+      ExpressionAttributeNames:{'#U': 'User_ID'},
+      ExpressionAttributeValues:{':val': currentUserData["sub"]},
+      KeyConditionExpression: '#U = :val'
+    };            
+    docClient.query(coupon_params, function(err, coupon_data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(coupon_data);
+      }
+    });
     // get the reference for the body
-    var body = document.getElementsByTagName("body")[0];
+    /*var body = document.getElementsByTagName("body")[0];
   
     // creates a <table> element and a <tbody> element
     var tbl = document.createElement("table");
@@ -2189,8 +2203,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // appends <table> into <body>
     body.appendChild(tbl);
     // sets the border attribute of tbl to 2;
-    tbl.setAttribute("border", "2");
-  }*/
+    tbl.setAttribute("border", "2");*/
+  }
 
   document.getElementById('grid-bl').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
@@ -2200,6 +2214,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display3', 'none');
     document.documentElement.style.setProperty('--display4', 'none');
     document.documentElement.style.setProperty('--display5', 'block');
+    generate_table();
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
@@ -2248,7 +2263,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       let Play_ID = getUniqueStr();
-      console.log(currentUserData);
+
 
       if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
         var coupon_params = {
