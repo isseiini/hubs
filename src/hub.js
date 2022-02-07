@@ -2211,8 +2211,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     const current_Date = get_current_Date();
 
-    console.log(User_ID)
-
     var coupon_params = {
       TableName: 'coupon',
       IndexName: 'User_ID-index',
@@ -2225,71 +2223,73 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       }else{
         console.log(coupon_data);
+        let coupon_available = document.getElementById("coupon-available");
+        let coupon_used = document.getElementById("coupon-used");
+
+        let coupon_list = coupon_data.Item
+        let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
+        let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
+
+        console.log(coupon_available_list)
+        console.log(coupon_used_list)
+      
+        /*// creates a <table> element and a <tbody> element
+        var tbl = document.createElement("table");
+        var tblBody = document.createElement("tbody");
+      
+        // creating all cells
+        for (var i = 0; i < coupon_available_list.length; i++) {
+          // creates a table row
+          var row = document.createElement("tr");
+      
+          var cell = document.createElement("td");
+          var cellText = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
+          cell.appendChild(cellText);
+          var cell = document.createElement("td");
+          var cellText = document.createTextNode("クーポン番号："+ coupon_available_list[1].coupon_number);
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+          
+          // add the row to the end of the table body
+          tblBody.appendChild(row);
+        }
+      
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        coupon_available.appendChild(tbl);
+
+
+
+        // creates a <table> element and a <tbody> element
+        var tbl2 = document.createElement("table");
+        var tblBody2 = document.createElement("tbody");
+      
+        // creating all cells
+        for (var i = 0; i < coupon_available_list.length; i++) {
+          // creates a table row
+          var row2 = document.createElement("tr");
+      
+          var cell2 = document.createElement("td");
+          var cellText2 = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
+          cell2.appendChild(cellText2);
+          row2.appendChild(cell2);
+          
+          // add the row to the end of the table body
+          tblBody2.appendChild(row2);
+        }
+      
+        // put the <tbody> in the <table>
+        tbl2.appendChild(tblBody2);
+        // appends <table> into <body>
+        coupon_used.appendChild(tbl2);
+
+        // sets the border attribute of tbl to 2;
+        tbl.setAttribute("border", "1");
+        tbl2.setAttribute("border", "1");*/
       }
     });
-    // get the reference for the body
-    /*var body = document.getElementsByTagName("body")[0];
-    let coupon_available = document.getElementById("coupon-available");
-    let coupon_used = document.getElementById("coupon-used");
-
-    let coupon_list = data.Item
-    let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
-    let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
-
-    console.log(coupon_available_list)
-    console.log(coupon_used_list)
-  
-    // creates a <table> element and a <tbody> element
-    var tbl = document.createElement("table");
-    var tblBody = document.createElement("tbody");
-  
-    // creating all cells
-    for (var i = 0; i < coupon_available_list.length; i++) {
-      // creates a table row
-      var row = document.createElement("tr");
-  
-      var cell = document.createElement("td");
-      var cellText = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
-      cell.appendChild(cellText);
-      row.appendChild(cell);
-      
-      // add the row to the end of the table body
-      tblBody.appendChild(row);
-    }
-  
-    // put the <tbody> in the <table>
-    tbl.appendChild(tblBody);
-    // appends <table> into <body>
-    coupon_available.appendChild(tbl);
-
-
-
-    // creates a <table> element and a <tbody> element
-    var tbl2 = document.createElement("table");
-    var tblBody2 = document.createElement("tbody");
-  
-    // creating all cells
-    for (var i = 0; i < coupon_available_list.length; i++) {
-      // creates a table row
-      var row2 = document.createElement("tr");
-  
-      var cell2 = document.createElement("td");
-      var cellText2 = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
-      cell2.appendChild(cellText2);
-      row2.appendChild(cell2);
-      
-      // add the row to the end of the table body
-      tblBody2.appendChild(row2);
-    }
-  
-    // put the <tbody> in the <table>
-    tbl2.appendChild(tblBody2);
-    // appends <table> into <body>
-    coupon_used.appendChild(tbl2);
-
-    // sets the border attribute of tbl to 2;
-    tbl.setAttribute("border", "1");
-    tbl2.setAttribute("border", "1");*/
+    
 
 
   }
@@ -2376,7 +2376,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           Item:{
             Play_ID: Play_ID,
             coupon_number: 1,
-            User_ID: User_ID,
+            User_ID: currentUserData["sub"],
             available_or_used: "available",
             get_Date: current_Date
           }
