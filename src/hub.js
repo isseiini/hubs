@@ -2160,6 +2160,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   function generate_table() {
     get_cognito_data();
 
+    console.log(currentUserData["sub"])
+
     var coupon_params = {
       TableName: 'coupon',
       IndexName: 'User_ID-index',
