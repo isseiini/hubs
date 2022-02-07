@@ -748,8 +748,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               for (i = 0; i < result.length; i++) {
                 currentUserData[result[i].getName()] = result[i].getValue();
               };   
-              var Cognito_User_ID = currentUserData["sub"];
-              return Cognito_User_ID;
+              return currentUserData["sub"];
             };
           });
         };
@@ -2154,7 +2153,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
-    const User_ID = get_cognito_data();
+    let User_ID;
+    User_ID = get_cognito_data();
     const current_Date = get_current_Date();
 
     console.log(User_ID)
@@ -2262,7 +2262,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
-      const User_ID = get_cognito_data();
+      let User_ID;
+      User_ID = get_cognito_data();
       const current_Date = get_current_Date();
       
       function getUniqueStr(myStrong){
