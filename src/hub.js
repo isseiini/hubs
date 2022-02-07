@@ -2162,6 +2162,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var coupon_params = {
       TableName: 'coupon',
+      IndexName: 'User_ID-index',
       ExpressionAttributeNames:{'#U': 'User_ID'},
       ExpressionAttributeValues:{':val': currentUserData["sub"]},
       KeyConditionExpression: '#U = :val'
@@ -2175,6 +2176,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     // get the reference for the body
     /*var body = document.getElementsByTagName("body")[0];
+    let coupon_available = document.getElementById("coupon-available");
+    let coupon_used = document.getElementById("coupon-used");
+
+    let coupon_available_list = data.Item.
+    let coupon_used_list =
   
     // creates a <table> element and a <tbody> element
     var tbl = document.createElement("table");
@@ -2204,7 +2210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // appends <table> into <body>
     body.appendChild(tbl);
     // sets the border attribute of tbl to 2;
-    tbl.setAttribute("border", "2");*/
+    tbl.setAttribute("border", "1");*/
   }
 
   document.getElementById('grid-bl').addEventListener("click", function() {
