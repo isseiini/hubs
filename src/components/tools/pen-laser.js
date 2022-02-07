@@ -6,7 +6,7 @@ import {
 } from "../../systems/sound-effects-system";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
-import AirCanonSrc from "../../assets/models/aircanon_withgunfire_rotate";
+import AirCanonSrc from "../../assets/models/aircanon_withgunfire_rotate.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 
