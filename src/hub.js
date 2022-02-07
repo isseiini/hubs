@@ -251,7 +251,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
-const currentUserData = {}; 
+var currentUserData = {}; 
 
 var ddb = new AWS.DynamoDB({
   apiVersion: '2012-08-10'
@@ -2133,27 +2133,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display1', 'none');
     document.documentElement.style.setProperty('--display2', 'none');
     document.documentElement.style.setProperty('--display3', 'block');
-    let cognitoUser_me = userPool.getCurrentUser(); 
-    if (cognitoUser_me != null) {
-      cognitoUser_me.getSession((err, session) => {
-        if (err) {
-          console.log(err)
-        } else {
-          cognitoUser_me.getUserAttributes((err,result) => {
-            if (err) {
-              console.log(err)
-            } else {
-              let i;
-              for (i = 0; i < result.length; i++) {
-                currentUserData[result[i].getName()] = result[i].getValue();
-              };   
-            };
-
-            document.getElementById("my_data").innerText = "あなたのIDは" + currentUserData["sub"] + "です。"
-          });
-        };
-      });
-    };
+    get_cognito_data();
+    document.getElementById("my_data").innerText = "あなたのIDは" + currentUserData["sub"] + "です。"
     document.documentElement.style.setProperty('--display4', 'none');
     document.documentElement.style.setProperty('--display5', 'none');
     document.documentElement.style.setProperty('--display6', 'none');
@@ -2183,7 +2164,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let coupon_available = document.getElementById("coupon-available");
     let coupon_used = document.getElementById("coupon-used");
 
-    let coupon_available_list = data.Item.
+    let coupon_list = data.Item
+    let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available')
     let coupon_used_list =
   
     // creates a <table> element and a <tbody> element
