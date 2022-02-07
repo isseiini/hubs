@@ -266,12 +266,12 @@ const poolData = {
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 function get_cognito_data() {
-  let cognitoUser_me = userPool.getCurrentUser(); 
-  cognitoUser_me.getSession((err, session) => {
+  let cognitoUser_me2 = userPool.getCurrentUser(); 
+  cognitoUser_me2.getSession((err, session) => {
     if (err) {
       console.log(err)
     } else {
-      cognitoUser_me.getUserAttributes((err,result) => {
+      cognitoUser_me2.getUserAttributes((err,result) => {
         if (err) {
           console.log(err)
         } else {
@@ -2157,6 +2157,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
+  /*function generate_table() {
+    // get the reference for the body
+    var body = document.getElementsByTagName("body")[0];
+  
+    // creates a <table> element and a <tbody> element
+    var tbl = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+  
+    // creating all cells
+    for (var i = 0; i < 2; i++) {
+      // creates a table row
+      var row = document.createElement("tr");
+  
+      for (var j = 0; j < 2; j++) {
+        // Create a <td> element and a text node, make the text
+        // node the contents of the <td>, and put the <td> at
+        // the end of the table row
+        var cell = document.createElement("td");
+        var cellText = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      }
+  
+      // add the row to the end of the table body
+      tblBody.appendChild(row);
+    }
+  
+    // put the <tbody> in the <table>
+    tbl.appendChild(tblBody);
+    // appends <table> into <body>
+    body.appendChild(tbl);
+    // sets the border attribute of tbl to 2;
+    tbl.setAttribute("border", "2");
+  }*/
+
   document.getElementById('grid-bl').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(255, 93, 215, 0.3)');
@@ -2213,7 +2248,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       let Play_ID = getUniqueStr();
-      console.log(Play_ID);
+      console.log(currentUserData);
 
       if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
         var coupon_params = {
