@@ -734,6 +734,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   
   function get_cognito_data() {
+
+    AWS.config.region = 'ap-northeast-1'; 
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
+    });
+
+    const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
+    var currentUserData = {}; 
+
+    var ddb = new AWS.DynamoDB({
+      apiVersion: '2012-08-10'
+    });
+
+    var docClient = new AWS.DynamoDB.DocumentClient();
+
+    const poolData = {
+      UserPoolId: "ap-northeast-1_OBc87MXYg",
+      ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+    };
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
@@ -2182,7 +2203,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
     let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
 
-    console.log(coupon_available)
+    console.log(coupon_available_list)
+    console.log(coupon_used_list)
   
     // creates a <table> element and a <tbody> element
     var tbl = document.createElement("table");
@@ -2193,16 +2215,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       // creates a table row
       var row = document.createElement("tr");
   
-      for (var j = 0; j < 2; j++) {
-        // Create a <td> element and a text node, make the text
-        // node the contents of the <td>, and put the <td> at
-        // the end of the table row
-        var cell = document.createElement("td");
-        var cellText = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
-        cell.appendChild(cellText);
-        row.appendChild(cell);
-      }
-  
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode("セルは "+i+" 行 "+j+" 列 です");
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+      
       // add the row to the end of the table body
       tblBody.appendChild(row);
     }
