@@ -722,6 +722,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     location.reload();
   };
 
+  function get_current_Date() {
+    var date = new Date();
+    var str = date.getFullYear()
+    + '/' + ('0' + (date.getMonth() + 1)).slice(-2)
+    + '/' + ('0' + date.getDate()).slice(-2)
+    + ' ' + ('0' + date.getHours()).slice(-2)
+    + ':' + ('0' + date.getMinutes()).slice(-2)
+    + ':' + ('0' + date.getSeconds()).slice(-2);
+    return str;
+  }
   
   function get_cognito_data() {
     if (currentUserData.length == 0) {
@@ -738,7 +748,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               for (i = 0; i < result.length; i++) {
                 currentUserData[result[i].getName()] = result[i].getValue();
               };   
-              var Cognito_User_ID = currentUserData["sub"]
+              var Cognito_User_ID = currentUserData["sub"];
+              return Cognito_User_ID;
             };
           });
         };
@@ -2143,15 +2154,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
-    get_cognito_data();
+    const User_ID = get_cognito_data();
+    const current_Date = get_current_Date();
 
-    console.log(Cognito_User_ID)
+    console.log(User_ID)
 
     var coupon_params = {
       TableName: 'coupon',
       IndexName: 'User_ID-index',
       ExpressionAttributeNames:{'#U': 'User_ID'},
-      ExpressionAttributeValues:{':val': Cognito_User_ID},
+      ExpressionAttributeValues:{':val': User_ID},
       KeyConditionExpression: '#U = :val'
     };            
     docClient.query(coupon_params, function(err, coupon_data){
@@ -2250,13 +2262,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
-      get_cognito_data();
-      
+      const User_ID = get_cognito_data();
+      const current_Date = get_current_Date();
       
       function getUniqueStr(myStrong){
         var strong = 1000;
         if (myStrong) strong = myStrong;
-        return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+        return current_Date + Math.floor(strong*Math.random()).toString(16)
       }
 
       let Play_ID = getUniqueStr();
@@ -2268,7 +2280,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           Item:{
             Play_ID: Play_ID,
             coupon_number: 1,
-            User_ID: Cognito_User_ID
+            User_ID: User_ID,
+            available_or_used: "available",
+            get_Date: current_Date
           }
         };
   
