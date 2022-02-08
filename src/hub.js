@@ -2334,22 +2334,22 @@ document.addEventListener("DOMContentLoaded", async () => {
           var cell_2_1 = document.createElement("td");
           var cellText_2_1 = document.createTextNode(coupon_used_list[i].coupon_number);
           cell_2_1.appendChild(cellText_2_1);
-          row.appendChild(cell_2_1);
+          row2.appendChild(cell_2_1);
 
           var cell_2_2 = document.createElement("td");
           var cellText_2_2 = document.createTextNode(coupon_used_list[i].content);
           cell_2_2.appendChild(cellText_2_2);
-          row.appendChild(cell_2_2);
+          row2.appendChild(cell_2_2);
 
           var cell_2_3 = document.createElement("td");
           var cellText_2_3 = document.createTextNode(coupon_used_list[i].get_Date);
           cell_2_3.appendChild(cellText_2_3);
-          row.appendChild(cell_2_3);
+          row2.appendChild(cell_2_3);
 
           var cell_2_4 = document.createElement("td");
           var cellText_2_4 = document.createTextNode("ご利用いただきありがとうございます。");
           cell_2_4.appendChild(cellText_2_4);
-          row.appendChild(cell_2_4);
+          row2.appendChild(cell_2_4);
           
           // add the row to the end of the table body
           tblBody2.appendChild(row2);
@@ -2450,7 +2450,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           Item:{
             Play_ID: Play_ID,
             coupon_number: 1,
-            content: "○○でご使用いただけるクーポンです。内容:○○が○○パーセントオフ!",
+            content: "○○にて○○が○○パーセントオフ!",
             User_ID: currentUserData["sub"],
             available_or_used: "available",
             get_Date: current_Date
