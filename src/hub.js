@@ -2236,6 +2236,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         // creates a <table> element and a <tbody> element
         var tbl = document.createElement("table");
         var tblBody = document.createElement("tbody");
+
+        var label_1 = document.createElement("tr");
+
+        var label_1_number = document.createElement("td");
+        var label_1_number_txt = document.createTextNode("クーポン番号");
+        label_1_number.appendChild(label_1_number_txt);
+        label_1.appendChild(label_1_number)
+
+        var label_1_content = document.createElement("td");
+        var label_1_content_txt = document.createTextNode("クーポン内容");
+        label_1_content.appendChild(label_1_content_txt);
+        label_1.appendChild(label_1_content);
+
+        var label_1_Date = document.createElement("td");
+        var label_1_Date_txt = document.createTextNode("獲得日時");
+        label_1_Date.appendChild(label_1_Date_txt);
+        label_1.appendChild(label_1_Date);
+
+        var label_1_margin = document.createElement("td");
+        var label_1_margin_txt = document.createTextNode("");
+        label_1_margin.appendChild(label_1_margin_txt);
+        label_1.appendChild(label_1_margin);
+
+        tblBody.appendChild(label_1);
       
         // creating all cells
         for (var i = 0; i < coupon_available_list.length; i++) {
@@ -2243,23 +2267,23 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row = document.createElement("tr");
       
           var cell_1_1 = document.createElement("td");
-          var cellText_1_1 = document.createTextNode("クーポン番号："+ coupon_available_list[i].coupon_number);
+          var cellText_1_1 = document.createTextNode(coupon_available_list[i].coupon_number);
           cell_1_1.appendChild(cellText_1_1);
           row.appendChild(cell_1_1);
 
           var cell_1_2 = document.createElement("td");
-          var cellText_1_2 = document.createTextNode("クーポン内容:"+ coupon_available_list[i].content);
+          var cellText_1_2 = document.createTextNode(coupon_available_list[i].content);
           cell_1_2.appendChild(cellText_1_2);
           row.appendChild(cell_1_2);
 
           var cell_1_3 = document.createElement("td");
-          var cellText_1_3 = document.createTextNode("獲得日時:"+ coupon_available_list[i].get_Date);
+          var cellText_1_3 = document.createTextNode(coupon_available_list[i].get_Date);
           cell_1_3.appendChild(cellText_1_3);
           row.appendChild(cell_1_3);
 
           var cell_1_4 = document.createElement("td");
-          var cellText_1_4 = document.createTextNode("使用する。");
-          cell_1_4.appendChild(cellText_1_4);
+          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + i.toString(10) + ')">';
+
           row.appendChild(cell_1_4);
           
           // add the row to the end of the table body
@@ -2277,6 +2301,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         // creates a <table> element and a <tbody> element
         var tbl2 = document.createElement("table");
         var tblBody2 = document.createElement("tbody");
+
+        var label_2 = document.createElement("tr");
+
+        var label_2_number = document.createElement("td");
+        var label_2_number_txt = document.createTextNode("クーポン番号");
+        label_2_number.appendChild(label_2_number_txt);
+        label_2.appendChild(label_2_number)
+
+        var label_2_content = document.createElement("td");
+        var label_2_content_txt = document.createTextNode("クーポン内容");
+        label_2_content.appendChild(label_2_content_txt);
+        label_2.appendChild(label_2_content);
+
+        var label_2_Date = document.createElement("td");
+        var label_2_Date_txt = document.createTextNode("使用日時");
+        label_2_Date.appendChild(label_2_Date_txt);
+        label_2.appendChild(label_2_Date);
+
+        var label_2_margin = document.createElement("td");
+        var label_2_margin_txt = document.createTextNode("");
+        label_2_margin.appendChild(label_2_margin_txt);
+        label_2.appendChild(label_2_margin);
+
+        tblBody.appendChild(label_2);
       
         // creating all cells
         for (var i = 0; i < coupon_used_list.length; i++) {
@@ -2284,17 +2332,17 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row2 = document.createElement("tr");
       
           var cell_2_1 = document.createElement("td");
-          var cellText_2_1 = document.createTextNode("クーポン番号："+ coupon_used_list[i].coupon_number);
+          var cellText_2_1 = document.createTextNode(coupon_used_list[i].coupon_number);
           cell_2_1.appendChild(cellText_2_1);
           row.appendChild(cell_2_1);
 
           var cell_2_2 = document.createElement("td");
-          var cellText_2_2 = document.createTextNode("クーポン内容:"+ coupon_used_list[i].content);
+          var cellText_2_2 = document.createTextNode(coupon_used_list[i].content);
           cell_2_2.appendChild(cellText_2_2);
           row.appendChild(cell_2_2);
 
           var cell_2_3 = document.createElement("td");
-          var cellText_2_3 = document.createTextNode("使用日時:"+ coupon_used_list[i].get_Date);
+          var cellText_2_3 = document.createTextNode(coupon_used_list[i].get_Date);
           cell_2_3.appendChild(cellText_2_3);
           row.appendChild(cell_2_3);
 
