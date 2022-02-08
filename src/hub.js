@@ -2179,7 +2179,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             for (i = 0; i < result.length; i++) {
               currentUserData[result[i].getName()] = result[i].getValue();
             };   
-            return currentUserData["sub"];
+       
           };
         });
       };
@@ -2204,12 +2204,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             for (i = 0; i < result.length; i++) {
               currentUserData[result[i].getName()] = result[i].getValue();
             };   
-            return currentUserData["sub"];
+            
           };
         });
       };
     });
-    const current_Date = get_current_Date();
 
     var coupon_params = {
       TableName: 'coupon',
@@ -2222,16 +2221,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       if(err){
         console.log(err);
       }else{
-        console.log(coupon_data);
         let coupon_available = document.getElementById("coupon-available");
         let coupon_used = document.getElementById("coupon-used");
 
         let coupon_list = coupon_data.Items
         let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
         let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
-
-        console.log(coupon_available_list)
-        console.log(coupon_used_list)
       
         // creates a <table> element and a <tbody> element
         var tbl = document.createElement("table");
@@ -2361,12 +2356,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         // appends <table> into <body>
         coupon_used.appendChild(tbl2);
         
-      }
+      };
     });
     
 
 
-  }
+  };
 
   document.getElementById('grid-bl').addEventListener("click", function() {
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
@@ -2428,7 +2423,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               for (i = 0; i < result.length; i++) {
                 currentUserData[result[i].getName()] = result[i].getValue();
               };   
-              return currentUserData["sub"];
+          
             };
           });
         };
@@ -2469,7 +2464,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   /*function Use_Coupon(number) {
-
+    const current_Date = get_current_Date();
   }*/
 
   
