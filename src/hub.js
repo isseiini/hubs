@@ -2324,7 +2324,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         label_2_margin.appendChild(label_2_margin_txt);
         label_2.appendChild(label_2_margin);
 
-        tblBody.appendChild(label_2);
+        tblBody2.appendChild(label_2);
       
         // creating all cells
         for (var i = 0; i < coupon_used_list.length; i++) {
@@ -2467,6 +2467,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     };
   });
+
+  /*function Use_Coupon(number) {
+
+  }*/
 
   
 });
