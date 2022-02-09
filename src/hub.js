@@ -2224,6 +2224,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         let coupon_available = document.getElementById("coupon-available");
         let coupon_used = document.getElementById("coupon-used");
 
+        coupon_available.innerHTML = "";
+        coupon_used.innerHTML = "";
+
         let coupon_list = coupon_data.Items
         let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
         let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
@@ -2277,8 +2280,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           cell_1_3.appendChild(cellText_1_3);
           row.appendChild(cell_1_3);
 
+          var Coupon_Number = i.toString(10) + 1;
           var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + i.toString(10) + ')">';
+          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + Coupon_Number + ')">';
 
           row.appendChild(cell_1_4);
           
