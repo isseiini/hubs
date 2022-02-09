@@ -2280,9 +2280,9 @@ document.addEventListener("DOMContentLoaded", async () => {
           cell_1_3.appendChild(cellText_1_3);
           row.appendChild(cell_1_3);
 
-          var Coupon_Number = i.toString(10) + 1;
+          var Coupon_Number = i + 1;
           var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + Coupon_Number + ')">';
+          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + Coupon_Number.toString(10) + ')">';
 
           row.appendChild(cell_1_4);
           
