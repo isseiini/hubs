@@ -2282,7 +2282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           var Coupon_Number = i + 1;
           var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input type="button" value="クーポンを使用する" onclick="Use_Coupon(' + Coupon_Number.toString(10) + ')">';
+          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
 
           row.appendChild(cell_1_4);
           
@@ -2363,6 +2363,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         tbl.setAttribute("border", "1");
         tbl2.setAttribute("border", "1");
+
+
+        var trigger = document.querySelectorAll(".use_Coupon");
+
+        trigger.forEach(function(target) {
+          target.addEventListener('click', function() {
+            console.log(target)
+            /*var confirmed_coupon = {
+              TableName: 'coupon',
+              Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+                Play_ID: interested_coupon.cells[0]
+              },
+              ExpressionAttributeNames: {
+                '#available_or_used': "available_or_used",
+                '#used_Date' : 'used_Date'
+              },
+              ExpressionAttributeValues: {
+                ':used': "used",
+                ':used_Date' : current_Date
+              },
+              UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
+            };
+            docClient.update(confirmed_coupon, function(err, data2){
+              if(err){
+                console.log('error');
+              }else{
+                console.log('success');
+              }
+            });*/
+          });
+        });
+
+
+        
       };
     });
     
@@ -2486,8 +2520,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       "<h1>クーポン詳細</h1>" +
       "<p>獲得日時:" + interested_coupon.cells[2] + "</p>" + 
       "<p>クーポン内容:" + interested_coupon.cells[1] + "</p>" +
-      '<input type="button" value="使用する" onclick="Confirm_Use_Coupon(' + number + ')">' +
-      '<input type="button" value="キャンセル" onclick="closeModal(modalElement)">'
+      '<input id="confirm_use_Coupon" type="button" value="使用する">' +
+      '<input id="cancel_use_Coupon" type="button" value="キャンセル">'
     ;
 
     // モーダルウィンドウに中身を配置
@@ -2507,11 +2541,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
         ExpressionAttributeNames: {
           '#available_or_used': "available_or_used",
+          '#used_Date' : 'used_Date'
         },
         ExpressionAttributeValues: {
           ':used': "used",
+          ':used_Date' : current_Date
         },
-        UpdateExpression: 'SET #available_or_used = :used'
+        UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
       };
       docClient.update(confirmed_coupon, function(err, data2){
         if(err){
@@ -2526,4 +2562,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function closeModal(modalElement) {
     document.body.removeChild(modalElement);
   }
+
+  
 });
