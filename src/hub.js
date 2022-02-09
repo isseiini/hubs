@@ -2230,12 +2230,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       
         // creates a <table> element and a <tbody> element
         var tbl = document.createElement("table");
+        tbl.setAttribute("id", "coupon_table");
         var tblBody = document.createElement("tbody");
 
         var label_1 = document.createElement("tr");
 
         var label_1_number = document.createElement("td");
-        var label_1_number_txt = document.createTextNode("クーポン番号");
+        var label_1_number_txt = document.createTextNode("クーポンID");
         label_1_number.appendChild(label_1_number_txt);
         label_1.appendChild(label_1_number)
 
@@ -2262,7 +2263,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row = document.createElement("tr");
       
           var cell_1_1 = document.createElement("td");
-          var cellText_1_1 = document.createTextNode(coupon_available_list[i].coupon_number);
+          var cellText_1_1 = document.createTextNode(coupon_available_list[i].Play_ID);
           cell_1_1.appendChild(cellText_1_1);
           row.appendChild(cell_1_1);
 
@@ -2300,7 +2301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         var label_2 = document.createElement("tr");
 
         var label_2_number = document.createElement("td");
-        var label_2_number_txt = document.createTextNode("クーポン番号");
+        var label_2_number_txt = document.createTextNode("クーポンID");
         label_2_number.appendChild(label_2_number_txt);
         label_2.appendChild(label_2_number)
 
@@ -2327,7 +2328,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row2 = document.createElement("tr");
       
           var cell_2_1 = document.createElement("td");
-          var cellText_2_1 = document.createTextNode(coupon_used_list[i].coupon_number);
+          var cellText_2_1 = document.createTextNode(coupon_used_list[i].Play_ID);
           cell_2_1.appendChild(cellText_2_1);
           row2.appendChild(cell_2_1);
 
@@ -2356,6 +2357,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         // appends <table> into <body>
         coupon_used.appendChild(tbl2);
         
+        tbl.setAttribute("border", "1");
+        tbl2.setAttribute("border", "1");
       };
     });
     
@@ -2462,10 +2465,61 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     };
   });
-
-  /*function Use_Coupon(number) {
+    
+  function Use_Coupon(number) {
     const current_Date = get_current_Date();
-  }*/
-
+    const coupon_table = document.getElementById("coupon_table");
+    let interested_coupon = coupon_table.rows[number];
   
+    // モーダルウィンドウと中身の要素を生成・クラスを付与
+    const modalElement = document.createElement('div');
+    modalElement.classList.add('modal');
+    const innerElement = document.createElement('div');
+    innerElement.classList.add('inner');
+
+    // モーダルウィンドウに表示する要素を記述
+    innerElement.innerHTML = 
+      "<h1>クーポン詳細</h1>" +
+      "<p>獲得日時:" + interested_coupon.cells[2] + "</p>" + 
+      "<p>クーポン内容:" + interested_coupon.cells[1] + "</p>" +
+      '<input type="button" value="使用する" onclick="Confirm_Use_Coupon(' + number + ')">' +
+      '<input type="button" value="キャンセル" onclick="closeModal(modalElement)">'
+    ;
+
+    // モーダルウィンドウに中身を配置
+    modalElement.appendChild(innerElement);
+    document.body.appendChild(modalElement);
+
+    // 中身をクリックしたらモーダルウィンドウを閉じる
+    /*innerElement.addEventListener('click', () => {
+      closeModal(modalElement);
+    });*/
+
+    function Confirm_Use_Coupon(number) {
+      var confirmed_coupon = {
+        TableName: 'coupon',
+        Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+          Play_ID: interested_coupon.cells[0]
+        },
+        ExpressionAttributeNames: {
+          '#available_or_used': "available_or_used",
+        },
+        ExpressionAttributeValues: {
+          ':used': "used",
+        },
+        UpdateExpression: 'SET #available_or_used = :used'
+      };
+      docClient.update(confirmed_coupon, function(err, data2){
+        if(err){
+          console.log('error');
+        }else{
+          console.log('success');
+        }
+      });
+    }
+  }
+
+  function closeModal(modalElement) {
+    document.body.removeChild(modalElement);
+  }
 });
