@@ -1742,34 +1742,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   hubPhxChannel.on("message", ({ session_id, type, body, from }) => {
-    const getAuthor = () => {
-      const userInfo = hubChannel.presence.state[session_id];
-      if (from) {
-        return from;
-      } else if (userInfo) {
-        return userInfo.metas[0].profile.displayName;
-      } else {
-        return "Mystery user";
+    if (body.indexOf("<") != -1) {
+      const getAuthor = () => {
+        const userInfo = hubChannel.presence.state[session_id];
+        if (from) {
+          return from;
+        } else if (userInfo) {
+          return userInfo.metas[0].profile.displayName;
+        } else {
+          return "Mystery user";
+        }
+      };
+
+      const name = getAuthor();
+      const maySpawn = scene.is("entered");
+
+      const incomingMessage = {
+        name,
+        type,
+        body,
+        maySpawn,
+        sessionId: session_id,
+        sent: session_id === socket.params().session_id
+      };
+
+      if (scene.is("vr-mode")) {
+        createInWorldLogMessage(incomingMessage);
       }
-    };
-
-    const name = getAuthor();
-    const maySpawn = scene.is("entered");
-
-    const incomingMessage = {
-      name,
-      type,
-      body,
-      maySpawn,
-      sessionId: session_id,
-      sent: session_id === socket.params().session_id
-    };
-
-    if (scene.is("vr-mode")) {
-      createInWorldLogMessage(incomingMessage);
+      
+      messageDispatch.receive(incomingMessage);
+    } else {
+      alert("使用不可能な記号（<）が含まれています。")
     }
-
-    messageDispatch.receive(incomingMessage);
   });
 
   hubPhxChannel.on("hub_refresh", ({ session_id, hubs, stale_fields }) => {
@@ -2052,14 +2056,32 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
+    let cognitoUser_me = userPool.getCurrentUser(); 
+    cognitoUser_me.getSession((err, session) => {
+      if (err) {
+        console.log(err)
+      } else {
+        cognitoUser_me.getUserAttributes((err,result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            let i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            };   
+            const userData = {
+              Username: currentUserData["email"],
+              Pool: userPool
+            };
+            const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+            cognitoUser.signOut();
+            alert("ログアウトしました。")
+          };
+        });
+      };
+    });
 
-    const userData = {
-      Username: email_signin,
-      Pool: userPool
-    };
-    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.signOut();
-    alert("ログアウトしました。")
+    
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
