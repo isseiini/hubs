@@ -1742,38 +1742,42 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   hubPhxChannel.on("message", ({ session_id, type, body, from }) => {
-    if (body.indexOf("<") != -1) {
-      const getAuthor = () => {
-        const userInfo = hubChannel.presence.state[session_id];
-        if (from) {
-          return from;
-        } else if (userInfo) {
-          return userInfo.metas[0].profile.displayName;
-        } else {
-          return "Mystery user";
-        }
-      };
-
-      const name = getAuthor();
-      const maySpawn = scene.is("entered");
-
-      const incomingMessage = {
-        name,
-        type,
-        body,
-        maySpawn,
-        sessionId: session_id,
-        sent: session_id === socket.params().session_id
-      };
-
-      if (scene.is("vr-mode")) {
-        createInWorldLogMessage(incomingMessage);
-      }
-      
-      messageDispatch.receive(incomingMessage);
-    } else {
-      alert("使用不可能な記号（<）が含まれています。")
+    function encode_text(text) {
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     }
+
+    body = encode_text(body);
+    console.log(body.indexOf("<"))
+
+    const getAuthor = () => {
+      const userInfo = hubChannel.presence.state[session_id];
+      if (from) {
+        return from;
+      } else if (userInfo) {
+        return userInfo.metas[0].profile.displayName;
+      } else {
+        return "Mystery user";
+      }
+    };
+
+    const name = getAuthor();
+    const maySpawn = scene.is("entered");
+
+    const incomingMessage = {
+      name,
+      type,
+      body,
+      maySpawn,
+      sessionId: session_id,
+      sent: session_id === socket.params().session_id
+    };
+
+    if (scene.is("vr-mode")) {
+      createInWorldLogMessage(incomingMessage);
+    }
+    
+    messageDispatch.receive(incomingMessage);
+  
   });
 
   hubPhxChannel.on("hub_refresh", ({ session_id, hubs, stale_fields }) => {
@@ -2038,12 +2042,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
         const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
 
-        console.log("idToken : " + idToken);
-        console.log("accessToken : " + accessToken);
-        console.log("refreshToken : " + refreshToken);
-
         // サインイン成功の場合、次の画面へ遷移
-        
+        alert("ログインしました。");
       },
 
       onFailure: err => {
@@ -2091,7 +2091,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           alert("ログインしてください。")
         } else {
-          alert("ログインしました。")
           document.getElementById("hex-background").style.display = "none";
         }
       })
