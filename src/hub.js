@@ -2052,13 +2052,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
-    const authenticationData = {
-      Username: email_signin,
-      Password: password_signin
-    };
-    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
-      authenticationData
-    );
 
     const userData = {
       Username: email_signin,
