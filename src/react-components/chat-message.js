@@ -159,6 +159,10 @@ export async function spawnChatMessage(body, from) {
 }
 
 export default function ChatMessage(props) {
+  if (props.body.indexOf != -1) {
+    alert("err");
+    return
+  }
   const { content } = messageBodyDom(props.body, props.name, props.sessionId, props.onViewProfile);
 
   return (
