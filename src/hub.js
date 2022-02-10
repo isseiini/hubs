@@ -1743,11 +1743,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   hubPhxChannel.on("message", ({ session_id, type, body, from }) => {
     function encode_text(text) {
-      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      return text.replace(/</g, '').replace(/>/g, '');
     }
 
     body = encode_text(body);
-    console.log(body.indexOf("<"))
 
     const getAuthor = () => {
       const userInfo = hubChannel.presence.state[session_id];
