@@ -2049,6 +2049,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   });
+
+  const signoutButton = document.getElementById("signoutButton");
+  signoutButton.addEventListener("click", event => {
+    const authenticationData = {
+      Username: email_signin,
+      Password: password_signin
+    };
+    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(
+      authenticationData
+    );
+
+    const userData = {
+      Username: email_signin,
+      Pool: userPool
+    };
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    cognitoUser.signOut();
+    alert("ログアウトしました。")
+  });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
     const cognito_mine = userPool.getCurrentUser();
