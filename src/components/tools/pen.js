@@ -547,9 +547,7 @@ AFRAME.registerComponent("pen", {
         if (!AirCanonAction) {
           var AirCanonAction = document.getElementById("pen");
         }
-        AirCanonAction.setAttribute("pen-laser", {action: "true"});
-        AirCanonAction.emit("true");
-        //App.MessageDispatch.dispatch("Hit!!");
+        
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
@@ -585,6 +583,8 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing = drawing;
       this._getNormal(this.normal, this.worldPosition, this.direction);
       this.currentDrawing.startDraw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
+      AirCanonAction.setAttribute("pen-laser", {action: "true"});
+      AirCanonAction.emit("true");
     });
   },
 

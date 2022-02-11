@@ -41,10 +41,6 @@ AFRAME.registerComponent("pen-laser", {
   init() {
     this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
-    //this.AirCanonMesh.rotation.x = Math.PI;
-    //this.AirCanonMesh.rotation.y = -Math.PI/2;
-    //this.AirCanonMesh.rotation.z = Math.PI/2;
     this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
