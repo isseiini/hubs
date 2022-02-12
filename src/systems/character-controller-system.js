@@ -39,6 +39,10 @@ const calculateDisplacementToDesiredPOV = (function() {
   };
 })();
 
+let avatar_position = new THREE.Vector3();
+const minimap = document.getElementById("map_canvas");
+let minimap_animation = minimap.getContext('2d');
+
 /**
  * A character controller that moves the avatar.
  * The controller accounts for playspace offset and orientation and depends on the nav mesh system for translation.
@@ -166,6 +170,14 @@ export class CharacterControllerSystem {
     const startTranslation = new THREE.Matrix4();
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
+
+    minimap_animation.clearRect(0, 0, 400, 300);
+    this.avatar.object3D.getWorldPosition(avatar_position);
+    console.log(avatar_position)
+    minimap_animation.beginPath();
+    minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
+    minimap_animation.fill();
+
 
     document.addEventListener('keyup', event => {
       if (event.code === 'KeyH') {
