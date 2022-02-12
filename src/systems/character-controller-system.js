@@ -39,9 +39,11 @@ const calculateDisplacementToDesiredPOV = (function() {
   };
 })();
 
-let avatar_position = new THREE.Vector3();
-const minimap = document.getElementById("map_canvas");
-let minimap_animation = minimap.getContext('2d');
+waitForDOMContentLoaded().then(() => {
+  let avatar_position = new THREE.Vector3();
+  const minimap = document.getElementById("map_canvas");
+  let minimap_animation = minimap.getContext('2d');
+});
 
 /**
  * A character controller that moves the avatar.
