@@ -39,12 +39,6 @@ const calculateDisplacementToDesiredPOV = (function() {
   };
 })();
 
-waitForDOMContentLoaded().then(() => {
-  let avatar_position = new THREE.Vector3();
-  const minimap = document.getElementById("map_canvas");
-  let minimap_animation = minimap.getContext('2d');
-});
-
 /**
  * A character controller that moves the avatar.
  * The controller accounts for playspace offset and orientation and depends on the nav mesh system for translation.
@@ -72,6 +66,9 @@ export class CharacterControllerSystem {
     waitForDOMContentLoaded().then(() => {
       this.avatarPOV = document.getElementById("avatar-pov-node");
       this.avatarRig = document.getElementById("avatar-rig");
+      let avatar_position = new THREE.Vector3();
+      const minimap = document.getElementById("map_canvas");
+      let minimap_animation = minimap.getContext('2d');
     });
   }
   // Use this API for waypoint travel so that your matrix doesn't end up in the pool
