@@ -1852,6 +1852,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   Player_Respawn.addEventListener("click", function(){
     Player_Respawn.style.display = "none";
+    const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
     HanabiAction.emit("false");
     const waypointSystem = scene.systems["hubs-systems"].waypointSystem;

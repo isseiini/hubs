@@ -544,9 +544,7 @@ AFRAME.registerComponent("pen", {
           hit_target_container.value = hit_target;
           hit_target_container.dispatchEvent(event);
         };
-        if (!AirCanonAction) {
-          var AirCanonAction = document.getElementById("pen");
-        }
+        
         
       }
 
@@ -583,6 +581,7 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing = drawing;
       this._getNormal(this.normal, this.worldPosition, this.direction);
       this.currentDrawing.startDraw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
+      var AirCanonAction = document.getElementById("pen");
       AirCanonAction.setAttribute("pen-laser", {action: "true"});
       AirCanonAction.emit("true");
     });
