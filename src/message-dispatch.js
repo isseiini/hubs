@@ -177,8 +177,8 @@ export default class MessageDispatch extends EventTarget {
       });
     }*/
     
-    var naf_Mine = sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
-    
+    var naf_Mine = window.NAF_ID_for_SHOOTING; //sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+    console.log(naf_Mine)
     /*if (naf_Mine == null || naf_Mine == undefined){
       my_NAF_data.count();
       naf_Mine = my_NAF_data;

@@ -66,6 +66,10 @@ AFRAME.GLTFModelPlus.registerComponent("light", "light", (el, componentName, com
     }, 0);
   }
 });
+
+AFRAME.GLTFModelPlus.registerComponent("hanabi-animation", "hanabi-animation");
+AFRAME.GLTFModelPlus.registerComponent("pen-laser", "pen-laser");
+
 AFRAME.GLTFModelPlus.registerComponent("ambient-light", "ambient-light");
 AFRAME.GLTFModelPlus.registerComponent("directional-light", "directional-light");
 AFRAME.GLTFModelPlus.registerComponent("hemisphere-light", "hemisphere-light");
