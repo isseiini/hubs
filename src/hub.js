@@ -2595,5 +2595,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.removeChild(modalElement);
   }
 
-  
+  const Game_Restart = document.getElementById("Game-Restart");
+  const Game_Result = document.getElementById("Game-Result");
+  Game_Restart.addEventListener("click", function(){
+    Game_Result.style.display = "none";
+    const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+    waypointSystem.moveToSpawnPoint();
+    scene.play();
+  })
 });

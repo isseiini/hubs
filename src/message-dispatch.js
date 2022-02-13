@@ -7,6 +7,7 @@ import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
+import {waitForDOMContentLoaded} from "./utils/async-utils";
 
 AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -34,8 +35,9 @@ var current_room = current_url_parts[current_url_parts.length - 1];
 
 let uiRoot;
 
-document.addEventListener("DOMContentLoaded", async () => {
+waitForDOMContentLoaded().then(() => {
   var hit_target_container = document.getElementById("hit_target_container");
+  const Game_Result = document.getElementById("Game-Result");
 });
 
 /*if (current_room == "kooky--passionate-safari") {
@@ -84,6 +86,11 @@ export default class MessageDispatch extends EventTarget {
       HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       HanabiAction.emit("true");
 
+      var hit_target2 = "_Red_+1";
+      var event2 = new Event('change');
+      hit_target_container.value = hit_target2;
+      hit_target_container.dispatchEvent(event2);
+
       life = 0
  
       lifeMark.style.visibility = 'hidden'
@@ -113,6 +120,7 @@ export default class MessageDispatch extends EventTarget {
           console.log('success');
         }
       });
+
       var params = {
         TableName: 'Matching-table',
         Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -123,11 +131,12 @@ export default class MessageDispatch extends EventTarget {
         if(err){
           console.log(err);
         }else{
-          if(data.Item.RedPoints >= 10) {
+          if(data.Item.RedPoints >= 25) {
             var hit_target2 = "_Win_Red";
-            const event2 = new Event('change');
+            var event2 = new Event('change');
             hit_target_container.value = hit_target2;
             hit_target_container.dispatchEvent(event2);
+            Game_Result.style.display = "block";
           }
         }
       });
@@ -182,7 +191,8 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win-") === 0){
-      document.getElementById("avatar-rig").removeAttribute("ik-root");
+      scene.pause();
+      Game_Result.style.display = "block";
       return
     };
 
