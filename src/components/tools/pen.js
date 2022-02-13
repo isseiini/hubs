@@ -89,6 +89,7 @@ AFRAME.registerComponent("hanabi-animation", {
   init() {
     this.Fire = this.Fire.bind(this);
     var HanabiMesh = cloneObject3D(Hanabi.scene)
+    HanabiMesh.setAttribute("collidable")
     this.el.setObject3D("mesh", HanabiMesh);
     this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);

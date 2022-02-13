@@ -69,6 +69,7 @@ export class CharacterControllerSystem {
       this.avatarRig = document.getElementById("avatar-rig");
       
       let avatar_position = new THREE.Vector3();
+      console.log(avatar_position)
       const minimap_player_pos = document.getElementById("Player_pos");
 
       setInterval(() => {
