@@ -170,9 +170,6 @@ export class CharacterControllerSystem {
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
 
-    
-
-
     document.addEventListener('keyup', event => {
       if (event.code === 'KeyH') {
         plus_speed += 0.5
@@ -184,7 +181,7 @@ export class CharacterControllerSystem {
 
     let uiRoot;
     return function tick(t, dt) {
-      if (minimap) {
+      if (minimap_animation) {
         minimap_animation.clearRect(0, 0, 400, 300);
         this.avatar.object3D.getWorldPosition(avatar_position);
         console.log(avatar_position);
