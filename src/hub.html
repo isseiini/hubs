@@ -509,12 +509,8 @@
     }
 
     #Player_map {
-      background-color:gray;
       margin: auto 10px;
-      width: 30%;
-      height: 150px;
-      border: 2px solid #ffffff;
-      box-sizing: border-box;
+      
     }
 
     #btns-wrap {
@@ -847,9 +843,13 @@
                   <div id="blue-score">0</div>
                 </div>
 
-                <div id="Player_map">
+                <!--<div id="Player_map">
                   <canvas id="map_canvas" width="200" height="200" style="background-color:#ffffff"></canvas>
-                </div>
+                </div>-->
+
+                <svg id="Player_map" viewBox="0 0 300 300">
+                  <circle id="Player_pos" cx="0" cy="0" r="10" fill="#F44D61" />
+                </svg>
               </div>
 
               <input id="hit_target_container" style="display: none;"></input>
@@ -867,10 +867,6 @@
                       <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
                       <br><img src="assets/images/iconmonstr-menu-1-240.png" alt="" style="width: 30px;height: 30px;">
                       </a>
-              </div>
-
-              <div id="Player_tool" style="position: absolute; bottom: 100px; right: 0;opacity: 0.8;">
-                  <img src="./assets/gun.png" alt="使用道具">
               </div>
 
               <div id="Player_tips" style="position: fixed;top: 0;left: 0;width: 100vw;height: calc(100% - 120px);background-color: transparent;z-index: 1001;pointer-events: none;">

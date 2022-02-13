@@ -67,15 +67,14 @@ export class CharacterControllerSystem {
     waitForDOMContentLoaded().then(() => {
       this.avatarPOV = document.getElementById("avatar-pov-node");
       this.avatarRig = document.getElementById("avatar-rig");
-      const minimap = document.getElementById("map_canvas");
+      
       let avatar_position = new THREE.Vector3();
-      let minimap_animation = minimap.getContext('2d');
+      const minimap_player_pos = document.getElementById("Player_pos");
+
       setInterval(() => {
-        minimap_animation.clearRect(0, 0, 200, 200);
         this.avatarRig.object3D.getWorldPosition(avatar_position);
-        minimap_animation.beginPath();
-        minimap_animation.arc(avatar_position.x + 100,avatar_position.z +100,2,0,Math.PI*2,true);
-        minimap_animation.fill();
+        minimap_player_pos.setAttribute("cx", avatar_position.x + 100);
+        minimap_player_pos.setAttribute("cy", avatar_position.y + 100);
       }, 500);
     });
   }
