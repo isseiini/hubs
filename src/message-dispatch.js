@@ -90,6 +90,7 @@ export default class MessageDispatch extends EventTarget {
 
       var hit_target2 = "_Red_+1";
       var event3 = new Event('change');
+      var hit_target_container = document.getElementById("hit_target_container");
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event3);
 
@@ -136,8 +137,10 @@ export default class MessageDispatch extends EventTarget {
           if(data.Item.RedPoints >= 25) {
             var hit_target2 = "_Win_Red";
             var event2 = new Event('change');
+            var hit_target_container = document.getElementById("hit_target_container");
             hit_target_container.value = hit_target2;
             hit_target_container.dispatchEvent(event2);
+            const Game_Result = document.getElementById("Game-Result");
             Game_Result.style.display = "block";
           }
         }
@@ -193,6 +196,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
+      const Red_Score = document.getElementById("red-score");
       let current_Red_Score = Number(Red_Score.innerText) + 1;
       Red_Score.innerText = current_Red_Score;
       return
@@ -200,6 +204,7 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win_") === 0){
       scene.pause();
+      const Game_Result = document.getElementById("Game-Result");
       Game_Result.style.display = "block";
       return
     };
