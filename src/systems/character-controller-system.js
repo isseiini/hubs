@@ -73,9 +73,8 @@ export class CharacterControllerSystem {
       setInterval(() => {
         minimap_animation.clearRect(0, 0, 200, 200);
         this.avatarRig.object3D.getWorldPosition(avatar_position);
-        console.log(avatar_position);
         minimap_animation.beginPath();
-        minimap_animation.arc(avatar_position.x,avatar_position.z,2,0,Math.PI*2,true);
+        minimap_animation.arc(avatar_position.x + 100,avatar_position.z +100,2,0,Math.PI*2,true);
         minimap_animation.fill();
       }, 500);
     });
