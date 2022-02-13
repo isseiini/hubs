@@ -12,6 +12,7 @@ import {
 } from "../utils/three-utils";
 import { getCurrentPlayerHeight } from "../utils/get-current-player-height";
 import qsTruthy from "../utils/qs_truthy";
+import { THREE } from "aframe";
 //import { m4String } from "../utils/pretty-print";
 const NAV_ZONE = "character";
 const qsAllowWaypointLerp = qsTruthy("waypointLerp");
@@ -39,7 +40,6 @@ const calculateDisplacementToDesiredPOV = (function() {
   };
 })();
 
-let avatar_position = new THREE.Vector3();
 /**
  * A character controller that moves the avatar.
  * The controller accounts for playspace offset and orientation and depends on the nav mesh system for translation.
@@ -68,6 +68,16 @@ export class CharacterControllerSystem {
       this.avatarPOV = document.getElementById("avatar-pov-node");
       this.avatarRig = document.getElementById("avatar-rig");
       const minimap = document.getElementById("map_canvas");
+      let avatar_position = new THREE.Vector3();
+      let minimap_animation = minimap.getContext('2d');
+      setInterval(() => {
+        minimap_animation.clearRect(0, 0, 400, 300);
+        this.avatar.object3D.getWorldPosition(avatar_position);
+        console.log(avatar_position);
+        minimap_animation.beginPath();
+        minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
+        minimap_animation.fill();
+      }, 500);
     });
   }
   // Use this API for waypoint travel so that your matrix doesn't end up in the pool
@@ -180,15 +190,6 @@ export class CharacterControllerSystem {
 
     let uiRoot;
     return function tick(t, dt) {
-      
-      let minimap_animation = minimap.getContext('2d');
-      minimap_animation.clearRect(0, 0, 400, 300);
-      this.avatar.object3D.getWorldPosition(avatar_position);
-      console.log(avatar_position);
-      minimap_animation.beginPath();
-      minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
-      minimap_animation.fill();
-
       const entered = this.scene.is("entered");
       uiRoot = uiRoot || document.getElementById("ui-root");
       const isGhost = !entered && uiRoot && uiRoot.firstChild && uiRoot.firstChild.classList.contains("isGhost");
