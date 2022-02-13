@@ -72,7 +72,7 @@ export class CharacterControllerSystem {
       let minimap_animation = minimap.getContext('2d');
       setInterval(() => {
         minimap_animation.clearRect(0, 0, 400, 300);
-        this.avatar.object3D.getWorldPosition(avatar_position);
+        this.avatarRig.object3D.getWorldPosition(avatar_position);
         console.log(avatar_position);
         minimap_animation.beginPath();
         minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
