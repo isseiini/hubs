@@ -71,11 +71,11 @@ export class CharacterControllerSystem {
       let avatar_position = new THREE.Vector3();
       let minimap_animation = minimap.getContext('2d');
       setInterval(() => {
-        minimap_animation.clearRect(0, 0, 400, 300);
+        minimap_animation.clearRect(0, 0, 200, 200);
         this.avatarRig.object3D.getWorldPosition(avatar_position);
         console.log(avatar_position);
         minimap_animation.beginPath();
-        minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
+        minimap_animation.arc(avatar_position.x,avatar_position.z,2,0,Math.PI*2,true);
         minimap_animation.fill();
       }, 500);
     });
