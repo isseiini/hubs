@@ -97,10 +97,6 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiClip.setLoop(THREE.LoopOnce, 1);
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-    const environmentMapComponent = this.el.sceneEl.components["environment-map"];
-    if (environmentMapComponent) {
-      environmentMapComponent.applyEnvironmentMap(this.HanabiMesh);
-    }
   },
 
   update() {
