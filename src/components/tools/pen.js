@@ -88,16 +88,19 @@ AFRAME.registerComponent("hanabi-animation", {
 
   init() {
     this.Fire = this.Fire.bind(this);
-    var HanabiMesh = cloneObject3D(Hanabi.scene)
-    HanabiMesh.setAttribute("collidable")
-    this.el.setObject3D("mesh", HanabiMesh);
-    this.loaderMixer = new THREE.AnimationMixer(HanabiMesh);
-    this.loadingClip = this.loaderMixer.clipAction(HanabiMesh.animations[0]);
+    this.HanabiMesh = cloneObject3D(Hanabi.scene)
+    this.el.setObject3D("mesh", this.HanabiMesh);
+    this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
+    this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
     HanabiClip.setLoop(THREE.LoopOnce, 1);
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+    const environmentMapComponent = this.el.sceneEl.components["environment-map"];
+    if (environmentMapComponent) {
+      environmentMapComponent.applyEnvironmentMap(this.HanabiMesh);
+    }
   },
 
   update() {
