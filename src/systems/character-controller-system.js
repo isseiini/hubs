@@ -170,12 +170,7 @@ export class CharacterControllerSystem {
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
 
-    minimap_animation.clearRect(0, 0, 400, 300);
-    this.avatar.object3D.getWorldPosition(avatar_position);
-    console.log(avatar_position)
-    minimap_animation.beginPath();
-    minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
-    minimap_animation.fill();
+    
 
 
     document.addEventListener('keyup', event => {
@@ -189,6 +184,13 @@ export class CharacterControllerSystem {
 
     let uiRoot;
     return function tick(t, dt) {
+      minimap_animation.clearRect(0, 0, 400, 300);
+      this.avatar.object3D.getWorldPosition(avatar_position);
+      console.log(avatar_position)
+      minimap_animation.beginPath();
+      minimap_animation.arc(avatar_position.x*100,avatar_position.y*100,2,0,Math.PI*2,true);
+      minimap_animation.fill();
+
       const entered = this.scene.is("entered");
       uiRoot = uiRoot || document.getElementById("ui-root");
       const isGhost = !entered && uiRoot && uiRoot.firstChild && uiRoot.firstChild.classList.contains("isGhost");
