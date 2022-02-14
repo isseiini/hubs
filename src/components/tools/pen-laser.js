@@ -30,7 +30,7 @@ waitForDOMContentLoaded().then(() => {
 AFRAME.registerComponent("pen-laser", {
   schema: {
     color: { type: "color", default: "#FF0033" },
-    laserVisible: { default: false },
+    laserVisible: { default: true },
     laserInHand: { default: false },
     laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
