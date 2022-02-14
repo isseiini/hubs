@@ -46,12 +46,12 @@ AFRAME.registerComponent("pen-laser", {
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
-    const environmentMapComponent = this.el.sceneEl.components["environment-map"];
-    if (environmentMapComponent) {
-      const currentEnivronmentMap = environmentMapComponent.environmentMap;
-      if (AirCanonObjectEnvMap !== currentEnivronmentMap) {
-        environmentMapComponent.applyEnvironmentMap(this.AirCanonMesh);
-        AirCanonObjectEnvMap = currentEnivronmentMap;
+    const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
+    if (environmentMapComponent2) {
+      const currentEnivronmentMap2 = environmentMapComponent2.environmentMap;
+      if (AirCanonObjectEnvMap !== currentEnivronmentMap2) {
+        environmentMapComponent2.applyEnvironmentMap(this.AirCanonMesh);
+        AirCanonObjectEnvMap = currentEnivronmentMap2;
       }
     }
     
