@@ -49,9 +49,9 @@ AFRAME.registerComponent("pen-laser", {
     const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
     if (environmentMapComponent2) {
       const currentEnivronmentMap2 = environmentMapComponent2.environmentMap;
-      if (AirCanonObjectEnvMap !== currentEnivronmentMap2) {
+      if (AirCanonEnvMap !== currentEnivronmentMap2) {
         environmentMapComponent2.applyEnvironmentMap(this.AirCanonMesh);
-        AirCanonObjectEnvMap = currentEnivronmentMap2;
+        AirCanonEnvMap = currentEnivronmentMap2;
       }
     }
     
