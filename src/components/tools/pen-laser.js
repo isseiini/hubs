@@ -13,7 +13,7 @@ import { cloneObject3D } from "../../utils/three-utils";
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
-
+let AirCanonEnvMap;
 let AirCanon;
 
 var AirCanonClip;
@@ -46,15 +46,13 @@ AFRAME.registerComponent("pen-laser", {
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
-    try {
-      NAF.utils
-        .getNetworkedEntity(this.el)
-        .then(networkedEl => {
-          this.networkedEl = networkedEl;
-        })
-        .catch(() => {}); //ignore exception, entity might not be networked
-    } catch (e) {
-      // NAF may not exist on scene landing page
+    const environmentMapComponent = this.el.sceneEl.components["environment-map"];
+    if (environmentMapComponent) {
+      const currentEnivronmentMap = environmentMapComponent.environmentMap;
+      if (AirCanonObjectEnvMap !== currentEnivronmentMap) {
+        environmentMapComponent.applyEnvironmentMap(this.AirCanonMesh);
+        AirCanonObjectEnvMap = currentEnivronmentMap;
+      }
     }
     
     AirCanonClip = this.loadingClip;
