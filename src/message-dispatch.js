@@ -88,6 +88,7 @@ export default class MessageDispatch extends EventTarget {
       HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       HanabiAction.emit("true");
 
+      const scene = document.querySelector("a-scene");
       const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
       waypointSystem.moveToSpawnPoint();
 
