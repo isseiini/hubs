@@ -88,6 +88,9 @@ export default class MessageDispatch extends EventTarget {
       HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       HanabiAction.emit("true");
 
+      const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+      waypointSystem.moveToSpawnPoint();
+
       var hit_target2 = "_Red_+1";
       var event3 = new Event('change');
       var hit_target_container = document.getElementById("hit_target_container");
@@ -103,7 +106,7 @@ export default class MessageDispatch extends EventTarget {
       life = 100  
 
       //sanshakudama.setAttribute("animation-mixer")
-      var down_count = {
+      /*var down_count = {
         TableName: 'Matching-table',
         Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
           URL: current_room
@@ -144,7 +147,7 @@ export default class MessageDispatch extends EventTarget {
             Game_Result.style.display = "block";
           }
         }
-      });
+      });*/
     } else {
     // 算出の結果 100 を超過した場合
     if ( life > 100 ) {
@@ -203,6 +206,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win_") === 0){
+      const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("Game-Result");
       Game_Result.style.display = "block";

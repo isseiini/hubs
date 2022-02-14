@@ -1852,18 +1852,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_Respawn = document.getElementById("Player-Respawn");
 
   Player_Respawn.addEventListener("click", function(){
+    /*const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+    waypointSystem.moveToSpawnPoint();*/
     Player_Respawn.style.display = "none";
-    const HanabiAction = document.getElementById("HanabiContainer")
+    /*const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
-    HanabiAction.emit("false");
-    const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint();
+    HanabiAction.emit("false");*/
     scene.play();
-
   })
-
-  
- 
 
   const lifeBar = document.getElementById('life-bar')         // ライフバー
   const lifeMark = document.getElementById('life-mark')       // ライフの光部分
