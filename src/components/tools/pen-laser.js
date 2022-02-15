@@ -157,6 +157,8 @@ AFRAME.registerComponent("pen-laser", {
       }
 
       if (laserVisible) {
+        origin.y += 1;
+        origin.z += -0.5;
         this.laser.position.copy(origin.x + origin.y + origin.z);
         console.log("origin:" + origin)
         this.laser.lookAt(target);
