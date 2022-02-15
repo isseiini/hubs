@@ -98,9 +98,9 @@ AFRAME.registerComponent("pen-laser", {
         AirCanonClip.play();
         AirCanonClip.reset();
       } else {
-        var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
-        current_animation.reset();
-        //AirCanonClip.reset();
+        //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
+        //current_animation.reset();
+        AirCanonClip.stop();
       }
 
       if (prevData.color != this.data.color) {
@@ -160,9 +160,9 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         //origin.y += 1;
         //origin.z += -0.5;
-        origin.x = origin.x - 0.42;
+        origin.x = origin.x - 0.4;
         origin.y = origin.y + 0.3;
-        origin.z = origin.z - 0.17;
+        origin.z = origin.z - 0.1;
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
         this.AirCanonMesh.position.copy(origin);
