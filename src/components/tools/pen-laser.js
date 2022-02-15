@@ -96,6 +96,7 @@ AFRAME.registerComponent("pen-laser", {
     return function(prevData) {
       if (this.data.action == "true") {
         AirCanonClip.play();
+        AirCanonClip.reset();
       } else {
         var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         current_animation.reset();
@@ -159,9 +160,9 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         //origin.y += 1;
         //origin.z += -0.5;
-        origin.x = origin.x - 0.8;
+        origin.x = origin.x - 0.6;
         origin.y = origin.y + 0.3;
-        origin.z = origin.z - 0.3;
+        origin.z = origin.z - 0.25;
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
         this.AirCanonMesh.position.copy(origin);
