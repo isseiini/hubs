@@ -203,6 +203,13 @@ export default class MessageDispatch extends EventTarget {
       const Red_Score = document.getElementById("red-score");
       let current_Red_Score = Number(Red_Score.innerText) + 1;
       Red_Score.innerText = current_Red_Score;
+      if (current_Red_Score >= 25) {
+        var hit_target2 = "_Win_Red";
+        var event2 = new Event('change');
+        var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.value = hit_target2;
+        hit_target_container.dispatchEvent(event2);
+      }
       return
     };
 
