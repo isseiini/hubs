@@ -126,7 +126,7 @@ AFRAME.registerComponent("pen-laser", {
   })(),
 
   tick: (() => {
-    const origin = new THREE.Vector3(-17.5, 10, -31.5);
+    const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
     return function(t, dt) {
       if (this.loaderMixer && this.data.action == "true") {
@@ -139,7 +139,7 @@ AFRAME.registerComponent("pen-laser", {
       let laserVisible = false;
 
       if (isMine && this.data.laserVisible) {
-        //origin.copy(this.data.laserOrigin);
+        origin.copy(this.data.laserOrigin);
 
         if (!this.data.laserInHand) {
           // On 2d mode, shift downards
@@ -149,9 +149,9 @@ AFRAME.registerComponent("pen-laser", {
         target.copy(this.data.laserTarget);
         laserVisible = true;
       } else if (!isMine && this.data.laserVisible) {
-        //this.originBuffer.update(dt);
+        this.originBuffer.update(dt);
         this.targetBuffer.update(dt);
-        //origin.copy(this.originBuffer.getPosition());
+        origin.copy(this.originBuffer.getPosition());
         target.copy(this.targetBuffer.getPosition());
         laserVisible = true;
       }
