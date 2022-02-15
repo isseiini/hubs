@@ -7,6 +7,7 @@ import {
   SOUND_PEN_CHANGE_COLOR,
   SOUND_SHOOT,
   SOUND_AIRCANON_SET,
+  SOUND_HIT,
   SOUND_HANABI
 } from "../../systems/sound-effects-system";
 import { convertStandardMaterial } from "../../utils/material-utils";
@@ -304,6 +305,10 @@ AFRAME.registerComponent("pen", {
       this.el.setAttribute("radius", this.data.radius);
     }
 
+    if (this.data.penVisible == true) {
+      this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_AIRCANON_SET);
+    }
+
     this.raycaster.far = this.data.far;
     this.raycaster.near = this.data.near;
   },
@@ -384,13 +389,11 @@ AFRAME.registerComponent("pen", {
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
         this._startDraw();
-        sfx.playSoundOneShot(SOUND_AIRCANON_SET);
-        //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
+        sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
       }
       if (userinput.get(paths.stopDrawing)) {
-        this._endDraw();
-        sfx.playSoundOneShot(SOUND_AIRCANON_SET);
-        //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
+        this._endDraw();    
+        sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
       const penScaleMod = userinput.get(paths.scalePenTip);
       if (penScaleMod) {
@@ -406,7 +409,8 @@ AFRAME.registerComponent("pen", {
       }
       if (userinput.get(paths.undoDrawing)) {
         this._undoDraw();
-        sfx.playSoundOneShot(SOUND_PEN_UNDO_DRAW);
+        sfx.playSoundOneShot(SOUND_AIRCANON_SET);
+        //sfx.playSoundOneShot(SOUND_PEN_UNDO_DRAW);
       }
       if (paths.switchDrawMode && userinput.get(paths.switchDrawMode)) {
         this.data.drawMode = this.data.drawMode === DRAW_MODE.DEFAULT_3D ? DRAW_MODE.PROJECTION : DRAW_MODE.DEFAULT_3D;
@@ -546,12 +550,12 @@ AFRAME.registerComponent("pen", {
         
 
         if (targetbox[5][1].networked) {
+          this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
           var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
           const event = new Event('change');
           hit_target_container.value = hit_target;
           hit_target_container.dispatchEvent(event);
         };
-        
         
       }
 
