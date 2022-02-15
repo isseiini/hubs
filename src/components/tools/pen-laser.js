@@ -110,9 +110,10 @@ AFRAME.registerComponent("pen-laser", {
       if (prevData.remoteLaserOrigin && !almostEquals(0.001, prevData.remoteLaserOrigin, this.data.remoteLaserOrigin)) {
         this.originBuffer.setPosition(
           originBufferPosition.set(
-            this.data.remoteLaserOrigin.x,
+            /*this.data.remoteLaserOrigin.x,
             this.data.remoteLaserOrigin.y,
-            this.data.remoteLaserOrigin.z
+            this.data.remoteLaserOrigin.z*/
+            0, 10, -31.5
           )
         );
       }
