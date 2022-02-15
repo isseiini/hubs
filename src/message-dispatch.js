@@ -216,11 +216,14 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red:") === 0){
+      console.log(entry.body)
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
       var entered_red = entry.body.substr(entry.body.indexOf('_Red:') + 1);
       entered_red.substr(0, entered_red.indexOf('_Blue:'));
       var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
+      console.log(entered_red)
+      console.log(entered_blue)
       if (Number(Red_Score.innerText) <= Number(entered_red) && Number(Blue_Score.innerText) <= Number(entered_blue)) {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
