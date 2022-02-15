@@ -97,7 +97,7 @@ AFRAME.registerComponent("pen-laser", {
       if (this.data.action == "true") {
         AirCanonClip.play();
       } else {
-        var current_animation = this.loaderMixer.existingAction(AirCanonClip);
+        var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         current_animation.reset();
         //AirCanonClip.reset();
       }

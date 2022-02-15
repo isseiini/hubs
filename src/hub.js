@@ -2512,28 +2512,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener('keyup', event => {
-    if (event.code === 'KeyL') {
-      const HanabiAction = document.getElementById("HanabiContainer")
-      HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-      HanabiAction.emit("true");
-    }
-  });
-  
-  document.addEventListener('keyup', event => {
-    if (event.code === 'KeyK') {
-      scene.pause();
-    };
-    if (event.code === 'KeyM') {
-      scene.play();
-    }
-    if (event.code === "KeyN") {
-      const scene = document.querySelector("a-scene");
-      const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-      waypointSystem.moveToSpawnPoint();
-    }
-  });
-
-  document.addEventListener('keyup', event => {
     if (event.code === 'KeyC') {
       var cognitoUser_me2 = userPool.getCurrentUser(); 
       cognitoUser_me2.getSession((err, session) => {
