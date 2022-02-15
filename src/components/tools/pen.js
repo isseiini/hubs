@@ -484,20 +484,20 @@ AFRAME.registerComponent("pen", {
         remoteLaserOrigin.add(camerWorldPosition);
       }
 
-      console.log("laserstartposition:" + laserStartPosition.x + laserStartPosition.y + laserStartPosition.z)
-      console.log("laserendposition:" + laserEndPosition.x + laserEndPosition.y + laserEndPosition.z)
-      console.log("remotelaserorigin:" + remoteLaserOrigin.x + remoteLaserOrigin.y + remoteLaserOrigin.z)
+      console.log("laserstartposition:" + laserStartPosition.x + " , " + laserStartPosition.y + " , "+ laserStartPosition.z)
+      console.log("laserendposition:" + laserEndPosition.x + " , "+ laserEndPosition.y + " , "+ laserEndPosition.z)
+      console.log("remotelaserorigin:" + remoteLaserOrigin.x + " , "+ remoteLaserOrigin.y + " , "+ remoteLaserOrigin.z)
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
         this.penLaserAttributes.laserOrigin.x = laserStartPosition.x;
-        this.penLaserAttributes.laserOrigin.y = laserStartPosition.y;
-        this.penLaserAttributes.laserOrigin.z = laserStartPosition.z;
+        this.penLaserAttributes.laserOrigin.y = laserStartPosition.y + 15;
+        this.penLaserAttributes.laserOrigin.z = laserStartPosition.z - 15;
         this.penLaserAttributesUpdated = true;
       }
 
       if (!almostEquals(0.001, this.penLaserAttributes.remoteLaserOrigin, remoteLaserOrigin)) {
         this.penLaserAttributes.remoteLaserOrigin.x = remoteLaserOrigin.x;
-        this.penLaserAttributes.remoteLaserOrigin.y = remoteLaserOrigin.y;
-        this.penLaserAttributes.remoteLaserOrigin.z = remoteLaserOrigin.z;
+        this.penLaserAttributes.remoteLaserOrigin.y = remoteLaserOrigin.y + 15;
+        this.penLaserAttributes.remoteLaserOrigin.z = remoteLaserOrigin.z -15;
         this.penLaserAttributesUpdated = true;
       }
 
