@@ -6,6 +6,7 @@ import {
   SOUND_PEN_UNDO_DRAW,
   SOUND_PEN_CHANGE_COLOR,
   SOUND_SHOOT,
+  SOUND_AIRCANON_SET,
   SOUND_HANABI
 } from "../../systems/sound-effects-system";
 import { convertStandardMaterial } from "../../utils/material-utils";
@@ -383,11 +384,13 @@ AFRAME.registerComponent("pen", {
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
         this._startDraw();
-        sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
+        sfx.playSoundOneShot(SOUND_AIRCANON_SET);
+        //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
       }
       if (userinput.get(paths.stopDrawing)) {
         this._endDraw();
-        sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
+        sfx.playSoundOneShot(SOUND_AIRCANON_SET);
+        //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
       const penScaleMod = userinput.get(paths.scalePenTip);
       if (penScaleMod) {

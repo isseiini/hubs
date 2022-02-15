@@ -2,8 +2,7 @@ const InterpolationBuffer = require("buffered-interpolation");
 import { convertStandardMaterial } from "../../utils/material-utils";
 
 import {
-  SOUND_SHOOT,
-  SOUND_AIRCANON_SET
+  SOUND_SHOOT
 } from "../../systems/sound-effects-system";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
@@ -134,12 +133,6 @@ AFRAME.registerComponent("pen-laser", {
         this.loaderMixer.update(dt / 1000);
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
       }
-
-      document.addEventListener('keyup', event => {
-        if (event.code === 'KeyP') {
-          ShootingSfx.playSoundOneShot(SOUND_AIRCANON_SET);
-        };
-      });
 
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
