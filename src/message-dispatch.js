@@ -201,7 +201,7 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
       const Red_Score = document.getElementById("red-score");
-      const Red_Progress = document.getElementById("Red-Container");
+      const Red_Progress = document.getElementById("Red-Progress");
       Red_Progress.value = Red_Progress.value + 1;
       let current_Red_Score = Number(Red_Score.innerText) + 1;
       if (current_Red_Score >= 25) {
