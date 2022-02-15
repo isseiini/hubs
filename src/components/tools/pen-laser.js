@@ -151,7 +151,7 @@ AFRAME.registerComponent("pen-laser", {
       } else if (!isMine && this.data.laserVisible) {
         this.originBuffer.update(dt);
         this.targetBuffer.update(dt);
-        origin.copy(this.originBuffer.getPosition());
+        //origin.copy(this.originBuffer.getPosition());
         target.copy(this.targetBuffer.getPosition());
         laserVisible = true;
       }
