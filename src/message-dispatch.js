@@ -2,7 +2,7 @@ import "./utils/configs";
 import { getAbsoluteHref } from "./utils/media-url-utils";
 import { isValidSceneUrl } from "./utils/scene-url-utils";
 import { spawnChatMessage } from "./react-components/chat-message";
-import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK } from "./systems/sound-effects-system";
+import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK, SOUND_HIT} from "./systems/sound-effects-system";
 import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
@@ -79,7 +79,9 @@ export default class MessageDispatch extends EventTarget {
     const lifeBar = document.getElementById('life-bar')         
     const lifeMark = document.getElementById('life-mark') 
     const sanshakudama = document.querySelector(".sanshakudama");
-    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;                            
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;  
+    
+    this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
     var life = HP - 10;
 
