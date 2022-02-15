@@ -485,16 +485,16 @@ AFRAME.registerComponent("pen", {
       }
 
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
-        this.penLaserAttributes.laserOrigin.x = 0 //laserStartPosition.x;
+        this.penLaserAttributes.laserOrigin.x = 1 //laserStartPosition.x;
         this.penLaserAttributes.laserOrigin.y = 2 //laserStartPosition.y;
         this.penLaserAttributes.laserOrigin.z = -2 //laserStartPosition.z;
         this.penLaserAttributesUpdated = true;
       }
 
       if (!almostEquals(0.001, this.penLaserAttributes.remoteLaserOrigin, remoteLaserOrigin)) {
-        this.penLaserAttributes.remoteLaserOrigin.x = 0//remoteLaserOrigin.x;
-        this.penLaserAttributes.remoteLaserOrigin.y = 2//remoteLaserOrigin.y;
-        this.penLaserAttributes.remoteLaserOrigin.z = -2//remoteLaserOrigin.z;
+        this.penLaserAttributes.remoteLaserOrigin.x = remoteLaserOrigin.x;
+        this.penLaserAttributes.remoteLaserOrigin.y = remoteLaserOrigin.y;
+        this.penLaserAttributes.remoteLaserOrigin.z = remoteLaserOrigin.z;
         this.penLaserAttributesUpdated = true;
       }
 
