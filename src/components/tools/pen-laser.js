@@ -157,12 +157,12 @@ AFRAME.registerComponent("pen-laser", {
       }
 
       if (laserVisible) {
-        origin.y += 1;
-        origin.z += -0.5;
-        this.laser.position.copy(origin.x + origin.y + origin.z);
+        //origin.y += 1;
+        //origin.z += -0.5;
+        this.laser.position.copy(origin.x + (origin.y + 1) + (origin.z + -0.5));
         console.log("origin:" + origin)
         this.laser.lookAt(target);
-        this.AirCanonMesh.position.copy(origin);
+        this.AirCanonMesh.position.copy(origin.x + (origin.y + 1) + (origin.z + -0.5));
         //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
         this.AirCanonMesh.lookAt(target);
         this.laser.scale.set(1, 1, origin.distanceTo(target));
