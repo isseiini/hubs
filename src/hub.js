@@ -2067,7 +2067,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       onFailure: err => {
         // サインイン失敗の場合、エラーメッセージを画面に表示
         console.log(err);
-        alert(err.message);
+        alert("ログインできません。");
       }
     });
   });
