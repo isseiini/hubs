@@ -99,6 +99,17 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiClip.setLoop(THREE.LoopOnce, 1);
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+
+    try {
+      NAF.utils
+        .getNetworkedEntity(this.el)
+        .then(networkedEl => {
+          this.networkedEl = networkedEl;
+        })
+        .catch(() => {}); //ignore exception, entity might not be networked
+    } catch (e) {
+      // NAF may not exist on scene landing page
+    }
   },
 
   update() {
@@ -107,7 +118,7 @@ AFRAME.registerComponent("hanabi-animation", {
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       this.data.action = "false";
     } else {
-      HanabiClip.reset();
+      HanabiClip.stop();
     }
   },
 
@@ -119,6 +130,7 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
+    HanabiClip.reset();
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);
   }
@@ -490,7 +502,7 @@ AFRAME.registerComponent("pen", {
           .multiplyScalar(0.5);
         remoteLaserOrigin.add(camerWorldPosition);
       }
-      
+
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
         this.penLaserAttributes.laserOrigin.x = laserStartPosition.x;
         this.penLaserAttributes.laserOrigin.y = laserStartPosition.y;
