@@ -460,15 +460,15 @@ AFRAME.registerComponent("pen", {
   },
 
   _updateLaser: (() => {
-    const laserStartPosition = new THREE.Vector3();
+    const laserStartPosition = new THREE.Vector3(10, 10, 10);
     const laserEndPosition = new THREE.Vector3();
     const camerWorldPosition = new THREE.Vector3();
     const remoteLaserOrigin = new THREE.Vector3();
     return function(cursorPose, intersection) {
       if (cursorPose) {
-        laserStartPosition.copy(cursorPose.position);
+        //laserStartPosition.copy(cursorPose.position);
       } else {
-        this.el.parentEl.object3D.getWorldPosition(laserStartPosition);
+        //this.el.parentEl.object3D.getWorldPosition(laserStartPosition);
       }
 
       laserEndPosition.copy(intersection.point);
