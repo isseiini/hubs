@@ -1599,6 +1599,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                   } else {
                     window.team = "BlueTeam"
                   }
+
+                  console.log(window.team);
+                  console.log(window.RedSum);
+                  console.log(window.BlueSum);
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
