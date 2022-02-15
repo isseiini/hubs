@@ -32,7 +32,7 @@ AFRAME.registerComponent("pen-laser", {
     color: { type: "color", default: "#FF0033" },
     laserVisible: { default: true },
     laserInHand: { default: false },
-    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
+    laserOrigin: { default: { x: 1, y: 2, z: -2 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: "false"}
