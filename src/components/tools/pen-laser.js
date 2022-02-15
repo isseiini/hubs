@@ -32,7 +32,7 @@ AFRAME.registerComponent("pen-laser", {
     color: { type: "color", default: "#FF0033" },
     laserVisible: { default: true },
     laserInHand: { default: false },
-    laserOrigin: { default: { x: 1, y: 2, z: -2 } },
+    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: "false"}
@@ -158,6 +158,7 @@ AFRAME.registerComponent("pen-laser", {
 
       if (laserVisible) {
         this.laser.position.copy(origin);
+        console.log("origin:" + origin)
         this.laser.lookAt(target);
         this.AirCanonMesh.position.copy(origin);
         //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);

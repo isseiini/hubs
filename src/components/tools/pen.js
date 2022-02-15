@@ -484,6 +484,9 @@ AFRAME.registerComponent("pen", {
         remoteLaserOrigin.add(camerWorldPosition);
       }
 
+      console.log("laserstartposition:" + laserStartPosition)
+      console.log("laserendposition:" + laserEndPosition)
+      console.log("remotelaserorigin:" + remoteLaserOrigin)
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
         this.penLaserAttributes.laserOrigin.x = laserStartPosition.x;
         this.penLaserAttributes.laserOrigin.y = laserStartPosition.y;
