@@ -35,6 +35,9 @@ var current_room = current_url_parts[current_url_parts.length - 1];
 
 let uiRoot;
 
+window.BlueSum = 0;
+window.RedSum = 0;
+
 waitForDOMContentLoaded().then(() => {
   var hit_target_container = document.getElementById("hit_target_container");
   const Game_Result = document.getElementById("Game-Result");
@@ -198,6 +201,16 @@ export default class MessageDispatch extends EventTarget {
       if ("_" + naf_Mine == entry.body) {
         this.damage();
       };
+      return
+    };
+
+    if (entry.type ==="chat" && entry.body.indexOf("_RedTeam") === 0){
+      window.RedSum += 1;
+      return
+    };
+
+    if (entry.type ==="chat" && entry.body.indexOf("_BlueTeam") === 0){
+      window.BlueSum += 1;
       return
     };
 

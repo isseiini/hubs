@@ -1531,12 +1531,25 @@ document.addEventListener("DOMContentLoaded", async () => {
                     presence: meta.presence,
                     name: meta.profile.displayName
                   });
+                }
+
+                if (
+                  !isSelf &&
+                  currentMeta.presence !== meta.presence &&
+                  meta.presence === "room" &&
+                  meta.profile.displayName &&
+                  room_name == "kooky-passionate-safari"
+                ) {
                   const Red_Score = document.getElementById("red-score");
                   const Blue_Score = document.getElementById("blue-score");
                   var event3 = new Event('change');
                   var hit_target_container = document.getElementById("hit_target_container");
                   hit_target_container.value = "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
                   hit_target_container.dispatchEvent(event3);
+                  if (window.team) {
+                    hit_target_container.value = "_" + window.team;
+                    hit_target_container.dispatchEvent(event3);
+                  }
                 }
 
                 if (
@@ -1580,6 +1593,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
+
+                  if (window.RedSum >= window.BlueSum) {
+                    window.team = "RedTeam"
+                  } else {
+                    window.team = "BlueTeam"
+                  }
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
