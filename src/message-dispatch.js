@@ -82,7 +82,8 @@ export default class MessageDispatch extends EventTarget {
     const lifeBar = document.getElementById('life-bar')         
     const lifeMark = document.getElementById('life-mark') 
     const sanshakudama = document.querySelector(".sanshakudama");
-    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ;  
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
+    console.log(HP) 
     
     this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
