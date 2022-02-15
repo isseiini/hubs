@@ -221,7 +221,7 @@ export default class MessageDispatch extends EventTarget {
       var entered_red = entry.body.substr(entry.body.indexOf('_Red:') + 1);
       entered_red.substr(0, entered_red.indexOf('_Blue:'));
       var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
-      if (Number(Red_Score.innerText) <= entered_red && Number(Blue_Score.innerText) <= entered_blue) {
+      if (Number(Red_Score.innerText) <= Number(entered_red) && Number(Blue_Score.innerText) <= Number(entered_blue)) {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
       }
