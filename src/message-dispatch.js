@@ -218,8 +218,8 @@ export default class MessageDispatch extends EventTarget {
     if (entry.type ==="chat" && entry.body.indexOf("_Red:") === 0){
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
-      var entered_red = entry.body.substr(str.indexOf('_Red:') + 1).substr(0, str.indexOf('_Blue:'));
-      var entered_blue = entry.body.substr(str.indexOf('_Blue:') + 1);
+      var entered_red = entry.body.substr(entry.body.indexOf('_Red:') + 1).substr(0, entry.body.indexOf('_Blue:'));
+      var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
       if (Number(Red_Score.innerText) <= entered_red && Number(Blue_Score.innerText) <= entered_blue) {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
