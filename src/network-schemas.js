@@ -52,16 +52,6 @@ function registerNetworkSchemas() {
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
       {
-        selector: ".sanshakudama",
-        component: "position",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      },
-      {
-        selector: ".sansyakudama",
-        component: "rotation",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.5)
-      },
-      {
         selector: ".left-controller",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
@@ -362,12 +352,6 @@ function registerNetworkSchemas() {
         selector: "#pen",
         component: "pen-laser",
         property: "laserTarget",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
-        property: "action",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
       }
     ]
