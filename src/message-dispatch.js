@@ -201,6 +201,8 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
       const Red_Score = document.getElementById("red-score");
+      const Red_Progress = document.getElementById("Red-Container");
+      Red_Progress.value = Red_Progress.value + 1;
       let current_Red_Score = Number(Red_Score.innerText) + 1;
       if (current_Red_Score >= 25) {
         var hit_target2 = "_Win_Red";
@@ -219,7 +221,7 @@ export default class MessageDispatch extends EventTarget {
       console.log(entry.body)
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
-      var entered_red = org.substring(0, entry.body.indexOf('_Blue') + 1);
+      var entered_red = entry.body.substring(0, entry.body.indexOf('_Blue') + 1);
       entered_red = entered_red.slice(-1);
       var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
       entered_blue = entered_blue.slice(-1);

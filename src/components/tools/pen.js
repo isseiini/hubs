@@ -460,7 +460,7 @@ AFRAME.registerComponent("pen", {
   },
 
   _updateLaser: (() => {
-    const laserStartPosition = new THREE.Vector3(10, 10, 10);
+    const laserStartPosition = new THREE.Vector3(0, 2, -2);
     const laserEndPosition = new THREE.Vector3();
     const camerWorldPosition = new THREE.Vector3();
     const remoteLaserOrigin = new THREE.Vector3();

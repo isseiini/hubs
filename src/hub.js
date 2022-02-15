@@ -1572,7 +1572,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
-                  alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\nあなたはレッドチームです。\n\n[操作方法]\n\n射撃モードに移行：Pキー\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
+                  alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\n25ポイントを先取したチームの勝利です。\nあなたはレッドチームです。\n\n[操作方法]\n\n射撃モードに移行：Pキー\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
@@ -2627,6 +2627,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     Game_Result.style.display = "none";
     const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
     waypointSystem.moveToSpawnPoint();
+    //const Red_Progress = document.getElementById("Red-Container");
+    //Red_Progress.value = 0;
     scene.play();
   })
 });
