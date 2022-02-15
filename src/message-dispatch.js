@@ -231,6 +231,10 @@ export default class MessageDispatch extends EventTarget {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
       }
+      const Red_Progress = document.getElementById("Red-Progress");
+      Red_Progress.value = Number(entered_red);
+      const Blue_Progress = document.getElementById("Blue-Progress");
+      Blue_Progress.value = Number(entered_blue);
       return
     };
 

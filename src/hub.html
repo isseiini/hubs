@@ -503,6 +503,18 @@
     #red-score {
       color: red;
     }
+    
+    #Red-Progress::-webkit-progress-value {
+      background-color: red;
+    }
+
+    #Red-Progress::-moz-progress-bar {
+      background-color: red;
+    }
+
+    #Red-Progress::-ms-fill {
+      background-color: red;
+    }
 
     #blue-score {
       color: blue;
@@ -841,14 +853,14 @@
 
               <div class="btn-wrap" id="score-display" data-augmented-ui="t-clip b-clip inlay" class="styleme">
                 <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 45%;height: 100%;">
-                  <p id="red-score">0</p>
+                  <p id="red-score" style="text-align:center;">0</p>
                   <progress id="Red-Progress" value="0" max="25" style="width: 80%;margin: 0 auto;" dir="rtl"></progress>
                 </div>
                 <div id="Partition-Container" style="display: flex;flex-direction: column;justify-content: center;width: 10%;height: 100%;">
                   <p id="score-partition"> : </p>
                 </div>
                 <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 45%;height: 100%;">
-                  <p id="blue-score">0</p>
+                  <p id="blue-score" style="text-align: center;">0</p>
                   <progress id="Blue-Progress" value="0" max="25"></progress>
                 </div>
                 

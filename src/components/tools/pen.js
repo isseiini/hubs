@@ -492,9 +492,9 @@ AFRAME.registerComponent("pen", {
       }
 
       if (!almostEquals(0.001, this.penLaserAttributes.remoteLaserOrigin, remoteLaserOrigin)) {
-        this.penLaserAttributes.remoteLaserOrigin.x = remoteLaserOrigin.x;
-        this.penLaserAttributes.remoteLaserOrigin.y = remoteLaserOrigin.y;
-        this.penLaserAttributes.remoteLaserOrigin.z = remoteLaserOrigin.z;
+        this.penLaserAttributes.remoteLaserOrigin.x = 0//remoteLaserOrigin.x;
+        this.penLaserAttributes.remoteLaserOrigin.y = 2//remoteLaserOrigin.y;
+        this.penLaserAttributes.remoteLaserOrigin.z = -2//remoteLaserOrigin.z;
         this.penLaserAttributesUpdated = true;
       }
 
