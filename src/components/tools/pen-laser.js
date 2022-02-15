@@ -2,7 +2,8 @@ const InterpolationBuffer = require("buffered-interpolation");
 import { convertStandardMaterial } from "../../utils/material-utils";
 
 import {
-  SOUND_SHOOT
+  SOUND_SHOOT,
+  SOUND_AIRCANON_SET
 } from "../../systems/sound-effects-system";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
@@ -134,6 +135,12 @@ AFRAME.registerComponent("pen-laser", {
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
       }
 
+      document.addEventListener('keyup', event => {
+        if (event.code === 'KeyP') {
+          ShootingSfx.playSoundOneShot(SOUND_AIRCANON_SET);
+        };
+      });
+
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
       let laserVisible = false;
@@ -159,10 +166,10 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         //origin.y += 1;
         //origin.z += -0.5;
-        this.laser.position.copy(origin.x + (origin.y + 1) + (origin.z + -0.5));
+        this.laser.position.copy(origin.x + origin.y + origin.z);
         console.log("origin:" + origin)
         this.laser.lookAt(target);
-        this.AirCanonMesh.position.copy(origin.x + (origin.y + 1) + (origin.z + -0.5));
+        this.AirCanonMesh.position.copy(origin);
         //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
         this.AirCanonMesh.lookAt(target);
         this.laser.scale.set(1, 1, origin.distanceTo(target));
