@@ -713,8 +713,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
 
   if (room_name == "kooky-passionate-safari") {
-    document.getElementById("hex-background").style.display = "none";
-    document.getElementById("go-to-game").style.display = "none";
+    
+    const cognito_mine = userPool.getCurrentUser();
+    if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
+        } else {
+          document.getElementById("hex-background").style.display = "none";
+          document.getElementById("go-to-game").style.display = "none";
+        }
+      })
+    }
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life-frame").style.display = "none";
@@ -1555,6 +1565,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
+                  alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\nあなたはレッドチームです。")
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
