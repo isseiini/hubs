@@ -110,10 +110,9 @@ AFRAME.registerComponent("pen-laser", {
       if (prevData.remoteLaserOrigin && !almostEquals(0.001, prevData.remoteLaserOrigin, this.data.remoteLaserOrigin)) {
         this.originBuffer.setPosition(
           originBufferPosition.set(
-            /*this.data.remoteLaserOrigin.x,
+            this.data.remoteLaserOrigin.x,
             this.data.remoteLaserOrigin.y,
-            this.data.remoteLaserOrigin.z*/
-            0, 10, -31.5
+            this.data.remoteLaserOrigin.z
           )
         );
       }
@@ -127,7 +126,7 @@ AFRAME.registerComponent("pen-laser", {
   })(),
 
   tick: (() => {
-    const origin = new THREE.Vector3(0, 10, -31.5);
+    const origin = new THREE.Vector3(-17.5, 10, -31.5);
     const target = new THREE.Vector3();
     return function(t, dt) {
       if (this.loaderMixer && this.data.action == "true") {
@@ -150,7 +149,7 @@ AFRAME.registerComponent("pen-laser", {
         target.copy(this.data.laserTarget);
         laserVisible = true;
       } else if (!isMine && this.data.laserVisible) {
-        this.originBuffer.update(dt);
+        //this.originBuffer.update(dt);
         this.targetBuffer.update(dt);
         //origin.copy(this.originBuffer.getPosition());
         target.copy(this.targetBuffer.getPosition());
@@ -161,7 +160,7 @@ AFRAME.registerComponent("pen-laser", {
         //origin.y += 1;
         //origin.z += -0.5;
         this.laser.position.copy(origin.x + origin.y + origin.z);
-        console.log("origin:" + origin)
+        console.log("origin:" + origin.x + "," + origin.y + "," + origin.z)
         this.laser.lookAt(target);
         this.AirCanonMesh.position.copy(origin);
         //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
