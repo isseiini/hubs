@@ -271,7 +271,7 @@ AFRAME.registerComponent("pen", {
       color: "#FF0033",
       laserVisible: false,
       laserInHand: false,
-      laserOrigin: { x: 0, y: 0, z: 0 },
+      laserOrigin: { x: 0, y: 0.5, z: -0.5 },
       remoteLaserOrigin: { x: 0, y: 0, z: 0 },
       laserTarget: { x: 0, y: 0, z: 0 },
       action: "false"
