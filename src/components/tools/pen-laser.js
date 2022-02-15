@@ -160,13 +160,12 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         //origin.y += 1;
         //origin.z += -0.5;
-        origin.x = origin.x - 0.35;
+        /*origin.x = origin.x - 0.35;
         origin.y = origin.y + 0.27;
-        origin.z = origin.z - 0.17;
-        this.laser.position.copy(origin);
+        origin.z = origin.z - 0.17;*/
+        this.laser.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.17));
         this.laser.lookAt(target);
-        this.AirCanonMesh.position.copy(origin);
-        //this.AirCanonMesh.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
+        this.AirCanonMesh.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.17));
         this.AirCanonMesh.lookAt(target);
         this.AirCanonMesh.matrixNeedsUpdate = true;
         this.laser.scale.set(1, 1, origin.distanceTo(target));
