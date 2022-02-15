@@ -527,19 +527,6 @@
       background-color: transparent;
       border: 3px solid #ffffff;
       border-radius: 5px;
-      position: relative;
-      z-index: 2;
-    }
-
-    #Player_map::after {
-      content: "";
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: #ffffff;
-      z-index: 1;
     }
 
     #btns-wrap {
@@ -548,10 +535,6 @@
       display: flex;
       justify-content: space-around;
     }
-
-    
-
-    
 
     html {
       -webkit-box-sizing: border-box;
@@ -867,7 +850,7 @@
                 <div id="life-mark"></div>
               </div>
 
-              <div class="btn-wrap" id="score-display" data-augmented-ui="tl-clip tr-clip br-clip bl-clip inlay" class="styleme" style="margin: 0 20px;">
+              <div class="btn-wrap" id="score-display" data-augmented-ui="tl-clip tr-clip br-clip bl-clip inlay" class="styleme" style="margin: 30px 20px;">
                 <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 45%;height: 100%;">
                   <p id="red-score" style="text-align:center;">0</p>
                   <progress id="Red-Progress" value="0" max="25" style="width: 80%;margin: 0 auto;" dir="rtl"></progress>
@@ -901,7 +884,7 @@
             </div>
 
             <div class="btn-wrap" style="position: fixed;bottom: 100px;right: 20px;z-index: 1002;">
-              <a id="general_menu" class="btn btn-c" style="padding:0 10px;pointer-events:all;">
+              <a id="general_menu" class="btn btn-c" style="padding:0 10px 10px 10px;pointer-events:all;">
                 <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
                 <br>クリックする
               </a>

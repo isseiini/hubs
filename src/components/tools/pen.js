@@ -490,10 +490,7 @@ AFRAME.registerComponent("pen", {
           .multiplyScalar(0.5);
         remoteLaserOrigin.add(camerWorldPosition);
       }
-
-      console.log("laserstartposition:" + laserStartPosition.x + " , " + laserStartPosition.y + " , "+ laserStartPosition.z)
-      console.log("laserendposition:" + laserEndPosition.x + " , "+ laserEndPosition.y + " , "+ laserEndPosition.z)
-      console.log("remotelaserorigin:" + remoteLaserOrigin.x + " , "+ remoteLaserOrigin.y + " , "+ remoteLaserOrigin.z)
+      
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
         this.penLaserAttributes.laserOrigin.x = laserStartPosition.x;
         this.penLaserAttributes.laserOrigin.y = laserStartPosition.y;
