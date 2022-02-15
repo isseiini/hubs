@@ -39,7 +39,7 @@ AFRAME.registerComponent("pen-laser", {
   },
 
   init() {
-    this.Shoot = this.Shoot.bind(this);
+    //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
@@ -90,16 +90,15 @@ AFRAME.registerComponent("pen-laser", {
   },
 
   update: (() => {
-    
-
     const originBufferPosition = new THREE.Vector3();
     const targetBufferPosition = new THREE.Vector3();
 
     return function(prevData) {
       if (this.data.action == "true") {
-        this.Shoot();
+        AirCanonClip.play();
       } else {
         AirCanonClip.reset();
+        AirCanonClip.time = 0;
       }
 
       if (prevData.color != this.data.color) {
@@ -159,7 +158,7 @@ AFRAME.registerComponent("pen-laser", {
       if (laserVisible) {
         //origin.y += 1;
         //origin.z += -0.5;
-        origin.x = origin.x - 0.4;
+        origin.x = origin.x + 0.4;
         origin.y = origin.y + 0.3;
         origin.z = origin.z - 0.3;
         this.laser.position.copy(origin);
@@ -191,7 +190,7 @@ AFRAME.registerComponent("pen-laser", {
     this.el.sceneEl.removeObject3D("mesh");
   },
 
-  Shoot () {
+  /*Shoot () {
     AirCanonClip.play();
-  }
+  }*/
 });
