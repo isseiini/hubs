@@ -1530,6 +1530,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     presence: meta.presence,
                     name: meta.profile.displayName
                   });
+                  const Red_Score = document.getElementById("red-score");
+                  const Blue_Score = document.getElementById("blue-score");
+                  var event3 = new Event('change');
+                  var hit_target_container = document.getElementById("hit_target_container");
+                  hit_target_container.value = "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
+                  hit_target_container.dispatchEvent(event3);
                 }
 
                 if (
