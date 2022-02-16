@@ -2512,7 +2512,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener('keyup', event => {
-    if (event.code === 'KeyQ') {
+    if (event.code === 'KeyL') {
       var cognitoUser_me2 = userPool.getCurrentUser(); 
       cognitoUser_me2.getSession((err, session) => {
         if (err) {
