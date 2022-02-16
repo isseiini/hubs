@@ -42,7 +42,6 @@ AFRAME.GLTFModelPlus.registerComponent("super-spawner", "super-spawner", (el, co
 });
 AFRAME.GLTFModelPlus.registerComponent("gltf-model-plus", "gltf-model-plus");
 AFRAME.GLTFModelPlus.registerComponent("media-loader", "media-loader");
-AFRAME.GLTFModelPlus.registerComponent("pen-laser", "pen-laser");
 AFRAME.GLTFModelPlus.registerComponent("body", "body-helper", el => {
   //This is only required for migration of old environments with super-spawners
   //will no longer be needed when spawners are added via Spoke instead.
