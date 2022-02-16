@@ -83,11 +83,10 @@ export default class MessageDispatch extends EventTarget {
     const lifeMark = document.getElementById('life-mark') 
     const sanshakudama = document.querySelector(".sanshakudama");
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
-    console.log(HP) 
     
     this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
-    var life = HP - 10;
+    var life = HP - 6;
 
     if ( life <= 0 ){
       const HanabiAction = document.getElementById("HanabiContainer")
@@ -109,7 +108,7 @@ export default class MessageDispatch extends EventTarget {
       lifeMark.style.visibility = 'hidden'
       Player_Respawn.style.display = "block";
       const general_scene = document.querySelector("a-scene");
-      general_scene.pause();
+      //general_scene.pause();
       life = 100  
 
       //sanshakudama.setAttribute("animation-mixer")

@@ -69,13 +69,14 @@ export class CharacterControllerSystem {
       this.avatarRig = document.getElementById("avatar-rig");
       
       let avatar_position = new THREE.Vector3();
+      console.log(avatar_position)
      
       const minimap_player_pos = document.getElementById("Player_pos");
 
       setInterval(() => {
         this.avatarRig.object3D.getWorldPosition(avatar_position);
-        minimap_player_pos.setAttribute("cx", avatar_position.x + 120);
-        minimap_player_pos.setAttribute("cy", avatar_position.z + 130);
+        minimap_player_pos.setAttribute("cx", avatar_position.x);
+        minimap_player_pos.setAttribute("cy", avatar_position.z);
       }, 500);
     });
   }
