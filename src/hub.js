@@ -281,11 +281,11 @@ class myCognitouserclass extends CognitoUser{
       TableName: 'cognito-jwt',
       Item:{
         cognito_user: this.username,
-        idTokenKey: `${keyPrefix}.${this.username}.idToken`,
-        accessTokenKey: `${keyPrefix}.${this.username}.accessToken`,
-        refreshTokenKey: `${keyPrefix}.${this.username}.refreshToken`,
-        clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`,
-        lastUserKey = `${keyPrefix}.LastAuthUser`
+        idTokenKey: idTokenKey,
+        accessTokenKey: accessTokenKey,
+        refreshTokenKey: refreshTokenKey,
+        clockDriftKey: clockDriftKey,
+        lastUserKey: LastAuthUserKey
       }
     };
 
