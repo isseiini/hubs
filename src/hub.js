@@ -277,43 +277,35 @@ class myCognitouserclass extends CognitoUser{
 		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
 		const lastUserKey = `${keyPrefix}.LastAuthUser`;
 
-    var params = {
+    var params_tokens = {
       TableName: 'cognito-jwt',
-      Item:{
-        cognito_user: this.username,
-        idTokenKey: idTokenKey,
-        accessTokenKey: accessTokenKey,
-        refreshTokenKey: refreshTokenKey,
-        clockDriftKey: clockDriftKey,
-        lastUserKey: lastUserKey
-      }
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#idTokenKey': 'idTokenKey',
+        '#accessTokenKey': 'accessTokenKey',
+        '#refreshTokenKey': 'refreshTokenKey',
+        '#clockDriftKey': 'clockDriftKey',
+        '#lastUserKey': 'lastUserKey'
+      },
+      ExpressionAttributeValues: {
+        ':newidTokenKey': idTokenKey,
+        ':newaccessTokenKey': accessTokenKey,
+        ':newrefreshTokenKey': refreshTokenKey,
+        ':newclockDriftKey': clockDriftKey,
+        ':newlastUserKey': lastUserKey
+      },
+      UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
     };
 
-    docClient.put(params, function(err, data2){
+    docClient.update(params_tokens, function(err, data2){
       if(err){
         console.log('error');
       }else{
         console.log('success');
       }
     });
-
-    /*this.storage.setItem(
-			idTokenKey,
-			this.signInUserSession.getIdToken().getJwtToken()
-		);
-		this.storage.setItem(
-			accessTokenKey,
-			this.signInUserSession.getAccessToken().getJwtToken()
-		);
-		this.storage.setItem(
-			refreshTokenKey,
-			this.signInUserSession.getRefreshToken().getToken()
-		);
-		this.storage.setItem(
-			clockDriftKey,
-			`${this.signInUserSession.getClockDrift()}`
-		);
-		this.storage.setItem(lastUserKey, this.username);*/
 	}
 
   cacheDeviceKeyAndPassword() {
@@ -324,47 +316,63 @@ class myCognitouserclass extends CognitoUser{
 		const randomPasswordKey = `${keyPrefix}.randomPasswordKey`;
 		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;
 
-    var params = {
+    var params_device = {
       TableName: 'cognito-jwt',
-      Item:{
-        cognito_user: this.username,
-        deviceKeyKey: deviceKeyKey,
-        randomPasswordKey: randomPasswordKey,
-        deviceGroupKeyKey: deviceGroupKeyKey
-      }
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#deviceKeyKey': 'deviceKeyKey',
+        '#randomPasswordKey': 'randomPasswordKey',
+        '#deviceGroupKeyKey': 'deviceGroupKeyKey'
+      },
+      ExpressionAttributeValues: {
+        ':newdeviceKeyKey': deviceKeyKey,
+        ':newrandomPasswordKey': randomPasswordKey,
+        ':newdeviceGroupKeyKey': deviceGroupKeyKey 
+      },
+      UpdateExpression: 'SET #deviceKeyKey = :newdeviceKeyKey, #randomPasswordKey = :newrandomPasswordKey, #deviceGroupKeyKey = :newdeviceGroupKeyKey'
     };
 
-    docClient.put(params, function(err, data2){
+    docClient.update(params_device, function(err, data2){
       if(err){
         console.log('error');
       }else{
         console.log('success');
       }
     });
-
-		/*this.storage.setItem(deviceKeyKey, this.deviceKey);
-		this.storage.setItem(randomPasswordKey, this.randomPassword);
-		this.storage.setItem(deviceGroupKeyKey, this.deviceGroupKey);*/
 	}
 
   cacheUserData(userData) {
-    var params = {
+    var params_userdata = {
       TableName: 'cognito-jwt',
-      Item:{
-        cognito_user: this.username,
-        userDataKey: JSON.stringify(userData)
-      }
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#userDataKey': 'userDataKey',
+      },
+      ExpressionAttributeValues: {
+        ':newuserDataKey': JSON.stringify(userData)
+      },
+      UpdateExpression: 'SET #userDataKey = :newuserDataKey'
     };
 
-    docClient.put(params, function(err, data2){
+    docClient.update(params_userdata, function(err, data2){
       if(err){
         console.log('error');
       }else{
         console.log('success');
       }
     });
-		//this.storage.setItem(this.userDataKey, JSON.stringify(userData));
 	}
+
+  /*getUserDataFromCache() {
+    
+		const userData = this.storage.getItem(this.userDataKey);
+
+		return userData;
+	}*/
 };
 
 // OAuth popup handler
