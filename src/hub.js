@@ -252,11 +252,7 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
-class myCognitouserclass extends CognitoUser{
-  cacheTokens() {
-		console.log("successしたよ")
-	}
-};
+
 
 var currentUserData = {}; 
 
@@ -271,6 +267,37 @@ const poolData = {
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+class myCognitouserclass extends CognitoUser{
+  cacheTokens() {
+		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
+		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
+		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
+		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Item:{
+        cognito_user: this.username,
+        idTokenKey: `${keyPrefix}.${this.username}.idToken`,
+        accessTokenKey: `${keyPrefix}.${this.username}.accessToken`,
+        refreshTokenKey: `${keyPrefix}.${this.username}.refreshToken`,
+        clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`,
+        lastUserKey = `${keyPrefix}.LastAuthUser`
+      }
+    };
+
+    docClient.put(params, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+	}
+};
 
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
