@@ -285,7 +285,7 @@ class myCognitouserclass extends CognitoUser{
         accessTokenKey: accessTokenKey,
         refreshTokenKey: refreshTokenKey,
         clockDriftKey: clockDriftKey,
-        lastUserKey: LastAuthUserKey
+        lastUserKey: lastUserKey
       }
     };
 
