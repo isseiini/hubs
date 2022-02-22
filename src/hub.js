@@ -384,6 +384,65 @@ class myCognitouserclass extends CognitoUser{
     console.log(userData)
 		return userData;
 	}
+
+  getSession(callback, options = {}) {
+    this.username = window.location.hash;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(success);
+      }
+    });
+
+    const idTokenKey = data.Item.idTokenKey;
+    const accessTokenKey = data.Item.accessTokenKey;
+    const refreshTokenKey = data.Item.refreshTokenKey;
+    const clockDriftKey = data.Item.clockDriftKey;
+
+    const idToken = new CognitoIdToken({
+      IdToken: idTokenKey,
+    });
+    const accessToken = new CognitoAccessToken({
+      AccessToken: accessTokenKey,
+    });
+    const refreshToken = new CognitoRefreshToken({
+      RefreshToken: refreshTokenKey,
+    });
+    const clockDrift = parseInt(clockDriftKey, 0) || 0;
+
+    const sessionData = {
+      IdToken: idToken,
+      AccessToken: accessToken,
+      RefreshToken: refreshToken,
+      ClockDrift: clockDrift,
+    };
+    const cachedSession = new CognitoUserSession(sessionData);
+
+    if (cachedSession.isValid()) {
+      this.signInUserSession = cachedSession;
+      return callback(null, this.signInUserSession);
+    }
+
+    if (!refreshToken.getToken()) {
+      return callback(
+        new Error('Cannot retrieve a new session. Please authenticate.'),
+        null
+      );
+    }
+
+    this.refreshSession(refreshToken, callback, options.clientMetadata);
+		
+
+		return undefined;
+	}
 };
 
 // OAuth popup handler
@@ -2218,6 +2277,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
+        window.location.hash = email_signin;
       },
 
       onFailure: err => {
