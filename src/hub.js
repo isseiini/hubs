@@ -296,6 +296,74 @@ class myCognitouserclass extends CognitoUser{
         console.log('success');
       }
     });
+
+    /*this.storage.setItem(
+			idTokenKey,
+			this.signInUserSession.getIdToken().getJwtToken()
+		);
+		this.storage.setItem(
+			accessTokenKey,
+			this.signInUserSession.getAccessToken().getJwtToken()
+		);
+		this.storage.setItem(
+			refreshTokenKey,
+			this.signInUserSession.getRefreshToken().getToken()
+		);
+		this.storage.setItem(
+			clockDriftKey,
+			`${this.signInUserSession.getClockDrift()}`
+		);
+		this.storage.setItem(lastUserKey, this.username);*/
+	}
+
+  cacheDeviceKeyAndPassword() {
+		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
+			this.username
+		}`;
+		const deviceKeyKey = `${keyPrefix}.deviceKey`;
+		const randomPasswordKey = `${keyPrefix}.randomPasswordKey`;
+		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Item:{
+        cognito_user: this.username,
+        deviceKeyKey: deviceKeyKey,
+        randomPasswordKey: randomPasswordKey,
+        deviceGroupKeyKey: deviceGroupKeyKey
+      }
+    };
+
+    docClient.put(params, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+
+		/*this.storage.setItem(deviceKeyKey, this.deviceKey);
+		this.storage.setItem(randomPasswordKey, this.randomPassword);
+		this.storage.setItem(deviceGroupKeyKey, this.deviceGroupKey);*/
+	}
+
+  cacheUserData(userData) {
+    var params = {
+      TableName: 'cognito-jwt',
+      Item:{
+        cognito_user: this.username,
+        userDataKey: JSON.stringify(userData)
+      }
+    };
+
+    docClient.put(params, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+		//this.storage.setItem(this.userDataKey, JSON.stringify(userData));
 	}
 };
 
