@@ -237,6 +237,7 @@ import { OAuthScreenContainer } from "./react-components/auth/OAuthScreenContain
 import { SignInMessages } from "./react-components/auth/SignInModal";
 import { ThemeProvider } from "./react-components/styles/theme";
 import { addLeadingSlash } from "history/PathUtils";
+import CognitoUser from "amazon-cognito-identity-js/src/CognitoUser";
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
@@ -250,15 +251,12 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 });
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
-const myAmazonCognitoIdentity = Object.assign({}, AmazonCognitoIdentity); 
 
-const mycacheTokens = myAmazonCognitoIdentity.CognitoUser.cacheTokens;
-myAmazonCognitoIdentity.CognitoUser.cacheTokens = function () {
-  console.log("成功したよ")
-  return mycacheTokens.apply(myAmazonCognitoIdentity, args);
-}
-
-//module.exports = myAmazonCognitoIdentity;
+class myCognitouserclass extends CognitoUser{
+  cacheTokens() {
+		console.log("successしたよ")
+	}
+};
 
 var currentUserData = {}; 
 
@@ -2094,9 +2092,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       Pool: userPool
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    const cognitoUser2 = new myAmazonCognitoIdentity.CognitoUser(userData);
+    const cognitoUser2 = new myCognitouserclass(userData);
 
-    cognitoUser2.mycacheTokens();
+    cognitoUser2.cacheTokens();
     // 認証処理
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: result => {
