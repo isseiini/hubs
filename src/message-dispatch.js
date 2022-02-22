@@ -30,7 +30,7 @@ const poolData = {
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-var current_url_parts = location.href.split("/");
+var current_url_parts = (location.protocol + '//' + location.hostname + location.pathname).split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
 
 let uiRoot;
