@@ -443,6 +443,93 @@ class myCognitouserclass extends CognitoUser{
 
 		return undefined;
 	}
+
+  refreshSession(refreshToken, callback, clientMetadata) {
+    this.username = window.location.hash;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(success);
+      }
+    });
+
+		const wrappedCallback = this.pool.wrapRefreshSessionCallback
+			? this.pool.wrapRefreshSessionCallback(callback)
+			: callback;
+		const authParameters = {};
+		authParameters.REFRESH_TOKEN = refreshToken.getToken();
+		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;
+
+		this.username = data.Item.lastUserKey;
+		this.deviceKey = data.Item.deviceKeyKey;
+		authParameters.DEVICE_KEY = this.deviceKey;
+
+		const jsonReq = {
+			ClientId: this.pool.getClientId(),
+			AuthFlow: 'REFRESH_TOKEN_AUTH',
+			AuthParameters: authParameters,
+			ClientMetadata: clientMetadata,
+		};
+		if (this.getUserContextData()) {
+			jsonReq.UserContextData = this.getUserContextData();
+		}
+		this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
+			if (err) {
+				if (err.code === 'NotAuthorizedException') {
+					this.clearCachedUser();
+				}
+				return wrappedCallback(err, null);
+			}
+			if (authResult) {
+				const authenticationResult = authResult.AuthenticationResult;
+				if (
+					!Object.prototype.hasOwnProperty.call(
+						authenticationResult,
+						'RefreshToken'
+					)
+				) {
+					authenticationResult.RefreshToken = refreshToken.getToken();
+				}
+				this.signInUserSession = this.getCognitoUserSession(
+					authenticationResult
+				);
+				this.cacheTokens();
+				return wrappedCallback(null, this.signInUserSession);
+			}
+			return undefined;
+		});
+	}
+
+  getCachedDeviceKeyAndPassword() {
+    this.username = window.location.hash;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        console.log(success);
+      }
+    });
+		
+    this.deviceKey = data.Item.deviceKeyKey;
+    this.randomPassword = data.Item.randomPasswordKey;
+    this.deviceGroupKey = data.Item.deviceGroupKeyKey;
+	}
 };
 
 // OAuth popup handler
