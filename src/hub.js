@@ -350,7 +350,7 @@ class myCognitouserclass extends CognitoUser{
         cognito_user: this.username 
       },
       ExpressionAttributeNames: {
-        '#userDataKey': 'userDataKey',
+        '#userDataKey': 'userDataKey'
       },
       ExpressionAttributeValues: {
         ':newuserDataKey': JSON.stringify(userData)
@@ -367,12 +367,23 @@ class myCognitouserclass extends CognitoUser{
     });
 	}
 
-  /*getUserDataFromCache() {
-    
-		const userData = this.storage.getItem(this.userDataKey);
-
+  getUserDataFromCache() {
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        const userData = data.Item.userDataKey
+      }
+    });
+    console.log(userData)
 		return userData;
-	}*/
+	}
 };
 
 // OAuth popup handler
