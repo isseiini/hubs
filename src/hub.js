@@ -250,6 +250,15 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 });
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const myAmazonCognitoIdentity = Object.assign({}, AmazonCognitoIdentity); 
+
+const mycacheTokens = myAmazonCognitoIdentity.CognitoUser.cacheTokens;
+myAmazonCognitoIdentity.CognitoUser.cacheTokens = function () {
+  console.log("成功したよ")
+  return mycacheTokens.apply(myAmazonCognitoIdentity, args);
+}
+
+//module.exports = myAmazonCognitoIdentity;
 
 var currentUserData = {}; 
 
@@ -2085,7 +2094,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       Pool: userPool
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    const cognitoUser2 = new myAmazonCognitoIdentity.CognitoUser(userData);
 
+    cognitoUser2.mycacheTokens();
     // 認証処理
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: result => {
