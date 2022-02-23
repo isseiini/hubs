@@ -459,6 +459,7 @@ class myCognitouserclass extends CognitoUser{
 
   refreshSession(refreshToken, callback, clientMetadata) {
     this.username = window.location.hash;
+    console.log(window.location.hash);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
