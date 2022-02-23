@@ -388,11 +388,10 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          const userData = data.Item.userDataKey
+          const userData = data.Item.userDataKey;
+          return userData;
         }
       });
-      console.log(userData)
-      return userData;
     } else {
       return
     }
@@ -411,50 +410,48 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(data);
+          const idTokenKey = data.Item.idTokenKey;
+          const accessTokenKey = data.Item.accessTokenKey;
+          const refreshTokenKey = data.Item.refreshTokenKey;
+          const clockDriftKey = data.Item.clockDriftKey;
+      
+          const idToken = new CognitoIdToken({
+            IdToken: idTokenKey,
+          });
+          const accessToken = new CognitoAccessToken({
+            AccessToken: accessTokenKey,
+          });
+          const refreshToken = new CognitoRefreshToken({
+            RefreshToken: refreshTokenKey,
+          });
+          const clockDrift = parseInt(clockDriftKey, 0) || 0;
+      
+          const sessionData = {
+            IdToken: idToken,
+            AccessToken: accessToken,
+            RefreshToken: refreshToken,
+            ClockDrift: clockDrift,
+          };
+          const cachedSession = new CognitoUserSession(sessionData);
+      
+          if (cachedSession.isValid()) {
+            this.signInUserSession = cachedSession;
+            return callback(null, this.signInUserSession);
+          }
+      
+          if (!refreshToken.getToken()) {
+            return callback(
+              new Error('Cannot retrieve a new session. Please authenticate.'),
+              null
+            );
+          }
+      
+          this.refreshSession(refreshToken, callback, options.clientMetadata);
+          
+      
+          return undefined;
         }
       });
-  
-      const idTokenKey = data.Item.idTokenKey;
-      const accessTokenKey = data.Item.accessTokenKey;
-      const refreshTokenKey = data.Item.refreshTokenKey;
-      const clockDriftKey = data.Item.clockDriftKey;
-  
-      const idToken = new CognitoIdToken({
-        IdToken: idTokenKey,
-      });
-      const accessToken = new CognitoAccessToken({
-        AccessToken: accessTokenKey,
-      });
-      const refreshToken = new CognitoRefreshToken({
-        RefreshToken: refreshTokenKey,
-      });
-      const clockDrift = parseInt(clockDriftKey, 0) || 0;
-  
-      const sessionData = {
-        IdToken: idToken,
-        AccessToken: accessToken,
-        RefreshToken: refreshToken,
-        ClockDrift: clockDrift,
-      };
-      const cachedSession = new CognitoUserSession(sessionData);
-  
-      if (cachedSession.isValid()) {
-        this.signInUserSession = cachedSession;
-        return callback(null, this.signInUserSession);
-      }
-  
-      if (!refreshToken.getToken()) {
-        return callback(
-          new Error('Cannot retrieve a new session. Please authenticate.'),
-          null
-        );
-      }
-  
-      this.refreshSession(refreshToken, callback, options.clientMetadata);
-      
-  
-      return undefined;
     } else {
       return
     }
@@ -473,56 +470,56 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(data);
-        }
-      });
-  
-      const wrappedCallback = this.pool.wrapRefreshSessionCallback
+          const wrappedCallback = this.pool.wrapRefreshSessionCallback
         ? this.pool.wrapRefreshSessionCallback(callback)
         : callback;
-      const authParameters = {};
-      authParameters.REFRESH_TOKEN = refreshToken.getToken();
-      const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-      const lastUserKey = `${keyPrefix}.LastAuthUser`;
-  
-      this.username = data.Item.lastUserKey;
-      this.deviceKey = data.Item.deviceKeyKey;
-      authParameters.DEVICE_KEY = this.deviceKey;
-  
-      const jsonReq = {
-        ClientId: this.pool.getClientId(),
-        AuthFlow: 'REFRESH_TOKEN_AUTH',
-        AuthParameters: authParameters,
-        ClientMetadata: clientMetadata,
-      };
-      if (this.getUserContextData()) {
-        jsonReq.UserContextData = this.getUserContextData();
-      }
-      this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
-        if (err) {
-          if (err.code === 'NotAuthorizedException') {
-            this.clearCachedUser();
-          }
-          return wrappedCallback(err, null);
+        const authParameters = {};
+        authParameters.REFRESH_TOKEN = refreshToken.getToken();
+        const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+        const lastUserKey = `${keyPrefix}.LastAuthUser`;
+    
+        this.username = data.Item.lastUserKey;
+        this.deviceKey = data.Item.deviceKeyKey;
+        authParameters.DEVICE_KEY = this.deviceKey;
+    
+        const jsonReq = {
+          ClientId: this.pool.getClientId(),
+          AuthFlow: 'REFRESH_TOKEN_AUTH',
+          AuthParameters: authParameters,
+          ClientMetadata: clientMetadata,
+        };
+        if (this.getUserContextData()) {
+          jsonReq.UserContextData = this.getUserContextData();
         }
-        if (authResult) {
-          const authenticationResult = authResult.AuthenticationResult;
-          if (
-            !Object.prototype.hasOwnProperty.call(
-              authenticationResult,
-              'RefreshToken'
-            )
-          ) {
-            authenticationResult.RefreshToken = refreshToken.getToken();
+        this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
+          if (err) {
+            if (err.code === 'NotAuthorizedException') {
+              this.clearCachedUser();
+            }
+            return wrappedCallback(err, null);
           }
-          this.signInUserSession = this.getCognitoUserSession(
-            authenticationResult
-          );
-          this.cacheTokens();
-          return wrappedCallback(null, this.signInUserSession);
+          if (authResult) {
+            const authenticationResult = authResult.AuthenticationResult;
+            if (
+              !Object.prototype.hasOwnProperty.call(
+                authenticationResult,
+                'RefreshToken'
+              )
+            ) {
+              authenticationResult.RefreshToken = refreshToken.getToken();
+            }
+            this.signInUserSession = this.getCognitoUserSession(
+              authenticationResult
+            );
+            this.cacheTokens();
+            return wrappedCallback(null, this.signInUserSession);
+          }
+          return undefined;
+        });
         }
-        return undefined;
       });
+  
+      
     } else {
       return
     }
@@ -695,13 +692,11 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(data);
+          this.deviceKey = data.Item.deviceKeyKey;
+          this.randomPassword = data.Item.randomPasswordKey;
+          this.deviceGroupKey = data.Item.deviceGroupKeyKey;
         }
       });
-      
-      this.deviceKey = data.Item.deviceKeyKey;
-      this.randomPassword = data.Item.randomPasswordKey;
-      this.deviceGroupKey = data.Item.deviceGroupKeyKey;
     } else {
       return
     }
@@ -733,24 +728,22 @@ class myCognitouserpoolclass extends CognitoUserPool {
         if(err){
           console.log(err);
         }else{
-          console.log(data);
+          const lastAuthUser = data.Item.lastUserKey;
+          if (lastAuthUser) {
+            const cognitoUser = {
+              Username: lastAuthUser,
+              Pool: this
+            };
+
+            return new CognitoUser(cognitoUser);
+          }
+
+          return null;
         }
       });
     } else {
       return
     }
-
-		const lastAuthUser = data.Item.lastUserKey;
-		if (lastAuthUser) {
-			const cognitoUser = {
-				Username: lastAuthUser,
-				Pool: this
-			};
-
-			return new CognitoUser(cognitoUser);
-		}
-
-		return null;
 	}
 }
 
