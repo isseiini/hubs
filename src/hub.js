@@ -581,7 +581,7 @@ class myCognitouserclass extends CognitoUser{
 
         const email_signin = document.getElementById('email-signin').value
 
-				this.username = email_signin//challengeParameters.USER_ID_FOR_SRP;
+				this.username = challengeParameters.USER_ID_FOR_SRP;
 				this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
 				serverBValue = new BigInteger(challengeParameters.SRP_B, 16);
 				salt = new BigInteger(challengeParameters.SALT, 16);
@@ -617,7 +617,7 @@ class myCognitouserclass extends CognitoUser{
 
 				    his.username = email_signin
 
-						challengeResponses.USERNAME = document.getElementById('email-signin').value;
+						challengeResponses.USERNAME = this.userData;
 						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
 							challengeParameters.SECRET_BLOCK;
 						challengeResponses.TIMESTAMP = dateNow;
