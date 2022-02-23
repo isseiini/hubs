@@ -613,10 +613,6 @@ class myCognitouserclass extends CognitoUser{
 
 						const challengeResponses = {};
 
-            const email_signin = document.getElementById('email-signin').value
-
-				    his.username = email_signin
-
 						challengeResponses.USERNAME = this.userData;
 						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
 							challengeParameters.SECRET_BLOCK;
