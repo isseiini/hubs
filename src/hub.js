@@ -546,6 +546,18 @@ class myCognitouserclass extends CognitoUser{
       return
     }
 	}
+
+  clearCachedUserData() {
+		return
+	}
+
+  clearCachedDeviceKeyAndPassword() {
+		return
+	}
+
+  clearCachedTokens() {
+		return
+	}
 };
 
 class myCognitouserpoolclass extends CognitoUserPool {
@@ -565,6 +577,8 @@ class myCognitouserpoolclass extends CognitoUserPool {
           console.log(success);
         }
       });
+    } else {
+      return
     }
 
 		const lastAuthUser = data.Item.lastUserKey;
