@@ -241,7 +241,9 @@ import CognitoUser from "amazon-cognito-identity-js/src/CognitoUser";
 import CognitoUserPool from "amazon-cognito-identity-js/src/CognitoUserPool";
 import AuthenticationHelper from "amazon-cognito-identity-js/src/AuthenticationHelper";
 import DateHelper from "amazon-cognito-identity-js/src/DateHelper";
-import BigInteger from "amazon-cognito-identity-js/src/BigInteger"
+import BigInteger from "amazon-cognito-identity-js/src/BigInteger";
+import CryptoJS from "crypto-js/core";
+import Base64 from 'crypto-js/enc-base64';
 
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
