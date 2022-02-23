@@ -411,7 +411,7 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(success);
+          console.log(data);
         }
       });
   
@@ -473,7 +473,7 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(success);
+          console.log(data);
         }
       });
   
@@ -695,7 +695,7 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(success);
+          console.log(data);
         }
       });
       
@@ -733,7 +733,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
         if(err){
           console.log(err);
         }else{
-          console.log(success);
+          console.log(data);
         }
       });
     } else {
