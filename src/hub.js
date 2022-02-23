@@ -577,6 +577,7 @@ class myCognitouserclass extends CognitoUser{
 				}
 
 				const challengeParameters = data.ChallengeParameters;
+        console.log(challengeParameters);
 
         const email_signin = document.getElementById('email-signin').value
 
@@ -612,10 +613,11 @@ class myCognitouserclass extends CognitoUser{
 
 						const challengeResponses = {};
 
-            const email_signin = document.getElementById('email-signin').value;
-            this.username = email_signin;
+            const email_signin = document.getElementById('email-signin').value
 
-						challengeResponses.USERNAME = document.getElementById('email-signin').value;//this.username;
+				    his.username = email_signin
+
+						challengeResponses.USERNAME = document.getElementById('email-signin').value;
 						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
 							challengeParameters.SECRET_BLOCK;
 						challengeResponses.TIMESTAMP = dateNow;
