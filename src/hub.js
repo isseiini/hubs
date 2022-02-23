@@ -558,8 +558,6 @@ class myCognitouserclass extends CognitoUser{
 		return
 	}
 };
-
-const userPool = new myCognitouserpoolclass(poolData);
 class myCognitouserpoolclass extends CognitoUserPool {
   getCurrentUser() {
     this.username = window.location.hash;
@@ -1042,6 +1040,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
 
+  const userPool = new myCognitouserpoolclass(poolData);
+
   if (room_name == "kooky-passionate-safari") {
     
     const cognito_mine = userPool.getCurrentUser();
@@ -1095,7 +1095,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
     };
-    const userPool = new myCognitouserpoolclass(poolData);
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
