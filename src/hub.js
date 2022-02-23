@@ -470,6 +470,7 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
+          console.log(data)
           const wrappedCallback = this.pool.wrapRefreshSessionCallback
         ? this.pool.wrapRefreshSessionCallback(callback)
         : callback;
