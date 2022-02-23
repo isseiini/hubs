@@ -238,6 +238,7 @@ import { SignInMessages } from "./react-components/auth/SignInModal";
 import { ThemeProvider } from "./react-components/styles/theme";
 import { addLeadingSlash } from "history/PathUtils";
 import CognitoUser from "amazon-cognito-identity-js/src/CognitoUser";
+import CognitoUserPool from "amazon-cognito-identity-js/src/CognitoUserPool";
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
@@ -266,7 +267,7 @@ const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
 };
-const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+const userPool = new AmazonCognitoIdentity.myCognitouserpoolclass(poolData);
 
 class myCognitouserclass extends CognitoUser{
   cacheTokens() {
@@ -546,6 +547,39 @@ class myCognitouserclass extends CognitoUser{
     }
 	}
 };
+
+class myCognitouserpoolclass extends CognitoUserPool {
+  getCurrentUser() {
+    this.username = window.location.hash;
+    if (this.username) {
+      var params = {
+        TableName: 'cognito-jwt',
+        Key:{
+          cognito_user : this.username
+        }
+      };
+      docClient.get(params, function(err, data){
+        if(err){
+          console.log(err);
+        }else{
+          console.log(success);
+        }
+      });
+    }
+
+		const lastAuthUser = data.Item.lastUserKey;
+		if (lastAuthUser) {
+			const cognitoUser = {
+				Username: lastAuthUser,
+				Pool: this
+			};
+
+			return new CognitoUser(cognitoUser);
+		}
+
+		return null;
+	}
+}
 
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
@@ -1047,7 +1081,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
     };
-    const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+    const userPool = new AmazonCognitoIdentity.myCognitouserpoolclass(poolData);
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
