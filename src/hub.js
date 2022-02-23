@@ -521,6 +521,154 @@ class myCognitouserclass extends CognitoUser{
     
 	}
 
+  authenticateUserDefaultAuth(authDetails, callback) {
+		const authenticationHelper = new AuthenticationHelper(
+			this.pool.getUserPoolId().split('_')[1]
+		);
+		const dateHelper = new DateHelper();
+
+		let serverBValue;
+		let salt;
+		const authParameters = {};
+
+		if (this.deviceKey != null) {
+			authParameters.DEVICE_KEY = this.deviceKey;
+		}
+
+		authParameters.USERNAME = this.username;
+		authenticationHelper.getLargeAValue((errOnAValue, aValue) => {
+			// getLargeAValue callback start
+			if (errOnAValue) {
+				callback.onFailure(errOnAValue);
+			}
+
+			authParameters.SRP_A = aValue.toString(16);
+
+			if (this.authenticationFlowType === 'CUSTOM_AUTH') {
+				authParameters.CHALLENGE_NAME = 'SRP_A';
+			}
+
+			const clientMetaData =
+				Object.keys(authDetails.getValidationData()).length !== 0
+					? authDetails.getValidationData()
+					: authDetails.getClientMetadata();
+
+			const jsonReq = {
+				AuthFlow: this.authenticationFlowType,
+				ClientId: this.pool.getClientId(),
+				AuthParameters: authParameters,
+				ClientMetadata: clientMetaData,
+			};
+			if (this.getUserContextData(this.username)) {
+				jsonReq.UserContextData = this.getUserContextData(this.username);
+			}
+
+			this.client.request('InitiateAuth', jsonReq, (err, data) => {
+				if (err) {
+					return callback.onFailure(err);
+				}
+
+				const challengeParameters = data.ChallengeParameters;
+
+        const email_signin = document.getElementById('email-signin').value
+
+				this.username = email_signin//challengeParameters.USER_ID_FOR_SRP;
+				this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+				serverBValue = new BigInteger(challengeParameters.SRP_B, 16);
+				salt = new BigInteger(challengeParameters.SALT, 16);
+				this.getCachedDeviceKeyAndPassword();
+
+				authenticationHelper.getPasswordAuthenticationKey(
+					this.username,
+					authDetails.getPassword(),
+					serverBValue,
+					salt,
+					(errOnHkdf, hkdf) => {
+						// getPasswordAuthenticationKey callback start
+						if (errOnHkdf) {
+							callback.onFailure(errOnHkdf);
+						}
+
+						const dateNow = dateHelper.getNowString();
+
+						const message = CryptoJS.lib.WordArray.create(
+							Buffer.concat([
+								Buffer.from(this.pool.getUserPoolId().split('_')[1], 'utf8'),
+								Buffer.from(this.username, 'utf8'),
+								Buffer.from(challengeParameters.SECRET_BLOCK, 'base64'),
+								Buffer.from(dateNow, 'utf8'),
+							])
+						);
+						const key = CryptoJS.lib.WordArray.create(hkdf);
+						const signatureString = Base64.stringify(HmacSHA256(message, key));
+
+						const challengeResponses = {};
+
+						challengeResponses.USERNAME = this.username;
+						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
+							challengeParameters.SECRET_BLOCK;
+						challengeResponses.TIMESTAMP = dateNow;
+						challengeResponses.PASSWORD_CLAIM_SIGNATURE = signatureString;
+
+						if (this.deviceKey != null) {
+							challengeResponses.DEVICE_KEY = this.deviceKey;
+						}
+
+						const respondToAuthChallenge = (challenge, challengeCallback) =>
+							this.client.request(
+								'RespondToAuthChallenge',
+								challenge,
+								(errChallenge, dataChallenge) => {
+									if (
+										errChallenge &&
+										errChallenge.code === 'ResourceNotFoundException' &&
+										errChallenge.message.toLowerCase().indexOf('device') !== -1
+									) {
+										challengeResponses.DEVICE_KEY = null;
+										this.deviceKey = null;
+										this.randomPassword = null;
+										this.deviceGroupKey = null;
+										this.clearCachedDeviceKeyAndPassword();
+										return respondToAuthChallenge(challenge, challengeCallback);
+									}
+									return challengeCallback(errChallenge, dataChallenge);
+								}
+							);
+
+						const jsonReqResp = {
+							ChallengeName: 'PASSWORD_VERIFIER',
+							ClientId: this.pool.getClientId(),
+							ChallengeResponses: challengeResponses,
+							Session: data.Session,
+							ClientMetadata: clientMetaData,
+						};
+						if (this.getUserContextData()) {
+							jsonReqResp.UserContextData = this.getUserContextData();
+						}
+						respondToAuthChallenge(
+							jsonReqResp,
+							(errAuthenticate, dataAuthenticate) => {
+								if (errAuthenticate) {
+									return callback.onFailure(errAuthenticate);
+								}
+
+								return this.authenticateUserInternal(
+									dataAuthenticate,
+									authenticationHelper,
+									callback
+								);
+							}
+						);
+						return undefined;
+						// getPasswordAuthenticationKey callback end
+					}
+				);
+				return undefined;
+			});
+			// getLargeAValue callback end
+		});
+	}
+
   getCachedDeviceKeyAndPassword() {
     this.username = window.location.hash;
     if (this.username) {
