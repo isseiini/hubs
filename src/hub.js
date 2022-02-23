@@ -239,7 +239,10 @@ import { ThemeProvider } from "./react-components/styles/theme";
 import { addLeadingSlash } from "history/PathUtils";
 import CognitoUser from "amazon-cognito-identity-js/src/CognitoUser";
 import CognitoUserPool from "amazon-cognito-identity-js/src/CognitoUserPool";
-import AuthenticationHelper from "amazon-cognito-identity-js/src/AuthenticationHelper"
+import AuthenticationHelper from "amazon-cognito-identity-js/src/AuthenticationHelper";
+import DateHelper from "amazon-cognito-identity-js/src/DateHelper";
+import BigInteger from "amazon-cognito-identity-js/src/BigInteger"
+
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
