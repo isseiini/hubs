@@ -2555,6 +2555,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       return false;
     }
 
+    window.location.hash = email_signin;
+
     // 認証データの作成
     const authenticationData = {
       Username: email_signin,
@@ -2581,7 +2583,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
-        window.location.hash = email_signin;
       },
 
       onFailure: err => {
