@@ -244,6 +244,8 @@ import DateHelper from "amazon-cognito-identity-js/src/DateHelper";
 import BigInteger from "amazon-cognito-identity-js/src/BigInteger";
 import CryptoJS from "crypto-js/core";
 import Base64 from 'crypto-js/enc-base64';
+import { Buffer } from 'buffer';
+import HmacSHA256 from 'crypto-js/hmac-sha256';
 
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
