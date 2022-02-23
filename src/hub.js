@@ -267,7 +267,7 @@ const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
 };
-const userPool = new AmazonCognitoIdentity.myCognitouserpoolclass(poolData);
+const userPool = new myCognitouserpoolclass(poolData);
 
 class myCognitouserclass extends CognitoUser{
   cacheTokens() {
@@ -1081,7 +1081,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
     };
-    const userPool = new AmazonCognitoIdentity.myCognitouserpoolclass(poolData);
+    const userPool = new myCognitouserpoolclass(poolData);
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
