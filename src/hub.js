@@ -376,7 +376,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getUserDataFromCache() {
-    this.username = window.location.hash;
+    this.username = window.location.hash.slice(1);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
@@ -398,7 +398,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getSession(callback, options = {}) {
-    this.username = window.location.hash;
+    this.username = window.location.hash.slice(1);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
@@ -458,8 +458,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   refreshSession(refreshToken, callback, clientMetadata) {
-    this.username = window.location.hash;
-    console.log(window.location.hash);
+    this.username = window.location.hash.slice(1);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
@@ -682,7 +681,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getCachedDeviceKeyAndPassword() {
-    this.username = window.location.hash;
+    this.username = window.location.hash.slice(1);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
@@ -718,7 +717,7 @@ class myCognitouserclass extends CognitoUser{
 };
 class myCognitouserpoolclass extends CognitoUserPool {
   getCurrentUser() {
-    this.username = window.location.hash;
+    this.username = window.location.hash.slice(1);
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
