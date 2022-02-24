@@ -2251,7 +2251,16 @@
             <a-entity id="objects-scene"></a-entity>
         </a-entity>
         <!-- ↓ action-to-eventの中に withPermission: spawn_drawing ↓ -->
-        
+        <a-entity
+            id="pen-spawner"
+            action-to-event="path: /actions/spawnPen; event: spawn_pen;";
+            super-spawner="
+                template: #interactable-pen;
+                spawnEvent: spawn_pen;
+                animateFromCursor: true;
+                spawnScale: 0.5, 0.5, 0.5;
+            "
+        ></a-entity>
 
         <a-entity matrix-auto-update class="ui interactable-ui vr-notice" follow-in-fov="target: #avatar-pov-node; offset: 0 0 -0.8; angle: 39;" visible="false">
             <a-entity slice9="width: 0.8; height: 0.25; left: 64; top: 64; right: 66; bottom: 66; opacity: 1.0; src: #button"
@@ -2293,15 +2302,6 @@
                 pitch-yaw-rotator
                 matrix-auto-update>
             </a-entity>
-            <a-entity
-            id="pen-spawner"
-            action-to-event="path: /actions/spawnPen; event: spawn_pen;";
-            super-spawner="
-                template: #interactable-pen;
-                spawnEvent: spawn_pen;
-                animateFromCursor: true;
-                spawnScale: 0.5, 0.5, 0.5;
-            "></a-entity>
         </a-entity>
         <a-entity id="scene-preview-node">
         </a-entity>
