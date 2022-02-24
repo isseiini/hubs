@@ -725,7 +725,7 @@ class myCognitouserclass extends CognitoUser{
 class myCognitouserpoolclass extends CognitoUserPool {
   getCurrentUser() {
     this.username = window.location.hash.slice(1);
-    const userPool = new myCognitouserpoolclass(poolData);
+  
     if (this.username) {
       var params = {
         TableName: 'cognito-jwt',
@@ -741,7 +741,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
           if (lastAuthUser) {
             const cognitoUser = {
               Username: lastAuthUser,
-              Pool: userPool
+              Pool: this
             };
 
             return new CognitoUser(cognitoUser);
