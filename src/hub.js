@@ -250,7 +250,7 @@ import CognitoAccessToken from 'amazon-cognito-identity-js/src/CognitoAccessToke
 import CognitoIdToken from 'amazon-cognito-identity-js/src/CognitoIdToken';
 import CognitoRefreshToken from 'amazon-cognito-identity-js/src/CognitoRefreshToken';
 import CognitoUserSession from 'amazon-cognito-identity-js/src/CognitoUserSession';
-import DateHelper from './DateHelper';
+
 import CognitoUserAttribute from 'amazon-cognito-identity-js/src/CognitoUserAttribute';
 import StorageHelper from 'amazon-cognito-identity-js/src/StorageHelper';
 
