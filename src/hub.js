@@ -171,6 +171,7 @@ import { platformUnsupported } from "./support";
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
 var current_url = (location.protocol + '//' + location.hostname + location.pathname).split("/");
+console.log(current_url)
 var room_name = current_url[current_url.length - 1];
 
 document.addEventListener('keyup', event => {
