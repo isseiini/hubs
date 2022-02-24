@@ -745,7 +745,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
               Pool: this
             };
 
-            return new CognitoUser(cognitoUser);
+            return new myCognitouserclass(cognitoUser);
           }
 
           return null;
