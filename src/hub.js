@@ -1223,7 +1223,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life-frame").style.display = "none";
-    document.getElementById("score-display").style.display = "none"
+    document.getElementById("score-display").style.display = "none";
+  } else if (room_name == "euphoric-rare-commons") {
+    document.getElementById("life-frame").style.display = "none";
+    document.getElementById("score-display").style.display = "none";
+    document.getElementById("hex-background").style.display = "none";
+    document.getElementById("go-to-game").style.display = "none";
   } else {
     //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
   };
