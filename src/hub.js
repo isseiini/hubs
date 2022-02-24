@@ -246,6 +246,13 @@ import CryptoJS from "crypto-js/core";
 import Base64 from 'crypto-js/enc-base64';
 import { Buffer } from 'buffer';
 import HmacSHA256 from 'crypto-js/hmac-sha256';
+import CognitoAccessToken from 'amazon-cognito-identity-js/src/CognitoAccessToken';
+import CognitoIdToken from 'amazon-cognito-identity-js/src/CognitoIdToken';
+import CognitoRefreshToken from 'amazon-cognito-identity-js/src/CognitoRefreshToken';
+import CognitoUserSession from 'amazon-cognito-identity-js/src/CognitoUserSession';
+import DateHelper from './DateHelper';
+import CognitoUserAttribute from 'amazon-cognito-identity-js/src/CognitoUserAttribute';
+import StorageHelper from 'amazon-cognito-identity-js/src/StorageHelper';
 
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
@@ -2597,6 +2604,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
     let cognitoUser_me = userPool.getCurrentUser(); 
+    console.log(cognitoUser_me)
     cognitoUser_me.getSession((err, session) => {
       if (err) {
         console.log(err)
