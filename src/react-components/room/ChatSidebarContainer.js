@@ -268,9 +268,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       <ChatInput
         id="chat-input"
         onKeyDown={onKeyDown}
-        onChange={e => 
-          e.target.value.replace(/</g, '').replace(/>/g, ''),
-          setMessage(e.target.value)}
+        onChange={e => setMessage(e.target.value.replace(/</g, '').replace(/>/g, ''))}
         placeholder={placeholder}
         value={message}
         afterInput={
