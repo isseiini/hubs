@@ -2621,8 +2621,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               Username: currentUserData["email"],
               Pool: userPool
             };
-            const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-            cognitoUser.signOut();
+            const cognitoUser2 = new myCognitouserclass(userData);
+            cognitoUser2.signOut();
             alert("ログアウトしました。")
           };
         });
