@@ -422,42 +422,42 @@ class myCognitouserclass extends CognitoUser{
           const refreshTokenKey = data.Item.refreshTokenKey;
           const clockDriftKey = data.Item.clockDriftKey;
       
-          const idToken = new CognitoIdToken({
+          var idToken = new CognitoIdToken({
             IdToken: idTokenKey,
           });
-          const accessToken = new CognitoAccessToken({
+          var accessToken = new CognitoAccessToken({
             AccessToken: accessTokenKey,
           });
-          const refreshToken = new CognitoRefreshToken({
+          var refreshToken = new CognitoRefreshToken({
             RefreshToken: refreshTokenKey,
           });
-          const clockDrift = parseInt(clockDriftKey, 0) || 0;
-      
-          const sessionData = {
-            IdToken: idToken,
-            AccessToken: accessToken,
-            RefreshToken: refreshToken,
-            ClockDrift: clockDrift,
-          };
-          const cachedSession = new CognitoUserSession(sessionData);
-      
-          if (cachedSession.isValid()) {
-            this.signInUserSession = cachedSession;
-            return callback(null, this.signInUserSession);
-          }
-      
-          if (!refreshToken.getToken()) {
-            return callback(
-              new Error('Cannot retrieve a new session. Please authenticate.'),
-              null
-            );
-          }
-      
-          this.refreshSession(refreshToken, callback, options.clientMetadata);
-          
-      
-          return undefined;
+          var clockDrift = parseInt(clockDriftKey, 0) || 0;
         }
+
+        const sessionData = {
+          IdToken: idToken,
+          AccessToken: accessToken,
+          RefreshToken: refreshToken,
+          ClockDrift: clockDrift,
+        };
+        const cachedSession = new CognitoUserSession(sessionData);
+    
+        if (cachedSession.isValid()) {
+          this.signInUserSession = cachedSession;
+          return callback(null, this.signInUserSession);
+        }
+    
+        if (!refreshToken.getToken()) {
+          return callback(
+            new Error('Cannot retrieve a new session. Please authenticate.'),
+            null
+          );
+        }
+    
+        this.refreshSession(refreshToken, callback, options.clientMetadata);
+        
+    
+        return undefined;
       });
     } else {
       return
