@@ -261,6 +261,7 @@ export default class HubChannel extends EventTarget {
 
   sendMessage = (body, type = "chat") => {
     if (!body) return;
+    body = body.replace(/</g, '').replace(/>/g, '');
     this.channel.push("message", { body, type });
   };
 
