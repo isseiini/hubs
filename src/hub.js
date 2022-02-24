@@ -1229,6 +1229,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("score-display").style.display = "none";
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
+    document.getElementById("Player_map").style.display = "none";
   } else {
     //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
   };
