@@ -486,8 +486,13 @@ AFRAME.registerComponent("pen", {
     return function(cursorPose, intersection) {
       if (cursorPose) {
         laserStartPosition.copy(cursorPose.position);
+        console.log("cursorPose.position")
+        console.log(cursorPose.position)
       } else {
         this.el.parentEl.object3D.getWorldPosition(laserStartPosition);
+        console.log("laserStartPosition")
+        console.log(laserStartPosition)
+        console.log(this.el.parentEl.object3D)
       }
 
       laserEndPosition.copy(intersection.point);
@@ -504,9 +509,9 @@ AFRAME.registerComponent("pen", {
       }
 
       if (!almostEquals(0.001, this.penLaserAttributes.laserOrigin, laserStartPosition)) {
-        this.penLaserAttributes.laserOrigin.x = 0//laserStartPosition.x;
-        this.penLaserAttributes.laserOrigin.y = 0//laserStartPosition.y;
-        this.penLaserAttributes.laserOrigin.z = 0//laserStartPosition.z;
+        this.penLaserAttributes.laserOrigin.x = laserStartPosition.x;
+        this.penLaserAttributes.laserOrigin.y = laserStartPosition.y;
+        this.penLaserAttributes.laserOrigin.z = laserStartPosition.z;
         this.penLaserAttributesUpdated = true;
       }
 
