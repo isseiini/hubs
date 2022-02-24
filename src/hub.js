@@ -1225,7 +1225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life-frame").style.display = "none";
     document.getElementById("score-display").style.display = "none"
   } else {
-    location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
+    //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
   };
 
   function get_current_Date() {
@@ -2635,16 +2635,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
-    const cognito_mine = userPool.getCurrentUser();
-    if (cognito_mine != null){
-      cognito_mine.getSession((err, session) => {
-        if (err) {
-          alert("ログインしてください。")
-        } else {
+    //const cognito_mine = userPool.getCurrentUser();
+    //if (cognito_mine != null){
+      //cognito_mine.getSession((err, session) => {
+        //if (err) {
+          //alert("ログインしてください。")
+        //} else {
           document.getElementById("hex-background").style.display = "none";
-        }
-      })
-    }
+        //}
+      //})
+    //}
   })
 
   document.getElementById("path-to-VRChat").addEventListener("click", function() {
