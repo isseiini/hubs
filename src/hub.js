@@ -1207,7 +1207,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userPool = new myCognitouserpoolclass(poolData);
 
   if (room_name == "kooky-passionate-safari") {
-    
+    document.getElementById("hex-background").style.display = "none";
+    document.getElementById("go-to-game").style.display = "none";
     const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
