@@ -11,6 +11,7 @@ import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 
 import { paths } from "../../systems/userinput/paths";
+import { getLastWorldPosition, getLastWorldQuaternion } from "../../utils/three-utils";
 
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
@@ -67,6 +68,7 @@ waitForDOMContentLoaded().then(() => {
     AirCanon = gltf;
     //AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
+  
 });
 
 AFRAME.registerComponent("aircanon-animation", {
@@ -105,9 +107,35 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loaderMixer.update(dt / 1000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
-    const aircanon_target = AFRAME.scenes[0].systems.userinput.get(paths.actions.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.leftHand.pose);
+    const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.leftHand.pose);
+    const aircanon_target = this._getIntersection(aircanon_target_cursor);
     this.AirCanonMesh.lookAt(aircanon_target);
-  }
+  },
+
+  _getIntersection: (() => {
+    const rawIntersections = [];
+    const worldQuaternion = new THREE.Quaternion();
+    return function(cursorPose) {
+      rawIntersections.length = 0;
+
+      if (aircanon_target) {
+        this.raycaster.ray.origin.copy(cursorPose.position);
+        this.raycaster.ray.direction.copy(cursorPose.direction);
+      } else if (this.grabberId !== null) {
+        getLastWorldPosition(this.el.parentEl.object3D, this.raycaster.ray.origin);
+        getLastWorldQuaternion(this.el.parentEl.object3D, worldQuaternion);
+        this.raycaster.ray.direction.set(0, -1, 0);
+        this.raycaster.ray.direction.applyQuaternion(worldQuaternion);
+      }
+
+      if (this.grabberId !== null) {
+        this.raycaster.intersectObjects(this.targets, true, rawIntersections);
+        return rawIntersections[0];
+      }
+      
+      return null;
+    };
+  })()
 });
 
 AFRAME.registerComponent("pen-laser", {
