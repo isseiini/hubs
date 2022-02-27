@@ -294,7 +294,7 @@ class myCognitouserclass extends CognitoUser{
 		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
 		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
 		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-    this.signInUserSession = signInUserSession;
+    this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
