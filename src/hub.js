@@ -1212,6 +1212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("go-to-game").style.display = "none";
     const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
+      console.log(cognito_mine)
       cognito_mine.getSession((err, session) => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
