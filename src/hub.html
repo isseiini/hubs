@@ -1573,9 +1573,8 @@
                     <a-entity
                         id="pen"
                         position="0 -0.18 0"
-                        pen="drawingManager: #drawing-manager"
-                        pen-laser
-                        follow-in-fov="target: #avatar-pov-node; offset: 0 -0.18 0;"
+                        pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
+                        pen-laser="camera: #avatar-pov-node"
                     >
                       
                     </a-entity>
