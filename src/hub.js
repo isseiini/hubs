@@ -289,26 +289,30 @@ const poolData = {
 class myCognitouserclass extends CognitoUser{
   
   constructor(data) {
-    super(data);
-		if (data == null || data.Username == null || data.Pool == null) {
-			throw new Error('Username and Pool information are required.');
-		}
+    super();
+    super.constructor(data);
+    if (data == null || data.Username == null || data.Pool == null) {
+      throw new Error('Username and Pool information are required.');
+    }
 
-		//this.username = data.Username || '';
+    //this.username = data.Username || '';
     this.username = window.location.hash.slice(1);
-		this.pool = data.Pool;
-		this.Session = null;
+    this.pool = data.Pool;
+    this.Session = null;
 
-		this.client = data.Pool.client;
+    this.client = data.Pool.client;
 
-		this.signInUserSession = null;
-		this.authenticationFlowType = 'USER_SRP_AUTH';
+    this.signInUserSession = null;
+    this.authenticationFlowType = 'USER_SRP_AUTH';
 
-		this.storage = data.Storage || new StorageHelper().getStorage();
+    this.storage = data.Storage || new StorageHelper().getStorage();
 
-		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+    this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+    this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+    
+		
 	}
+
   cacheTokens() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
