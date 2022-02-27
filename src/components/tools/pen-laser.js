@@ -144,7 +144,8 @@ AFRAME.registerComponent("pen-laser", {
 
         if (!this.data.laserInHand) {
           // On 2d mode, shift downards
-          origin.y = origin.y - 0.07;
+          origin.y = origin.y - 0.09;
+          origin.z = origin.z - 0.1;
         }
 
         target.copy(this.data.laserTarget);
