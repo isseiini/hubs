@@ -362,12 +362,6 @@ function registerNetworkSchemas() {
       {
         selector: "#pen",
         component: "pen-laser",
-        property: "LaserOrigin",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
         property: "laserTarget",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
       }
