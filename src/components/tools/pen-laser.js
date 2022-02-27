@@ -43,7 +43,8 @@ AFRAME.registerComponent("pen-laser", {
   init() {
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
+    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06);
+    this.AirCanonMesh.position.set(0, 1, 0.3)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
@@ -169,7 +170,7 @@ AFRAME.registerComponent("pen-laser", {
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
         ///this.AirCanonMesh.position.copy(origin);
-        this.AirCanonMesh.position.set(origin.x, origin.y, (origin.z - 0.2))
+        //this.AirCanonMesh.position.set(origin.x, origin.y, (origin.z - 0.2))
         this.AirCanonMesh.lookAt(target);
         ///this.AirCanonMesh.matrixNeedsUpdate = true;
         this.laser.scale.set(1, 1, origin.distanceTo(target));
