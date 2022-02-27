@@ -85,6 +85,17 @@ AFRAME.registerComponent("aircanon-animation", {
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
+    try {
+      NAF.utils
+        .getNetworkedEntity(this.el)
+        .then(networkedEl => {
+          this.networkedEl = networkedEl;
+        })
+        .catch(() => {}); //ignore exception, entity might not be networked
+    } catch (e) {
+      // NAF may not exist on scene landing page
+    }
+
     AirCanonClip = this.loadingClip;
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
