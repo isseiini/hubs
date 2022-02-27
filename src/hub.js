@@ -294,7 +294,7 @@ class myCognitouserclass extends CognitoUser{
 		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
 		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
 		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-
+    this.signInUserSession = this.signInUserSession;
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -2688,7 +2688,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       }else{
         data3.Items.sort((a, b) => b.Sum - a.Sum);
-        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL + window.location.hash;
         if (confirm('マッチしました。対戦ワールドへ移動します。')) {
           location.href = goal_url;
         } else {
