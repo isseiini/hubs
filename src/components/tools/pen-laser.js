@@ -108,31 +108,11 @@ AFRAME.registerComponent("aircanon-animation", {
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
     const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.leftHand.pose);
-    const aircanon_target = this._getIntersection(aircanon_target_cursor);
-    const laserEndPosition = new THREE.Vector3();
-    laserEndPosition.copy(aircanon_target.point);
-    this.AirCanonMesh.lookAt(laserEndPosition);
-  },
-
-  _getIntersection: (() => {
-    const rawIntersections = [];
-    const worldQuaternion = new THREE.Quaternion();
-    return function(cursorPose) {
-      rawIntersections.length = 0;
-
-      if (aircanon_target) {
-        this.raycaster.ray.origin.copy(cursorPose.position);
-        this.raycaster.ray.direction.copy(cursorPose.direction);
-      }
-
-      if (this.grabberId !== null) {
-        this.raycaster.intersectObjects(this.targets, true, rawIntersections);
-        return rawIntersections[0];
-      }
-      
-      return null;
-    };
-  })()
+    //const aircanon_target = this._getIntersection(aircanon_target_cursor);
+    //const laserEndPosition = new THREE.Vector3();
+    //laserEndPosition.copy(aircanon_target.point);
+    this.AirCanonMesh.direction.copy(aircanon_target_cursor.direction)//lookAt(laserEndPosition);
+  }
 });
 
 AFRAME.registerComponent("pen-laser", {
