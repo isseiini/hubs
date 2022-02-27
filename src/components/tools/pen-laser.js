@@ -132,7 +132,7 @@ AFRAME.registerComponent("aircanon-animation", {
     const laserEndPosition = new THREE.Vector3();
     laserEndPosition.copy(aircanon_target.point);
     this.AirCanonMesh.lookAt(laserEndPosition);*/
-    this.AirCanonMesh.rotation.set(aircanon_target_cursor.direction.x, aircanon_target_cursor.direction.y, aircanon_target_cursor.direction.z)
+    this.AirCanonMesh.direction.set(aircanon_target_cursor.direction.x, aircanon_target_cursor.direction.y, aircanon_target_cursor.direction.z)
   }
 });
 
