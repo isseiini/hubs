@@ -1573,7 +1573,7 @@
                 
                     <a-entity
                         id="pen"
-                        pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
+                        pen="camera: #avatar-pov-node2; drawingManager: #drawing-manager"
                         pen-laser
                         position="0 -0.18 0"
                     >
@@ -2170,6 +2170,17 @@
                     teleporter="start: /actions/startTeleport; confirm: /actions/stopTeleport; collisionEntities: [nav-mesh];"
                 ></a-entity>
                 <a-entity id="stats" stats-plus="false" position="0 0 -1"></a-entity>
+            </a-entity>
+
+            <a-entity
+                id="avatar-pov-node2"
+                class="camera"
+                personal-space-bubble="radius: 0.4;"
+                rotation
+                pitch-yaw-rotator
+                set-yxz-order
+                position="0 1.6 0.2"
+            >
             </a-entity>
 
             <a-entity
