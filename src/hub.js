@@ -2613,7 +2613,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
     let cognitoUser_me = userPool.getCurrentUser(); 
-    console.log(cognitoUser_me)
+    console.log(userPool)
     cognitoUser_me.getSession((err, session) => {
       if (err) {
         console.log(err)
