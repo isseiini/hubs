@@ -280,7 +280,7 @@ AFRAME.registerComponent("pen", {
 
     this.penLaserAttributesUpdated = false;
     this.penLaserAttributes = {
-      color: "#FF0033",
+      color: "transparent",
       laserVisible: false,
       laserInHand: false,
       laserOrigin: { x: 0, y: 0, z: 0 },
