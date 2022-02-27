@@ -287,6 +287,25 @@ const poolData = {
 };
 
 class myCognitouserclass extends CognitoUser{
+  constructor(data) {
+		if (data == null || data.Username == null || data.Pool == null) {
+			throw new Error('Username and Pool information are required.');
+		}
+
+		this.username = data.Username || '';
+		this.pool = data.Pool;
+		this.Session = null;
+
+		this.client = data.Pool.client;
+
+		this.signInUserSession = null;
+		this.authenticationFlowType = 'USER_SRP_AUTH';
+
+		this.storage = data.Storage || new StorageHelper().getStorage();
+
+		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+	}
   cacheTokens() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
@@ -294,7 +313,7 @@ class myCognitouserclass extends CognitoUser{
 		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
 		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
 		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-    this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
+    //this.signInUserSession = new myCognitouserclass.signInUserSession();
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
