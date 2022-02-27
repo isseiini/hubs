@@ -86,7 +86,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.setObject3D("mesh2", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-    console.log(this.el)
+    console.log(this.AirCanonMesh)
 
     try {
       NAF.utils
