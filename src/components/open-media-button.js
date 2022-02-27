@@ -35,7 +35,6 @@ AFRAME.registerComponent("open-media-button", {
             }
           }
         }
-        console.log(url)
         if(url.hash == "#coupon") {
           label = "クーポンを取得する";
           this.label.setAttribute("text", "value", label);
