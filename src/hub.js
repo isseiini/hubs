@@ -171,9 +171,9 @@ import { platformUnsupported } from "./support";
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
 var current_url = (location.protocol + '//' + location.hostname + location.pathname).split("/");
-console.log(current_url)
-var room_name = current_url[current_url.length - 1];
 
+var room_name = current_url[current_url.length - 1];
+console.log(room_name)
 document.addEventListener('keyup', event => {
   if (event.code === 'KeyO') {
     text_chat_data.count();
@@ -743,7 +743,8 @@ class myCognitouserpoolclass extends CognitoUserPool {
           if (lastAuthUser) {
             const cognitoUser = {
               Username: lastAuthUser,
-              Pool: userPool
+              Pool: userPool,
+              Storage: this.storage
             };
 
             return new myCognitouserclass(cognitoUser);
