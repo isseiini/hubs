@@ -1230,7 +1230,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
-          location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
+          //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
         } else {
           document.getElementById("hex-background").style.display = "none";
           document.getElementById("go-to-game").style.display = "none";
