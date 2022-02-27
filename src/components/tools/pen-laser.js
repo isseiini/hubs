@@ -111,7 +111,7 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loaderMixer.update(dt / 1000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
-    const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.leftHand.pose);
+    const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.right.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.left.pose);
     const aircanon_target = this._getIntersection(aircanon_target_cursor);
     const laserEndPosition = new THREE.Vector3();
     laserEndPosition.copy(aircanon_target.point);
