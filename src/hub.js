@@ -504,7 +504,6 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheTokens() {
-    this.signInUserSession = null;
     //this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
@@ -733,6 +732,23 @@ class myCognitouserclass extends CognitoUser{
 	}
 };
 class myCognitouserpoolclass extends CognitoUserPool {
+  constructor(data) {
+    super(data);
+
+		this.username = data.Username || '';
+		this.pool = data.Pool;
+		this.Session = null;
+
+		this.client = data.Pool.client;
+
+		this.signInUserSession = null;
+		this.authenticationFlowType = 'USER_SRP_AUTH';
+
+		this.storage = data.Storage || new StorageHelper().getStorage();
+
+		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+	}
   getCurrentUser() {
     this.username = window.location.hash.slice(1);
   
