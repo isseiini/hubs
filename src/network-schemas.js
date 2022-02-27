@@ -62,6 +62,11 @@ function registerNetworkSchemas() {
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
       {
+        selector: ".sanshakudama",
+        component: "action",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
+      },
+      {
         selector: ".left-controller",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
