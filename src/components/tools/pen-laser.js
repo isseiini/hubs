@@ -114,7 +114,6 @@ AFRAME.registerComponent("aircanon-animation", {
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
     const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.right.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.left.pose);
-    console.log(aircanon_target_cursor);
     /*const aircanon_target = this._getIntersection(aircanon_target_cursor);
     console.log(aircanon_target)
     const laserEndPosition = new THREE.Vector3();
