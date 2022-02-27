@@ -56,6 +56,10 @@ AFRAME.registerComponent("pen-laser", {
         AirCanonEnvMap = currentEnivronmentMap2;
       }
     }
+
+    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+      this.targetEl = networkedEl;
+    });
     
     AirCanonClip = this.loadingClip;
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;

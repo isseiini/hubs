@@ -20,7 +20,6 @@ AFRAME.registerComponent("open-media-button", {
 
       if (visible) {
         let label = "リンクを開く";
-        let label2 = "クーポンを取得する";
         const url = new URL(src);
         if (!this.data.onlyOpenLink) {
           let hubId;
@@ -38,7 +37,8 @@ AFRAME.registerComponent("open-media-button", {
         }
         console.log(url)
         if(url.hash == "#coupon") {
-          this.label.setAttribute("text", "value", label2);
+          label = "クーポンを取得する";
+          this.label.setAttribute("text", "value", label);
         } else {
           this.label.setAttribute("text", "value", label);
         }

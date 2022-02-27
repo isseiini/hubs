@@ -291,9 +291,7 @@ class myCognitouserclass extends CognitoUser{
   constructor(data) {
     super();
     super.constructor(data);
-    if (data == null || data.Username == null || data.Pool == null) {
-      throw new Error('Username and Pool information are required.');
-    }
+    
 
     //this.username = data.Username || '';
     this.username = window.location.hash.slice(1);
