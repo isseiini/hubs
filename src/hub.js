@@ -287,47 +287,6 @@ const poolData = {
 };
 
 class myCognitouserclass extends CognitoUser{
-  
-  
-  cacheTokens() {
-    this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
-		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
-		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
-		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
-		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
-		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-    //this.signInUserSession = new myCognitouserclass.signInUserSession();
-    var params_tokens = {
-      TableName: 'cognito-jwt',
-      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
-      },
-      ExpressionAttributeNames: {
-        '#idTokenKey': 'idTokenKey',
-        '#accessTokenKey': 'accessTokenKey',
-        '#refreshTokenKey': 'refreshTokenKey',
-        '#clockDriftKey': 'clockDriftKey',
-        '#lastUserKey': 'lastUserKey'
-      },
-      ExpressionAttributeValues: {
-        ':newidTokenKey': this.signInUserSession.getIdToken().getJwtToken(),
-        ':newaccessTokenKey': this.signInUserSession.getAccessToken().getJwtToken(),
-        ':newrefreshTokenKey': this.signInUserSession.getRefreshToken().getToken(),
-        ':newclockDriftKey': `${this.signInUserSession.getClockDrift()}`,
-        ':newlastUserKey': this.username
-      },
-      UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
-    };
-
-    docClient.update(params_tokens, function(err, data2){
-      if(err){
-        console.log('error');
-      }else{
-        console.log('success');
-      }
-    });
-	}
 
   cacheDeviceKeyAndPassword() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
@@ -542,6 +501,47 @@ class myCognitouserclass extends CognitoUser{
       return
     }
     
+	}
+
+  cacheTokens() {
+    //this.signInUserSession = null;
+    //this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
+		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
+		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
+		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
+		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
+    //this.signInUserSession = new myCognitouserclass.signInUserSession();
+    var params_tokens = {
+      TableName: 'cognito-jwt',
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#idTokenKey': 'idTokenKey',
+        '#accessTokenKey': 'accessTokenKey',
+        '#refreshTokenKey': 'refreshTokenKey',
+        '#clockDriftKey': 'clockDriftKey',
+        '#lastUserKey': 'lastUserKey'
+      },
+      ExpressionAttributeValues: {
+        ':newidTokenKey': this.signInUserSession.getIdToken().getJwtToken(),
+        ':newaccessTokenKey': this.signInUserSession.getAccessToken().getJwtToken(),
+        ':newrefreshTokenKey': this.signInUserSession.getRefreshToken().getToken(),
+        ':newclockDriftKey': `${this.signInUserSession.getClockDrift()}`,
+        ':newlastUserKey': this.username
+      },
+      UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
+    };
+
+    docClient.update(params_tokens, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
 	}
 
   authenticateUserDefaultAuth(authDetails, callback) {
