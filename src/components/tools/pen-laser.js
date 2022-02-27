@@ -32,7 +32,7 @@ AFRAME.registerComponent("pen-laser", {
     color: { type: "color", default: "#FF0033" },
     laserVisible: { default: true },
     laserInHand: { default: false },
-    laserOrigin: { default: { x: -0.35, y: 0.27, z: -0.55 } },
+    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: "false"}
@@ -127,7 +127,7 @@ AFRAME.registerComponent("pen-laser", {
   })(),
 
   tick: (() => {
-    const origin = new THREE.Vector3(-0.35, 0.27, -0.55);
+    const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
     return function(t, dt) {
       if (this.loaderMixer && this.data.action == "true") {
