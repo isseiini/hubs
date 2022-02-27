@@ -419,6 +419,7 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
+          console.log(data.Item)
           const idTokenKey = data.Item.idTokenKey;
           const accessTokenKey = data.Item.accessTokenKey;
           const refreshTokenKey = data.Item.refreshTokenKey;
