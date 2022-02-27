@@ -740,14 +740,16 @@ class myCognitouserpoolclass extends CognitoUserPool {
           console.log(err);
         }else{
           const lastAuthUser = data.Item.lastUserKey;
+          console.log("lastAuthUser" + lastAuthUser);
           const userPool = new myCognitouserpoolclass(poolData);
+          console.log("userPool" + userPool);
           if (lastAuthUser) {
             const cognitoUser = {
               Username: lastAuthUser,
               Pool: userPool,
               Storage: this.storage
             };
-
+            console.log("cognitouser" + cognitoUser);
             return new myCognitouserclass(cognitoUser);
           }
 
