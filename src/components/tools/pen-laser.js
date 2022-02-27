@@ -134,7 +134,11 @@ AFRAME.registerComponent("aircanon-animation", {
     this.AirCanonMesh.lookAt(laserEndPosition);*/
     //this.AirCanonMesh.direction.set(aircanon_target_cursor.direction.x, aircanon_target_cursor.direction.y, aircanon_target_cursor.direction.z)
     const aircanon_target = document.getElementById("pen");
-    console.log(aircanon_target)
+    if(aircanon_target) {
+      console.log(aircanon_target.el)
+      console.log(aircanon_target.el.laserTip)
+    }
+    
     //this.el.object3D.lookAt(aircanon_target)
   }
 });
