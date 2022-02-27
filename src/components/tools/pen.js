@@ -100,16 +100,9 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
-    try {
-      NAF.utils
-        .getNetworkedEntity(this.el)
-        .then(networkedEl => {
-          this.networkedEl = networkedEl;
-        })
-        .catch(() => {}); //ignore exception, entity might not be networked
-    } catch (e) {
-      // NAF may not exist on scene landing page
-    }
+    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+      this.targetEl = networkedEl;
+    });
   },
 
   update() {
