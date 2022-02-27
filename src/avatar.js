@@ -84,7 +84,7 @@ class AvatarPage extends React.Component {
       return (
         <div className={styles.avatarLanding}>
           <div className={classNames([styles.box, styles.darkened])}>
-            <FormattedMessage id="avatar-page.loading" defaultMessage="Loading" />
+            <FormattedMessage id="avatar-page.loading" defaultMessage="読み込んでいます" />
           </div>
         </div>
       );

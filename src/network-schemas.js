@@ -67,6 +67,21 @@ function registerNetworkSchemas() {
         requiresNetworkUpdate: vectorRequiresUpdate(0.01)
       },
       {
+        selector: ".aircanon",
+        component: "position",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
+      },
+      {
+        selector: ".aircanon",
+        component: "rotation",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.5)
+      },
+      {
+        selector: ".aircanon",
+        component: "action",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
+      },
+      {
         selector: ".left-controller",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
