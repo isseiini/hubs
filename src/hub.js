@@ -287,7 +287,9 @@ const poolData = {
 };
 
 class myCognitouserclass extends CognitoUser{
+  
   constructor(data) {
+    super(data);
 		if (data == null || data.Username == null || data.Pool == null) {
 			throw new Error('Username and Pool information are required.');
 		}

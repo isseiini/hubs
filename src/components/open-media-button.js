@@ -19,7 +19,9 @@ AFRAME.registerComponent("open-media-button", {
       this.el.object3D.visible = !!visible;
 
       if (visible) {
-        let label = "open link";
+        let label = "リンクを開く";
+        let label2 = "クーポンを取得する";
+        const url = new URL(src);
         if (!this.data.onlyOpenLink) {
           let hubId;
           if (await isLocalHubsAvatarUrl(src)) {
@@ -27,7 +29,6 @@ AFRAME.registerComponent("open-media-button", {
           } else if ((await isLocalHubsSceneUrl(src)) && mayChangeScene) {
             label = "use scene";
           } else if ((hubId = await isHubsRoomUrl(src))) {
-            const url = new URL(src);
             if (url.hash && APP.hub.hub_id === hubId) {
               label = "go to";
             } else {
@@ -35,7 +36,13 @@ AFRAME.registerComponent("open-media-button", {
             }
           }
         }
-        this.label.setAttribute("text", "value", label);
+        console.log(url)
+        if(url.hash == "#coupon") {
+          this.label.setAttribute("text", "value", label2);
+        } else {
+          this.label.setAttribute("text", "value", label);
+        }
+        
       }
     };
 
