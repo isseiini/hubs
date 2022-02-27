@@ -130,25 +130,7 @@ AFRAME.registerComponent("aircanon-animation", {
     laserEndPosition.copy(aircanon_target.point);
     this.AirCanonMesh.lookAt(laserEndPosition);*/
     this.AirCanonMesh.rotation.set(aircanon_target_cursor.direction.x, aircanon_target_cursor.direction.y, aircanon_target_cursor.direction.z)
-  },
-
-  _getIntersection: (() => {
-    const rawIntersections = [];
-    const worldQuaternion = new THREE.Quaternion();
-    return function(cursorPose) {
-      rawIntersections.length = 0;
-
-      this.raycaster.ray.origin.copy(cursorPose.position);
-      this.raycaster.ray.direction.copy(cursorPose.direction);
-
-      if (this.grabberId !== null) {
-        this.raycaster.intersectObjects(this.targets, true, rawIntersections);
-        return rawIntersections[0];
-      }
-      
-      return null;
-    };
-  })()
+  }
 });
 
 AFRAME.registerComponent("pen-laser", {
