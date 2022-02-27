@@ -89,6 +89,10 @@ AFRAME.registerComponent("aircanon-animation", {
     AirCanonClip = this.loadingClip;
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
+    this.raycaster = new THREE.Raycaster();
+    this.raycaster.firstHitOnly = true;
+    this.raycaster.far = 1000;
+    this.raycaster.near = 0.01;
   },
 
   update() {
