@@ -106,7 +106,7 @@ AFRAME.registerComponent("aircanon-animation", {
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
     const aircanon_target = AFRAME.scenes[0].systems.userinput.get(paths.actions.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.leftHand.pose);
-    AirCanonMesh.lookAt(aircanon_target);
+    this.AirCanonMesh.lookAt(aircanon_target);
   }
 });
 
