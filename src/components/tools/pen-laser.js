@@ -13,10 +13,12 @@ import { cloneObject3D } from "../../utils/three-utils";
 import { paths } from "../../systems/userinput/paths";
 import { getLastWorldPosition, getLastWorldQuaternion } from "../../utils/three-utils";
 
+import { App } from "../../App";
+
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
-let AirCanonEnvMap;
+
 let AirCanon;
 
 var AirCanonClip;
@@ -80,10 +82,11 @@ AFRAME.registerComponent("aircanon-animation", {
     //this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
+    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06);
     this.el.setObject3D("mesh2", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+    console.log(this.el)
 
     try {
       NAF.utils
@@ -292,7 +295,6 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
-    this.el.sceneEl.removeObject3D("mesh");
   }
 
   /*Shoot () {
