@@ -81,7 +81,7 @@ AFRAME.registerComponent("aircanon-animation", {
     console.log(this.aircanon_target);
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    ///this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
+    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
