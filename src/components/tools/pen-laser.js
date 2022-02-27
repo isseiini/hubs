@@ -10,138 +10,24 @@ import AirCanonSrc from "../../assets/models/aircanon_withgunfire_rotate2.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 
-import { paths } from "../../systems/userinput/paths";
-import { getLastWorldPosition, getLastWorldQuaternion } from "../../utils/three-utils";
-
-import { App } from "../../App";
-
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
-
+let AirCanonEnvMap;
 let AirCanon;
 
 var AirCanonClip;
 
 var ShootingSfx;
 
-const pathsMap = {
-  "player-right-controller": {
-    startDrawing: paths.actions.rightHand.startDrawing,
-    stopDrawing: paths.actions.rightHand.stopDrawing,
-    undoDrawing: paths.actions.rightHand.undoDrawing,
-    switchDrawMode: paths.actions.rightHand.switchDrawMode,
-    penNextColor: paths.actions.rightHand.penNextColor,
-    penPrevColor: paths.actions.rightHand.penPrevColor,
-    scalePenTip: paths.actions.rightHand.scalePenTip
-  },
-  "player-left-controller": {
-    startDrawing: paths.actions.leftHand.startDrawing,
-    stopDrawing: paths.actions.leftHand.stopDrawing,
-    undoDrawing: paths.actions.leftHand.undoDrawing,
-    switchDrawMode: paths.actions.leftHand.switchDrawMode,
-    penNextColor: paths.actions.leftHand.penNextColor,
-    penPrevColor: paths.actions.leftHand.penPrevColor,
-    scalePenTip: paths.actions.leftHand.scalePenTip
-  },
-  "right-cursor": {
-    pose: paths.actions.cursor.right.pose,
-    startDrawing: paths.actions.cursor.right.startDrawing,
-    stopDrawing: paths.actions.cursor.right.stopDrawing,
-    undoDrawing: paths.actions.cursor.right.undoDrawing,
-    penNextColor: paths.actions.cursor.right.penNextColor,
-    penPrevColor: paths.actions.cursor.right.penPrevColor,
-    scalePenTip: paths.actions.cursor.right.scalePenTip
-  },
-  "left-cursor": {
-    pose: paths.actions.cursor.left.pose,
-    startDrawing: paths.actions.cursor.left.startDrawing,
-    stopDrawing: paths.actions.cursor.left.stopDrawing,
-    undoDrawing: paths.actions.cursor.left.undoDrawing,
-    penNextColor: paths.actions.cursor.left.penNextColor,
-    penPrevColor: paths.actions.cursor.left.penPrevColor,
-    scalePenTip: paths.actions.cursor.left.scalePenTip
-  }
-};
-
-
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
     //AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
-  
 });
 
-AFRAME.registerComponent("aircanon-animation", {
-  schema: {
-    action: { default : "false" }
-  },
 
-  init() {
-    //this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
-    //this.Shoot = this.Shoot.bind(this);
-    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.2, 0.2, 0.2);
-    this.el.setObject3D("mesh2", this.AirCanonMesh);
-    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-    console.log(this.AirCanonMesh)
-
-    try {
-      NAF.utils
-        .getNetworkedEntity(this.el)
-        .then(networkedEl => {
-          this.networkedEl = networkedEl;
-        })
-        .catch(() => {}); //ignore exception, entity might not be networked
-    } catch (e) {
-      // NAF may not exist on scene landing page
-    }
-
-    AirCanonClip = this.loadingClip;
-    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-
-    this.raycaster = new THREE.Raycaster();
-    this.raycaster.firstHitOnly = true;
-    this.raycaster.far = 1000;
-    this.raycaster.near = 0.01;
-
-    this.targets = [];
-  },
-
-  update() {
-    if (this.data.action == "true") {
-      AirCanonClip.play();
-      AirCanonClip.reset();
-    } else {
-      //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
-      //current_animation.reset();
-      AirCanonClip.stop();
-    }
-  },
-
-  tick(t, dt) {
-    if (this.loaderMixer && this.data.action == "true") {
-      this.loaderMixer.update(dt / 1000);
-      ShootingSfx.playSoundOneShot(SOUND_SHOOT);
-    }
-    const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.right.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.cursor.left.pose);
-    /*const aircanon_target = this._getIntersection(aircanon_target_cursor);
-    console.log(aircanon_target)
-    const laserEndPosition = new THREE.Vector3();
-    laserEndPosition.copy(aircanon_target.point);
-    this.AirCanonMesh.lookAt(laserEndPosition);*/
-    //this.AirCanonMesh.direction.set(aircanon_target_cursor.direction.x, aircanon_target_cursor.direction.y, aircanon_target_cursor.direction.z)
-    const aircanon_target = document.getElementById("pen");
-    if(aircanon_target) {
-      console.log(aircanon_target.children)
-      console.log(aircanon_target.attributes)
-    }
-    
-    //this.el.object3D.lookAt(aircanon_target)
-  }
-});
 
 AFRAME.registerComponent("pen-laser", {
   schema: {
@@ -151,26 +37,28 @@ AFRAME.registerComponent("pen-laser", {
     laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
-    ///action: {default: "false"}
+    action: {default: "false"}
   },
 
   init() {
     //this.Shoot = this.Shoot.bind(this);
-    /*this.AirCanonMesh = cloneObject3D(AirCanon.scene);
+    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);*/
+    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
     const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
-    /*if (environmentMapComponent2) {
+    if (environmentMapComponent2) {
       const currentEnivronmentMap2 = environmentMapComponent2.environmentMap;
-     
-      environmentMapComponent2.applyEnvironmentMap(this.AirCanonMesh);
-    }*/
+      if (AirCanonEnvMap !== currentEnivronmentMap2) {
+        environmentMapComponent2.applyEnvironmentMap(this.AirCanonMesh);
+        AirCanonEnvMap = currentEnivronmentMap2;
+      }
+    }
     
-    /*AirCanonClip = this.loadingClip;
-    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;*/
+    AirCanonClip = this.loadingClip;
+    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
     const quality = window.APP.store.materialQualitySetting;
@@ -190,7 +78,7 @@ AFRAME.registerComponent("pen-laser", {
     if (environmentMapComponent) {
       environmentMapComponent.applyEnvironmentMap(this.laser);
       environmentMapComponent.applyEnvironmentMap(this.laserTip);
-      ///environmentMapComponent.applyEnvironmentMap(this.AirCanonMesh);
+      environmentMapComponent.applyEnvironmentMap(this.AirCanonMesh);
     }
 
     //prevents the line from being a raycast target for the cursor
@@ -208,14 +96,14 @@ AFRAME.registerComponent("pen-laser", {
     const targetBufferPosition = new THREE.Vector3();
 
     return function(prevData) {
-      /*if (this.data.action == "true") {
+      if (this.data.action == "true") {
         AirCanonClip.play();
         AirCanonClip.reset();
       } else {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         //current_animation.reset();
         AirCanonClip.stop();
-      }*/
+      }
 
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
@@ -244,10 +132,10 @@ AFRAME.registerComponent("pen-laser", {
     const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
     return function(t, dt) {
-      /*if (this.loaderMixer && this.data.action == "true") {
+      if (this.loaderMixer && this.data.action == "true") {
         this.loaderMixer.update(dt / 1000);
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
-      }*/
+      }
 
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
@@ -258,7 +146,8 @@ AFRAME.registerComponent("pen-laser", {
 
         if (!this.data.laserInHand) {
           // On 2d mode, shift downards
-          origin.y = origin.y - 0.09;
+          origin.y = origin.y - 0.07;
+          //origin.z = origin.z - 0.1;
         }
 
         target.copy(this.data.laserTarget);
@@ -279,9 +168,9 @@ AFRAME.registerComponent("pen-laser", {
         origin.z = origin.z - 0.17;*/
         this.laser.position.copy(origin);
         this.laser.lookAt(target);
-        /*this.AirCanonMesh.position.copy(origin);
+        ///this.AirCanonMesh.position.copy(origin);
         this.AirCanonMesh.lookAt(target);
-        this.AirCanonMesh.matrixNeedsUpdate = true;*/
+        ///this.AirCanonMesh.matrixNeedsUpdate = true;
         this.laser.scale.set(1, 1, origin.distanceTo(target));
         this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
@@ -302,6 +191,7 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+    this.el.sceneEl.removeObject3D("mesh");
   }
 
   /*Shoot () {
