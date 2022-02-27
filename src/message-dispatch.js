@@ -94,8 +94,8 @@ export default class MessageDispatch extends EventTarget {
       HanabiAction.emit("true");
 
       const scene = document.querySelector("a-scene");
-      const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-      waypointSystem.moveToSpawnPoint();
+      //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+      //waypointSystem.moveToSpawnPoint();
 
       var hit_target2 = "_Red_+1";
       var event3 = new Event('change');
