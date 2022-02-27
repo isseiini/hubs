@@ -22,6 +22,44 @@ var AirCanonClip;
 
 var ShootingSfx;
 
+const pathsMap = {
+  "player-right-controller": {
+    startDrawing: paths.actions.rightHand.startDrawing,
+    stopDrawing: paths.actions.rightHand.stopDrawing,
+    undoDrawing: paths.actions.rightHand.undoDrawing,
+    switchDrawMode: paths.actions.rightHand.switchDrawMode,
+    penNextColor: paths.actions.rightHand.penNextColor,
+    penPrevColor: paths.actions.rightHand.penPrevColor,
+    scalePenTip: paths.actions.rightHand.scalePenTip
+  },
+  "player-left-controller": {
+    startDrawing: paths.actions.leftHand.startDrawing,
+    stopDrawing: paths.actions.leftHand.stopDrawing,
+    undoDrawing: paths.actions.leftHand.undoDrawing,
+    switchDrawMode: paths.actions.leftHand.switchDrawMode,
+    penNextColor: paths.actions.leftHand.penNextColor,
+    penPrevColor: paths.actions.leftHand.penPrevColor,
+    scalePenTip: paths.actions.leftHand.scalePenTip
+  },
+  "right-cursor": {
+    pose: paths.actions.cursor.right.pose,
+    startDrawing: paths.actions.cursor.right.startDrawing,
+    stopDrawing: paths.actions.cursor.right.stopDrawing,
+    undoDrawing: paths.actions.cursor.right.undoDrawing,
+    penNextColor: paths.actions.cursor.right.penNextColor,
+    penPrevColor: paths.actions.cursor.right.penPrevColor,
+    scalePenTip: paths.actions.cursor.right.scalePenTip
+  },
+  "left-cursor": {
+    pose: paths.actions.cursor.left.pose,
+    startDrawing: paths.actions.cursor.left.startDrawing,
+    stopDrawing: paths.actions.cursor.left.stopDrawing,
+    undoDrawing: paths.actions.cursor.left.undoDrawing,
+    penNextColor: paths.actions.cursor.left.penNextColor,
+    penPrevColor: paths.actions.cursor.left.penPrevColor,
+    scalePenTip: paths.actions.cursor.left.scalePenTip
+  }
+};
 
 
 waitForDOMContentLoaded().then(() => {
