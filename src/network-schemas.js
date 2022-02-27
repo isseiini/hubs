@@ -327,6 +327,7 @@ function registerNetworkSchemas() {
         component: "scale",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
       },
+      "media-loader",
       {
         selector: "#pen",
         component: "pen",
