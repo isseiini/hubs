@@ -255,6 +255,7 @@ import Client from "amazon-cognito-identity-js/src/Client";
 
 import CognitoUserAttribute from 'amazon-cognito-identity-js/src/CognitoUserAttribute';
 import StorageHelper from 'amazon-cognito-identity-js/src/StorageHelper';
+import { string } from "prop-types";
 
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
@@ -287,12 +288,12 @@ const poolData = {
 
 class myCognitouserclass extends CognitoUser{
   cacheTokens() {
-		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
 		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
 		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
 		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
-		const lastUserKey = `${keyPrefix}.LastAuthUser`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
 
     var params_tokens = {
       TableName: 'cognito-jwt',
@@ -307,11 +308,11 @@ class myCognitouserclass extends CognitoUser{
         '#lastUserKey': 'lastUserKey'
       },
       ExpressionAttributeValues: {
-        ':newidTokenKey': idTokenKey,
-        ':newaccessTokenKey': accessTokenKey,
-        ':newrefreshTokenKey': refreshTokenKey,
-        ':newclockDriftKey': clockDriftKey,
-        ':newlastUserKey': lastUserKey
+        ':newidTokenKey': this.signInUserSession.getIdToken().getJwtToken(),
+        ':newaccessTokenKey': this.signInUserSession.getAccessToken().getJwtToken(),
+        ':newrefreshTokenKey': this.signInUserSession.getRefreshToken().getToken(),
+        ':newclockDriftKey': `${this.signInUserSession.getClockDrift()}`,
+        ':newlastUserKey': this.username
       },
       UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
     };
@@ -326,12 +327,12 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheDeviceKeyAndPassword() {
-		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
+		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
 			this.username
 		}`;
 		const deviceKeyKey = `${keyPrefix}.deviceKey`;
 		const randomPasswordKey = `${keyPrefix}.randomPasswordKey`;
-		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;
+		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;*/
 
     var params_device = {
       TableName: 'cognito-jwt',
@@ -344,9 +345,9 @@ class myCognitouserclass extends CognitoUser{
         '#deviceGroupKeyKey': 'deviceGroupKeyKey'
       },
       ExpressionAttributeValues: {
-        ':newdeviceKeyKey': deviceKeyKey,
-        ':newrandomPasswordKey': randomPasswordKey,
-        ':newdeviceGroupKeyKey': deviceGroupKeyKey 
+        ':newdeviceKeyKey': this.deviceKey,
+        ':newrandomPasswordKey': this.randomPassword,
+        ':newdeviceGroupKeyKey': this.deviceGroupKey 
       },
       UpdateExpression: 'SET #deviceKeyKey = :newdeviceKeyKey, #randomPasswordKey = :newrandomPasswordKey, #deviceGroupKeyKey = :newdeviceGroupKeyKey'
     };
@@ -419,22 +420,26 @@ class myCognitouserclass extends CognitoUser{
         if(err){
           console.log(err);
         }else{
-          console.log(data.Item)
-          const idTokenKey = data.Item.idTokenKey;
-          const accessTokenKey = data.Item.accessTokenKey;
-          const refreshTokenKey = data.Item.refreshTokenKey;
-          const clockDriftKey = data.Item.clockDriftKey;
-      
+          /*const keyPrefix = 'CognitoIdentityServiceProvider.' + this.pool.getClientId() + '.' + this.username;
+          const idTokenKey = string(keyPrefix + '.idToken') ;
+          const accessTokenKey = keyPrefix + '.accessToken';
+          const refreshTokenKey = keyPrefix + '.refreshToken';
+          const clockDriftKey = keyPrefix + '.clockDrift';*/
+          const idToken_data = data.Item.idTokenKey;
+          const accessToken_data = data.Item.accessTokenKey;
+          const refreshToken_data = data.Item.refreshTokenKey;
+          const clockDrift_data = data.Item.clockDriftKey;
+          
           var idToken = new CognitoIdToken({
-            IdToken: idTokenKey,
+            IdToken: idToken_data,
           });
           var accessToken = new CognitoAccessToken({
-            AccessToken: accessTokenKey,
+            AccessToken: accessToken_data,
           });
           var refreshToken = new CognitoRefreshToken({
-            RefreshToken: refreshTokenKey,
+            RefreshToken: refreshToken_data,
           });
-          var clockDrift = parseInt(clockDriftKey, 0) || 0;
+          var clockDrift = parseInt(clockDrift_data, 0) || 0;
         }
 
         const sessionData = {
@@ -486,10 +491,9 @@ class myCognitouserclass extends CognitoUser{
         : callback;
         const authParameters = {};
         authParameters.REFRESH_TOKEN = refreshToken.getToken();
-        const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-        const lastUserKey = `${keyPrefix}.LastAuthUser`;
+        /*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+        const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
     
-        this.username = data.Item.lastUserKey;
         this.deviceKey = data.Item.deviceKeyKey;
         authParameters.DEVICE_KEY = this.deviceKey;
     
