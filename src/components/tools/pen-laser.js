@@ -109,7 +109,9 @@ AFRAME.registerComponent("aircanon-animation", {
     }
     const aircanon_target_cursor = AFRAME.scenes[0].systems.userinput.get(paths.actions.rightHand.pose) || AFRAME.scenes[0].systems.userinput.get(paths.actions.leftHand.pose);
     const aircanon_target = this._getIntersection(aircanon_target_cursor);
-    this.AirCanonMesh.lookAt(aircanon_target);
+    const laserEndPosition = new THREE.Vector3();
+    laserEndPosition.copy(aircanon_target.point);
+    this.AirCanonMesh.lookAt(laserEndPosition);
   },
 
   _getIntersection: (() => {
@@ -121,11 +123,6 @@ AFRAME.registerComponent("aircanon-animation", {
       if (aircanon_target) {
         this.raycaster.ray.origin.copy(cursorPose.position);
         this.raycaster.ray.direction.copy(cursorPose.direction);
-      } else if (this.grabberId !== null) {
-        getLastWorldPosition(this.el.parentEl.object3D, this.raycaster.ray.origin);
-        getLastWorldQuaternion(this.el.parentEl.object3D, worldQuaternion);
-        this.raycaster.ray.direction.set(0, -1, 0);
-        this.raycaster.ray.direction.applyQuaternion(worldQuaternion);
       }
 
       if (this.grabberId !== null) {
