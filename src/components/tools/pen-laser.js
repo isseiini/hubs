@@ -32,7 +32,7 @@ AFRAME.registerComponent("pen-laser", {
     color: { type: "color", default: "#FF0033" },
     laserVisible: { default: true },
     laserInHand: { default: false },
-    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
+    laserOrigin: { default: { x: -0.35, y: 0.27, z: -0.55 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: "false"}
@@ -163,9 +163,9 @@ AFRAME.registerComponent("pen-laser", {
         /*origin.x = origin.x - 0.35;
         origin.y = origin.y + 0.27;
         origin.z = origin.z - 0.17;*/
-        this.laser.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.55));
+        this.laser.position.copy(origin);
         this.laser.lookAt(target);
-        this.AirCanonMesh.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.55));
+        this.AirCanonMesh.position.copy(origin);
         this.AirCanonMesh.lookAt(target);
         this.AirCanonMesh.matrixNeedsUpdate = true;
         this.laser.scale.set(1, 1, origin.distanceTo(target));

@@ -1572,11 +1572,9 @@
                 
                     <a-entity
                         id="pen"
-                        follow-in-fov="target: #avatar-pov-node; offset: 0 0 0;"
-                        pen="drawingManager: #drawing-manager"
+                        pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
                         pen-laser
                     >
-                      
                     </a-entity>
                     
                     <a-entity class="ui delete-button pen-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_drawing" >

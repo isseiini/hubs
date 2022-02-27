@@ -375,12 +375,6 @@ function registerNetworkSchemas() {
         component: "pen-laser",
         property: "action",
         requiresNetworkUpdate: vectorRequiresUpdate(0.01)
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
-        property: "laserOrigin",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
       }
     ]
   });
