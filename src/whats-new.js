@@ -108,7 +108,7 @@ class WhatsNew extends Component {
             <div className="main">
               <div className="content">
                 <h1>
-                  <FormattedMessage id="whats-new-page.title" defaultMessage="What's New" />
+                  <FormattedMessage id="whats-new-page.title" defaultMessage="バーチャル道頓堀メモ" />
                 </h1>
                 {this.state.notes.map((note, i) => {
                   return (

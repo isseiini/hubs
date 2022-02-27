@@ -1184,7 +1184,7 @@ class UIRoot extends Component {
           (this.props.breakpoint === "sm" || this.props.breakpoint === "md") &&
             entered && {
               id: "leave-room",
-              label: <FormattedMessage id="more-menu.enter-leave-room" defaultMessage="Leave Room" />,
+              label: <FormattedMessage id="more-menu.enter-leave-room" defaultMessage="退出する" />,
               icon: LeaveIcon,
               onClick: () => {
                 this.showNonHistoriedDialog(LeaveRoomModal, {
@@ -1572,7 +1572,7 @@ class UIRoot extends Component {
                     {entered && (
                       <ToolbarButton
                         icon={<LeaveIcon />}
-                        label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
+                        label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="退出する" />}
                         preset="cancel"
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {

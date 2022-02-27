@@ -75,7 +75,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
+    //this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
     console.log(this.aircanon_target);
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
@@ -105,8 +105,8 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loaderMixer.update(dt / 1000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
-    
-    AirCanonMesh.lookAt(this.aircanon_target);
+    const aircanon_target = this.userinput.get(paths.actions.rightHand.pose) || this.userinput.get(paths.actions.leftHand.pose);
+    AirCanonMesh.lookAt(aircanon_target);
   }
 });
 
