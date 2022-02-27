@@ -750,7 +750,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
               Storage: this.storage
             };
             console.log("cognitouser" + cognitoUser);
-            return new myCognitouserclass(cognitoUser);
+            return new CognitoUser(cognitoUser);
           }
 
           return null;
