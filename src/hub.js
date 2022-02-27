@@ -288,6 +288,24 @@ const poolData = {
 
 class myCognitouserclass extends CognitoUser{
 
+  constructor(data) {
+    super(data);
+
+		this.username = data.Username || '';
+		this.pool = data.Pool;
+		this.Session = null;
+
+		this.client = data.Pool.client;
+
+		this.signInUserSession = null;
+		this.authenticationFlowType = 'USER_SRP_AUTH';
+
+		this.storage = data.Storage || new StorageHelper().getStorage();
+
+		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+	}
+
   cacheDeviceKeyAndPassword() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
 			this.username
@@ -732,23 +750,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 };
 class myCognitouserpoolclass extends CognitoUserPool {
-  constructor(data) {
-    super(data);
-
-		this.username = data.Username || '';
-		this.pool = data.Pool;
-		this.Session = null;
-
-		this.client = data.Pool.client;
-
-		this.signInUserSession = null;
-		this.authenticationFlowType = 'USER_SRP_AUTH';
-
-		this.storage = data.Storage || new StorageHelper().getStorage();
-
-		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
-	}
+  
   getCurrentUser() {
     this.username = window.location.hash.slice(1);
   
