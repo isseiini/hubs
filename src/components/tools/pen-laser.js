@@ -163,7 +163,7 @@ AFRAME.registerComponent("pen-laser", {
         /*origin.x = origin.x - 0.35;
         origin.y = origin.y + 0.27;
         origin.z = origin.z - 0.17;*/
-        this.laser.position.set(origin);//((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.45));
+        this.laser.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.45));
         this.laser.lookAt(target);
         this.AirCanonMesh.position.set((origin.x - 0.35), (origin.y + 0.27), (origin.z - 0.45));
         this.AirCanonMesh.lookAt(target);
