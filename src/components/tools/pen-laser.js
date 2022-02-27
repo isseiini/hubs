@@ -82,7 +82,7 @@ AFRAME.registerComponent("aircanon-animation", {
     //this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.06, 0.06, 0.06);
+    this.AirCanonMesh.scale.set(0.6, 0.6, 0.6);
     this.el.setObject3D("mesh2", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
