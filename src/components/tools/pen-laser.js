@@ -10,6 +10,8 @@ import AirCanonSrc from "../../assets/models/aircanon_withgunfire_rotate2.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 
+import { paths } from "../../systems/userinput/paths";
+
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 }
@@ -19,6 +21,8 @@ let AirCanon;
 var AirCanonClip;
 
 var ShootingSfx;
+
+
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -33,6 +37,8 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
+    this.aircanon_target = AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose);
+    console.log(this.aircanon_target);
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     ///this.AirCanonMesh.scale.set(0.06, 0.06, 0.06)
@@ -62,7 +68,7 @@ AFRAME.registerComponent("aircanon-animation", {
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     }
     
-
+    AirCanonMesh.lookAt(this.aircanon_target);
   }
 });
 
