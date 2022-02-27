@@ -288,30 +288,10 @@ const poolData = {
 
 class myCognitouserclass extends CognitoUser{
   
-  constructor(data) {
-    super();
-    super.constructor(data);
-    
-
-    //this.username = data.Username || '';
-    this.username = window.location.hash.slice(1);
-    this.pool = data.Pool;
-    this.Session = null;
-
-    this.client = data.Pool.client;
-
-    this.signInUserSession = null;
-    this.authenticationFlowType = 'USER_SRP_AUTH';
-
-    this.storage = data.Storage || new StorageHelper().getStorage();
-
-    this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-    this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
-    
-		
-	}
+  
 
   cacheTokens() {
+    this.signInUserSession = null;
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
 		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
