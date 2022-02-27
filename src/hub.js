@@ -1212,6 +1212,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
     const cognito_mine = userPool.getCurrentUser();
+    console.log(cognito_mine)
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
