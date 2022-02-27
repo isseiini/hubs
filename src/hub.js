@@ -504,7 +504,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheTokens() {
-    //this.signInUserSession = null;
+    this.signInUserSession = null;
     //this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
