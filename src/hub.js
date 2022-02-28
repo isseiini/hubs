@@ -818,7 +818,7 @@ class myCognitouserclass extends CognitoUser{
         const accessTokenKey = keyPrefix + '.accessToken';
         const refreshTokenKey = keyPrefix + '.refreshToken';
         const clockDriftKey = keyPrefix + '.clockDrift';*/
-        if (data_session.Item.idTokenKey && data_session.Item.accessTokenKey && data_session.Item.refreshTokenKey && ckDriftKey) {
+        if (data_session.Item.idTokenKey && data_session.Item.accessTokenKey && data_session.Item.refreshTokenKey && data_session.Item.clockDriftKey) {
           const idToken_data = data_session.Item.idTokenKey || null;
           const accessToken_data = data_session.Item.accessTokenKey || null;
           const refreshToken_data = data_session.Item.refreshTokenKey || null;
@@ -842,15 +842,15 @@ class myCognitouserclass extends CognitoUser{
             ClockDrift: clockDrift,
           };
 
-          window.cachedSession = new CognitoUserSession(sessionData);
+          let cachedSession = new CognitoUserSession(sessionData);
+
+          if (cachedSession.isValid()) {
+            this.signInUserSession = cachedSession;
+            return callback(null, this.signInUserSession);
+          }
         }
       }
     });
-
-    if (cachedSession.isValid()) {
-      this.signInUserSession = cachedSession;
-      return callback(null, this.signInUserSession);
-    }
 
     if (!refreshToken.getToken()) {
       return callback(
