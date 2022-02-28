@@ -2508,13 +2508,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     const cognitoUser2 = new myCognitouserclass(userData);
 
-    cognitoUser2.cacheTokens();
+    
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
       onSuccess: result => {
         const idToken = result.getIdToken().getJwtToken(); // IDトークン
         const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
         const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
+
+        cognitoUser2.cacheTokens();
 
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
