@@ -470,6 +470,7 @@ class myCognitouserclass extends CognitoUser{
 		const authParameters = {};
 		authParameters.USERNAME = this.username;
 		authParameters.PASSWORD = authDetails.getPassword();
+    console.log(authParameters);
 		if (!authParameters.PASSWORD) {
 			callback.onFailure(new Error('PASSWORD parameter is required'));
 			return;
@@ -2913,7 +2914,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       onFailure: err => {
         // サインイン失敗の場合、エラーメッセージを画面に表示
         console.log(err);
-        console.log(result);
+        
         alert("ログインできません。");
       }
     });
