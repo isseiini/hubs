@@ -710,7 +710,7 @@ class myCognitouserclass extends CognitoUser{
   ////////////////////////////////////////////////////////////////////
 
   getUserDataFromCache() {
-    var params = {
+    let params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -730,7 +730,7 @@ class myCognitouserclass extends CognitoUser{
 
 
 
-  getSession(callback, options = {}) {
+  exgetSession(callback, options = {}) {
 		if (this.username == null) {
 			return callback(
 				new Error('Username is null. Cannot retrieve a new session'),
@@ -742,7 +742,7 @@ class myCognitouserclass extends CognitoUser{
 			return callback(null, this.signInUserSession);
 		}
 
-    var params = {
+    let params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -813,7 +813,7 @@ class myCognitouserclass extends CognitoUser{
 		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const lastUserKey = `${keyPrefix}.LastAuthUser`;
 
-    var params = {
+    let params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -874,7 +874,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getCachedDeviceKeyAndPassword() {
-    var params = {
+    let params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -1016,7 +1016,7 @@ class myCognitouserclass extends CognitoUser{
 };
 class myCognitouserpoolclass extends CognitoUserPool {
   
-  getCurrentUser() {
+  exgetCurrentUser() {
     this.username = window.location.hash.slice(1);
   
     if (this.username) {
@@ -1521,10 +1521,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }*/
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
-    const cognito_mine = userPool.getCurrentUser();
-    console.log(cognito_mine)
+    const cognito_mine = userPool.exgetCurrentUser();
     if (cognito_mine != null){
-      cognito_mine.getSession((err, session) => {
+      cognito_mine.exgetSession((err, session) => {
         if (err) {
           //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
         } else {
@@ -1580,8 +1579,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
     };
     
-    var cognitoUser_me2 = userPool.getCurrentUser(); 
-    cognitoUser_me2.getSession((err, session) => {
+    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
+    cognitoUser_me2.exgetSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -1986,7 +1985,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       function exit_and_put(){
         return new Promise((resolve, reject) => {
           try {
-            var params = {
+            let params = {
               TableName: 'Communication',
               Item:{
                 PlayID: "dsagfawg",
@@ -2039,7 +2038,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const createHubChannelParams = permsToken => {
-    const params = {
+    let params = {
       profile: store.state.profile,
       push_subscription_endpoint: pushSubscriptionEndpoint,
       auth_token: null,
@@ -2893,9 +2892,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
-    let cognitoUser_me = userPool.getCurrentUser(); 
+    let cognitoUser_me = userPool.exgetCurrentUser(); 
     if(cognitoUser_me){
-      cognitoUser_me.getSession((err, session) => {
+      cognitoUser_me.exgetSession((err, session) => {
         if (err) {
           console.log(err)
         } else {
@@ -3045,8 +3044,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display1', 'none');
     document.documentElement.style.setProperty('--display2', 'none');
     document.documentElement.style.setProperty('--display3', 'block');
-    var cognitoUser_me2 = userPool.getCurrentUser(); 
-    cognitoUser_me2.getSession((err, session) => {
+    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
+    cognitoUser_me2.exgetSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -3070,8 +3069,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
-    var cognitoUser_me2 = userPool.getCurrentUser(); 
-    cognitoUser_me2.getSession((err, session) => {
+    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
+    cognitoUser_me2.exgetSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -3308,8 +3307,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keyup', event => {
     if (event.code === 'KeyL') {
-      var cognitoUser_me2 = userPool.getCurrentUser(); 
-      cognitoUser_me2.getSession((err, session) => {
+      var cognitoUser_me2 = userPool.exgetCurrentUser(); 
+      cognitoUser_me2.exgetSession((err, session) => {
         if (err) {
           console.log(err)
         } else {
