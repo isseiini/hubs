@@ -478,12 +478,12 @@ class myCognitouserclass extends CognitoUser{
         cognito_user : this.username
       }
     };
-    docClient.get(params, function(err, data){
+    docClient.get(params, function(err, data_login){
       if(err){
         console.log(err);
       }else {
-        if(data.Item.deviceKeyKey) {
-          window.set_deviceKey = data.Item.deviceKeyKey ? data.Item.deviceKeyKey : null;
+        if(data_login.Item.deviceKeyKey) {
+          window.set_deviceKey = data_login.Item.deviceKeyKey ? data_login.Item.deviceKeyKey : null;
         }
         
       }  
@@ -536,14 +536,14 @@ class myCognitouserclass extends CognitoUser{
         cognito_user : this.username
       }
     };
-    docClient.get(params, function(err, data){
+    docClient.get(params, function(err, data_cache){
       if(err){
         console.log(err);
       }else{
-        if(data.Item.deviceKeyKey && data.Item.randomPasswordKey && data.Item.deviceGroupKeyKey){
-          window.get_deviceKey = data.Item.deviceKeyKey ? data.item.deviceKeyKey : null;
-        window.get_randomPassword = data.Item.randomPasswordKey ? data.Item.randomPasswordKey : null;
-        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey ? data.Item.deviceGroupKeyKey : null;
+        if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
+          window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
+        window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
+        window.get_deviceGroupKey = data_cache.Item.deviceGroupKeyKey ? data_cache.Item.deviceGroupKeyKey : null;
         }
       }
     });
