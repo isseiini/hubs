@@ -729,7 +729,19 @@ class myCognitouserclass extends CognitoUser{
 	}
 
 
+  /**
+	 * @typedef {Object} GetSessionOptions
+	 * @property {Record<string, string>} clientMetadata - clientMetadata for getSession
+	 */
 
+  /**
+	 * This is used to get a session, either from the session object
+	 * or from  the local storage, or by using a refresh token
+	 *
+	 * @param {nodeCallback<CognitoUserSession>} callback Called on success or error.
+	 * @param {GetSessionOptions} options
+	 * @returns {void}
+	 */
   exgetSession(callback, options = {}) {
 		if (this.username == null) {
 			return callback(
@@ -798,9 +810,7 @@ class myCognitouserclass extends CognitoUser{
       );
     }
 
-    if (this.storage.getItem(idTokenKey)) {
-			null
-		} 
+    
 		return undefined;
 	} 
 
@@ -885,7 +895,7 @@ class myCognitouserclass extends CognitoUser{
         console.log(err);
         return
       }else{
-        console.log("data_cache" + data_cache.Item.clockDrift)
+        
         /*if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
           window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
           window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
