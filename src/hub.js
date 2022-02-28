@@ -544,7 +544,6 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        console.Console(data_cache.Item)
         if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
           window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
         window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
@@ -1138,6 +1137,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log(userPool)
 
   if (room_name == "kooky-passionate-safari") {
+    var ref = document.referrer;
+    console.log(ref)
+    if(ref == "") {
+      location.href = "https://virtual-dotonbori.com/strong-elementary-meetup";
+    }
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
     const cognito_mine = userPool.getCurrentUser();
