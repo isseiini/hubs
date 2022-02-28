@@ -482,10 +482,11 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        get_deviceKey = data.Item.deviceKeyKey;
+        window.get_deviceKey = data.Item.deviceKeyKey;
       }  
     });
 
+    var a = data.item.deviceKeyKey
     this.deviceKey = get_deviceKey;
     authParameters.DEVICE_KEY = this.deviceKey;
 
