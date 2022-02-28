@@ -539,8 +539,8 @@ class myCognitouserclass extends CognitoUser{
         console.log(err);
       }else{
         window.get_deviceKey = data.Item.deviceKeyKey;
-        get_randomPassword = data.Item.randomPasswordKey;
-        get_deviceGroupKey = data.Item.deviceGroupKeyKey;
+        window.get_randomPassword = data.Item.randomPasswordKey;
+        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey;
       }
     });
 		
