@@ -699,6 +699,43 @@ class myCognitouserclass extends CognitoUser{
 			new Error('Authentication flow type is invalid.')
 		);
 	}
+
+  /**
+	 * This is used by an authenticated user to get a list of attributes
+	 * @param {nodeCallback<CognitoUserAttribute[]>} callback Called on success or error.
+	 * @returns {void}
+	 */
+	getUserAttributes(callback) {
+		if (!(this.signInUserSession != null && this.signInUserSession.isValid())) {
+			return callback(new Error('User is not authenticated'), null);
+		}
+
+		this.client.request(
+			'GetUser',
+			{
+				AccessToken: this.signInUserSession.getAccessToken().getJwtToken(),
+			},
+			(err, userData) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				const attributeList = [];
+
+				for (let i = 0; i < userData.UserAttributes.length; i++) {
+					const attribute = {
+						Name: userData.UserAttributes[i].Name,
+						Value: userData.UserAttributes[i].Value,
+					};
+					const userAttribute = new CognitoUserAttribute(attribute);
+					attributeList.push(userAttribute);
+				}
+
+				return callback(null, attributeList);
+			}
+		);
+		return undefined;
+	}
   
   cacheUserData(userData) {
 		var params_userdata = {
