@@ -307,42 +307,7 @@ class myCognitouserclass extends CognitoUser{
     
   }
 
-  cacheTokens() {
-    const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
-    const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
-    const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
-    const get_clockDrift = `${this.signInUserSession.getClockDrift()}`
-    const get_lastUser = this.username
-    var params_tokens = {
-      TableName: 'cognito-jwt',
-      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
-      },
-      ExpressionAttributeNames: {
-        '#idTokenKey': 'idTokenKey',
-        '#accessTokenKey': 'accessTokenKey',
-        '#refreshTokenKey': 'refreshTokenKey',
-        '#clockDriftKey': 'clockDriftKey',
-        '#lastUserKey': 'lastUserKey'
-      },
-      ExpressionAttributeValues: {
-        ':newidTokenKey': get_idToken,
-        ':newaccessTokenKey':get_accessToken,
-        ':newrefreshTokenKey': get_refreshToken,
-        ':newclockDriftKey': get_clockDrift,
-        ':newlastUserKey': get_lastUser
-      },
-      UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
-    };
   
-    docClient.update(params_tokens, function(err, data2){
-      if(err){
-        console.log('error');
-      }else{
-        console.log('success');
-      }
-    });
-	}
   
   cacheUserData(userData) {
 		var params_userdata = {
@@ -570,6 +535,44 @@ class myCognitouserclass extends CognitoUser{
     this.randomPassword = get_randomPassword;
     this.deviceGroupKey = get_deviceGroupKey;
 		
+	}
+
+  cacheTokens() {
+    this.signInUserSession = signInUserSession
+    const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
+    const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
+    const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
+    const get_clockDrift = `${this.signInUserSession.getClockDrift()}`
+    const get_lastUser = this.username
+    var params_tokens = {
+      TableName: 'cognito-jwt',
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#idTokenKey': 'idTokenKey',
+        '#accessTokenKey': 'accessTokenKey',
+        '#refreshTokenKey': 'refreshTokenKey',
+        '#clockDriftKey': 'clockDriftKey',
+        '#lastUserKey': 'lastUserKey'
+      },
+      ExpressionAttributeValues: {
+        ':newidTokenKey': get_idToken,
+        ':newaccessTokenKey':get_accessToken,
+        ':newrefreshTokenKey': get_refreshToken,
+        ':newclockDriftKey': get_clockDrift,
+        ':newlastUserKey': get_lastUser
+      },
+      UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
+    };
+  
+    docClient.update(params_tokens, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
 	}
 
   ///////////////////////////////////////////////////////////////////////////////////////
