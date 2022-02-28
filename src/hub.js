@@ -308,6 +308,11 @@ class myCognitouserclass extends CognitoUser{
   }
 
   cacheTokens() {
+    const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
+    const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
+    const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
+    const get_clockDrift = `${this.signInUserSession.getClockDrift()}`
+    const get_lastUser = this.username
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -321,11 +326,11 @@ class myCognitouserclass extends CognitoUser{
         '#lastUserKey': 'lastUserKey'
       },
       ExpressionAttributeValues: {
-        ':newidTokenKey': this.signInUserSession.getIdToken().getJwtToken(),
-        ':newaccessTokenKey': this.signInUserSession.getAccessToken().getJwtToken(),
-        ':newrefreshTokenKey': this.signInUserSession.getRefreshToken().getToken(),
-        ':newclockDriftKey': `${this.signInUserSession.getClockDrift()}`,
-        ':newlastUserKey': this.username
+        ':newidTokenKey': get_idToken,
+        ':newaccessTokenKey':get_accessToken,
+        ':newrefreshTokenKey': get_refreshToken,
+        ':newclockDriftKey': get_clockDrift,
+        ':newlastUserKey': get_lastUser
       },
       UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
     };
