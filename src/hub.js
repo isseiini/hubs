@@ -885,7 +885,7 @@ class myCognitouserclass extends CognitoUser{
         console.log(err);
         return
       }else{
-        console.log("data_cache" + data_cache.Item)
+        console.log("data_cache" + data_cache.Item.clockDrift)
         /*if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
           window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
           window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
