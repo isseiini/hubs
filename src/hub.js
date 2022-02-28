@@ -2830,56 +2830,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     attributeList.push(attributeName);
     attributeList.push(attributeEmail);
 
-    userPool.signUp(email_signup, password_signup, attributeList, null, (err, data1) => {
+    userPool.signUp(name_signup, password_signup, attributeList, null, (err, data1) => {
       if (err) {
         alert(err.message);
       } else {
         alert(
           "登録したメールアドレスへアクティベーション用のリンクを送付しました。"
         );
-
-        let cognitoUser_me = userPool.getCurrentUser(); 
-        cognitoUser_me.getSession((err, session) => {
-          if (err) {
-            console.log(err)
-          } else {
-            cognitoUser_me.getUserAttributes((err,result) => {
-              if (err) {
-                console.log(err)
-              } else {
-                let i;
-                for (i = 0; i < result.length; i++) {
-                  currentUserData[result[i].getName()] = result[i].getValue();
-                };   
-              };
-
-              var params2 = {
-                TableName: 'userpool',
-                Item:{
-                  username: name_signup,
-                  userID: currentUserData['sub'],
-                  age: age_signup,
-                  sex: sex_signup,
-                  location: location_signup
-                }
-              };
-        
-              docClient.put(params2, function(err, data2){
-                if(err){
-                  console.log('error');
-                }else{
-                  console.log('success');
-                }
-              });
-            });
-          };
-        });
-        
-
-        
       }; 
-
-      
     });
   });
  
