@@ -286,6 +286,8 @@ const poolData = {
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
 };
 
+const isBrowser = typeof navigator !== 'undefined';
+const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser{
   constructor(data) {
     super(data);
