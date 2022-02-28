@@ -482,11 +482,10 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        window.set_deviceKey = data.Item.deviceKeyKey || null;
+        window.set_deviceKey = data.Item.deviceKeyKey ? data.Item.deviceKeyKey : null;
       }  
     });
 
-    var a = data.item.deviceKeyKey
     this.deviceKey = set_deviceKey;
     authParameters.DEVICE_KEY = this.deviceKey;
 
@@ -538,9 +537,9 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        window.get_deviceKey = data.Item.deviceKeyKey || null;
-        window.get_randomPassword = data.Item.randomPasswordKey || null;
-        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey || null;
+        window.get_deviceKey = data.Item.deviceKeyKey ? data.item.deviceKeyKey : null;
+        window.get_randomPassword = data.Item.randomPasswordKey ? data.Item.randomPasswordKey : null;
+        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey ? data.Item.deviceGroupKeyKey : null;
       }
     });
 		
