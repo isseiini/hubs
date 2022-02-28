@@ -481,7 +481,7 @@ class myCognitouserclass extends CognitoUser{
     docClient.get(params, function(err, data){
       if(err){
         console.log(err);
-      }else{
+      }else if(data.Item.deviceKey.length != 0){
         window.set_deviceKey = data.Item.deviceKeyKey ? data.Item.deviceKeyKey : null;
       }  
     });
@@ -536,7 +536,7 @@ class myCognitouserclass extends CognitoUser{
     docClient.get(params, function(err, data){
       if(err){
         console.log(err);
-      }else{
+      }else if(data.Item.deviceKeyKey.length != 0 && data.Item.randomPasswordKey.length != 0 && data.Item.deviceGroupKeyKey != 0){
         window.get_deviceKey = data.Item.deviceKeyKey ? data.item.deviceKeyKey : null;
         window.get_randomPassword = data.Item.randomPasswordKey ? data.Item.randomPasswordKey : null;
         window.get_deviceGroupKey = data.Item.deviceGroupKeyKey ? data.Item.deviceGroupKeyKey : null;
