@@ -287,249 +287,27 @@ const poolData = {
 };
 
 class myCognitouserclass extends CognitoUser{
-
   constructor(data) {
     super(data);
-
-		this.username = data.Username || '';
-		this.pool = data.Pool;
-		this.Session = null;
-
-		this.client = data.Pool.client;
-
-		this.signInUserSession = null;
-		this.authenticationFlowType = 'USER_SRP_AUTH';
-
-		this.storage = data.Storage || new StorageHelper().getStorage();
-
-		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
-	}
-
-  cacheDeviceKeyAndPassword() {
-		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
-			this.username
-		}`;
-		const deviceKeyKey = `${keyPrefix}.deviceKey`;
-		const randomPasswordKey = `${keyPrefix}.randomPasswordKey`;
-		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;*/
-
-    var params_device = {
-      TableName: 'cognito-jwt',
-      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
-      },
-      ExpressionAttributeNames: {
-        '#deviceKeyKey': 'deviceKeyKey',
-        '#randomPasswordKey': 'randomPasswordKey',
-        '#deviceGroupKeyKey': 'deviceGroupKeyKey'
-      },
-      ExpressionAttributeValues: {
-        ':newdeviceKeyKey': this.deviceKey,
-        ':newrandomPasswordKey': this.randomPassword,
-        ':newdeviceGroupKeyKey': this.deviceGroupKey 
-      },
-      UpdateExpression: 'SET #deviceKeyKey = :newdeviceKeyKey, #randomPasswordKey = :newrandomPasswordKey, #deviceGroupKeyKey = :newdeviceGroupKeyKey'
-    };
-
-    docClient.update(params_device, function(err, data2){
-      if(err){
-        console.log('error');
-      }else{
-        console.log('success');
-      }
-    });
-	}
-
-  cacheUserData(userData) {
-    var params_userdata = {
-      TableName: 'cognito-jwt',
-      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
-      },
-      ExpressionAttributeNames: {
-        '#userDataKey': 'userDataKey'
-      },
-      ExpressionAttributeValues: {
-        ':newuserDataKey': JSON.stringify(userData)
-      },
-      UpdateExpression: 'SET #userDataKey = :newuserDataKey'
-    };
-
-    docClient.update(params_userdata, function(err, data2){
-      if(err){
-        console.log('error');
-      }else{
-        console.log('success');
-      }
-    });
-	}
-
-  getUserDataFromCache() {
-    this.username = window.location.hash.slice(1);
-    if (this.username) {
-      var params = {
-        TableName: 'cognito-jwt',
-        Key:{
-          cognito_user : this.username
-        }
-      };
-      docClient.get(params, function(err, data){
-        if(err){
-          console.log(err);
-        }else{
-          const userData = data.Item.userDataKey;
-          return userData;
-        }
-      });
-    } else {
-      return
-    }
-	}
-
-  getSession(callback, options = {}) {
-    this.username = window.location.hash.slice(1);
-    if (this.username) {
-      var params = {
-        TableName: 'cognito-jwt',
-        Key:{
-          cognito_user : this.username
-        }
-      };
-      docClient.get(params, function(err, data){
-        if(err){
-          console.log(err);
-        }else{
-          /*const keyPrefix = 'CognitoIdentityServiceProvider.' + this.pool.getClientId() + '.' + this.username;
-          const idTokenKey = string(keyPrefix + '.idToken') ;
-          const accessTokenKey = keyPrefix + '.accessToken';
-          const refreshTokenKey = keyPrefix + '.refreshToken';
-          const clockDriftKey = keyPrefix + '.clockDrift';*/
-          const idToken_data = data.Item.idTokenKey;
-          const accessToken_data = data.Item.accessTokenKey;
-          const refreshToken_data = data.Item.refreshTokenKey;
-          const clockDrift_data = data.Item.clockDriftKey;
-          
-          var idToken = new CognitoIdToken({
-            IdToken: idToken_data,
-          });
-          var accessToken = new CognitoAccessToken({
-            AccessToken: accessToken_data,
-          });
-          var refreshToken = new CognitoRefreshToken({
-            RefreshToken: refreshToken_data,
-          });
-          var clockDrift = parseInt(clockDrift_data, 0) || 0;
-        }
-
-        const sessionData = {
-          IdToken: idToken,
-          AccessToken: accessToken,
-          RefreshToken: refreshToken,
-          ClockDrift: clockDrift,
-        };
-        const cachedSession = new CognitoUserSession(sessionData);
-    
-        if (cachedSession.isValid()) {
-          this.signInUserSession = cachedSession;
-          return callback(null, this.signInUserSession);
-        }
-    
-        if (!refreshToken.getToken()) {
-          return callback(
-            new Error('Cannot retrieve a new session. Please authenticate.'),
-            null
-          );
-        }
-    
-        this.refreshSession(refreshToken, callback, options.clientMetadata);
-        
-    
-        return undefined;
-      });
-    } else {
-      return
-    }
-	}
-
-  refreshSession(refreshToken, callback, clientMetadata) {
-    this.username = window.location.hash.slice(1);
-    if (this.username) {
-      var params = {
-        TableName: 'cognito-jwt',
-        Key:{
-          cognito_user : this.username
-        }
-      };
-      docClient.get(params, function(err, data){
-        if(err){
-          console.log(err);
-        }else{
-          console.log(data)
-          const wrappedCallback = this.pool.wrapRefreshSessionCallback
-        ? this.pool.wrapRefreshSessionCallback(callback)
-        : callback;
-        const authParameters = {};
-        authParameters.REFRESH_TOKEN = refreshToken.getToken();
-        /*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-        const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-    
-        this.deviceKey = data.Item.deviceKeyKey;
-        authParameters.DEVICE_KEY = this.deviceKey;
-    
-        const jsonReq = {
-          ClientId: this.pool.getClientId(),
-          AuthFlow: 'REFRESH_TOKEN_AUTH',
-          AuthParameters: authParameters,
-          ClientMetadata: clientMetadata,
-        };
-        if (this.getUserContextData()) {
-          jsonReq.UserContextData = this.getUserContextData();
-        }
-        this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
-          if (err) {
-            if (err.code === 'NotAuthorizedException') {
-              this.clearCachedUser();
-            }
-            return wrappedCallback(err, null);
-          }
-          if (authResult) {
-            const authenticationResult = authResult.AuthenticationResult;
-            if (
-              !Object.prototype.hasOwnProperty.call(
-                authenticationResult,
-                'RefreshToken'
-              )
-            ) {
-              authenticationResult.RefreshToken = refreshToken.getToken();
-            }
-            this.signInUserSession = this.getCognitoUserSession(
-              authenticationResult
-            );
-            this.cacheTokens();
-            return wrappedCallback(null, this.signInUserSession);
-          }
-          return undefined;
-        });
-        }
-      });
   
-      
-    } else {
-      return
-    }
+    this.username = data.Username || window.location.hash.slice(1);
+    this.pool = data.Pool;
+    this.Session = null;
+  
+    this.client = data.Pool.client;
+  
+    this.signInUserSession = null;
+    this.authenticationFlowType = 'USER_SRP_AUTH';
+  
+    this.storage = data.Storage || new StorageHelper().getStorage();
+  
+    this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+    this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+
     
-	}
+  }
 
   cacheTokens() {
-    //this.signInUserSession = new AmazonCognitoIdentity.cognitoUser.signInUserSession;
-		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
-		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
-		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
-		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
-		const lastUserKey = `${keyPrefix}.LastAuthUser`;*/
-    //this.signInUserSession = new myCognitouserclass.signInUserSession();
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -551,7 +329,7 @@ class myCognitouserclass extends CognitoUser{
       },
       UpdateExpression: 'SET #idTokenKey = :newidTokenKey, #accessTokenKey = :newaccessTokenKey, #refreshTokenKey = :newrefreshTokenKey, #clockDriftKey = :newclockDriftKey, #lastUserKey = :newlastUserKey'
     };
-
+  
     docClient.update(params_tokens, function(err, data2){
       if(err){
         console.log('error');
@@ -560,194 +338,272 @@ class myCognitouserclass extends CognitoUser{
       }
     });
 	}
+  
+  cacheUserData(userData) {
+		var params_userdata = {
+      TableName: 'cognito-jwt',
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#userDataKey': 'userDataKey'
+      },
+      ExpressionAttributeValues: {
+        ':newuserDataKey': JSON.stringify(userData)
+      },
+      UpdateExpression: 'SET #userDataKey = :newuserDataKey'
+    };
+  
+    docClient.update(params_userdata, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+	}
 
-  authenticateUserDefaultAuth(authDetails, callback) {
-		const authenticationHelper = new AuthenticationHelper(
-			this.pool.getUserPoolId().split('_')[1]
-		);
-		const dateHelper = new DateHelper();
+  cacheDeviceKeyAndPassword() {
+    var params_device = {
+      TableName: 'cognito-jwt',
+      Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        cognito_user: this.username 
+      },
+      ExpressionAttributeNames: {
+        '#deviceKeyKey': 'deviceKeyKey',
+        '#randomPasswordKey': 'randomPasswordKey',
+        '#deviceGroupKeyKey': 'deviceGroupKeyKey'
+      },
+      ExpressionAttributeValues: {
+        ':newdeviceKeyKey': this.deviceKey,
+        ':newrandomPasswordKey': this.randomPassword,
+        ':newdeviceGroupKeyKey': this.deviceGroupKey 
+      },
+      UpdateExpression: 'SET #deviceKeyKey = :newdeviceKeyKey, #randomPasswordKey = :newrandomPasswordKey, #deviceGroupKeyKey = :newdeviceGroupKeyKey'
+    };
+  
+    docClient.update(params_device, function(err, data2){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+	}
 
-		let serverBValue;
-		let salt;
-		const authParameters = {};
+  ////////////////////////////////////////////////////////////////////
 
-		if (this.deviceKey != null) {
-			authParameters.DEVICE_KEY = this.deviceKey;
+  getUserDataFromCache() {
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        const userData = data.Item.userDataKey;
+        return userData;
+      }
+    });
+	}
+
+  getSession(callback, options = {}) {
+		if (this.username == null) {
+			return callback(
+				new Error('Username is null. Cannot retrieve a new session'),
+				null
+			);
 		}
 
-		authParameters.USERNAME = this.username;
-		authenticationHelper.getLargeAValue((errOnAValue, aValue) => {
-			// getLargeAValue callback start
-			if (errOnAValue) {
-				callback.onFailure(errOnAValue);
-			}
+		if (this.signInUserSession != null && this.signInUserSession.isValid()) {
+			return callback(null, this.signInUserSession);
+		}
 
-			authParameters.SRP_A = aValue.toString(16);
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        /*const keyPrefix = 'CognitoIdentityServiceProvider.' + this.pool.getClientId() + '.' + this.username;
+        const idTokenKey = string(keyPrefix + '.idToken') ;
+        const accessTokenKey = keyPrefix + '.accessToken';
+        const refreshTokenKey = keyPrefix + '.refreshToken';
+        const clockDriftKey = keyPrefix + '.clockDrift';*/
+        const idToken_data = data.Item.idTokenKey;
+        const accessToken_data = data.Item.accessTokenKey;
+        const refreshToken_data = data.Item.refreshTokenKey;
+        const clockDrift_data = data.Item.clockDriftKey;
+        
+        var idToken = new CognitoIdToken({
+          IdToken: idToken_data,
+        });
+        var accessToken = new CognitoAccessToken({
+          AccessToken: accessToken_data,
+        });
+        var refreshToken = new CognitoRefreshToken({
+          RefreshToken: refreshToken_data,
+        });
+        var clockDrift = parseInt(clockDrift_data, 0) || 0;
 
-			if (this.authenticationFlowType === 'CUSTOM_AUTH') {
-				authParameters.CHALLENGE_NAME = 'SRP_A';
-			}
+        const sessionData = {
+          IdToken: idToken,
+          AccessToken: accessToken,
+          RefreshToken: refreshToken,
+          ClockDrift: clockDrift,
+        };
 
-			const clientMetaData =
-				Object.keys(authDetails.getValidationData()).length !== 0
-					? authDetails.getValidationData()
-					: authDetails.getClientMetadata();
+        cachedSession = new CognitoUserSession(sessionData);
 
-			const jsonReq = {
-				AuthFlow: this.authenticationFlowType,
-				ClientId: this.pool.getClientId(),
-				AuthParameters: authParameters,
-				ClientMetadata: clientMetaData,
-			};
-			if (this.getUserContextData(this.username)) {
-				jsonReq.UserContextData = this.getUserContextData(this.username);
-			}
+        
+      }
+    });
 
-			this.client.request('InitiateAuth', jsonReq, (err, data) => {
-				if (err) {
-					return callback.onFailure(err);
+    if (cachedSession.isValid()) {
+      this.signInUserSession = cachedSession;
+      return callback(null, this.signInUserSession);
+    }
+
+    if (!refreshToken.getToken()) {
+      return callback(
+        new Error('Cannot retrieve a new session. Please authenticate.'),
+        null
+      );
+    }
+
+		return undefined;
+	}
+
+  refreshSession(refreshToken, callback, clientMetadata) {
+		const wrappedCallback = this.pool.wrapRefreshSessionCallback
+			? this.pool.wrapRefreshSessionCallback(callback)
+			: callback;
+		const authParameters = {};
+		authParameters.REFRESH_TOKEN = refreshToken.getToken();
+		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;
+
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        get_deviceKey = data.Item.deviceKeyKey;
+      }  
+    });
+
+    this.deviceKey = get_deviceKey;
+    authParameters.DEVICE_KEY = this.deviceKey;
+
+    const jsonReq = {
+      ClientId: this.pool.getClientId(),
+      AuthFlow: 'REFRESH_TOKEN_AUTH',
+      AuthParameters: authParameters,
+      ClientMetadata: clientMetadata,
+    };
+		
+		if (this.getUserContextData()) {
+			jsonReq.UserContextData = this.getUserContextData();
+		}
+		this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
+			if (err) {
+				if (err.code === 'NotAuthorizedException') {
+					this.clearCachedUser();
 				}
-
-				const challengeParameters = data.ChallengeParameters;
-        console.log(challengeParameters);
-
-        const email_signin = document.getElementById('email-signin').value
-
-				this.username = challengeParameters.USER_ID_FOR_SRP;
-				this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
-				serverBValue = new BigInteger(challengeParameters.SRP_B, 16);
-				salt = new BigInteger(challengeParameters.SALT, 16);
-				this.getCachedDeviceKeyAndPassword();
-
-				authenticationHelper.getPasswordAuthenticationKey(
-					this.username,
-					authDetails.getPassword(),
-					serverBValue,
-					salt,
-					(errOnHkdf, hkdf) => {
-						// getPasswordAuthenticationKey callback start
-						if (errOnHkdf) {
-							callback.onFailure(errOnHkdf);
-						}
-
-						const dateNow = dateHelper.getNowString();
-
-						const message = CryptoJS.lib.WordArray.create(
-							Buffer.concat([
-								Buffer.from(this.pool.getUserPoolId().split('_')[1], 'utf8'),
-								Buffer.from(this.username, 'utf8'),
-								Buffer.from(challengeParameters.SECRET_BLOCK, 'base64'),
-								Buffer.from(dateNow, 'utf8'),
-							])
-						);
-						const key = CryptoJS.lib.WordArray.create(hkdf);
-						const signatureString = Base64.stringify(HmacSHA256(message, key));
-
-						const challengeResponses = {};
-
-            const email_signin = document.getElementById('email-signin').value
-
-				    this.username = email_signin
-
-						challengeResponses.USERNAME = email_signin;
-						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
-							challengeParameters.SECRET_BLOCK;
-						challengeResponses.TIMESTAMP = dateNow;
-						challengeResponses.PASSWORD_CLAIM_SIGNATURE = signatureString;
-
-						if (this.deviceKey != null) {
-							challengeResponses.DEVICE_KEY = this.deviceKey;
-						}
-
-						const respondToAuthChallenge = (challenge, challengeCallback) =>
-							this.client.request(
-								'RespondToAuthChallenge',
-								challenge,
-								(errChallenge, dataChallenge) => {
-									if (
-										errChallenge &&
-										errChallenge.code === 'ResourceNotFoundException' &&
-										errChallenge.message.toLowerCase().indexOf('device') !== -1
-									) {
-										challengeResponses.DEVICE_KEY = null;
-										this.deviceKey = null;
-										this.randomPassword = null;
-										this.deviceGroupKey = null;
-										this.clearCachedDeviceKeyAndPassword();
-										return respondToAuthChallenge(challenge, challengeCallback);
-									}
-									return challengeCallback(errChallenge, dataChallenge);
-								}
-							);
-
-						const jsonReqResp = {
-							ChallengeName: 'PASSWORD_VERIFIER',
-							ClientId: this.pool.getClientId(),
-							ChallengeResponses: challengeResponses,
-							Session: data.Session,
-							ClientMetadata: clientMetaData,
-						};
-						if (this.getUserContextData()) {
-							jsonReqResp.UserContextData = this.getUserContextData();
-						}
-						respondToAuthChallenge(
-							jsonReqResp,
-							(errAuthenticate, dataAuthenticate) => {
-								if (errAuthenticate) {
-									return callback.onFailure(errAuthenticate);
-								}
-
-								return this.authenticateUserInternal(
-									dataAuthenticate,
-									authenticationHelper,
-									callback
-								);
-							}
-						);
-						return undefined;
-						// getPasswordAuthenticationKey callback end
-					}
+				return wrappedCallback(err, null);
+			}
+			if (authResult) {
+				const authenticationResult = authResult.AuthenticationResult;
+				if (
+					!Object.prototype.hasOwnProperty.call(
+						authenticationResult,
+						'RefreshToken'
+					)
+				) {
+					authenticationResult.RefreshToken = refreshToken.getToken();
+				}
+				this.signInUserSession = this.getCognitoUserSession(
+					authenticationResult
 				);
-				return undefined;
-			});
-			// getLargeAValue callback end
+				this.cacheTokens();
+				return wrappedCallback(null, this.signInUserSession);
+			}
+			return undefined;
 		});
 	}
 
   getCachedDeviceKeyAndPassword() {
-    this.username = window.location.hash.slice(1);
-    if (this.username) {
-      var params = {
-        TableName: 'cognito-jwt',
-        Key:{
-          cognito_user : this.username
-        }
-      };
-      docClient.get(params, function(err, data){
-        if(err){
-          console.log(err);
-        }else{
-          this.deviceKey = data.Item.deviceKeyKey;
-          this.randomPassword = data.Item.randomPasswordKey;
-          this.deviceGroupKey = data.Item.deviceGroupKeyKey;
-        }
-      });
-    } else {
-      return
-    }
+    var params = {
+      TableName: 'cognito-jwt',
+      Key:{
+        cognito_user : this.username
+      }
+    };
+    docClient.get(params, function(err, data){
+      if(err){
+        console.log(err);
+      }else{
+        get_deviceKey = data.Item.deviceKeyKey;
+        get_randomPassword = data.Item.randomPasswordKey;
+        get_deviceGroupKey = data.Item.deviceGroupKeyKey;
+      }
+    });
+		
+    this.deviceKey = get_deviceKey;
+    this.randomPassword = get_randomPassword;
+    this.deviceGroupKey = get_deviceGroupKey;
+		
 	}
 
+  ///////////////////////////////////////////////////////////////////////////////////////
+
   clearCachedUserData() {
-		return
+		//this.storage.removeItem(this.userDataKey);
+    return
 	}
 
   clearCachedDeviceKeyAndPassword() {
-		return
+		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
+			this.username
+		}`;
+		const deviceKeyKey = `${keyPrefix}.deviceKey`;
+		const randomPasswordKey = `${keyPrefix}.randomPasswordKey`;
+		const deviceGroupKeyKey = `${keyPrefix}.deviceGroupKey`;
+
+		this.storage.removeItem(deviceKeyKey);
+		this.storage.removeItem(randomPasswordKey);
+		this.storage.removeItem(deviceGroupKeyKey);*/
+    return
 	}
 
   clearCachedTokens() {
-		return
+		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
+		const accessTokenKey = `${keyPrefix}.${this.username}.accessToken`;
+		const refreshTokenKey = `${keyPrefix}.${this.username}.refreshToken`;
+		const lastUserKey = `${keyPrefix}.LastAuthUser`;
+		const clockDriftKey = `${keyPrefix}.${this.username}.clockDrift`;
+
+		this.storage.removeItem(idTokenKey);
+		this.storage.removeItem(accessTokenKey);
+		this.storage.removeItem(refreshTokenKey);
+		this.storage.removeItem(lastUserKey);
+		this.storage.removeItem(clockDriftKey);*/
+    return
 	}
+
 };
 class myCognitouserpoolclass extends CognitoUserPool {
   
