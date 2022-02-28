@@ -386,7 +386,7 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        const userData = data.Item.userDataKey;
+        const userData = data.Item.userDataKey || null;
         return userData;
       }
     });
@@ -419,10 +419,10 @@ class myCognitouserclass extends CognitoUser{
         const accessTokenKey = keyPrefix + '.accessToken';
         const refreshTokenKey = keyPrefix + '.refreshToken';
         const clockDriftKey = keyPrefix + '.clockDrift';*/
-        const idToken_data = data.Item.idTokenKey;
-        const accessToken_data = data.Item.accessTokenKey;
-        const refreshToken_data = data.Item.refreshTokenKey;
-        const clockDrift_data = data.Item.clockDriftKey;
+        const idToken_data = data.Item.idTokenKey || null;
+        const accessToken_data = data.Item.accessTokenKey || null;
+        const refreshToken_data = data.Item.refreshTokenKey || null;
+        const clockDrift_data = data.Item.clockDriftKey || null;
         
         var idToken = new CognitoIdToken({
           IdToken: idToken_data,
@@ -482,7 +482,7 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        window.set_deviceKey = data.Item.deviceKeyKey;
+        window.set_deviceKey = data.Item.deviceKeyKey || null;
       }  
     });
 
@@ -538,9 +538,9 @@ class myCognitouserclass extends CognitoUser{
       if(err){
         console.log(err);
       }else{
-        window.get_deviceKey = data.Item.deviceKeyKey;
-        window.get_randomPassword = data.Item.randomPasswordKey;
-        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey;
+        window.get_deviceKey = data.Item.deviceKeyKey || null;
+        window.get_randomPassword = data.Item.randomPasswordKey || null;
+        window.get_deviceGroupKey = data.Item.deviceGroupKeyKey || null;
       }
     });
 		
