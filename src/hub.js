@@ -483,6 +483,7 @@ class myCognitouserclass extends CognitoUser{
     docClient.get(params, function(err, data_login){
       if(err){
         console.log(err);
+        return
       }else {
         if(data_login.Item.deviceKeyKey) {
           window.set_deviceKey = data_login.Item.deviceKeyKey ? data_login.Item.deviceKeyKey : null;
@@ -543,6 +544,7 @@ class myCognitouserclass extends CognitoUser{
     docClient.get(params, function(err, data_cache){
       if(err){
         console.log(err);
+        return
       }else{
         if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
           window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
