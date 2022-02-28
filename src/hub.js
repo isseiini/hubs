@@ -2799,29 +2799,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   const createAccountBtn = document.getElementById("createAccount");
   createAccountBtn.addEventListener("click", () => {
 
-    const username_signup = document.getElementById("email-signup").value;
+    const email_signup = document.getElementById("email-signup").value;
     const name_signup = document.getElementById("name-signup").value;
     const password_signup = document.getElementById('password-signup').value;
     const age_signup = document.getElementById("age-signup").value;
     const sex_signup = document.getElementById("sex-signup").value;
     const location_signup = document.getElementById("location-signup").value;
 
-    if (!username_signup | !name_signup | !password_signup | !age_signup | !sex_signup | !location_signup) {
+    if (!email_signup | !name_signup | !password_signup | !age_signup | !sex_signup | !location_signup) {
       alert("未入力項目があります。");
       return false;
     }
 
     const dataName = {
-      Name: "email",
-      Value: username_signup
+      Name: "name",
+      Value: name_signup
     };
     const attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(
       dataName
     );
 
-    attributeList.push(attributeName);
+    const dataEmail = {
+      Name: "email",
+      Value: email_signup
+    };
+    const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(
+      dataEmail
+    );
 
-    userPool.signUp(username_signup, password_signup, attributeList, null, (err, data1) => {
+    attributeList.push(attributeName);
+    attributeList.push(attributeEmail);
+
+    userPool.signUp(email_signup, password_signup, attributeList, null, (err, data1) => {
       if (err) {
         alert(err.message);
       } else {
