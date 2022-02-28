@@ -889,11 +889,11 @@ class myCognitouserclass extends CognitoUser{
       }
     });
 		
-    if(get_deviceKey && get_randomPassword && get_deviceGroupKey) {
+    /*if(get_deviceKey && get_randomPassword && get_deviceGroupKey) {
       this.deviceKey = get_deviceKey || null;
       this.randomPassword = get_randomPassword || null;
       this.deviceGroupKey = get_deviceGroupKey || null;
-    }
+    }*/
 	}
 
   initiateAuth(authDetails, callback) {
