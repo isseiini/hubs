@@ -535,7 +535,8 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getCachedDeviceKeyAndPassword() {
-    var params = {
+    return
+    /*var params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -558,7 +559,7 @@ class myCognitouserclass extends CognitoUser{
       this.deviceKey = get_deviceKey || null;
       this.randomPassword = get_randomPassword || null;
       this.deviceGroupKey = get_deviceGroupKey || null;
-    }
+    }*/
     
 		
 	}
