@@ -2913,6 +2913,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       onFailure: err => {
         // サインイン失敗の場合、エラーメッセージを画面に表示
         console.log(err);
+        console.log(result);
         alert("ログインできません。");
       }
     });
