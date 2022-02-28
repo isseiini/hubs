@@ -799,8 +799,11 @@ class myCognitouserclass extends CognitoUser{
       );
     }
 
+    if (this.storage.getItem(idTokenKey)) {
+			null
+		} 
 		return undefined;
-	}
+	} 
 
   refreshSession(refreshToken, callback, clientMetadata) {
 		const wrappedCallback = this.pool.wrapRefreshSessionCallback
