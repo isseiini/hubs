@@ -680,9 +680,6 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheDeviceKeyAndPassword() {
-    console.log("deviceKey" + this.deviceKey);
-    console.log("randomPasswordKey" + this.randomPasswordKey);
-    console.log("deviceGroupKey" + this.deviceGroupKey);
     var params_device = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
@@ -888,11 +885,11 @@ class myCognitouserclass extends CognitoUser{
         console.log(err);
         return
       }else{
-        console.log("data_cache" + data_cache)
+        console.log("data_cache" + data_cache.Item)
         /*if(data_cache.Item.deviceKeyKey && data_cache.Item.randomPasswordKey && data_cache.Item.deviceGroupKeyKey){
           window.get_deviceKey = data_cache.Item.deviceKeyKey ? data_cache.item.deviceKeyKey : null;
-        window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
-        window.get_deviceGroupKey = data_cache.Item.deviceGroupKeyKey ? data_cache.Item.deviceGroupKeyKey : null;
+          window.get_randomPassword = data_cache.Item.randomPasswordKey ? data_cache.Item.randomPasswordKey : null;
+          window.get_deviceGroupKey = data_cache.Item.deviceGroupKeyKey ? data_cache.Item.deviceGroupKeyKey : null;
         }*/
       }
     });
