@@ -289,6 +289,13 @@ const poolData = {
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser{
+  /**
+	 * Constructs a new CognitoUser object
+	 * @param {object} data Creation options
+	 * @param {string} data.Username The user's username.
+	 * @param {CognitoUserPool} data.Pool Pool containing the user.
+	 * @param {object} data.Storage Optional storage object.
+	 */
   constructor(data) {
     super(data);
   
@@ -309,19 +316,23 @@ class myCognitouserclass extends CognitoUser{
     
   }
 
-  setSignInUserSession(signInUserSession) {
-		this.clearCachedUserData();
-		this.signInUserSession = signInUserSession;
-		this.cacheTokens();
-	}
-
-	/**
-	 * @returns {CognitoUserSession} the current session for this user
+  /**
+	 * PRIVATE ONLY: This is an internal only method and should not
+	 * be directly called by the consumers.
+	 * It calls the AuthenticationHelper for SRP related
+	 * stuff
+	 * @param {AuthenticationDetails} authDetails Contains the authentication data
+	 * @param {object} callback Result callback map.
+	 * @param {onFailure} callback.onFailure Called on any error.
+	 * @param {newPasswordRequired} callback.newPasswordRequired new
+	 *        password and any required attributes are required to continue
+	 * @param {mfaRequired} callback.mfaRequired MFA code
+	 *        required to continue.
+	 * @param {customChallenge} callback.customChallenge Custom challenge
+	 *        response required to continue.
+	 * @param {authSuccess} callback.onSuccess Called on success with the new session.
+	 * @returns {void}
 	 */
-	getSignInUserSession() {
-		return this.signInUserSession;
-	}
-
   authenticateUserDefaultAuth(authDetails, callback) {
 		const authenticationHelper = new AuthenticationHelper(
 			this.pool.getUserPoolId().split('_')[1]
@@ -468,6 +479,17 @@ class myCognitouserclass extends CognitoUser{
 		});
 	}
 
+  /**
+	 * PRIVATE ONLY: This is an internal only method and should not
+	 * be directly called by the consumers.
+	 * @param {AuthenticationDetails} authDetails Contains the authentication data.
+	 * @param {object} callback Result callback map.
+	 * @param {onFailure} callback.onFailure Called on any error.
+	 * @param {mfaRequired} callback.mfaRequired MFA code
+	 *        required to continue.
+	 * @param {authSuccess} callback.onSuccess Called on success with the new session.
+	 * @returns {void}
+	 */
   authenticateUserPlainUsernamePassword(authDetails, callback) {
 		const authParameters = {};
 		authParameters.USERNAME = this.username;
@@ -513,6 +535,14 @@ class myCognitouserclass extends CognitoUser{
 		});
 	}
 
+  /**
+	 * PRIVATE ONLY: This is an internal only method and should not
+	 * be directly called by the consumers.
+	 * @param {object} dataAuthenticate authentication data
+	 * @param {object} authenticationHelper helper created
+	 * @param {callback} callback passed on from caller
+	 * @returns {void}
+	 */
   authenticateUserInternal(dataAuthenticate, authenticationHelper, callback) {
 		const challengeName = dataAuthenticate.ChallengeName;
 		const challengeParameters = dataAuthenticate.ChallengeParameters;
@@ -641,6 +671,21 @@ class myCognitouserclass extends CognitoUser{
 		return undefined;
 	}
 
+  /**
+	 * This is used for authenticating the user.
+	 * stuff
+	 * @param {AuthenticationDetails} authDetails Contains the authentication data
+	 * @param {object} callback Result callback map.
+	 * @param {onFailure} callback.onFailure Called on any error.
+	 * @param {newPasswordRequired} callback.newPasswordRequired new
+	 *        password and any required attributes are required to continue
+	 * @param {mfaRequired} callback.mfaRequired MFA code
+	 *        required to continue.
+	 * @param {customChallenge} callback.customChallenge Custom challenge
+	 *        response required to continue.
+	 * @param {authSuccess} callback.onSuccess Called on success with the new session.
+	 * @returns {void}
+	 */
   authenticateUser(authDetails, callback) {
 		if (this.authenticationFlowType === 'USER_PASSWORD_AUTH') {
 			return this.authenticateUserPlainUsernamePassword(authDetails, callback);
@@ -679,6 +724,10 @@ class myCognitouserclass extends CognitoUser{
     });
 	}
 
+  /**
+	 * This is used to cache the device key and device group and device password
+	 * @returns {void}
+	 */
   cacheDeviceKeyAndPassword() {
     var params_device = {
       TableName: 'cognito-jwt',
@@ -814,6 +863,13 @@ class myCognitouserclass extends CognitoUser{
 		return undefined;
 	} 
 
+  /**
+	 * This uses the refreshToken to retrieve a new session
+	 * @param {CognitoRefreshToken} refreshToken A previous session's refresh token.
+	 * @param {nodeCallback<CognitoUserSession>} callback Called on success or error.
+	 * @param {ClientMetadata} clientMetadata object which is passed from client to Cognito Lambda trigger
+	 * @returns {void}
+	 */
   refreshSession(refreshToken, callback, clientMetadata) {
 		const wrappedCallback = this.pool.wrapRefreshSessionCallback
 			? this.pool.wrapRefreshSessionCallback(callback)
@@ -883,6 +939,10 @@ class myCognitouserclass extends CognitoUser{
 		});
 	}
 
+  /**
+	 * This is used to get current device key and device group and device password
+	 * @returns {void}
+	 */
   getCachedDeviceKeyAndPassword() {
     let params = {
       TableName: 'cognito-jwt',
@@ -911,6 +971,16 @@ class myCognitouserclass extends CognitoUser{
     }*/
 	}
 
+  /**
+	 * This is used for authenticating the user through the custom authentication flow.
+	 * @param {AuthenticationDetails} authDetails Contains the authentication data
+	 * @param {object} callback Result callback map.
+	 * @param {onFailure} callback.onFailure Called on any error.
+	 * @param {customChallenge} callback.customChallenge Custom challenge
+	 *        response required to continue.
+	 * @param {authSuccess} callback.onSuccess Called on success with the new session.
+	 * @returns {void}
+	 */
   initiateAuth(authDetails, callback) {
 		const authParameters = authDetails.getAuthParameters();
 		authParameters.USERNAME = this.username;
@@ -949,6 +1019,10 @@ class myCognitouserclass extends CognitoUser{
 		});
 	}
 
+  /**
+	 * This is used to save the session tokens to local storage
+	 * @returns {void}
+	 */
   cacheTokens() {
     const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
     const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
@@ -993,6 +1067,10 @@ class myCognitouserclass extends CognitoUser{
     return
 	}
 
+  /**
+	 * This is used to clear the device key info from local storage
+	 * @returns {void}
+	 */
   clearCachedDeviceKeyAndPassword() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
 			this.username
@@ -1007,6 +1085,10 @@ class myCognitouserclass extends CognitoUser{
     return
 	}
 
+  /**
+	 * This is used to clear the session tokens from local storage
+	 * @returns {void}
+	 */
   clearCachedTokens() {
 		/*const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		const idTokenKey = `${keyPrefix}.${this.username}.idToken`;
@@ -1024,6 +1106,11 @@ class myCognitouserclass extends CognitoUser{
 	}
 
 };
+/**
+ * method for getting the current user of the application from the local storage
+ *
+ * @returns {CognitoUser} the user retrieved from storage
+ */
 class myCognitouserpoolclass extends CognitoUserPool {
   
   exgetCurrentUser() {
