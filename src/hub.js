@@ -851,14 +851,6 @@ class myCognitouserclass extends CognitoUser{
         }
       }
     });
-
-    if (!refreshToken.getToken()) {
-      return callback(
-        new Error('Cannot retrieve a new session. Please authenticate.'),
-        null
-      );
-    }
-
     
 		return undefined;
 	} 
@@ -1608,7 +1600,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
 
   const userPool = new myCognitouserpoolclass(poolData);
-  console.log(userPool)
+
+  const cognito_confirm = userPool.exgetCurrentUser();
+  if(cognito_confirm) {
+    console.log("ログインしています");
+  }
 
   if (room_name == "kooky-passionate-safari") {
     /*var ref = document.referrer;
