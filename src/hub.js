@@ -892,8 +892,45 @@ class myCognitouserclass extends CognitoUser{
     }
 	}
 
+  initiateAuth(authDetails, callback) {
+		const authParameters = authDetails.getAuthParameters();
+		authParameters.USERNAME = this.username;
+
+		const clientMetaData =
+			Object.keys(authDetails.getValidationData()).length !== 0
+				? authDetails.getValidationData()
+				: authDetails.getClientMetadata();
+
+		const jsonReq = {
+			AuthFlow: 'CUSTOM_AUTH',
+			ClientId: this.pool.getClientId(),
+			AuthParameters: authParameters,
+			ClientMetadata: clientMetaData,
+		};
+		if (this.getUserContextData()) {
+			jsonReq.UserContextData = this.getUserContextData();
+		}
+
+		this.client.request('InitiateAuth', jsonReq, (err, data) => {
+			if (err) {
+				return callback.onFailure(err);
+			}
+			const challengeName = data.ChallengeName;
+			const challengeParameters = data.ChallengeParameters;
+
+			if (challengeName === 'CUSTOM_CHALLENGE') {
+				this.Session = data.Session;
+				return callback.customChallenge(challengeParameters);
+			}
+			this.signInUserSession = this.getCognitoUserSession(
+				data.AuthenticationResult
+			);
+			this.cacheTokens();
+			return callback.onSuccess(this.signInUserSession);
+		});
+	}
+
   cacheTokens() {
-    this.signInUserSession = this.getCognitoUserSession
     const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
     const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
     const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
@@ -2855,14 +2892,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     const cognitoUser2 = new myCognitouserclass(userData);
-
     
     // 認証処理
-    cognitoUser.authenticateUser(authenticationDetails, {
+    cognitoUser2.authenticateUser(authenticationDetails, {
       onSuccess: result => {
-        const idToken = result.getIdToken().getJwtToken(); // IDトークン
-        const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
-        const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
+        //const idToken = result.getIdToken().getJwtToken(); // IDトークン
+        //const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
+        //const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
 
         //cognitoUser2.cacheTokens();
 
