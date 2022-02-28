@@ -320,6 +320,324 @@ class myCognitouserclass extends CognitoUser{
 		return this.signInUserSession;
 	}
 
+  authenticateUserDefaultAuth(authDetails, callback) {
+		const authenticationHelper = new AuthenticationHelper(
+			this.pool.getUserPoolId().split('_')[1]
+		);
+		const dateHelper = new DateHelper();
+
+		let serverBValue;
+		let salt;
+		const authParameters = {};
+
+		if (this.deviceKey != null) {
+			authParameters.DEVICE_KEY = this.deviceKey;
+		}
+
+		authParameters.USERNAME = this.username;
+		authenticationHelper.getLargeAValue((errOnAValue, aValue) => {
+			// getLargeAValue callback start
+			if (errOnAValue) {
+				callback.onFailure(errOnAValue);
+			}
+
+			authParameters.SRP_A = aValue.toString(16);
+
+			if (this.authenticationFlowType === 'CUSTOM_AUTH') {
+				authParameters.CHALLENGE_NAME = 'SRP_A';
+			}
+
+			const clientMetaData =
+				Object.keys(authDetails.getValidationData()).length !== 0
+					? authDetails.getValidationData()
+					: authDetails.getClientMetadata();
+
+			const jsonReq = {
+				AuthFlow: this.authenticationFlowType,
+				ClientId: this.pool.getClientId(),
+				AuthParameters: authParameters,
+				ClientMetadata: clientMetaData,
+			};
+			if (this.getUserContextData(this.username)) {
+				jsonReq.UserContextData = this.getUserContextData(this.username);
+			}
+
+			this.client.request('InitiateAuth', jsonReq, (err, data) => {
+				if (err) {
+					return callback.onFailure(err);
+				}
+
+				const challengeParameters = data.ChallengeParameters;
+
+				this.username = challengeParameters.USER_ID_FOR_SRP;
+				this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+				serverBValue = new BigInteger(challengeParameters.SRP_B, 16);
+				salt = new BigInteger(challengeParameters.SALT, 16);
+				this.getCachedDeviceKeyAndPassword();
+
+				authenticationHelper.getPasswordAuthenticationKey(
+					this.username,
+					authDetails.getPassword(),
+					serverBValue,
+					salt,
+					(errOnHkdf, hkdf) => {
+						// getPasswordAuthenticationKey callback start
+						if (errOnHkdf) {
+							callback.onFailure(errOnHkdf);
+						}
+
+						const dateNow = dateHelper.getNowString();
+
+						const message = CryptoJS.lib.WordArray.create(
+							Buffer.concat([
+								Buffer.from(this.pool.getUserPoolId().split('_')[1], 'utf8'),
+								Buffer.from(this.username, 'utf8'),
+								Buffer.from(challengeParameters.SECRET_BLOCK, 'base64'),
+								Buffer.from(dateNow, 'utf8'),
+							])
+						);
+						const key = CryptoJS.lib.WordArray.create(hkdf);
+						const signatureString = Base64.stringify(HmacSHA256(message, key));
+
+						const challengeResponses = {};
+
+						challengeResponses.USERNAME = this.username;
+						challengeResponses.PASSWORD_CLAIM_SECRET_BLOCK =
+							challengeParameters.SECRET_BLOCK;
+						challengeResponses.TIMESTAMP = dateNow;
+						challengeResponses.PASSWORD_CLAIM_SIGNATURE = signatureString;
+
+						if (this.deviceKey != null) {
+							challengeResponses.DEVICE_KEY = this.deviceKey;
+						}
+
+						const respondToAuthChallenge = (challenge, challengeCallback) =>
+							this.client.request(
+								'RespondToAuthChallenge',
+								challenge,
+								(errChallenge, dataChallenge) => {
+									if (
+										errChallenge &&
+										errChallenge.code === 'ResourceNotFoundException' &&
+										errChallenge.message.toLowerCase().indexOf('device') !== -1
+									) {
+										challengeResponses.DEVICE_KEY = null;
+										this.deviceKey = null;
+										this.randomPassword = null;
+										this.deviceGroupKey = null;
+										this.clearCachedDeviceKeyAndPassword();
+										return respondToAuthChallenge(challenge, challengeCallback);
+									}
+									return challengeCallback(errChallenge, dataChallenge);
+								}
+							);
+
+						const jsonReqResp = {
+							ChallengeName: 'PASSWORD_VERIFIER',
+							ClientId: this.pool.getClientId(),
+							ChallengeResponses: challengeResponses,
+							Session: data.Session,
+							ClientMetadata: clientMetaData,
+						};
+						if (this.getUserContextData()) {
+							jsonReqResp.UserContextData = this.getUserContextData();
+						}
+						respondToAuthChallenge(
+							jsonReqResp,
+							(errAuthenticate, dataAuthenticate) => {
+								if (errAuthenticate) {
+									return callback.onFailure(errAuthenticate);
+								}
+
+								return this.authenticateUserInternal(
+									dataAuthenticate,
+									authenticationHelper,
+									callback
+								);
+							}
+						);
+						return undefined;
+						// getPasswordAuthenticationKey callback end
+					}
+				);
+				return undefined;
+			});
+			// getLargeAValue callback end
+		});
+	}
+
+  authenticateUserPlainUsernamePassword(authDetails, callback) {
+		const authParameters = {};
+		authParameters.USERNAME = this.username;
+		authParameters.PASSWORD = authDetails.getPassword();
+		if (!authParameters.PASSWORD) {
+			callback.onFailure(new Error('PASSWORD parameter is required'));
+			return;
+		}
+		const authenticationHelper = new AuthenticationHelper(
+			this.pool.getUserPoolId().split('_')[1]
+		);
+		this.getCachedDeviceKeyAndPassword();
+		if (this.deviceKey != null) {
+			authParameters.DEVICE_KEY = this.deviceKey;
+		}
+
+		const clientMetaData =
+			Object.keys(authDetails.getValidationData()).length !== 0
+				? authDetails.getValidationData()
+				: authDetails.getClientMetadata();
+
+		const jsonReq = {
+			AuthFlow: 'USER_PASSWORD_AUTH',
+			ClientId: this.pool.getClientId(),
+			AuthParameters: authParameters,
+			ClientMetadata: clientMetaData,
+		};
+		if (this.getUserContextData(this.username)) {
+			jsonReq.UserContextData = this.getUserContextData(this.username);
+		}
+		// USER_PASSWORD_AUTH happens in a single round-trip: client sends userName and password,
+		// Cognito UserPools verifies password and returns tokens.
+		this.client.request('InitiateAuth', jsonReq, (err, authResult) => {
+			if (err) {
+				return callback.onFailure(err);
+			}
+			return this.authenticateUserInternal(
+				authResult,
+				authenticationHelper,
+				callback
+			);
+		});
+	}
+
+  authenticateUserInternal(dataAuthenticate, authenticationHelper, callback) {
+		const challengeName = dataAuthenticate.ChallengeName;
+		const challengeParameters = dataAuthenticate.ChallengeParameters;
+
+		if (challengeName === 'SMS_MFA') {
+			this.Session = dataAuthenticate.Session;
+			return callback.mfaRequired(challengeName, challengeParameters);
+		}
+
+		if (challengeName === 'SELECT_MFA_TYPE') {
+			this.Session = dataAuthenticate.Session;
+			return callback.selectMFAType(challengeName, challengeParameters);
+		}
+
+		if (challengeName === 'MFA_SETUP') {
+			this.Session = dataAuthenticate.Session;
+			return callback.mfaSetup(challengeName, challengeParameters);
+		}
+
+		if (challengeName === 'SOFTWARE_TOKEN_MFA') {
+			this.Session = dataAuthenticate.Session;
+			return callback.totpRequired(challengeName, challengeParameters);
+		}
+
+		if (challengeName === 'CUSTOM_CHALLENGE') {
+			this.Session = dataAuthenticate.Session;
+			return callback.customChallenge(challengeParameters);
+		}
+
+		if (challengeName === 'NEW_PASSWORD_REQUIRED') {
+			this.Session = dataAuthenticate.Session;
+
+			let userAttributes = null;
+			let rawRequiredAttributes = null;
+			const requiredAttributes = [];
+			const userAttributesPrefix = authenticationHelper.getNewPasswordRequiredChallengeUserAttributePrefix();
+
+			if (challengeParameters) {
+				userAttributes = JSON.parse(
+					dataAuthenticate.ChallengeParameters.userAttributes
+				);
+				rawRequiredAttributes = JSON.parse(
+					dataAuthenticate.ChallengeParameters.requiredAttributes
+				);
+			}
+
+			if (rawRequiredAttributes) {
+				for (let i = 0; i < rawRequiredAttributes.length; i++) {
+					requiredAttributes[i] = rawRequiredAttributes[i].substr(
+						userAttributesPrefix.length
+					);
+				}
+			}
+			return callback.newPasswordRequired(userAttributes, requiredAttributes);
+		}
+
+		if (challengeName === 'DEVICE_SRP_AUTH') {
+			this.Session = dataAuthenticate.Session;
+			this.getDeviceResponse(callback);
+			return undefined;
+		}
+
+		this.signInUserSession = this.getCognitoUserSession(
+			dataAuthenticate.AuthenticationResult
+		);
+		this.challengeName = challengeName;
+		this.cacheTokens();
+
+		const newDeviceMetadata =
+			dataAuthenticate.AuthenticationResult.NewDeviceMetadata;
+		if (newDeviceMetadata == null) {
+			return callback.onSuccess(this.signInUserSession);
+		}
+
+		authenticationHelper.generateHashDevice(
+			dataAuthenticate.AuthenticationResult.NewDeviceMetadata.DeviceGroupKey,
+			dataAuthenticate.AuthenticationResult.NewDeviceMetadata.DeviceKey,
+			errGenHash => {
+				if (errGenHash) {
+					return callback.onFailure(errGenHash);
+				}
+
+				const deviceSecretVerifierConfig = {
+					Salt: Buffer.from(
+						authenticationHelper.getSaltDevices(),
+						'hex'
+					).toString('base64'),
+					PasswordVerifier: Buffer.from(
+						authenticationHelper.getVerifierDevices(),
+						'hex'
+					).toString('base64'),
+				};
+
+				this.verifierDevices = deviceSecretVerifierConfig.PasswordVerifier;
+				this.deviceGroupKey = newDeviceMetadata.DeviceGroupKey;
+				this.randomPassword = authenticationHelper.getRandomPassword();
+
+				this.client.request(
+					'ConfirmDevice',
+					{
+						DeviceKey: newDeviceMetadata.DeviceKey,
+						AccessToken: this.signInUserSession.getAccessToken().getJwtToken(),
+						DeviceSecretVerifierConfig: deviceSecretVerifierConfig,
+						DeviceName: userAgent,
+					},
+					(errConfirm, dataConfirm) => {
+						if (errConfirm) {
+							return callback.onFailure(errConfirm);
+						}
+
+						this.deviceKey =
+							dataAuthenticate.AuthenticationResult.NewDeviceMetadata.DeviceKey;
+						this.cacheDeviceKeyAndPassword();
+						if (dataConfirm.UserConfirmationNecessary === true) {
+							return callback.onSuccess(
+								this.signInUserSession,
+								dataConfirm.UserConfirmationNecessary
+							);
+						}
+						return callback.onSuccess(this.signInUserSession);
+					}
+				);
+				return undefined;
+			}
+		);
+		return undefined;
+	}
+
   authenticateUser(authDetails, callback) {
 		if (this.authenticationFlowType === 'USER_PASSWORD_AUTH') {
 			return this.authenticateUserPlainUsernamePassword(authDetails, callback);
@@ -548,8 +866,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   getCachedDeviceKeyAndPassword() {
-    return
-    /*var params = {
+    var params = {
       TableName: 'cognito-jwt',
       Key:{
         cognito_user : window.location.hash.slice(1)
@@ -572,13 +889,11 @@ class myCognitouserclass extends CognitoUser{
       this.deviceKey = get_deviceKey || null;
       this.randomPassword = get_randomPassword || null;
       this.deviceGroupKey = get_deviceGroupKey || null;
-    }*/
-    
-		
+    }
 	}
 
   cacheTokens() {
-    this.signInUserSession = this.getCognitoUserSession(AuthenticationHelper)
+    this.signInUserSession = this.getCognitoUserSession
     const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
     const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
     const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
