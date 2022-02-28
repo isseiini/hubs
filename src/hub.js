@@ -293,7 +293,6 @@ class myCognitouserclass extends CognitoUser{
     super(data);
   
     this.username = data.Username || window.location.hash.slice(1);
-    console.log(this.username, window.location.hash.slice(1))
     this.pool = data.Pool;
     this.Session = null;
   
@@ -2895,32 +2894,40 @@ document.addEventListener("DOMContentLoaded", async () => {
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
     let cognitoUser_me = userPool.getCurrentUser(); 
-    console.log(userPool)
-    cognitoUser_me.getSession((err, session) => {
-      if (err) {
-        console.log(err)
-      } else {
-        cognitoUser_me.getUserAttributes((err,result) => {
-          if (err) {
-            console.log(err)
-          } else {
-            let i;
-            for (i = 0; i < result.length; i++) {
-              currentUserData[result[i].getName()] = result[i].getValue();
-            };   
-            const userData = {
-              Username: currentUserData["email"],
-              Pool: userPool
+    if(cognitoUser_me){
+      cognitoUser_me.getSession((err, session) => {
+        if (err) {
+          console.log(err)
+        } else {
+          cognitoUser_me.getUserAttributes((err,result) => {
+            if (err) {
+              console.log(err)
+            } else {
+              let i;
+              for (i = 0; i < result.length; i++) {
+                currentUserData[result[i].getName()] = result[i].getValue();
+              };   
+              const userData = {
+                Username: currentUserData["email"],
+                Pool: userPool
+              };
+              const cognitoUser2 = new myCognitouserclass(userData);
+              cognitoUser2.signOut();
+              alert("ログアウトしました。")
             };
-            const cognitoUser2 = new myCognitouserclass(userData);
-            cognitoUser2.signOut();
-            alert("ログアウトしました。")
-          };
-        });
+          });
+        };
+      });
+    } else {
+      console.log("errrrr")
+      const userData = {
+        Username: window.location.hash.slice(1),
+        Pool: userPool
       };
-    });
-
-    
+      const cognitoUser2 = new myCognitouserclass(userData);
+      cognitoUser2.signOut();
+      alert("ログアウトしました。")
+    }
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
