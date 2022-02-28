@@ -2535,7 +2535,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
         const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
 
-        cognitoUser2.cacheTokens();
+        //cognitoUser2.cacheTokens();
 
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
