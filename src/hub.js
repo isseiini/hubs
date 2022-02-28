@@ -307,6 +307,19 @@ class myCognitouserclass extends CognitoUser{
     
   }
 
+  setSignInUserSession(signInUserSession) {
+		this.clearCachedUserData();
+		this.signInUserSession = signInUserSession;
+		this.cacheTokens();
+	}
+
+	/**
+	 * @returns {CognitoUserSession} the current session for this user
+	 */
+	getSignInUserSession() {
+		return this.signInUserSession;
+	}
+
   authenticateUser(authDetails, callback) {
 		if (this.authenticationFlowType === 'USER_PASSWORD_AUTH') {
 			return this.authenticateUserPlainUsernamePassword(authDetails, callback);
@@ -565,7 +578,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheTokens() {
-    this.signInUserSession = signInUserSession
+    this.signInUserSession = this.getcachedsession
     const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
     const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
     const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
