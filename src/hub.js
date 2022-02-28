@@ -731,6 +731,8 @@ class myCognitouserclass extends CognitoUser{
     });
 	}
 
+
+
   getSession(callback, options = {}) {
 		if (this.username == null) {
 			return callback(
@@ -738,7 +740,7 @@ class myCognitouserclass extends CognitoUser{
 				null
 			);
 		}
-
+    console.log(options)
 		if (this.signInUserSession != null && this.signInUserSession.isValid()) {
 			return callback(null, this.signInUserSession);
 		}
