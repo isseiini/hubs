@@ -382,12 +382,14 @@ class myCognitouserclass extends CognitoUser{
         cognito_user : this.username
       }
     };
-    docClient.get(params, function(err, data){
+    docClient.get(params, function(err, data_UserData){
       if(err){
         console.log(err);
       }else{
-        const userData = data.Item.userDataKey || null;
-        return userData;
+        if (data_UserData.Item.userDataKey) {
+          const userData = data_UserData.Item.userDataKey || null;
+          return userData;
+        }
       }
     });
 	}
@@ -410,7 +412,7 @@ class myCognitouserclass extends CognitoUser{
         cognito_user : this.username
       }
     };
-    docClient.get(params, function(err, data){
+    docClient.get(params, function(err, data_session){
       if(err){
         console.log(err);
       }else{
@@ -419,32 +421,32 @@ class myCognitouserclass extends CognitoUser{
         const accessTokenKey = keyPrefix + '.accessToken';
         const refreshTokenKey = keyPrefix + '.refreshToken';
         const clockDriftKey = keyPrefix + '.clockDrift';*/
-        const idToken_data = data.Item.idTokenKey || null;
-        const accessToken_data = data.Item.accessTokenKey || null;
-        const refreshToken_data = data.Item.refreshTokenKey || null;
-        const clockDrift_data = data.Item.clockDriftKey || null;
-        
-        var idToken = new CognitoIdToken({
-          IdToken: idToken_data,
-        });
-        var accessToken = new CognitoAccessToken({
-          AccessToken: accessToken_data,
-        });
-        var refreshToken = new CognitoRefreshToken({
-          RefreshToken: refreshToken_data,
-        });
-        var clockDrift = parseInt(clockDrift_data, 0) || 0;
+        if (data_session.Item.idTokenKey && data_session.Item.accessTokenKey && data_session.Item.refreshTokenKey && ckDriftKey) {
+          const idToken_data = data_session.Item.idTokenKey || null;
+          const accessToken_data = data_session.Item.accessTokenKey || null;
+          const refreshToken_data = data_session.Item.refreshTokenKey || null;
+          const clockDrift_data = data_session.Item.clockDriftKey || null;
+          
+          var idToken = new CognitoIdToken({
+            IdToken: idToken_data,
+          });
+          var accessToken = new CognitoAccessToken({
+            AccessToken: accessToken_data,
+          });
+          var refreshToken = new CognitoRefreshToken({
+            RefreshToken: refreshToken_data,
+          });
+          var clockDrift = parseInt(clockDrift_data, 0) || 0;
 
-        const sessionData = {
-          IdToken: idToken,
-          AccessToken: accessToken,
-          RefreshToken: refreshToken,
-          ClockDrift: clockDrift,
-        };
+          const sessionData = {
+            IdToken: idToken,
+            AccessToken: accessToken,
+            RefreshToken: refreshToken,
+            ClockDrift: clockDrift,
+          };
 
-        cachedSession = new CognitoUserSession(sessionData);
-
-        
+          window.cachedSession = new CognitoUserSession(sessionData);
+        }
       }
     });
 
