@@ -2858,7 +2858,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     
     // 認証処理
-    cognitoUser2.authenticateUser(authenticationDetails, {
+    cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: result => {
         const idToken = result.getIdToken().getJwtToken(); // IDトークン
         const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
