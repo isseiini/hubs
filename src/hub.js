@@ -707,7 +707,7 @@ class myCognitouserclass extends CognitoUser{
 	 */
 	getUserAttributes(callback) {
 		if (!(this.signInUserSession != null && this.signInUserSession.isValid())) {
-			return callback(new Error('User is not authenticated'), null);
+			//return callback(new Error('User is not authenticated'), null);
 		}
 
 		this.client.request(
@@ -1641,6 +1641,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cognito_confirm = userPool.exgetCurrentUser();
   if(cognito_confirm) {
     console.log("ログインしています");
+  } else {
+    console.log("ログインしていません");
+    if(window.location.hash){
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
+    }
   }
 
   if (room_name == "kooky-passionate-safari") {
