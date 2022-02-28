@@ -325,7 +325,7 @@ class myCognitouserclass extends CognitoUser{
 		var params_userdata = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
+        cognito_user: window.location.hash.slice(1)
       },
       ExpressionAttributeNames: {
         '#userDataKey': 'userDataKey'
@@ -349,7 +349,7 @@ class myCognitouserclass extends CognitoUser{
     var params_device = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
+        cognito_user: window.location.hash.slice(1)
       },
       ExpressionAttributeNames: {
         '#deviceKeyKey': 'deviceKeyKey',
@@ -379,7 +379,7 @@ class myCognitouserclass extends CognitoUser{
     var params = {
       TableName: 'cognito-jwt',
       Key:{
-        cognito_user : this.username
+        cognito_user : window.location.hash.slice(1)
       }
     };
     docClient.get(params, function(err, data_UserData){
@@ -409,7 +409,7 @@ class myCognitouserclass extends CognitoUser{
     var params = {
       TableName: 'cognito-jwt',
       Key:{
-        cognito_user : this.username
+        cognito_user : window.location.hash.slice(1)
       }
     };
     docClient.get(params, function(err, data_session){
@@ -477,7 +477,7 @@ class myCognitouserclass extends CognitoUser{
     var params = {
       TableName: 'cognito-jwt',
       Key:{
-        cognito_user : this.username
+        cognito_user : window.location.hash.slice(1)
       }
     };
     docClient.get(params, function(err, data_login){
@@ -537,7 +537,7 @@ class myCognitouserclass extends CognitoUser{
     var params = {
       TableName: 'cognito-jwt',
       Key:{
-        cognito_user : this.username
+        cognito_user : window.location.hash.slice(1)
       }
     };
     docClient.get(params, function(err, data_cache){
@@ -571,7 +571,7 @@ class myCognitouserclass extends CognitoUser{
     var params_tokens = {
       TableName: 'cognito-jwt',
       Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        cognito_user: this.username 
+        cognito_user: window.location.hash.slice(1)
       },
       ExpressionAttributeNames: {
         '#idTokenKey': 'idTokenKey',
