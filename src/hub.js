@@ -578,7 +578,7 @@ class myCognitouserclass extends CognitoUser{
 	}
 
   cacheTokens() {
-    this.signInUserSession = this.getCognitoUserSession(authenticationResult)
+    this.signInUserSession = this.getCognitoUserSession(AuthenticationHelper)
     const get_idToken = this.signInUserSession.getIdToken().getJwtToken();
     const get_accessToken = this.signInUserSession.getAccessToken().getJwtToken()
     const get_refreshToken = this.signInUserSession.getRefreshToken().getToken()
