@@ -1137,11 +1137,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   console.log(userPool)
 
   if (room_name == "kooky-passionate-safari") {
-    var ref = document.referrer;
+    /*var ref = document.referrer;
     console.log(ref)
     if(ref == "") {
       location.href = "https://virtual-dotonbori.com/strong-elementary-meetup";
-    }
+    }*/
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
     const cognito_mine = userPool.getCurrentUser();
