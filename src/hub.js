@@ -293,6 +293,7 @@ class myCognitouserclass extends CognitoUser{
     super(data);
   
     this.username = data.Username || window.location.hash.slice(1);
+    console.log(this.username, window.location.hash.slice(1))
     this.pool = data.Pool;
     this.Session = null;
   
