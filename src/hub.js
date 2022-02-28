@@ -487,12 +487,14 @@ class myCognitouserclass extends CognitoUser{
         if(data_login.Item.deviceKeyKey) {
           window.set_deviceKey = data_login.Item.deviceKeyKey ? data_login.Item.deviceKeyKey : null;
         }
-        
       }  
     });
 
-    this.deviceKey = set_deviceKey;
-    authParameters.DEVICE_KEY = this.deviceKey;
+    if(set_deviceKey){
+      this.deviceKey = set_deviceKey;
+      authParameters.DEVICE_KEY = this.deviceKey;
+    }
+    
 
     const jsonReq = {
       ClientId: this.pool.getClientId(),
@@ -551,9 +553,12 @@ class myCognitouserclass extends CognitoUser{
       }
     });
 		
-    this.deviceKey = get_deviceKey;
-    this.randomPassword = get_randomPassword;
-    this.deviceGroupKey = get_deviceGroupKey;
+    if(get_deviceKey && get_randomPassword && get_deviceGroupKey) {
+      this.deviceKey = get_deviceKey || null;
+      this.randomPassword = get_randomPassword || null;
+      this.deviceGroupKey = get_deviceGroupKey || null;
+    }
+    
 		
 	}
 
