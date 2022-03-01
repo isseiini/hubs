@@ -2978,7 +2978,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   },1500);
 
   document.addEventListener('keydown', event => {
-  if (event.altKey && event.code === 'Slash') {
+  if (event.ctrlKey && event.code === 'Slash') {
       life = life - 20;
 
       Player_UI.style.marginTop = "10px";
@@ -3533,7 +3533,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener('keyup', event => {
-    if (event.code === 'KeyL' && event.ctrlKey) {
+    if (event.altKey && event.shiftKey) {
       var cognitoUser_me2 = userPool.exgetCurrentUser(); 
       cognitoUser_me2.exgetSession((err, session) => {
         if (err) {
