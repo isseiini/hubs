@@ -1152,26 +1152,30 @@ class myCognitouserclass extends CognitoUser{
     return
 	}
 
-};
-/**
-	 * This is used to build a user session from tokens retrieved in the authentication result
-	 * @param {object} authResult Successful auth response from server.
-	 * @returns {CognitoUserSession} The new user session.
-	 * @private
-	 */
- getCognitoUserSession(authResult) {
-  const idToken = new CognitoIdToken(authResult);
-  const accessToken = new CognitoAccessToken(authResult);
-  const refreshToken = new CognitoRefreshToken(authResult);
+  /**
+ * This is used to build a user session from tokens retrieved in the authentication result
+ * @param {object} authResult Successful auth response from server.
+ * @returns {CognitoUserSession} The new user session.
+ * @private
+ */
 
-  const sessionData = {
-    IdToken: idToken,
-    AccessToken: accessToken,
-    RefreshToken: refreshToken,
+  getCognitoUserSession(authResult) {
+    const idToken = new CognitoIdToken(authResult);
+    const accessToken = new CognitoAccessToken(authResult);
+    const refreshToken = new CognitoRefreshToken(authResult);
+
+    const sessionData = {
+      IdToken: idToken,
+      AccessToken: accessToken,
+      RefreshToken: refreshToken,
+    };
+
+    return new CognitoUserSession(sessionData);
   };
+};
 
-  return new CognitoUserSession(sessionData);
-}
+
+
 /**
  * method for getting the current user of the application from the local storage
  *
