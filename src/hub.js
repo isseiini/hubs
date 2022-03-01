@@ -3532,8 +3532,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  document.addEventListener('keyup', event => {
-    if (event.shiftKey === true && event.altKey=== true) {
+  /*document.addEventListener('keyup', event => {
+    if (event.code = "") {
       var cognitoUser_me2 = userPool.exgetCurrentUser(); 
       cognitoUser_me2.exgetSession((err, session) => {
         if (err) {
@@ -3585,7 +3585,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
       }
     };
-  });
+  });*/
+
+  document.addEventListener('keydown', event => {
+    if (event.altKey && event.code === 'Slash') {
+      var cognitoUser_me2 = userPool.exgetCurrentUser(); 
+      cognitoUser_me2.exgetSession((err, session) => {
+        if (err) {
+          console.log(err)
+        } else {
+          cognitoUser_me2.getUserAttributes((err,result) => {
+            if (err) {
+              console.log(err)
+            } else {
+              console.log(result)
+            };
+          });
+        };
+      });
+    }
+    });
     
   function Use_Coupon(number) {
     const current_Date = get_current_Date();
