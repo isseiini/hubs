@@ -3032,25 +3032,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       cognitoUser_me.exgetSession((err, session) => {
         if (err) {
           console.log(err)
-        } else {
-          cognitoUser_me.getUserAttributes((err,result) => {
-            if (err) {
-              console.log(err)
-            } else {
-              let i;
-              for (i = 0; i < result.length; i++) {
-                currentUserData[result[i].getName()] = result[i].getValue();
-              };   
-              const userData = {
-                Username: currentUserData["email"],
-                Pool: userPool
-              };
-              const cognitoUser2 = new myCognitouserclass(userData);
-              cognitoUser2.signOut();
-              alert("ログアウトしました。")
-            };
-          });
-        };
+        } else {      
+        const userData = {
+          Username: this.username,
+          Pool: userPool
+          };
+          const cognitoUser2 = new myCognitouserclass(userData);
+          cognitoUser2.signOut();
+          alert("ログアウトしました。")
+          };
       });
     } else {
       console.log("errrrr")
