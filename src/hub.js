@@ -3533,7 +3533,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener('keyup', event => {
-    if (event.altKey) {
+    if (e.keyCode === 13 && e.altKey=== true) {
       var cognitoUser_me2 = userPool.exgetCurrentUser(); 
       cognitoUser_me2.exgetSession((err, session) => {
         if (err) {
