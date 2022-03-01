@@ -1182,7 +1182,11 @@ class myCognitouserclass extends CognitoUser{
  * @returns {CognitoUser} the user retrieved from storage
  */
 class myCognitouserpoolclass extends CognitoUserPool {
-  
+  /**
+	 * method for getting the current user of the application from the local storage
+	 *
+	 * @returns {CognitoUser} the user retrieved from storage
+	 */
   exgetCurrentUser() {
     this.username = window.location.hash.slice(1);
   
@@ -1227,6 +1231,62 @@ class myCognitouserpoolclass extends CognitoUserPool {
     } else {
       return
     }
+	}
+
+  /**
+	 * @typedef {object} SignUpResult
+	 * @property {CognitoUser} user New user.
+	 * @property {bool} userConfirmed If the user is already confirmed.
+	 */
+	/**
+	 * method for signing up a user
+	 * @param {string} username User's username.
+	 * @param {string} password Plain-text initial password entered by user.
+	 * @param {(AttributeArg[])=} userAttributes New user attributes.
+	 * @param {(AttributeArg[])=} validationData Application metadata.
+	 * @param {(AttributeArg[])=} clientMetadata Client metadata.
+	 * @param {nodeCallback<SignUpResult>} callback Called on error or with the new user.
+	 * @param {ClientMetadata} clientMetadata object which is passed from client to Cognito Lambda trigger
+	 * @returns {void}
+	 */
+	signUp(
+		username,
+		password,
+		userAttributes,
+		validationData,
+		callback,
+		clientMetadata
+	) {
+		const jsonReq = {
+			ClientId: this.clientId,
+			Username: username,
+			Password: password,
+			UserAttributes: userAttributes,
+			ValidationData: validationData,
+			ClientMetadata: clientMetadata,
+		};
+		if (this.getUserContextData(username)) {
+			jsonReq.UserContextData = this.getUserContextData(username);
+		}
+		this.client.request('SignUp', jsonReq, (err, data) => {
+			if (err) {
+				return callback(err, null);
+			}
+
+			const cognitoUser = {
+				Username: username,
+				Pool: this
+			};
+
+			const returnData = {
+				user: new myCognitouserclass(cognitoUser),
+				userConfirmed: data.UserConfirmed,
+				userSub: data.UserSub,
+				codeDeliveryDetails: data.CodeDeliveryDetails,
+			};
+
+			return callback(null, returnData);
+		});
 	}
 }
 
@@ -1678,8 +1738,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
 
   const userPool = new myCognitouserpoolclass(poolData);
-
+  
   /*const cognito_confirm = userPool.exgetCurrentUser();
+  
   if(cognito_confirm) {
     console.log("ログインしています");
   } else {
