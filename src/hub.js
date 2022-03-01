@@ -3449,7 +3449,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener('keyup', event => {
-    if (event.code === 'KeyL') {
+    if (event.code === 'KeyL' && event.ctrlKey) {
       var cognitoUser_me2 = userPool.exgetCurrentUser(); 
       cognitoUser_me2.exgetSession((err, session) => {
         if (err) {
