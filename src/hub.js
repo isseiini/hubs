@@ -3034,7 +3034,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log(err)
         } else {      
         const userData = {
-          Username: this.username,
+          Username: window.location.hash.slice(1),
           Pool: userPool
           };
           const cognitoUser2 = new myCognitouserclass(userData);
