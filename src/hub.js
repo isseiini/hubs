@@ -2978,7 +2978,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   },1500);
 
   document.addEventListener('keydown', event => {
-  if (event.ctrlKey && event.code === 'Slash') {
+  if (event.altKey && event.code === 'Slash') {
       life = life - 20;
 
       Player_UI.style.marginTop = "10px";
