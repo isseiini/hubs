@@ -317,6 +317,24 @@ class myCognitouserclass extends CognitoUser{
   }
 
   /**
+	 * Sets the session for this user
+	 * @param {CognitoUserSession} signInUserSession the session
+	 * @returns {void}
+	 */
+	setSignInUserSession(signInUserSession) {
+		this.clearCachedUserData();
+		this.signInUserSession = signInUserSession;
+		this.cacheTokens();
+	}
+
+	/**
+	 * @returns {CognitoUserSession} the current session for this user
+	 */
+	getSignInUserSession() {
+		return this.signInUserSession;
+	}
+
+  /**
 	 * PRIVATE ONLY: This is an internal only method and should not
 	 * be directly called by the consumers.
 	 * It calls the AuthenticationHelper for SRP related
