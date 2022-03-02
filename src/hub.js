@@ -3152,7 +3152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    cognitoUser2.getDevice({
+    /*cognitoUser2.getDevice({
 	    onSuccess: function (result) {
 	        console.log('call result: ' + result);
 	    },
@@ -3161,7 +3161,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	    onFailure: function(err) {
 	        alert(err);
 	    }
-	  });
+	  });*/
   });
 
   const signoutButton = document.getElementById("signoutButton");
