@@ -713,11 +713,13 @@ class myCognitouserclass extends CognitoUser{
 	 */
   authenticateUser(authDetails, callback) {
 		if (this.authenticationFlowType === 'USER_PASSWORD_AUTH') {
+      console.log("USER_PASSWORD_AUTH")
 			return this.authenticateUserPlainUsernamePassword(authDetails, callback);
 		} else if (
 			this.authenticationFlowType === 'USER_SRP_AUTH' ||
 			this.authenticationFlowType === 'CUSTOM_AUTH'
 		) {
+      console.log("USER_SRP_AUTH")
 			return this.authenticateUserDefaultAuth(authDetails, callback);
 		}
 		return callback.onFailure(
@@ -3132,7 +3134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 	    onFailure: function(err) {
 	        alert(err);
 	    }
-	});
+	  });
     
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
