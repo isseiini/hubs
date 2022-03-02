@@ -77,7 +77,7 @@ export default class SceneEntryManager {
     }
 
     const waypointSystem = this.scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint();
+    waypointSystem.moveToSpawnPoint(30,30);
 
     if (isMobile || forceEnableTouchscreen || qsTruthy("force_enable_touchscreen")) {
       this.avatarRig.setAttribute("virtual-gamepad-controls", {});
