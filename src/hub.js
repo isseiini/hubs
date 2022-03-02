@@ -317,7 +317,6 @@ class myCognitouserclass extends CognitoUser{
     this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
     this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
 
-    
   }
 
   /**
@@ -367,6 +366,7 @@ class myCognitouserclass extends CognitoUser{
 
 		if (this.deviceKey != null) {
 			authParameters.DEVICE_KEY = this.deviceKey;
+      console.log("authenticateUserDefaultAuthによって規定されました。authParameters.DEVICE_KEYは" + this.deviceKey);
 		}
 
 		authParameters.USERNAME = this.username;
@@ -444,6 +444,7 @@ class myCognitouserclass extends CognitoUser{
 
 						if (this.deviceKey != null) {
 							challengeResponses.DEVICE_KEY = this.deviceKey;
+              console.log("authenticateUserDefaultAuthメソッド内のauthenticationHelper.getPasswordAuthenticationKeyメソッドで規定されたchallengeResponses.DEVICE_KEYは" + this.deviceKey);
 						}
 
 						const respondToAuthChallenge = (challenge, challengeCallback) =>
@@ -527,6 +528,7 @@ class myCognitouserclass extends CognitoUser{
 		this.getCachedDeviceKeyAndPassword();
 		if (this.deviceKey != null) {
 			authParameters.DEVICE_KEY = this.deviceKey;
+      console.log("authenticateUserPlainUsernamePasswordメソッド内で規定されたauthParameters.DEVICE_KEYは" + this.deviceKey);
 		}
 
 		const clientMetaData =
@@ -677,6 +679,7 @@ class myCognitouserclass extends CognitoUser{
 
 						this.deviceKey =
 							dataAuthenticate.AuthenticationResult.NewDeviceMetadata.DeviceKey;
+              console.log("authenticateUserInternalメソッド内で規定されたthis.devicekeyは" + dataAuthenticate.AuthenticationResult.NewDeviceMetadata.DeviceKey)
 						this.cacheDeviceKeyAndPassword();
 						if (dataConfirm.UserConfirmationNecessary === true) {
 							return callback.onSuccess(
@@ -806,6 +809,7 @@ class myCognitouserclass extends CognitoUser{
       UpdateExpression: 'SET #deviceKeyKey = :newdeviceKeyKey, #randomPasswordKey = :newrandomPasswordKey, #deviceGroupKeyKey = :newdeviceGroupKeyKey'
     };
   
+    console.log("cacheDeviceKeyAndPasswordメソッド内で規定されたthis.devicekeyは" + this.deviceKey)
     docClient.update(params_device, function(err, data2){
       if(err){
         console.log('error');
@@ -951,6 +955,7 @@ class myCognitouserclass extends CognitoUser{
     if(set_deviceKey){
       this.deviceKey = set_deviceKey;
       authParameters.DEVICE_KEY = this.deviceKey;
+      console.log("refreshSessionメソッド内で規定されたauthParameters.DEVICE_KEYは" + this.deviceKey)
     }
     
     const jsonReq = {
