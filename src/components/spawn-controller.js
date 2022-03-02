@@ -31,6 +31,8 @@ AFRAME.registerComponent("spawn-controller", {
     let x_spot = x || 0;
     let z_spot = z || 0; 
 
+    console.log("x_spot" + x_spot)
+
     const camera = this.data.camera;
     const spawnPointIndex = Math.round((spawnPoints.length - 1) * Math.random());
     const spawnPoint = spawnPoints[spawnPointIndex];
