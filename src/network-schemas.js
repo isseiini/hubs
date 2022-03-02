@@ -63,8 +63,7 @@ function registerNetworkSchemas() {
       },
       {
         selector: ".sanshakudama",
-        component: "action",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
+        component: "action"
       },
       {
         selector: ".left-controller",
@@ -373,8 +372,7 @@ function registerNetworkSchemas() {
       {
         selector: "#pen",
         component: "pen-laser",
-        property: "action",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
+        property: "action"
       }
     ]
   });
