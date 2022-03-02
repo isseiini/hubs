@@ -2981,7 +2981,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   Player_Respawn.addEventListener("click", function(){
     const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint();
+    waypointSystem.moveToSpawnPoint(30,30);
     Player_Respawn.style.display = "none";
     const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});

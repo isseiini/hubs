@@ -20,13 +20,16 @@ AFRAME.registerComponent("spawn-controller", {
       this.data.target.addEventListener(this.data.loadedEvent, this.moveToSpawnPoint);
     });
   },
-  moveToSpawnPoint() {
+  moveToSpawnPoint(x, z) {
     const spawnPoints = document.querySelectorAll("[spawn-point]");
 
     if (spawnPoints.length === 0) {
       // Keep default position
       return;
     }
+
+    let x_spot = x || 0;
+    let z_spot = z || 0; 
 
     const camera = this.data.camera;
     const spawnPointIndex = Math.round((spawnPoints.length - 1) * Math.random());
@@ -40,7 +43,7 @@ AFRAME.registerComponent("spawn-controller", {
       this.el.object3D.rotation.y -= this.data.camera.object3D.rotation.y;
     } else {
       // Reset the camera transform in 2D mode.
-      camera.object3D.position.set(0, this.data.playerHeight, 0);
+      camera.object3D.position.set(x_spot, this.data.playerHeight, z_spot);
       camera.object3D.rotation.set(0, 0, 0);
       camera.object3D.matrixNeedsUpdate = true;
     }
