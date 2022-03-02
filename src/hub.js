@@ -3123,6 +3123,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     const cognitoUser2 = new myCognitouserclass(userData);
+
+    cognitoUser2.setDeviceStatusRemembered({
+	    onSuccess: function (result) {
+	        console.log('call result: ' + result);
+	    },
+
+	    onFailure: function(err) {
+	        alert(err);
+	    }
+	});
     
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
