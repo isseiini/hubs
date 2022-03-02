@@ -3152,11 +3152,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    cognitoUser2.setDeviceStatusRemembered({
+    cognitoUser2.getDevice({
 	    onSuccess: function (result) {
 	        console.log('call result: ' + result);
 	    },
 
+      
 	    onFailure: function(err) {
 	        alert(err);
 	    }
