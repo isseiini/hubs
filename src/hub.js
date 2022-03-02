@@ -910,6 +910,8 @@ class myCognitouserclass extends CognitoUser{
             ClockDrift: clockDrift,
           };
 
+          console.log(sessionData)
+
           let cachedSession = new CognitoUserSession(sessionData);
 
           if (cachedSession.isValid()) {
