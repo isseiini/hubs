@@ -571,6 +571,8 @@ class myCognitouserclass extends CognitoUser{
 		const challengeName = dataAuthenticate.ChallengeName;
 		const challengeParameters = dataAuthenticate.ChallengeParameters;
 
+    console.log("dataAuthenticateは" + dataAuthenticate)
+
 		if (challengeName === 'SMS_MFA') {
 			this.Session = dataAuthenticate.Session;
 			return callback.mfaRequired(challengeName, challengeParameters);
@@ -632,6 +634,7 @@ class myCognitouserclass extends CognitoUser{
 		this.signInUserSession = this.getCognitoUserSession(
 			dataAuthenticate.AuthenticationResult
 		);
+    console.log("this.signinusersessionは" + this.signInUserSession)
 		this.challengeName = challengeName;
 		this.cacheTokens();
 
