@@ -24,13 +24,6 @@ import { SOUND_ENTER_SCENE } from "./systems/sound-effects-system";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
-AWS.config.region = 'ap-northeast-1'; 
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
-});
-
-var docClient = new AWS.DynamoDB.DocumentClient();
-
 //const isIOS = detectIOS();
 const isIOS = AFRAME.utils.device.isIOS();
 
@@ -66,14 +59,6 @@ export default class SceneEntryManager {
   enterScene = async (enterInVR, muteOnEntry) => {
     console.log("Entering scene...");
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
-
-
-    //const naf_tree = NAF.connection.entities.entities
-  
-    //const my_NAF_ID = "naf-" + Object.keys(naf_tree)[0];
-    //console.log(my_NAF_ID);
-
-    //sessionStorage.setItem('naf-mine', my_NAF_ID)
 
     if (isDebug && NAF.connection.adapter.session) {
       NAF.connection.adapter.session.options.verbose = true;

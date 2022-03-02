@@ -9,18 +9,19 @@ import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 import {waitForDOMContentLoaded} from "./utils/async-utils";
 
-AWS.config.region = 'ap-northeast-1'; 
+/*AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
+});*/
+
+AWS.config.region = 'ap-northeast-1'; // リージョン
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae',
 });
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 const currentUserData2 = {}; 
-
-var ddb = new AWS.DynamoDB({
-  apiVersion: '2012-08-10'
-});
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
