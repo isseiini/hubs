@@ -25,9 +25,14 @@ const currentUserData2 = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-const poolData = {
+/*const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+};*/
+
+const poolData = {
+  UserPoolId: "ap-northeast-1_RWH9txS1J",
+  ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 

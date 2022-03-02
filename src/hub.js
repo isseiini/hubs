@@ -280,9 +280,14 @@ var currentUserData = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-const poolData = {
+/*const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+};*/
+
+const poolData = {
+  UserPoolId: "ap-northeast-1_RWH9txS1J",
+  ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
 const isBrowser = typeof navigator !== 'undefined';
@@ -1216,9 +1221,14 @@ class myCognitouserpoolclass extends CognitoUserPool {
           return null;
         }
       });*/
-      const poolData = {
+      /*const poolData = {
         UserPoolId: "ap-northeast-1_OBc87MXYg",
         ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+      };*/
+
+      const poolData = {
+        UserPoolId: "ap-northeast-1_RWH9txS1J",
+        ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
       };
       const userPool = new myCognitouserpoolclass(poolData);
       const cognitoUser = {
@@ -1810,9 +1820,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var docClient = new AWS.DynamoDB.DocumentClient();
 
-    const poolData = {
+    /*const poolData = {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+    };*/
+
+    const poolData = {
+      UserPoolId: "ap-northeast-1_RWH9txS1J",
+      ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
     };
     
     var cognitoUser_me2 = userPool.exgetCurrentUser(); 
