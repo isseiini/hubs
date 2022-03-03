@@ -264,15 +264,15 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-/*AWS.config.region = 'ap-northeast-1'; 
+AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
-});*/
+});
 
-AWS.config.region = 'ap-northeast-1'; // リージョン
+/*AWS.config.region = 'ap-northeast-1'; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae',
-});
+});*/
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
@@ -280,15 +280,15 @@ var currentUserData = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-/*const poolData = {
+const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
-};*/
+};
 
-const poolData = {
+/*const poolData = {
   UserPoolId: "ap-northeast-1_RWH9txS1J",
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
-};
+};*/
 
 
 
@@ -884,15 +884,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var docClient = new AWS.DynamoDB.DocumentClient();
 
-    /*const poolData = {
+    const poolData = {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
-    };*/
+    };
 
-    const poolData = {
+    /*const poolData = {
       UserPoolId: "ap-northeast-1_RWH9txS1J",
       ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
-    };
+    };*/
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
