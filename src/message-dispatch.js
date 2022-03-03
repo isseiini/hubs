@@ -224,7 +224,6 @@ export default class MessageDispatch extends EventTarget {
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         HanabiAction.emit("true");
 
-        const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "false"});
         HanabiAction.emit("false");
 
