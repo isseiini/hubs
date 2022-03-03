@@ -84,13 +84,12 @@ export default class MessageDispatch extends EventTarget {
   }
  
   damage() {  
+    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeBar = document.getElementById('life-bar')         
     const lifeMark = document.getElementById('life-mark') 
-    const sanshakudama = document.querySelector(".sanshakudama");
-    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
-    
-    this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
+    if(HP > 0) {
+      this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
     var life = HP - 6;
 
@@ -170,8 +169,7 @@ export default class MessageDispatch extends EventTarget {
     }
 
     lifeBar.style.width = life + "%"
-      
-    
+    }
   }
 
   addToPresenceLog(entry) {
