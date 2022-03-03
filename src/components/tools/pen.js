@@ -112,7 +112,7 @@ AFRAME.registerComponent("hanabi-animation", {
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
     } else {
       //HanabiClip.reset();
-      HanabiClip.stop();
+      HanabiClip.reset();
     }
   },
 
