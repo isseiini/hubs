@@ -827,31 +827,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
 
   const userPool = new myCognitouserpoolclass(poolData);
-  
-  /*const cognito_confirm = userPool.exgetCurrentUser();
-  
-  if(cognito_confirm) {
-    console.log("ログインしています");
-  } else {
-    console.log("ログインしていません");
-    if(window.location.hash){
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
-    }
-  }*/
 
   if (room_name == "kooky-passionate-safari") {
-    /*var ref = document.referrer;
-    console.log(ref)
-    if(ref == "") {
-      location.href = "https://virtual-dotonbori.com/strong-elementary-meetup";
-    }*/
-    document.getElementById("hex-background").style.display = "none";
-    document.getElementById("go-to-game").style.display = "none";
-    const cognito_mine = userPool.exgetCurrentUser();
+    const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
-      cognito_mine.exgetSession((err, session) => {
+      cognito_mine.getSession((err, session) => {
         if (err) {
-          //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
         } else {
           document.getElementById("hex-background").style.display = "none";
           document.getElementById("go-to-game").style.display = "none";
@@ -869,7 +851,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("go-to-game").style.display = "none";
     document.getElementById("Player_map").style.display = "none";
   } else {
-    //location.href = "https://virtual-dotonbori.com/strong-elementary-meetup"
+    location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
   };
 
   function get_current_Date() {
@@ -910,8 +892,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
     };
     
-    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
-    cognitoUser_me2.exgetSession((err, session) => {
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -2234,9 +2216,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const signoutButton = document.getElementById("signoutButton");
   signoutButton.addEventListener("click", event => {
-    let cognitoUser_me = userPool.exgetCurrentUser(); 
+    let cognitoUser_me = userPool.getCurrentUser(); 
     if(cognitoUser_me){
-      cognitoUser_me.exgetSession((err, session) => {
+      cognitoUser_me.getSession((err, session) => {
         if (err) {
           console.log(err)
         } else {      
@@ -2262,16 +2244,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
-    //const cognito_mine = userPool.getCurrentUser();
-    //if (cognito_mine != null){
-      //cognito_mine.getSession((err, session) => {
-        //if (err) {
-          //alert("ログインしてください。")
-        //} else {
+    const cognito_mine = userPool.getCurrentUser();
+    if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          alert("ログインしてください。")
+        } else {
           document.getElementById("hex-background").style.display = "none";
-        //}
-      //})
-    //}
+        }
+      })
+    }
   })
 
   document.getElementById("path-to-VRChat").addEventListener("click", function() {
@@ -2376,8 +2358,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display1', 'none');
     document.documentElement.style.setProperty('--display2', 'none');
     document.documentElement.style.setProperty('--display3', 'block');
-    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
-    cognitoUser_me2.exgetSession((err, session) => {
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -2401,8 +2383,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   function generate_table() {
-    var cognitoUser_me2 = userPool.exgetCurrentUser(); 
-    cognitoUser_me2.exgetSession((err, session) => {
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
       if (err) {
         console.log(err)
       } else {
@@ -2639,8 +2621,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   /*document.addEventListener('keyup', event => {
     if (event.code = "") {
-      var cognitoUser_me2 = userPool.exgetCurrentUser(); 
-      cognitoUser_me2.exgetSession((err, session) => {
+      var cognitoUser_me2 = userPool.getCurrentUser(); 
+      cognitoUser_me2.getSession((err, session) => {
         if (err) {
           console.log(err)
         } else {
@@ -2694,8 +2676,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener('keydown', event => {
     if (event.altKey && event.code === 'Slash') {
-      var cognitoUser_me2 = userPool.exgetCurrentUser(); 
-      cognitoUser_me2.exgetSession((err, session) => {
+      var cognitoUser_me2 = userPool.getCurrentUser(); 
+      cognitoUser_me2.getSession((err, session) => {
         if (err) {
           console.log(err)
         } else {
