@@ -290,7 +290,7 @@ const poolData = {
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
-
+const USER_POOL_ID_MAX_LENGTH = 55;
 
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
