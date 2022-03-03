@@ -127,6 +127,7 @@ AFRAME.registerComponent("hanabi-animation", {
     this.HanabiMesh.position.set(0, 3.5, 1)
     HanabiClip.reset();
     HanabiClip.play();
+    this.data.action == "false"
     //HanabiClip.fadeOut(duration);
   }
 });
