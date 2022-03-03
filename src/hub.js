@@ -290,7 +290,7 @@ const poolData = {
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
-const userPool = new myCognitouserpoolclass(poolData);
+
 
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
@@ -380,6 +380,8 @@ class myCognitouserpoolclass extends CognitoUserPool {
 		}
 	}
 }
+
+const userPool = new myCognitouserpoolclass(poolData);
 
 // OAuth popup handler
 // TODO: Replace with a new oauth callback route that has this postMessage script.
