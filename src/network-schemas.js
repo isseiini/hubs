@@ -54,17 +54,20 @@ function registerNetworkSchemas() {
       "media-loader",
       {
         selector: ".sanshakudama",
-        component: "position",
+        component: "hanabi-animation",
+        property: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
       },
       {
         selector: ".sanshakudama",
-        component: "rotation",
+        component: "hanabi-animation",
+        property: "rotation",
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
       {
         selector: ".sanshakudama",
-        component: "action"
+        component: "hanabi-animation",
+        property: "action"
       },
       {
         selector: ".left-controller",
