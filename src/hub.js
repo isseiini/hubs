@@ -264,15 +264,15 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-AWS.config.region = 'ap-northeast-1'; 
+/*AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
-});
+});*/
 
-/*AWS.config.region = 'ap-northeast-1'; // リージョン
+AWS.config.region = 'ap-northeast-1'; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae',
-});*/
+});
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
@@ -280,28 +280,21 @@ var currentUserData = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-const poolData = {
+/*const poolData = {
   UserPoolId: "ap-northeast-1_OBc87MXYg",
   ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
-};
+};*/
 
-/*const poolData = {
+const poolData = {
   UserPoolId: "ap-northeast-1_RWH9txS1J",
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
-};*/
+};
 
 
 
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
-  /**
-	 * Constructs a new CognitoUser object
-	 * @param {object} data Creation options
-	 * @param {string} data.Username The user's username.
-	 * @param {CognitoUserPool} data.Pool Pool containing the user.
-	 * @param {object} data.Storage Optional storage object.
-	 */
   constructor(data) {
 		if (data == null || data.Username == null || data.Pool == null) {
 			throw new Error('Username and Pool information are required.');
@@ -310,7 +303,6 @@ class myCognitouserclass extends CognitoUser {
 		this.username = data.Username || '';
 		this.pool = data.Pool;
 		this.Session = null;
-
 		this.client = data.Pool.client;
 
 		this.signInUserSession = null;
@@ -331,20 +323,6 @@ class myCognitouserclass extends CognitoUser {
  * @returns {CognitoUser} the user retrieved from storage
  */
 class myCognitouserpoolclass extends CognitoUserPool {
-  /**
-	 * Constructs a new CognitoUserPool object
-	 * @param {object} data Creation options.
-	 * @param {string} data.UserPoolId Cognito user pool id.
-	 * @param {string} data.ClientId User pool application client id.
-	 * @param {string} data.endpoint Optional custom service endpoint.
-	 * @param {object} data.fetchOptions Optional options for fetch API.
-	 *        (only credentials option is supported)
-	 * @param {object} data.Storage Optional storage object.
-	 * @param {boolean} data.AdvancedSecurityDataCollectionFlag Optional:
-	 *        boolean flag indicating if the data collection is enabled
-	 *        to support cognito advanced security features. By default, this
-	 *        flag is set to true.
-	 */
 	constructor(data, wrapRefreshSessionCallback) {
 		const {
 			UserPoolId,
@@ -884,15 +862,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var docClient = new AWS.DynamoDB.DocumentClient();
 
-    const poolData = {
+    /*const poolData = {
       UserPoolId: "ap-northeast-1_OBc87MXYg",
       ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
-    };
+    };*/
 
-    /*const poolData = {
+    const poolData = {
       UserPoolId: "ap-northeast-1_RWH9txS1J",
       ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
-    };*/
+    };
     
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
