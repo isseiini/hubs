@@ -90,8 +90,6 @@ export default class MessageDispatch extends EventTarget {
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeMark = document.getElementById('life-mark')
-    const avatarPOV = document.getElementById("avatar-pov-node"); 
-    const avatarRig = document.getElementById("avatar-rig");
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
@@ -116,8 +114,7 @@ export default class MessageDispatch extends EventTarget {
       //general_scene.pause();
       life = 100  
 
-      avatarRig.object3D.position.set(600, 1.6, 600);
-      avatarPOV.object3D.position.set(600, 1.6, 600)
+      
       //sanshakudama.setAttribute("animation-mixer")
       /*var down_count = {
         TableName: 'Matching-table',
@@ -224,6 +221,11 @@ export default class MessageDispatch extends EventTarget {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         HanabiAction.emit("true");
+
+        const avatarPOV = document.getElementById("avatar-pov-node"); 
+        const avatarRig = document.getElementById("avatar-rig");
+        avatarRig.object3D.position.set(100, 1.6, 100);
+        avatarPOV.object3D.position.set(100, 1.6, 100);
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
