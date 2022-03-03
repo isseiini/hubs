@@ -290,6 +290,8 @@ const poolData = {
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
+const userPool = new myCognitouserpoolclass(poolData);
+
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
@@ -825,8 +827,6 @@ function checkForAccountRequired() {
 document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
-
-  const userPool = new myCognitouserpoolclass(poolData);
 
   if (room_name == "kooky-passionate-safari") {
     const cognito_mine = userPool.getCurrentUser();
