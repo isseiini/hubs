@@ -51,6 +51,7 @@ function registerNetworkSchemas() {
         component: "rotation",
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
+      "media-loader",
       {
         selector: ".sanshakudama",
         component: "position",
