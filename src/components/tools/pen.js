@@ -124,6 +124,7 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
+    this.HanabiMesh.position.set(0, 2, 1)
     HanabiClip.reset();
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);

@@ -88,7 +88,7 @@ export default class MessageDispatch extends EventTarget {
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
     const lifeMark = document.getElementById('life-mark')
-    avatarPOV = document.getElementById("avatar-pov-node"); 
+    const avatarPOV = document.getElementById("avatar-pov-node"); 
     const avatarRig = document.getElementById("avatar-rig");
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
