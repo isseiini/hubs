@@ -84,11 +84,12 @@ export default class MessageDispatch extends EventTarget {
   }
  
   damage() {  
+    const lifeBar = document.getElementById('life-bar')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
-    const lifeBar = document.getElementById('life-bar')         
-    const lifeMark = document.getElementById('life-mark') 
-    const avatarRig = document.getElementById("avatar-rig")
+    const lifeMark = document.getElementById('life-mark')
+    avatarPOV = document.getElementById("avatar-pov-node"); 
+    const avatarRig = document.getElementById("avatar-rig");
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
@@ -113,10 +114,12 @@ export default class MessageDispatch extends EventTarget {
  
       lifeMark.style.visibility = 'hidden'
       Player_Respawn.style.display = "block";
-      const general_scene = document.querySelector("a-scene");
+      //const general_scene = document.querySelector("a-scene");
       //general_scene.pause();
       life = 100  
 
+      avatarRig.object3D.position.set(60, 1.6, 60);
+      avatarPOV.object3D.position.set(60, 1.6, 60)
       //sanshakudama.setAttribute("animation-mixer")
       /*var down_count = {
         TableName: 'Matching-table',
