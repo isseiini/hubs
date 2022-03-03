@@ -50,6 +50,8 @@ waitForDOMContentLoaded().then(() => {
   const Red_Score = document.getElementById("red-score");
 });
 
+const playerMine = Math.random().toString(36).slice(-8);
+
 /*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
   cognitoUser_me.getSession((err, session) => {
@@ -82,7 +84,7 @@ export default class MessageDispatch extends EventTarget {
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
 
-    this.playerMine = window.location.hash.slice(1);
+    
   }
  
   damage() {  
@@ -100,7 +102,7 @@ export default class MessageDispatch extends EventTarget {
       //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
       //waypointSystem.moveToSpawnPoint();
 
-      var hit_target2 = "_Red_+1#" + this.playerMine;
+      var hit_target2 = "_Red_+1#" + playerMine;
       var event3 = new Event('change');
       var hit_target_container = document.getElementById("hit_target_container");
       hit_target_container.value = hit_target2;
@@ -217,7 +219,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === this.playerMine) {
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         HanabiAction.emit("true");
