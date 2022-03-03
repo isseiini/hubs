@@ -81,6 +81,8 @@ export default class MessageDispatch extends EventTarget {
     this.remountUI = remountUI;
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
+
+    this.playerMine = window.location.hash.slice(1);
   }
  
   damage() {  
@@ -96,15 +98,11 @@ export default class MessageDispatch extends EventTarget {
     var life = HP - 6;
 
     if ( life <= 0 ){
-      const HanabiAction = document.getElementById("HanabiContainer")
-      HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-      HanabiAction.emit("true");
-
       const scene = document.querySelector("a-scene");
       //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
       //waypointSystem.moveToSpawnPoint();
 
-      var hit_target2 = "_Red_+1";
+      var hit_target2 = "_Red_+1#" + this.playerMine;
       var event3 = new Event('change');
       var hit_target_container = document.getElementById("hit_target_container");
       hit_target_container.value = hit_target2;
@@ -118,8 +116,8 @@ export default class MessageDispatch extends EventTarget {
       //general_scene.pause();
       life = 100  
 
-      avatarRig.object3D.position.set(60, 1.6, 60);
-      avatarPOV.object3D.position.set(60, 1.6, 60)
+      avatarRig.object3D.position.set(600, 1.6, 600);
+      avatarPOV.object3D.position.set(600, 1.6, 600)
       //sanshakudama.setAttribute("animation-mixer")
       /*var down_count = {
         TableName: 'Matching-table',
@@ -222,6 +220,11 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === this.playerMine) {
+        const HanabiAction = document.getElementById("HanabiContainer")
+        HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+        HanabiAction.emit("true");
+      }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
       Red_Progress.value = Red_Progress.value + 1;
@@ -233,6 +236,7 @@ export default class MessageDispatch extends EventTarget {
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event2);
         Red_Score.innerText = "0";
+        Red_Progress.value = 0;
         return
       }
       Red_Score.innerText = current_Red_Score;
