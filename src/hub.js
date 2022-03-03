@@ -292,7 +292,7 @@ const poolData = {
 
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
-class myCognitouserclass extends cognitoUser {
+class myCognitouserclass extends CognitoUser {
   /**
 	 * Constructs a new CognitoUser object
 	 * @param {object} data Creation options
