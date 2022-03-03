@@ -224,8 +224,11 @@ export default class MessageDispatch extends EventTarget {
 
         const avatarPOV = document.getElementById("avatar-pov-node"); 
         const avatarRig = document.getElementById("avatar-rig");
-        avatarRig.object3D.position.set(100, 1.6, 100);
-        avatarPOV.object3D.position.set(100, 1.6, 100);
+        window.setTimeout(function(){
+          avatarRig.object3D.position.set(50, 1.6, 50);
+          avatarPOV.object3D.position.set(50, 1.6, 50);
+      }, 4000);
+        
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
