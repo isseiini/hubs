@@ -294,7 +294,9 @@ const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
   constructor(data) {
-    super(data)
+    super();
+    this.data = data;
+
 		if (data == null || data.Username == null || data.Pool == null) {
 			throw new Error('Username and Pool information are required.');
 		}
@@ -325,7 +327,10 @@ class myCognitouserpoolclass extends CognitoUserPool {
 	constructor(data, wrapRefreshSessionCallback) {
     const USER_POOL_ID_MAX_LENGTH = 55;
 
-    super(data, wrapRefreshSessionCallback)
+    super();
+
+    this.data = data;
+    this.wrapRefreshSessionCallback = wrapRefreshSessionCallback;
 
 		const {
 			UserPoolId,
@@ -359,6 +364,85 @@ class myCognitouserpoolclass extends CognitoUserPool {
 		if (wrapRefreshSessionCallback) {
 			this.wrapRefreshSessionCallback = wrapRefreshSessionCallback;
 		}
+	}
+
+  /**
+	 * @typedef {object} SignUpResult
+	 * @property {CognitoUser} user New user.
+	 * @property {bool} userConfirmed If the user is already confirmed.
+	 */
+	/**
+	 * method for signing up a user
+	 * @param {string} username User's username.
+	 * @param {string} password Plain-text initial password entered by user.
+	 * @param {(AttributeArg[])=} userAttributes New user attributes.
+	 * @param {(AttributeArg[])=} validationData Application metadata.
+	 * @param {(AttributeArg[])=} clientMetadata Client metadata.
+	 * @param {nodeCallback<SignUpResult>} callback Called on error or with the new user.
+	 * @param {ClientMetadata} clientMetadata object which is passed from client to Cognito Lambda trigger
+	 * @returns {void}
+	 */
+	signUp(
+		username,
+		password,
+		userAttributes,
+		validationData,
+		callback,
+		clientMetadata
+	) {
+		const jsonReq = {
+			ClientId: this.clientId,
+			Username: username,
+			Password: password,
+			UserAttributes: userAttributes,
+			ValidationData: validationData,
+			ClientMetadata: clientMetadata,
+		};
+		if (this.getUserContextData(username)) {
+			jsonReq.UserContextData = this.getUserContextData(username);
+		}
+		this.client.request('SignUp', jsonReq, (err, data) => {
+			if (err) {
+				return callback(err, null);
+			}
+
+			const cognitoUser = {
+				Username: username,
+				Pool: this,
+				Storage: this.storage,
+			};
+
+			const returnData = {
+				user: new myCognitouserclass(cognitoUser),
+				userConfirmed: data.UserConfirmed,
+				userSub: data.UserSub,
+				codeDeliveryDetails: data.CodeDeliveryDetails,
+			};
+
+			return callback(null, returnData);
+		});
+	}
+
+  /**
+	 * method for getting the current user of the application from the local storage
+	 *
+	 * @returns {CognitoUser} the user retrieved from storage
+	 */
+	getCurrentUser() {
+		const lastUserKey = `CognitoIdentityServiceProvider.${this.clientId}.LastAuthUser`;
+
+		const lastAuthUser = this.storage.getItem(lastUserKey);
+		if (lastAuthUser) {
+			const cognitoUser = {
+				Username: lastAuthUser,
+				Pool: this,
+				Storage: this.storage,
+			};
+
+			return new myCognitouserclass(cognitoUser);
+		}
+
+		return null;
 	}
 }
 
