@@ -294,8 +294,7 @@ const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
   constructor(data) {
-    super();
-    this.data = data;
+    super(data);
 
 		if (data == null || data.Username == null || data.Pool == null) {
 			throw new Error('Username and Pool information are required.');
@@ -327,10 +326,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
 	constructor(data, wrapRefreshSessionCallback) {
     const USER_POOL_ID_MAX_LENGTH = 55;
 
-    super();
-
-    this.data = data;
-    this.wrapRefreshSessionCallback = wrapRefreshSessionCallback;
+    super(data, wrapRefreshSessionCallback);
 
 		const {
 			UserPoolId,
