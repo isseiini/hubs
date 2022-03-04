@@ -902,6 +902,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById("go-to-game").style.display = "none";
         }
       })
+    } else {
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
     }
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
