@@ -97,7 +97,6 @@ AFRAME.registerComponent("hanabi-animation", {
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
-    HanabiClip.setLoop(THREE.LoopOnce, 1);
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
@@ -109,12 +108,11 @@ AFRAME.registerComponent("hanabi-animation", {
   update() {
     if (this.data.action == "true") {
       this.Fire();
-      HanabiClip.reset();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
     } else {
       //HanabiClip.reset();
       this.HanabiMesh.position.set(0, 1, 1.5)
-      HanabiClip.reset();
+      HanabiClip.stop();
     }
   },
 
