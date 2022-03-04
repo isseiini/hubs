@@ -2100,7 +2100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     waypointSystem.moveToSpawnPoint(30,30);
     Player_Respawn.style.display = "none";
     const HanabiAction = document.getElementById("HanabiContainer")
-    HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+    HanabiAction.setAttribute("hanabi-animation", {action: "false"});
     scene.play();
   })
 
