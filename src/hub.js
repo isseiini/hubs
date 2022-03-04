@@ -290,8 +290,6 @@ const poolData = {
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
-const USER_POOL_ID_MAX_LENGTH = 55;
-
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
@@ -324,6 +322,8 @@ class myCognitouserclass extends CognitoUser {
  */
 class myCognitouserpoolclass extends CognitoUserPool {
 	constructor(data, wrapRefreshSessionCallback) {
+    const USER_POOL_ID_MAX_LENGTH = 55;
+
 		const {
 			UserPoolId,
 			ClientId,
@@ -2141,8 +2141,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       return false;
     }
 
-    window.location.hash = email_signin;
-
     // 認証データの作成
     const authenticationData = {
       Username: email_signin,
@@ -2202,24 +2200,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           console.log(err)
         } else {      
-        const userData = {
-          Username: window.location.hash.slice(1),
-          Pool: userPool
-          };
           const cognitoUser2 = new myCognitouserclass(userData);
+          cognitoUser2.getUserAttributes((err, result) => {
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            }
+          });
+          const userData = {
+            Username: currentUserData["name"],
+            Pool: userPool
+          };
           cognitoUser2.signOut();
           alert("ログアウトしました。")
           };
       });
-    } else {
-      console.log("errrrr")
-      const userData = {
-        Username: window.location.hash.slice(1),
-        Pool: userPool
-      };
-      const cognitoUser2 = new myCognitouserclass(userData);
-      cognitoUser2.signOut();
-      alert("ログアウトしました。")
     }
   });
   
@@ -2249,7 +2243,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       }else{
         data3.Items.sort((a, b) => b.Sum - a.Sum);
-        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL + window.location.hash;
+        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
         if (confirm('マッチしました。対戦ワールドへ移動します。')) {
           location.href = goal_url;
         } else {
