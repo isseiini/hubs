@@ -109,9 +109,11 @@ AFRAME.registerComponent("hanabi-animation", {
   update() {
     if (this.data.action == "true") {
       this.Fire();
+      HanabiClip.reset();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
     } else {
       //HanabiClip.reset();
+      this.HanabiMesh.position.set(0, 1, 1.5)
       HanabiClip.reset();
     }
   },
@@ -124,8 +126,7 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
-    this.HanabiMesh.position.set(0, 4.5, 1)
-    HanabiClip.reset();
+    this.HanabiMesh.position.set(0, 4.5, 1.5)
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);
   }

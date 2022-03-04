@@ -222,7 +222,7 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-        HanabiAction.emit("true");
+        //HanabiAction.emit("true");
 
 
         const avatarPOV = document.getElementById("avatar-pov-node"); 
