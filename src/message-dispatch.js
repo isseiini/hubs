@@ -88,10 +88,9 @@ export default class MessageDispatch extends EventTarget {
   }
  
   damage() {  
-    const lifeBar = document.getElementById('life-bar')
+    const lifeBar = document.getElementById('life-background')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
-    const lifeMark = document.getElementById('life-mark')
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
@@ -110,7 +109,6 @@ export default class MessageDispatch extends EventTarget {
 
       life = 0
  
-      lifeMark.style.visibility = 'hidden'
       Player_Respawn.style.display = "block";
       //const general_scene = document.querySelector("a-scene");
       //general_scene.pause();
@@ -165,8 +163,7 @@ export default class MessageDispatch extends EventTarget {
     if ( life > 100 ) {
         life = 100
     }
-    // 光部分を表示する
-    lifeMark.style.visibility = 'visible'
+   
     }
 
     lifeBar.style.width = life + "%"
