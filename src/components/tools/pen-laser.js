@@ -177,14 +177,14 @@ AFRAME.registerComponent("pen-laser", {
         this.AirCanonMesh.matrixNeedsUpdate = true;
         //this.laser.scale.set(1, 1, origin.distanceTo(target));
         //this.laser.matrixNeedsUpdate = true;
-        this.laserTip.position.copy(target);
-        this.laserTip.matrixNeedsUpdate = true;
+        //this.laserTip.position.copy(target);
+        //this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
-        let sx = String((this.width / 2) * (+projection.x + 1.0)) + "px";
-        let sy = String((this.height / 2) * (-projection.y + 1.0)) + "px";
+        let sx = String((this.width / 2) * (+projection.x + 1.0) - 25) + "px";
+        let sy = String((this.height / 2) * (-projection.y + 1.0) -25) + "px";
 
-        this.reticle.style.top = sx;
-        this.reticle.style.left = sy;
+        this.reticle.style.top = sy;
+        this.reticle.style.left = sx;
       }
 
       if (this.laser.material.visible !== laserVisible) {
