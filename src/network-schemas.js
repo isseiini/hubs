@@ -312,7 +312,7 @@ function registerNetworkSchemas() {
     components: [
       {
         component: "position",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
+        requiresNetworkUpdate: vectorRequiresUpdate(0.0001)
       },
       {
         component: "rotation",
