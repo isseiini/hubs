@@ -49,6 +49,8 @@ AFRAME.registerComponent("pen-laser", {
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
     this.width = innerWidth;
     this.height = innerHeight;
+    console.log(this.width)
+    console.log(this.height)
 
     const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
     if (environmentMapComponent2) {

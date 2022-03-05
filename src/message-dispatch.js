@@ -226,6 +226,7 @@ export default class MessageDispatch extends EventTarget {
         const avatarRig = document.getElementById("avatar-rig");
         window.setTimeout(function(){
           avatarRig.object3D.position.set(50, 1.6, 50);
+          HanabiAction.object3D.position.set(50, 1.6, 50);
           avatarPOV.object3D.position.set(50, 1.6, 50);
       }, 4000);
         
