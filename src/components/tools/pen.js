@@ -20,6 +20,7 @@ import HanabiSrc from "../../assets/models/firework_with_bomb1.glb"
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
+import { THREE } from "aframe";
 
 
 
@@ -266,20 +267,14 @@ AFRAME.registerComponent("pen", {
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
 
-    var renderer = new THREE.CSS3DRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById("field").appendChild(renderer.domElement);
-
     const reticle = document.getElementById("reticle");
-    var reticleObj = new THREE.CSS3DObject(reticle);
-    scene.add(reticleObj);
-    reticleObj.matrixNeedsUpdate = true;
 
-    /*this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
+    this.pentip = new THREE.CSS3DObject(reticle);
+    //this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
     this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
     this.penTip.matrixNeedsUpdate = true;
 
-    this.el.setObject3D("mesh", this.penTip);*/
+    this.el.setObject3D("mesh", this.penTip);
 
     this.penLaserAttributesUpdated = false;
     this.penLaserAttributes = {
@@ -312,7 +307,7 @@ AFRAME.registerComponent("pen", {
 
   update(prevData) {
     if (prevData.color != this.data.color) {
-      //this.penTip.material.color.set(this.data.color);
+      this.penTip.material.color.set(this.data.color);
       this.penLaserAttributes.color = this.data.color;
       this.el.setAttribute("pen-laser", { color: this.data.color });
     }
@@ -331,9 +326,9 @@ AFRAME.registerComponent("pen", {
   tick(t, dt) {
     const isMine = this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
 
-    /*if (this.penTip.material.visible !== isMine) {
+    if (this.penTip.material.visible !== isMine) {
       this.penTip.material.visible = isMine;
-    }*/
+    }
 
     if (isMine) {
       this._handleInput();
@@ -635,15 +630,15 @@ AFRAME.registerComponent("pen", {
   _changeColor(mod) {
     this.colorIndex = (this.colorIndex + mod + this.data.availableColors.length) % this.data.availableColors.length;
     this.data.color = this.data.availableColors[this.colorIndex];
-    //this.penTip.material.color.set(this.data.color);
+    this.penTip.material.color.set(this.data.color);
     this.penLaserAttributes.color = this.data.color;
     this.penLaserAttributesUpdated = true;
   },
 
   _changeRadius(mod) {
     this.data.radius = Math.max(this.data.minRadius, Math.min(this.data.radius + mod, this.data.maxRadius));
-    //this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
-    //this.penTip.matrixNeedsUpdate = true;
+    this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
+    this.penTip.matrixNeedsUpdate = true;
   },
 
   setDirty() {
