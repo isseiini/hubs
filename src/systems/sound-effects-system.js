@@ -16,9 +16,9 @@ import URL_MEDIA_LOADED from "../assets/sfx/A_bendUp.mp3";
 import URL_MEDIA_LOADING from "../assets/sfx/suspense.mp3";
 import URL_SPAWN_EMOJI from "../assets/sfx/emoji.mp3";
 import { setMatrixWorld } from "../utils/three-utils";
-import URL_SHOOT from "../assets/sfx/gunfire1.mp3";
+import URL_SHOOT from "../assets/sfx/Damege(4).mp3";
 import URL_AIRCANON_SET from "../assets/sfx/Gun_set1.mp3";
-import URL_HIT from "../assets/sfx/gunfire2.mp3";
+import URL_HIT from "../assets/sfx/hit(4).mp3";
 import URL_HANABI from "../assets/sfx/hanabi1.mp3";
 
 let soundEnum = 0;

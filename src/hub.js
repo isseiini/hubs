@@ -891,7 +891,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
 
-  if (room_name == "kooky-passionate-safari") {
+  document.getElementById("hex-background").style.display = "none";
+  document.getElementById("go-to-game").style.display = "none";
+
+  /*if (room_name == "kooky-passionate-safari") {
     const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
@@ -917,7 +920,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_map").style.display = "none";
   } else {
     location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-  };
+  };*/
 
   function get_current_Date() {
     var date = new Date();
