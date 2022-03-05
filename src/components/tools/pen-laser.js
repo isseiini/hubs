@@ -95,6 +95,7 @@ AFRAME.registerComponent("pen-laser", {
     return function(prevData) {
       if (this.data.action == "true") {
         AirCanonClip.play();
+        ShootingSfx.playSoundOneShot(SOUND_SHOOT);
         AirCanonClip.reset();
       } else {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
@@ -131,7 +132,6 @@ AFRAME.registerComponent("pen-laser", {
     return function(t, dt) {
       if (this.loaderMixer && this.data.action == "true") {
         this.loaderMixer.update(dt / 1000);
-        ShootingSfx.playSoundOneShot(SOUND_SHOOT);
       }
 
       const isMine =

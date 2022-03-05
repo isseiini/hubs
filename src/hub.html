@@ -939,10 +939,115 @@
     
           <div data-augmented-ui="all-hexangle-up border" class="reticle"></div>
     
-          
+          <input id="hit_target_container" style="display: none;"></input>
+
+            <div class="btn-wrap">
+                <a id="go-to-game" class="btn btn-c" style="position: fixed;bottom: 100px;left: 10px;pointer-events:all;">
+                    <span>シューティングゲームをプレイ！</span>
+                    <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
+                
+                </a>
+            </div>
+
+            <div class="btn-wrap" style="position: fixed;bottom: 100px;right: 20px;z-index: 1002;">
+              <a id="general_menu" class="btn btn-c" style="padding:0 10px 10px 10px;pointer-events:all;">
+                <span style="width: 80px;left: calc(50% - 40px);">メニュー</span>
+                <br>クリックする
+              </a>
+            </div>
+
+            <div id="Player_tips" style="position: fixed;top: 0;left: 0;width: 100vw;height: calc(100% - 120px);background-color: transparent;z-index: 1001;pointer-events: none;">
+              <!--<div id="Player_tips_container">
+                <h1>スコア</h1>
+                <table border="1" id="RedTable">
+                  <thead>
+                    <tr>
+                      <td>プレイヤー名</td>
+                      <td>ノックアウト</td>
+                      <td>ダウン</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tbody>
+                </table>
+                <table border="1" id="BlueTable">
+                  <thead>
+                    <tr>
+                      <td>プレイヤー名</td>
+                      <td>ノックアウト</td>
+                      <td>ダウン</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  <tbody>
+                </table>
+              </div>-->
+              
+            </div>
+
+          </div>
+
+          <div id="Player-Respawn" style="width: 100vw; height: 100vh; z-index: 1003;background-color: #ffffff96;position: fixed;top: 0;left: 0;display: none;cursor: pointer;">
+            <input style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="リスポーンする">
+          </div>
+
+          <div id="Game-Result" style="width: 100vw; height: 100vh; z-index: 1004;background-color: #ffffff96;position: fixed;top: 0;left: 0;display: none;">
+            <h1 style="text-align: center;width: 100%;margin: 40px auto;">勝利！！</h1>
+            <input id="Game-Restart" style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="次のゲームを始める">
+          </div>
         </div>
     
-    
+        
       </div>
         
         <a-assets>
