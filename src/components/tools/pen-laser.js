@@ -47,6 +47,8 @@ AFRAME.registerComponent("pen-laser", {
     this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+    this.width = innerWidth;
+    this.height = innerHeight;
 
     const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
     if (environmentMapComponent2) {
@@ -129,6 +131,7 @@ AFRAME.registerComponent("pen-laser", {
   tick: (() => {
     const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
+   
     return function(t, dt) {
       if (this.loaderMixer && this.data.action == "true") {
         this.loaderMixer.update(dt / 1000);
@@ -173,6 +176,12 @@ AFRAME.registerComponent("pen-laser", {
         //this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
         this.laserTip.matrixNeedsUpdate = true;
+        let projection = target.project(camera);
+        let sx = (this.width / 2) * (+projection.x + 1.0);
+        let sy = (this.height / 2) * (-projection.y + 1.0);
+
+        // スクリーン座標
+        console.log(sx, sy);
       }
 
       if (this.laser.material.visible !== laserVisible) {

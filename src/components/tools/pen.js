@@ -266,11 +266,8 @@ AFRAME.registerComponent("pen", {
     let material = new THREE.MeshStandardMaterial();
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
-
-    const reticle = document.getElementById("reticle");
-
-    this.pentip = new THREE.CSS3DObject(reticle);
-    //this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
+   
+    this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
     this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
     this.penTip.matrixNeedsUpdate = true;
 
