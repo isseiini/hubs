@@ -180,8 +180,8 @@ AFRAME.registerComponent("pen-laser", {
         this.laserTip.position.copy(target);
         this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
-        let sx = (this.width / 2) * (+projection.x + 1.0) + "px";
-        let sy = (this.height / 2) * (-projection.y + 1.0) + "px";
+        let sx = String((this.width / 2) * (+projection.x + 1.0)) + "px";
+        let sy = String((this.height / 2) * (-projection.y + 1.0)) + "px";
 
         this.reticle.style.top = sx;
         this.reticle.style.left = sy;
