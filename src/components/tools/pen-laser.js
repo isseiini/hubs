@@ -101,6 +101,7 @@ AFRAME.registerComponent("pen-laser", {
       if (this.data.action == "true") {
         AirCanonClip.play();
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
+        this.reticle.style.transform = "rotateZ(120deg)"
         AirCanonClip.reset();
       } else {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
@@ -180,8 +181,8 @@ AFRAME.registerComponent("pen-laser", {
         //this.laserTip.position.copy(target);
         //this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
-        let sx = String((this.width / 2) * (+projection.x + 1.0) - 25) + "px";
-        let sy = String((this.height / 2) * (-projection.y + 1.0) -25) + "px";
+        let sx = String((this.width / 2) * (+projection.x + 1.0) - 30) + "px";
+        let sy = String((this.height / 2) * (-projection.y + 1.0) -30) + "px";
 
         this.reticle.style.top = sy;
         this.reticle.style.left = sx;
