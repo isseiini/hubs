@@ -89,9 +89,9 @@ AFRAME.registerComponent("pen-laser", {
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
 
-    const camera_reticle = new THREE.PerspectiveCamera(45, this.width / this.height);
-    camera_reticle.position.set(100, 150, 500);
-    camera_reticle.lookAt(new THREE.Vector3(0, 0, 0));
+    this.camera_reticle = new THREE.PerspectiveCamera(45, this.width / this.height);
+    this.camera_reticle.position.set(100, 150, 500);
+    this.camera_reticle.lookAt(new THREE.Vector3(0, 0, 0));
   },
 
   update: (() => {
@@ -180,7 +180,7 @@ AFRAME.registerComponent("pen-laser", {
         //this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);
         this.laserTip.matrixNeedsUpdate = true;
-        let projection = target.project(camera);
+        let projection = target.project(this.camera);
         let sx = (this.width / 2) * (+projection.x + 1.0);
         let sy = (this.height / 2) * (-projection.y + 1.0);
 
