@@ -88,6 +88,10 @@ AFRAME.registerComponent("pen-laser", {
 
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
+
+    const camera_reticle = new THREE.PerspectiveCamera(45, this.width / this.height);
+    camera_reticle.position.set(100, 150, 500);
+    camera_reticle.lookAt(new THREE.Vector3(0, 0, 0));
   },
 
   update: (() => {
