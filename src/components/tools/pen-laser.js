@@ -49,8 +49,6 @@ AFRAME.registerComponent("pen-laser", {
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
     this.width = innerWidth;
     this.height = innerHeight;
-    console.log(this.width)
-    console.log(this.height)
 
     const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
     if (environmentMapComponent2) {
@@ -91,7 +89,8 @@ AFRAME.registerComponent("pen-laser", {
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
 
-    this.camera = document.getElementById("viewing-camera").getObject3D("camera")
+    this.camera = document.getElementById("viewing-camera").getObject3D("camera");
+    this.reticle = document.getElementById("reticle");
   },
 
   update: (() => {
@@ -181,11 +180,11 @@ AFRAME.registerComponent("pen-laser", {
         this.laserTip.position.copy(target);
         this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
-        let sx = (this.width / 2) * (+projection.x + 1.0);
-        let sy = (this.height / 2) * (-projection.y + 1.0);
+        let sx = (this.width / 2) * (+projection.x + 1.0) + "px";
+        let sy = (this.height / 2) * (-projection.y + 1.0) + "px";
 
-        // スクリーン座標
-        console.log(sx, sy);
+        this.reticle.style.top = sx;
+        this.reticle.style.left = sy;
       }
 
       if (this.laser.material.visible !== laserVisible) {
