@@ -91,7 +91,7 @@ AFRAME.registerComponent("pen-laser", {
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
 
-    this.camera = document.querySelector("#avatar-pov-node").object3D;
+    this.camera = document.getElementById("viewing-camera").getObject3D("camera")
   },
 
   update: (() => {
