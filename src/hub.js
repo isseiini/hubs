@@ -2104,8 +2104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     scene.play();
   })
 
-  const lifeBar = document.getElementById('life-bar')         // ライフバー
-  const lifeMark = document.getElementById('life-mark')       // ライフの光部分
+  const lifeBar = document.getElementById('life-background')         // ライフバー     // ライフの光部分
   let life = 100                                              // ライフ初期値
   lifeBar.style.width = "100%"                                // ライフ初期幅
 
@@ -2131,7 +2130,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       life = 0
       // 0.3秒後に光部分を非表示にする
       setTimeout(function(){
-        lifeMark.style.visibility = 'hidden'
         Player_Respawn.style.display = "block";
         life = 100 ;
       }, 0)
@@ -2140,8 +2138,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       if ( life > 100 ) {
           life = 100
       }
-      // 光部分を表示する
-      lifeMark.style.visibility = 'visible'
       }
 
       lifeBar.style.width = life + "%"
