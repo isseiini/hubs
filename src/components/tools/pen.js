@@ -266,6 +266,10 @@ AFRAME.registerComponent("pen", {
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
 
+    var renderer = new THREE.CSS3DRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById("field").appendChild(renderer.domElement);
+
     const reticle = document.getElementById("reticle");
     var reticleObj = new THREE.CSS3DObject(reticle);
     scene.add(reticleObj);
