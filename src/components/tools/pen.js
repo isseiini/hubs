@@ -343,30 +343,11 @@ AFRAME.registerComponent("pen", {
           ? AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose)
           : null;
 
-      const intersection = this._getIntersection(cursorPose);
+      this.intersection = this._getIntersection(cursorPose);
 
-      if (intersection && this.grabbed == true ) {
-        console.log(intersection);
-        const AirCanonAction = document.getElementById("pen");
-        AirCanonAction.setAttribute("pen-laser", {action: "true"});
-        var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox)
-        if (targetbox[5][1].networked) {
-          this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
-          document.getElementById("reticle").classList.add("extend");
-          var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
-          const event = new Event('change');
-          hit_target_container.value = hit_target;
-          hit_target_container.dispatchEvent(event);
-          setInterval(() => {
-            document.getElementById("reticle").classList.remove("extend");
-          }, 1000);
-        };
-      }
+      this._updatePenTip(this.intersection);
 
-      this._updatePenTip(intersection);
-
-      const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!intersection;
+      const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!this.intersection;
       const laserInHand = this.el.sceneEl.is("vr-mode") && laserVisible;
 
       if (this.penLaserAttributes.laserVisible !== laserVisible) {
@@ -380,10 +361,10 @@ AFRAME.registerComponent("pen", {
       }
 
       if (laserVisible) {
-        this._updateLaser(cursorPose, intersection);
+        this._updateLaser(cursorPose, this.intersection);
       }
 
-      const penVisible = (this.grabberId !== "left-cursor" && this.grabberId !== "right-cursor") || !intersection;
+      const penVisible = (this.grabberId !== "left-cursor" && this.grabberId !== "right-cursor") || !this.intersection;
       this._setPenVisible(penVisible);
       this.el.setAttribute("pen", { penVisible: penVisible });
 
@@ -422,6 +403,23 @@ AFRAME.registerComponent("pen", {
       const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
+        if(this.intersection){
+          const AirCanonAction = document.getElementById("pen");
+          AirCanonAction.setAttribute("pen-laser", {action: "true"});
+          var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
+          console.log(targetbox)
+          if (targetbox[5][1].networked) {
+            this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
+            document.getElementById("reticle").classList.add("extend");
+            var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
+            const event = new Event('change');
+            hit_target_container.value = hit_target;
+            hit_target_container.dispatchEvent(event);
+            setInterval(() => {
+              document.getElementById("reticle").classList.remove("extend");
+            }, 1000);
+          };
+        }
         this._startDraw();
         //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
         
@@ -554,10 +552,10 @@ AFRAME.registerComponent("pen", {
     //Prevent drawings from "jumping" large distances
     if (
       this.currentDrawing &&
-      (this.lastIntersectedObject !== (intersection ? intersection.object : null) &&
+      
         (!intersection ||
           Math.abs(intersection.distance - this.lastIntersectionDistance) > MAX_DISTANCE_BETWEEN_SURFACES))
-    ) {
+     {
       this.worldPosition.copy(this.lastPosition);
       this._endDraw();
     }
@@ -578,22 +576,6 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
-        const AirCanonAction = document.getElementById("pen");
-        AirCanonAction.setAttribute("pen-laser", {action: "true"});
-        var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        console.log(targetbox)
-        if (targetbox[5][1].networked) {
-          this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
-          document.getElementById("reticle").classList.add("extend");
-          var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
-          const event = new Event('change');
-          hit_target_container.value = hit_target;
-          hit_target_container.dispatchEvent(event);
-          setInterval(() => {
-            document.getElementById("reticle").classList.remove("extend");
-          }, 1000);
-        };
-        
       }
 
       this.timeSinceLastDraw = time % this.data.drawFrequency;
