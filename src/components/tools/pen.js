@@ -555,15 +555,15 @@ AFRAME.registerComponent("pen", {
 
         if (targetbox[5][1].networked) {
           this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
-          document.getElementById("reticle").style.setProperty('--aug-all-width', "80px");
-          document.getElementById("reticle").style.setProperty('--reticle-color', "red");
+          document.getElementById("reticle").classList.add("rotate120");
+          document.getElementById("reticle").classList.add("extend");
           var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
           const event = new Event('change');
           hit_target_container.value = hit_target;
           hit_target_container.dispatchEvent(event);
           setInterval(() => {
-            document.getElementById("reticle").style.setProperty('--aug-all-width', "50px");
-            document.getElementById("reticle").style.setProperty('--reticle-color', 'var(--team-color)');
+            document.getElementById("reticle").classList.remove("rotate120");
+            document.getElementById("reticle").classList.remove("extend");
           }, 1000);
         };
         
