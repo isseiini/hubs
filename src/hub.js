@@ -2660,7 +2660,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           var Coupon_Number = i + 1;
           var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する" onclick="Use_Coupon(' + i + ')">';
+          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
 
           row.appendChild(cell_1_4);
           
@@ -2747,8 +2747,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         trigger.forEach(function(target) {
           target.addEventListener('click', function() {
-            console.log(target)
-            /*var confirmed_coupon = {
+            const current_Date = get_current_Date();
+            const coupon_table = document.getElementById("coupon_table");
+            let interested_coupon = coupon_table.rows[number];
+            console.log(interested_coupon.cells[0])
+            var confirmed_coupon = {
               TableName: 'coupon',
               Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
                 Play_ID: interested_coupon.cells[0]
@@ -2769,7 +2772,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               }else{
                 console.log('success');
               }
-            });*/
+            });
           });
         });
 
