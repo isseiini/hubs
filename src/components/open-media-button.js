@@ -10,12 +10,6 @@ AFRAME.registerComponent("open-media-button", {
   init() {
     this.label = this.el.querySelector("[text]");
 
-    const poolData = {
-      UserPoolId: "ap-northeast-1_RWH9txS1J",
-      ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
-    };
-    const userPool = new myCognitouserpoolclass(poolData);
-
     this.updateSrc = async () => {
       if (!this.targetEl.parentNode) return; // If removed
       const mediaLoader = this.targetEl.components["media-loader"].data;
@@ -51,8 +45,6 @@ AFRAME.registerComponent("open-media-button", {
             this.label.setAttribute("text", "value", label);
           }
         }
-        
-        
       }
     };
 
