@@ -398,7 +398,7 @@ AFRAME.registerComponent("pen", {
       if (userinput.get(paths.startDrawing)) {
         //this._startDraw();
         //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
-        AirCanonAction.setAttribute("pen-laser", {action: "true"});
+        
       }
       if (userinput.get(paths.stopDrawing)) {
         AirCanonAction.setAttribute("pen-laser", {action: "false"});
@@ -552,9 +552,9 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
-        
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-
+        console.log(targetbox)
         if (targetbox[5][1].networked) {
           this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
           document.getElementById("reticle").classList.add("extend");
