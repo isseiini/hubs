@@ -72,7 +72,7 @@ export function RoomSettingsSidebar({
           })}
           minLength={1}
           maxLength={64}
-          label={<FormattedMessage id="room-settings-sidebar.name" defaultMessage="Room Name" />}
+          label={<FormattedMessage id="room-settings-sidebar.name" defaultMessage="バーチャル道頓堀" />}
           ref={register}
           error={errors.name}
           fullWidth

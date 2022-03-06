@@ -40,7 +40,7 @@ export function RoomEntryModal({
           )}
         <div className={styles.roomName}>
           <h5>
-            <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="Room Name" />
+            <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="バーチャル道頓堀" />
           </h5>
           <p>{roomName}</p>
         </div>
@@ -57,7 +57,7 @@ export function RoomEntryModal({
             <Button preset="accent5" onClick={onEnterOnDevice}>
               <VRIcon />
               <span>
-                <FormattedMessage id="room-entry-modal.enter-on-device-button" defaultMessage="Enter On Device" />
+                <FormattedMessage id="room-entry-modal.enter-on-device-button" defaultMessage="VR機器で入場する" />
               </span>
             </Button>
           )}
@@ -65,7 +65,7 @@ export function RoomEntryModal({
             <Button preset="accent2" onClick={onSpectate}>
               <ShowIcon />
               <span>
-                <FormattedMessage id="room-entry-modal.spectate-button" defaultMessage="Spectate" />
+                <FormattedMessage id="room-entry-modal.spectate-button" defaultMessage="観覧する" />
               </span>
             </Button>
           )}

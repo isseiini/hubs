@@ -11,7 +11,7 @@ export default {
 };
 
 const room = {
-  name: "Room Name",
+  name: "バーチャル道頓堀",
   description: "Room Description",
   scene: {
     name: "Scene Name",
