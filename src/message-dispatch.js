@@ -106,7 +106,14 @@ export default class MessageDispatch extends EventTarget {
       //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
       //waypointSystem.moveToSpawnPoint();
 
-      var hit_target2 = "_Red_+1#" + playerMine;
+      if(window.team =="BlueTeam") {
+        var hit_target2 = "_Red_+1#" + playerMine;
+      }
+
+      if(window.team == "RedTeam") {
+        var hit_target2 = "_BLUE_+1#" + playerMine;
+      }
+      
       var event3 = new Event('change');
       var hit_target_container = document.getElementById("hit_target_container");
       hit_target_container.value = hit_target2;
@@ -226,7 +233,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine && window.team == "BlueTeam") {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         Window.invincible = true;
@@ -246,6 +253,30 @@ export default class MessageDispatch extends EventTarget {
         return
       }
       Red_Score.innerText = current_Red_Score;
+      return
+    };
+
+    if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine && window.team == "RedTeam") {
+        const HanabiAction = document.getElementById("HanabiContainer")
+        HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+        Window.invincible = true;
+      }
+      const Blue_Score = document.getElementById("blue-score");
+      const Blue_Progress = document.getElementById("Blue-Progress");
+      Blue_Progress.value = Blue_Progress.value + 1;
+      let current_Blue_Score = Number(Blue_Score.innerText) + 1;
+      if (current_Blue_Score >= 25) {
+        var hit_target2 = "_Win_Blue";
+        var event2 = new Event('change');
+        var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.value = hit_target2;
+        hit_target_container.dispatchEvent(event2);
+        Blue_Score.innerText = "0";
+        Blue_Progress.value = 0;
+        return
+      }
+      Blue_Score.innerText = current_Blue_Score;
       return
     };
 
