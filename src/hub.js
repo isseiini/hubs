@@ -1920,23 +1920,27 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   window.invincible = true;
+                  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController
 
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       window.team = "BlueTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
+                      const respwan_point = new THREE.Vector3(10.5, 4.5, -31);
+                      characterController.teleportTo(respwan_point);
+                      window.invincible = false;
                     } else {
                       window.team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
+                      const respwan_point = new THREE.Vector3(116.5, 1, -8);
+                      characterController.teleportTo(respwan_point);
+                      window.invincible = false;
                     }
-  
                     console.log("myteam:" + window.team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
-
-                    window.invincible = false;
                   }, 3000);
                   
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
