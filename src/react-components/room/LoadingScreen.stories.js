@@ -10,15 +10,12 @@ export default {
 };
 
 const infoMessages = [
-  { heading: "移動:", message: "Shiftキーを押すと早く移動できます。" },
+  { heading: "移動:", message: "Shiftキーを押すと素早く移動できます。" },
   {
     heading: "バーチャル道頓堀メモ",
     message: (
       <>
-        You can now set the default locale in your preferences.{" "}
-        <a href="#" target="_blank">
-          Read More
-        </a>
+        Shiftキーを押すと素早く移動できます。{" "}
       </>
     )
   }

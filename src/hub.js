@@ -2749,9 +2749,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           target.addEventListener('click', function() {
             const current_Date = get_current_Date();
             const coupon_table = document.getElementById("coupon_table");
-            console.log(target.parentNode)
-            console.log(target.parentElement)
-            console.log(target.parentNode.parentNode)
+            console.log(target.parentNode.parentNode.firstChild.innerText)
             var confirmed_coupon = {
               TableName: 'coupon',
               Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定

@@ -46,7 +46,7 @@ const messages = defineMessages({
     id: "loading-screen.entering-room",
     description:
       "Once the scene has finished loading, this message tells uses that they will be entering the room shortly.",
-    defaultMessage: "Entering room..."
+    defaultMessage: "入場しています..."
   }
 });
 

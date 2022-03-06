@@ -34,7 +34,7 @@ export function LoadingScreenContainer({ onLoaded, scene }) {
         message: intl.formatMessage(
           {
             id: "loading-screen.message.whats-new",
-            defaultMessage: "You can now set the default locale in your preferences. <a>Read More</a>"
+            defaultMessage: "Shiftキーを押すと素早く移動できます。"
           },
           {
             // eslint-disable-next-line react/display-name

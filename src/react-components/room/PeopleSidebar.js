@@ -70,11 +70,11 @@ function getVoiceIconComponent(micPresence) {
 function getPresenceMessage(presence, intl) {
   switch (presence) {
     case "lobby":
-      return intl.formatMessage({ id: "people-sidebar.presence.in-lobby", defaultMessage: "In Lobby" });
+      return intl.formatMessage({ id: "people-sidebar.presence.in-lobby", defaultMessage: "ロビーにいます" });
     case "room":
-      return intl.formatMessage({ id: "people-sidebar.presence.in-room", defaultMessage: "In Room" });
+      return intl.formatMessage({ id: "people-sidebar.presence.in-room", defaultMessage: "ワールドにいます" });
     case "entering":
-      return intl.formatMessage({ id: "people-sidebar.presence.entering", defaultMessage: "Entering Room" });
+      return intl.formatMessage({ id: "people-sidebar.presence.entering", defaultMessage: "入場しています" });
     default:
       return undefined;
   }
