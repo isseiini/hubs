@@ -1249,7 +1249,7 @@ class UIRoot extends Component {
           },
           configs.feature("show_whats_new_link") && {
             id: "whats-new",
-            label: <FormattedMessage id="more-menu.whats-new" defaultMessage="What's New" />,
+            label: <FormattedMessage id="more-menu.whats-new" defaultMessage="バーチャル道頓堀メモ" />,
             icon: SupportIcon,
             href: "/whats-new"
           },

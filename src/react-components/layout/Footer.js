@@ -55,7 +55,7 @@ export function Footer({
             {showWhatsNewLink && (
               <li>
                 <a href="/whats-new">
-                  <FormattedMessage id="footer.whats-new" defaultMessage="What's New" />
+                  <FormattedMessage id="footer.whats-new" defaultMessage="バーチャル道頓堀メモ" />
                 </a>
               </li>
             )}

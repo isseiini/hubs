@@ -30,7 +30,7 @@ export function LoadingScreenContainer({ onLoaded, scene }) {
         })
       },
       {
-        heading: intl.formatMessage({ id: "loading-screen.heading.whats-new", defaultMessage: "What's New?" }),
+        heading: intl.formatMessage({ id: "loading-screen.heading.whats-new", defaultMessage: "バーチャル道頓堀メモ" }),
         message: intl.formatMessage(
           {
             id: "loading-screen.message.whats-new",

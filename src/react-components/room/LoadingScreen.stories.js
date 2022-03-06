@@ -10,9 +10,9 @@ export default {
 };
 
 const infoMessages = [
-  { heading: "Tip:", message: "Press the Q & E keys to turn left and right." },
+  { heading: "移動:", message: "Shiftキーを押すと早く移動できます。" },
   {
-    heading: "What's New?",
+    heading: "バーチャル道頓堀メモ",
     message: (
       <>
         You can now set the default locale in your preferences.{" "}

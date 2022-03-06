@@ -94,7 +94,7 @@ export default class MessageDispatch extends EventTarget {
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
-    var life = HP - 15;
+    var life = HP - 20;
 
     if ( life <= 0 ){
       const scene = document.querySelector("a-scene");

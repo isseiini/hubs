@@ -419,7 +419,7 @@ AFRAME.registerComponent("pen", {
             hit_target_container.dispatchEvent(event);
             setTimeout(() => {
               document.getElementById("reticle").classList.remove("extend");
-            }, 1000);
+            }, 300);
           };
         }
         this._startDraw();

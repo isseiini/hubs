@@ -1789,9 +1789,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
-                      window.team = "BlueTeam"
+                      window.team = "BlueTeam";
+                      document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
+                      document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
                     } else {
-                      window.team = "RedTeam"
+                      window.team = "RedTeam";
+                      document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
+                      document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
                     }
   
                     console.log("myteam:" + window.team);
