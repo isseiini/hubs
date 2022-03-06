@@ -968,6 +968,17 @@ function checkForAccountRequired() {
   )}`;
 }
 
+function get_current_Date() {
+  var date = new Date();
+  var str = date.getFullYear()
+  + '/' + ('0' + (date.getMonth() + 1)).slice(-2)
+  + '/' + ('0' + date.getDate()).slice(-2)
+  + ' ' + ('0' + date.getHours()).slice(-2)
+  + ':' + ('0' + date.getMinutes()).slice(-2)
+  + ':' + ('0' + date.getSeconds()).slice(-2);
+  return str;
+}
+
 export function Get_Coupon(number){
   var cognitoUser_me2 = userPool.getCurrentUser(); 
   cognitoUser_me2.getSession((err, session) => {
@@ -1054,17 +1065,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
   };
-
-  function get_current_Date() {
-    var date = new Date();
-    var str = date.getFullYear()
-    + '/' + ('0' + (date.getMonth() + 1)).slice(-2)
-    + '/' + ('0' + date.getDate()).slice(-2)
-    + ' ' + ('0' + date.getHours()).slice(-2)
-    + ':' + ('0' + date.getMinutes()).slice(-2)
-    + ':' + ('0' + date.getSeconds()).slice(-2);
-    return str;
-  }
   
   function get_cognito_data() {
 
