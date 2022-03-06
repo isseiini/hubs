@@ -219,17 +219,6 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-        //HanabiAction.emit("true");
-
-
-        const avatarPOV = document.getElementById("avatar-pov-node"); 
-        const avatarRig = document.getElementById("avatar-rig");
-        window.setTimeout(function(){
-          /*avatarRig.object3D.position.set(50, 1.6, 50);
-          HanabiAction.object3D.position.set(0, 1, 1.5);*/
-          avatarPOV.object3D.position.set(50, 1.6, 50);
-      }, 4000);
-        
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");

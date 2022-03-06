@@ -101,6 +101,8 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiClip.clampWhenFinished = true;
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
+    this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;
+
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
     });
@@ -111,17 +113,10 @@ AFRAME.registerComponent("hanabi-animation", {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       setTimeout(() => {
-        HanabiClip.stop();
-        this.el.sceneEl.removeObject3D("mesh");
-      }, 2000);
-      //HanabiClip.reset();
-      //this.HanabiMesh.position.set(0, 1, 1.5)
-      //this.el.setObject3D("mesh", this.HanabiMesh);
-      
+        this.HanabiClip.reset();
+        this.characterController.teleportTo(30, 1.6, 30);
+      },3000);
     } else {
-      const avatarPOV = document.getElementById("avatar-pov-node").object3D.position; 
-      this.HanabiMesh.position.set(avatarPOV.x, avatarPOV.y + 1, avatarPOV.z + 1);
-      this.el.setObject3D("mesh", this.HanabiMesh);
       HanabiClip.stop();
     }
   },
@@ -134,7 +129,7 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
-    this.HanabiMesh.position.set(0, 4.5, 1.5)
+    this.HanabiMesh.position.set(0, 5.5, 1.5)
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);
   }
