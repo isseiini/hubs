@@ -111,7 +111,7 @@ AFRAME.registerComponent("hanabi-animation", {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       setInterval(() => {
-        this.HanabiClip.stop();
+        HanabiClip.stop();
         this.el.sceneEl.removeObject3D("mesh");
       }, 2000);
     } else {
@@ -345,6 +345,25 @@ AFRAME.registerComponent("pen", {
 
       const intersection = this._getIntersection(cursorPose);
 
+      if (intersection && this.grabbed == true ) {
+        console.log(intersection);
+        const AirCanonAction = document.getElementById("pen");
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
+        var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
+        console.log(targetbox)
+        if (targetbox[5][1].networked) {
+          this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
+          document.getElementById("reticle").classList.add("extend");
+          var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
+          const event = new Event('change');
+          hit_target_container.value = hit_target;
+          hit_target_container.dispatchEvent(event);
+          setInterval(() => {
+            document.getElementById("reticle").classList.remove("extend");
+          }, 1000);
+        };
+      }
+
       this._updatePenTip(intersection);
 
       const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!intersection;
@@ -368,7 +387,7 @@ AFRAME.registerComponent("pen", {
       this._setPenVisible(penVisible);
       this.el.setAttribute("pen", { penVisible: penVisible });
 
-      this._doDraw(intersection, dt);
+      //this._doDraw(intersection, dt);
       
 
       if (this.penLaserAttributesUpdated) {
