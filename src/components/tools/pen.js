@@ -205,7 +205,7 @@ AFRAME.registerComponent("pen", {
     minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point 
     camera: { type: "selector" },
     drawingManager: { type: "string" },
-    color: { type: "color", default: "transparent" },
+    color: { type: "color", default: "rgb(0, 243, 235)" },
     availableColors: {
       default: [
         "#FF0033",
@@ -552,6 +552,7 @@ AFRAME.registerComponent("pen", {
         this._getNormal(this.normal, this.worldPosition, this.direction);
         this.currentDrawing.draw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
+        const AirCanonAction = document.getElementById("pen");
         AirCanonAction.setAttribute("pen-laser", {action: "true"});
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
         console.log(targetbox)
