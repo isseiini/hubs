@@ -368,7 +368,7 @@ AFRAME.registerComponent("pen", {
       this._setPenVisible(penVisible);
       this.el.setAttribute("pen", { penVisible: penVisible });
 
-      this._doDraw(intersection, dt);
+      this._doDraw(this.intersection, dt);
       
 
       if (this.penLaserAttributesUpdated) {
