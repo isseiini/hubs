@@ -34,7 +34,7 @@ const confirmationMessages = defineMessages({
   },
   [LeaveReason.joinRoom]: {
     id: "leave-room-modal.join-room.confirm",
-    defaultMessage: "Join Room"
+    defaultMessage: "ワールドに入場する"
   },
   [LeaveReason.createRoom]: {
     id: "leave-room-modal.create-room.confirm",

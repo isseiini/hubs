@@ -77,15 +77,15 @@ AFRAME.registerComponent("pen-laser", {
     const geometry = new THREE.TubeBufferGeometry(lineCurve, 2, 0.003, 8, true);
     this.laser = new THREE.Mesh(geometry, material);
 
-    /*this.laserTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 8, 6), tipMaterial);
+    this.laserTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 8, 6), tipMaterial);
     this.laserTip.scale.setScalar(0.01);
-    this.laserTip.matrixNeedsUpdate = true;*/
+    this.laserTip.matrixNeedsUpdate = true;
 
     //prevents the line from being a raycast target for the cursor
     this.laser.raycast = function() {};
 
     this.el.sceneEl.setObject3D(`pen-laser-${this.laser.uuid}`, this.laser);
-    //this.el.sceneEl.setObject3D(`pen-laser-tip-${this.laser.uuid}`, this.laserTip);
+    this.el.sceneEl.setObject3D(`pen-laser-tip-${this.laser.uuid}`, this.laserTip);
 
     this.originBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
@@ -114,7 +114,7 @@ AFRAME.registerComponent("pen-laser", {
 
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
-        //this.laserTip.material.color.set(this.data.color);
+        this.laserTip.material.color.set(this.data.color);
       }
 
       if (prevData.remoteLaserOrigin && !almostEquals(0.001, prevData.remoteLaserOrigin, this.data.remoteLaserOrigin)) {
@@ -181,8 +181,8 @@ AFRAME.registerComponent("pen-laser", {
         this.AirCanonMesh.matrixNeedsUpdate = true;
         //this.laser.scale.set(1, 1, origin.distanceTo(target));
         //this.laser.matrixNeedsUpdate = true;
-        //this.laserTip.position.copy(target);
-        //this.laserTip.matrixNeedsUpdate = true;
+        this.laserTip.position.copy(target);
+        this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
         let sx = String((this.width / 2) * (+projection.x + 1.0) - 26) + "px";
         let sy = String((this.height / 2) * (-projection.y + 1.0) -26) + "px";
@@ -195,10 +195,10 @@ AFRAME.registerComponent("pen-laser", {
         this.laser.material.visible = laserVisible;
       }
 
-      /*const laserTipVisible = laserVisible ? !(isMine && this.data.laserVisible) : false;
+      const laserTipVisible = laserVisible ? !(isMine && this.data.laserVisible) : false;
       if (this.laserTip.material.visible !== laserTipVisible) {
         this.laserTip.material.visible = laserTipVisible;
-      }*/
+      }
     };
   })(),
 

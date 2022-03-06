@@ -1513,7 +1513,7 @@ class UIRoot extends Component {
                       <>
                         <ToolbarButton
                           icon={<EnterIcon />}
-                          label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="Join Room" />}
+                          label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="ワールドに入場する" />}
                           preset="accept"
                           onClick={() => this.setState({ watching: false })}
                         />
@@ -1522,7 +1522,7 @@ class UIRoot extends Component {
                             icon={<VRIcon />}
                             preset="accent5"
                             label={
-                              <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="Spectate in VR" />
+                              <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="VR機器を接続する" />
                             }
                             onClick={() => this.props.scene.enterVR()}
                           />

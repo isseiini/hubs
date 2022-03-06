@@ -37,7 +37,7 @@ export function AvatarSettingsContent({
       <div className={styles.avatarPreviewContainer}>
         {avatarPreview || <div />}
         <Button type="button" preset="basic" onClick={onChangeAvatar}>
-          <FormattedMessage id="avatar-settings-content.change-avatar-button" defaultMessage="Change Avatar" />
+          <FormattedMessage id="avatar-settings-content.change-avatar-button" defaultMessage="アバターを変更する" />
         </Button>
       </div>
       <AcceptButton preset="accept" type="submit" />
