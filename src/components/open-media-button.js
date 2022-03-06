@@ -51,7 +51,7 @@ AFRAME.registerComponent("open-media-button", {
 
     this.onClick = async () => {
       const mayChangeScene = this.el.sceneEl.systems.permissions.canOrWillIfCreator("update_hub");
-
+      const src = (this.src = (mediaLoader.mediaOptions && mediaLoader.mediaOptions.href) || mediaLoader.src);
       const exitImmersive = async () => await handleExitTo2DInterstitial(false, () => {}, true);
       const url = new URL(src)
       let hubId;
