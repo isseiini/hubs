@@ -102,8 +102,8 @@ AFRAME.registerComponent("pen-laser", {
       if (this.data.action == "true") {
         AirCanonClip.play();
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
-        document.getElementById("reticle").classList.add("rotate120");
-        AirCanonClip.reset();
+        this.reticle.style.transform = "rotateZ(120deg)"
+        AirCanonClip.stop();
       } else {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         //current_animation.reset();
