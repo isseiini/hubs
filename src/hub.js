@@ -2753,7 +2753,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             var confirmed_coupon = {
               TableName: 'coupon',
               Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                Play_ID: interested_coupon.cells[0]
+                Play_ID: target.parentNode.parentNode.firstChild.innerText
               },
               ExpressionAttributeNames: {
                 '#available_or_used': "available_or_used",
