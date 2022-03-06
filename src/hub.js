@@ -170,6 +170,43 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
+window.timeCount = 420;
+let min = 0;
+let sec = 0;
+let interval;
+let isStart = false;
+
+function count_start() {
+  if(isStart === false) {
+    interval = setInterval(count_down, 1000);
+    isStart = true;
+  }
+}
+
+function count_down(){
+  if(timeCount === 1){
+    var display = document.getElementById("time");
+    display.style.color = 'red';
+    display.innerHTML = "TIME UP!";
+    clearInterval(interval);
+  } else {
+    timeCount--;
+    min = Math.floor(timeCount / 60);
+    sec = timeCount % 60;
+    var count_down = document.getElementById("time");
+    count_down.innerHTML = ("0"+min) +":" + ("0"+sec).slice(-2);
+  }
+}
+
+function count_reset(){
+  clearInterval(interval);
+  timeCount = 420;
+  isStart = false;
+  var count_down = document.getElementById("time");
+  count_down.style.color = 'black';
+  count_down.innerHTML = "07:00";
+}    
+
 var current_url = (location.protocol + '//' + location.hostname + location.pathname).split("/");
 
 var room_name = current_url[current_url.length - 1];
@@ -1876,6 +1913,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     hit_target_container.value = "_" + window.team;
                     hit_target_container.dispatchEvent(event3);
                   }
+                  hit_target_container.value = window.timeCount;
+                  hit_target_container.dispatchEvent(event3);
                 }
 
                 if (
@@ -1904,7 +1943,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                     
                   });
-  
+                  count_start();
                 }
 
                 if (

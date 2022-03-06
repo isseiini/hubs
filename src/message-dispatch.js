@@ -220,6 +220,11 @@ export default class MessageDispatch extends EventTarget {
       return
     };
 
+    if (entry.type ==="chat" && isNaN(entry.body) == false){
+      window.timeCount = entry.body;
+      return
+    };
+
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
