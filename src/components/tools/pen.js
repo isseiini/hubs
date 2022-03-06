@@ -107,6 +107,8 @@ AFRAME.registerComponent("hanabi-animation", {
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
     });
+
+    this.respwan_point = new THREE.Vector3(10, 1.6, 0);
   },
 
   update() {
@@ -115,13 +117,13 @@ AFRAME.registerComponent("hanabi-animation", {
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       setTimeout(() => {
         HanabiClip.reset();
-        this.characterController.teleportTo(0, 1.6, 0);
+        this.characterController.teleportTo(this.respwan_point);
         document.getElementById("Player-Respawn").style.display = "none";
       },3000);
     } 
     if(this.data.action == "false") {
       HanabiClip.stop();
-      this.characterController.teleportTo(0, 1.6, 0);
+      this.characterController.teleportTo(this.respwan_point);
     }
   },
 
