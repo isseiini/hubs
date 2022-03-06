@@ -313,6 +313,82 @@ class myCognitouserclass extends CognitoUser {
 		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
 		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
 	}
+
+  /**
+	 * @typedef {Object} GetSessionOptions
+	 * @property {Record<string, string>} clientMetadata - clientMetadata for getSession
+	 */
+
+	/**
+	 * This is used to get a session, either from the session object
+	 * or from  the local storage, or by using a refresh token
+	 *
+	 * @param {nodeCallback<CognitoUserSession>} callback Called on success or error.
+	 * @param {GetSessionOptions} options
+	 * @returns {void}
+	 */
+	getSession(callback, options = {}) {
+		if (this.username == null) {
+			return callback(
+				new Error('Username is null. Cannot retrieve a new session'),
+				null
+			);
+		}
+
+		if (this.signInUserSession != null && this.signInUserSession.isValid()) {
+			return callback(null, this.signInUserSession);
+		}
+
+		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
+			this.username
+		}`;
+		const idTokenKey = `${keyPrefix}.idToken`;
+		const accessTokenKey = `${keyPrefix}.accessToken`;
+		const refreshTokenKey = `${keyPrefix}.refreshToken`;
+		const clockDriftKey = `${keyPrefix}.clockDrift`;
+
+		if (this.storage.getItem(idTokenKey)) {
+			const idToken = new CognitoIdToken({
+				IdToken: this.storage.getItem(idTokenKey),
+			});
+			const accessToken = new CognitoAccessToken({
+				AccessToken: this.storage.getItem(accessTokenKey),
+			});
+			const refreshToken = new CognitoRefreshToken({
+				RefreshToken: this.storage.getItem(refreshTokenKey),
+			});
+			const clockDrift = parseInt(this.storage.getItem(clockDriftKey), 0) || 0;
+
+			const sessionData = {
+				IdToken: idToken,
+				AccessToken: accessToken,
+				RefreshToken: refreshToken,
+				ClockDrift: clockDrift,
+			};
+			const cachedSession = new CognitoUserSession(sessionData);
+
+			if (cachedSession.isValid()) {
+				this.signInUserSession = cachedSession;
+				return callback(null, this.signInUserSession);
+			}
+
+			if (!refreshToken.getToken()) {
+				return callback(
+					new Error('Cannot retrieve a new session. Please authenticate.'),
+					null
+				);
+			}
+
+			this.refreshSession(refreshToken, callback, options.clientMetadata);
+		} else {
+			callback(
+				new Error('Local storage is missing an ID Token, Please authenticate'),
+				null
+			);
+		}
+
+		return undefined;
+	}
 }
 
 /**
@@ -889,11 +965,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
 
-  document.getElementById("hex-background").style.display = "none";
-  document.getElementById("go-to-game").style.display = "none";
-
-  /*if (room_name == "kooky-passionate-safari") {
-    const cognito_mine = userPool.getCurrentUser();
+  if (room_name == "kooky-passionate-safari") {
+    document.getElementById("hex-background").style.display = "none";
+    document.getElementById("go-to-game").style.display = "none";
+    /*const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -905,7 +980,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     } else {
       location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }
+    }*/
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life").style.display = "none";
@@ -918,7 +993,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_map").style.display = "none";
   } else {
     location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-  };*/
+  };
 
   function get_current_Date() {
     var date = new Date();
@@ -2680,7 +2755,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  export function Get_Coupon(){
+  /*export function Get_Coupon(){
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
       if (err) {
@@ -2731,7 +2806,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
     }
-  }
+  }*/
 
   /*document.addEventListener('keyup', event => {
     if (event.code = "") {
