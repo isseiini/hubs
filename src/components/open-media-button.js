@@ -58,8 +58,8 @@ AFRAME.registerComponent("open-media-button", {
       if (this.data.onlyOpenLink) {
         await exitImmersive();
         if(this.src.hash) {
-          if(this.src.hash == "#coupon") {
-            //Get_Coupon();
+          if(this.src.hash == "#1") {
+            Get_Coupon(1);
           } else {
             return
           }

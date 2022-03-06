@@ -2768,7 +2768,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // モーダルウィンドウに中身を配置
             modalElement.appendChild(innerElement);
-            document.body.appendChild(modalElement);
+            document.getElementById("hex-background").appendChild(modalElement);
 
             function closeModal(modalElement) {
               document.body.removeChild(modalElement);
