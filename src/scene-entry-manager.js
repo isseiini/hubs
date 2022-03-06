@@ -57,7 +57,7 @@ export default class SceneEntryManager {
   };
 
   enterScene = async (enterInVR, muteOnEntry) => {
-    console.log("Entering scene...");
+    console.log("ワールドに入場しています...");
     document.getElementById("viewing-camera").removeAttribute("scene-preview-camera");
 
     if (isDebug && NAF.connection.adapter.session) {
