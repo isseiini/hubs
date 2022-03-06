@@ -2106,12 +2106,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_Respawn = document.getElementById("Player-Respawn");
 
   Player_Respawn.addEventListener("click", function(){
-    const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint(30,30);
     Player_Respawn.style.display = "none";
     const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
-    scene.play();
   })
 
   const lifeBar = document.getElementById('life-background')         // ライフバー     // ライフの光部分

@@ -116,10 +116,12 @@ AFRAME.registerComponent("hanabi-animation", {
       setTimeout(() => {
         HanabiClip.reset();
         this.characterController.teleportTo(30, 1.6, 30);
+        document.getElementById("Player-Respawn").style.display = "none";
       },3000);
     } 
     if(this.data.action == "false") {
       HanabiClip.stop();
+      this.characterController.teleportTo(30, 1.6, 30);
     }
   },
 
