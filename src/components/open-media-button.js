@@ -38,13 +38,14 @@ AFRAME.registerComponent("open-media-button", {
           }
         }
         this.label.setAttribute("text", "value", label);
-        if(url.hash) {
-          if(url.hash == "#coupon") {
-            label = "クーポンを取得する";
-            this.label.setAttribute("text", "value", label);
+        if(this.src.hash) {
+          if(this.src.hash == "#1") {
+            Get_Coupon(1);
           } else {
-            this.label.setAttribute("text", "value", label);
+            return
           }
+        } else {
+          window.open(this.src);
         }
       }
     };
