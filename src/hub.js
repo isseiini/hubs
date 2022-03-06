@@ -315,8 +315,6 @@ class myCognitouserclass extends CognitoUser {
 	}
 }
 
-
-
 /**
  * method for getting the current user of the application from the local storage
  *
@@ -2681,6 +2679,59 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display5', 'none');
     document.documentElement.style.setProperty('--display6', 'none');
   });
+
+  export function Get_Coupon(){
+    var cognitoUser_me2 = userPool.getCurrentUser(); 
+    cognitoUser_me2.getSession((err, session) => {
+      if (err) {
+        console.log(err)
+      } else {
+        cognitoUser_me2.getUserAttributes((err,result) => {
+          if (err) {
+            console.log(err)
+          } else {
+            var i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            };   
+        
+          };
+        });
+      };
+    });
+    const current_Date = get_current_Date();
+    
+    function getUniqueStr(myStrong){
+      var strong = 1000;
+      if (myStrong) strong = myStrong;
+      return current_Date + Math.floor(strong*Math.random()).toString(16)
+    }
+
+    let Play_ID = getUniqueStr();
+
+
+    if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
+      var coupon_params = {
+        TableName: 'coupon',
+        Item:{
+          Play_ID: Play_ID,
+          coupon_number: 1,
+          content: "○○にて○○が○○パーセントオフ!",
+          User_ID: currentUserData["sub"],
+          available_or_used: "available",
+          get_Date: current_Date
+        }
+      };
+
+      docClient.put(coupon_params, function(err, data){
+        if(err){
+          console.log('error');
+        }else{
+          console.log('success');
+        }
+      });
+    }
+  }
 
   /*document.addEventListener('keyup', event => {
     if (event.code = "") {
