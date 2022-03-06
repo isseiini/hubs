@@ -37,7 +37,7 @@ AFRAME.registerComponent("pen-laser", {
     laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
     laserTarget: { default: { x: 0, y: 0, z: 0 } },
-    action: {default: "false"}
+    action: {default: ""}
   },
 
   init() {
@@ -106,7 +106,8 @@ AFRAME.registerComponent("pen-laser", {
         this.rotate120 += 120;
         this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)"
         AirCanonClip.reset();
-      } else {
+      } 
+      if(this.data.action == "false") {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         //current_animation.reset();
         AirCanonClip.stop();

@@ -86,7 +86,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
 AFRAME.registerComponent("hanabi-animation", {
   schema: {
-    action: { default : "false" }
+    action: { default : "" }
   },
 
   init() {
@@ -99,6 +99,7 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
     HanabiClip.clampWhenFinished = true;
+    HanabiClip.setLoop(THREE.LoopOnce);
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;
@@ -113,10 +114,11 @@ AFRAME.registerComponent("hanabi-animation", {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       setTimeout(() => {
-        this.HanabiClip.reset();
+        HanabiClip.reset();
         this.characterController.teleportTo(30, 1.6, 30);
       },3000);
-    } else {
+    } 
+    if(this.data.action == "false") {
       HanabiClip.stop();
     }
   },
