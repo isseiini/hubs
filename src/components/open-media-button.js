@@ -1,7 +1,7 @@
 import { isLocalHubsSceneUrl, isHubsRoomUrl, isLocalHubsAvatarUrl } from "../utils/media-url-utils";
 import { guessContentType } from "../utils/media-url-utils";
 import { handleExitTo2DInterstitial } from "../utils/vr-interstitial";
-import {Get_Coupon} from "../hub.js";
+
 
 AFRAME.registerComponent("open-media-button", {
   schema: {
@@ -58,7 +58,7 @@ AFRAME.registerComponent("open-media-button", {
         await exitImmersive();
         if(this.src.hash) {
           if(this.src.hash == "#coupon") {
-            Get_Coupon();
+            //Get_Coupon();
           } else {
             return
           }
@@ -85,7 +85,7 @@ AFRAME.registerComponent("open-media-button", {
         console.log(this.src)
         if(this.src.hash) {
           if(this.src.hash == "#coupon") {
-            Get_Coupon();
+            //Get_Coupon();
           } else {
             return
           }
