@@ -2422,17 +2422,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           console.log(err)
         } else {      
-          const cognitoUser2 = new myCognitouserclass(userData);
-          cognitoUser2.getUserAttributes((err, result) => {
-            for (i = 0; i < result.length; i++) {
-              currentUserData[result[i].getName()] = result[i].getValue();
-            }
-          });
-          const userData = {
-            Username: currentUserData["name"],
-            Pool: userPool
-          };
-          cognitoUser2.signOut();
+          cognitoUser_me.signOut();
           alert("ログアウトしました。")
           };
       });
