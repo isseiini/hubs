@@ -312,7 +312,15 @@ export default class MessageDispatch extends EventTarget {
       return
     };
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Win_") === 0){
+    if (entry.type ==="chat" && entry.body.indexOf("_Win_Red") === 0){
+      const scene = document.querySelector("a-scene");
+      scene.pause();
+      const Game_Result = document.getElementById("Game-Result");
+      Game_Result.style.display = "block";
+      return
+    };
+
+    if (entry.type ==="chat" && entry.body.indexOf("_Win_Blue") === 0){
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("Game-Result");
