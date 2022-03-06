@@ -555,7 +555,6 @@ AFRAME.registerComponent("pen", {
 
         if (targetbox[5][1].networked) {
           this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
-          document.getElementById("reticle").classList.add("rotate120");
           document.getElementById("reticle").classList.add("extend");
           var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
           const event = new Event('change');
