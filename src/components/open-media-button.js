@@ -1,6 +1,7 @@
 import { isLocalHubsSceneUrl, isHubsRoomUrl, isLocalHubsAvatarUrl } from "../utils/media-url-utils";
 import { guessContentType } from "../utils/media-url-utils";
 import { handleExitTo2DInterstitial } from "../utils/vr-interstitial";
+import {Get_Coupon} from "../hub.js";
 
 AFRAME.registerComponent("open-media-button", {
   schema: {
@@ -51,8 +52,6 @@ AFRAME.registerComponent("open-media-button", {
       const mayChangeScene = this.el.sceneEl.systems.permissions.canOrWillIfCreator("update_hub");
 
       const exitImmersive = async () => await handleExitTo2DInterstitial(false, () => {}, true);
-
-      import {Get_Coupon} from "../hub";
 
       let hubId;
       if (this.data.onlyOpenLink) {
