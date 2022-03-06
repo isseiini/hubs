@@ -503,7 +503,7 @@ class myCognitouserpoolclass extends CognitoUserPool {
   /**
 	 * method for getting the current user of the application from the local storage
 	 *
-	 * @returns {CognitoUser} the user retrieved from storage
+	 * @returns {myCognitouserclass} the user retrieved from storage
 	 */
 	getCurrentUser() {
 		const lastUserKey = `CognitoIdentityServiceProvider.${this.clientId}.LastAuthUser`;
