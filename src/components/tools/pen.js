@@ -129,7 +129,7 @@ AFRAME.registerComponent("hanabi-animation", {
     if (this.loaderMixer) {
       this.loaderMixer.update(dt / 1000);
     }
-
+    this.el.object3D.updateMatrixWorld();
   },
 
   Fire () {
