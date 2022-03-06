@@ -1,5 +1,5 @@
 {
-  "name": "np",
+  "name": "npm",
   "version": "0.0.1",
   "description": "Duck-themed multi-user virtual spaces in WebVR.",
   "main": "src/index.js",

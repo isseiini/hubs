@@ -1015,7 +1015,6 @@ export function Get_Coupon(number){
       Item:{
         Play_ID: Play_ID,
         coupon_number: number,
-        content: "○○にて○○が○○パーセントオフ!",
         User_ID: currentUserData["sub"],
         available_or_used: "available",
         get_Date: current_Date
