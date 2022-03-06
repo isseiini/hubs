@@ -2750,28 +2750,60 @@ document.addEventListener("DOMContentLoaded", async () => {
             const current_Date = get_current_Date();
             const coupon_table = document.getElementById("coupon_table");
             console.log(target.parentNode.parentNode.firstChild.innerText)
-            var confirmed_coupon = {
-              TableName: 'coupon',
-              Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                Play_ID: target.parentNode.parentNode.firstChild.innerText
-              },
-              ExpressionAttributeNames: {
-                '#available_or_used': "available_or_used",
-                '#used_Date' : 'used_Date'
-              },
-              ExpressionAttributeValues: {
-                ':used': "used",
-                ':used_Date' : current_Date
-              },
-              UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
-            };
-            docClient.update(confirmed_coupon, function(err, data2){
-              if(err){
-                console.log('error');
-              }else{
-                console.log('success');
-              }
+
+            // モーダルウィンドウと中身の要素を生成・クラスを付与
+            const modalElement = document.createElement('div');
+            modalElement.classList.add('modal');
+            const innerElement = document.createElement('div');
+            innerElement.classList.add('inner');
+
+            // モーダルウィンドウに表示する要素を記述
+            innerElement.innerHTML = 
+              "<h1>クーポン詳細</h1>" +
+              "<p>獲得日時:" + target.parentNode.parentNode.children[2] + "</p>" + 
+              "<p>クーポン内容:" + target.parentNode.parentNode.children[1] + "</p>" +
+              '<input id="confirm_use_Coupon" type="button" value="使用する">' +
+              '<input id="cancel_use_Coupon" type="button" value="キャンセル">'
+            ;
+
+            // モーダルウィンドウに中身を配置
+            modalElement.appendChild(innerElement);
+            document.body.appendChild(modalElement);
+
+            function closeModal(modalElement) {
+              document.body.removeChild(modalElement);
+            }
+
+            // 中身をクリックしたらモーダルウィンドウを閉じる
+            innerElement.addEventListener('click', () => {
+              closeModal(modalElement);
             });
+
+            document.getElementById("confirm_use_Coupon").addEventListener('click', () => {
+              var confirmed_coupon = {
+                TableName: 'coupon',
+                Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+                  Play_ID: target.parentNode.parentNode.firstChild.innerText
+                },
+                ExpressionAttributeNames: {
+                  '#available_or_used': "available_or_used",
+                  '#used_Date' : 'used_Date'
+                },
+                ExpressionAttributeValues: {
+                  ':used': "used",
+                  ':used_Date' : current_Date
+                },
+                UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
+              };
+              docClient.update(confirmed_coupon, function(err, data2){
+                if(err){
+                  console.log('error');
+                }else{
+                  console.log('success');
+                }
+              });
+            });
+            
           });
         });
 
@@ -2934,7 +2966,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     });
     
-  function Use_Coupon(number) {
+  /*function Use_Coupon(number) {
     console.log("aaa")
     const current_Date = get_current_Date();
     const coupon_table = document.getElementById("coupon_table");
@@ -2960,9 +2992,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.appendChild(modalElement);
 
     // 中身をクリックしたらモーダルウィンドウを閉じる
-    /*innerElement.addEventListener('click', () => {
+    innerElement.addEventListener('click', () => {
       closeModal(modalElement);
-    });*/
+    });
 
     function Confirm_Use_Coupon(number) {
       var confirmed_coupon = {
@@ -2992,7 +3024,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function closeModal(modalElement) {
     document.body.removeChild(modalElement);
-  }
+  }*/
 
   const Game_Restart = document.getElementById("Game-Restart");
   const Game_Result = document.getElementById("Game-Result");

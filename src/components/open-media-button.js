@@ -21,7 +21,7 @@ AFRAME.registerComponent("open-media-button", {
       this.el.object3D.visible = !!visible;
 
       if (visible) {
-        let label = "リンクを開く";
+        let label = "Open Link";
         const url = new URL(src);
         if (!this.data.onlyOpenLink) {
           let hubId;
@@ -38,14 +38,13 @@ AFRAME.registerComponent("open-media-button", {
           }
         }
         this.label.setAttribute("text", "value", label);
-        if(this.src.hash) {
-          if(this.src.hash == "#1") {
-            Get_Coupon(1);
+        if(url.hash) {
+          if(url.hash == "#1") {
+            label = "Get Coupon";
+            this.label.setAttribute("text", "value", label);
           } else {
-            return
+            this.label.setAttribute("text", "value", label);
           }
-        } else {
-          window.open(this.src);
         }
       }
     };
