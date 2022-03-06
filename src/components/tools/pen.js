@@ -110,11 +110,10 @@ AFRAME.registerComponent("hanabi-animation", {
     if (this.data.action == "true") {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
-      setInterval(() => {
+      setTimeout(() => {
         HanabiClip.stop();
         this.el.sceneEl.removeObject3D("mesh");
-      }, 1000);
-    } else {
+      }, 2000);
       //HanabiClip.reset();
       //this.HanabiMesh.position.set(0, 1, 1.5)
       //this.el.setObject3D("mesh", this.HanabiMesh);
@@ -416,7 +415,7 @@ AFRAME.registerComponent("pen", {
             const event = new Event('change');
             hit_target_container.value = hit_target;
             hit_target_container.dispatchEvent(event);
-            setInterval(() => {
+            setTimeout(() => {
               document.getElementById("reticle").classList.remove("extend");
             }, 1000);
           };

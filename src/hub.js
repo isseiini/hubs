@@ -1787,7 +1787,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
 
-                  setInterval(() => {
+                  setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       window.team = "BlueTeam"
                     } else {
@@ -1796,7 +1796,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
                     console.log("myteam:" + window.team);
                     console.log("Red:" + window.RedSum);
-                    console.log("Blue*" + window.BlueSum);
+                    console.log("Blue:" + window.BlueSum);
                   }, 5000);
                   
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
