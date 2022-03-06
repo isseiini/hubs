@@ -2771,7 +2771,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             document.getElementById("hex-background").appendChild(modalElement);
 
             function closeModal(modalElement) {
-              document.body.removeChild(modalElement);
+              document.getElementById("hex-background").removeChild(modalElement);
             }
 
             // 中身をクリックしたらモーダルウィンドウを閉じる
@@ -2802,6 +2802,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   console.log('success');
                 }
               });
+              document.getElementById("hex-background").removeChild(modalElement);
             });
             
           });

@@ -53,12 +53,12 @@ AFRAME.registerComponent("open-media-button", {
       const mayChangeScene = this.el.sceneEl.systems.permissions.canOrWillIfCreator("update_hub");
 
       const exitImmersive = async () => await handleExitTo2DInterstitial(false, () => {}, true);
-
+      const url = new URL(src)
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(this.src.hash) {
-          if(this.src.hash == "#1") {
+        if(url.hash) {
+          if(url.hash == "#1") {
             Get_Coupon(1);
           } else {
             return
@@ -84,8 +84,8 @@ AFRAME.registerComponent("open-media-button", {
       } else {
         await exitImmersive();
         console.log(this.src)
-        if(this.src.hash) {
-          if(this.src.hash == "#1") {
+        if(url.hash) {
+          if(url.hash == "#1") {
             Get_Coupon(1);
           } else {
             return
