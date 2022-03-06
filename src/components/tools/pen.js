@@ -396,13 +396,13 @@ AFRAME.registerComponent("pen", {
       const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
-        //this._startDraw();
+        this._startDraw();
         //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
         
       }
       if (userinput.get(paths.stopDrawing)) {
         AirCanonAction.setAttribute("pen-laser", {action: "false"});
-        //this._endDraw();    
+        this._endDraw();    
         //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
       /*const penScaleMod = userinput.get(paths.scalePenTip);
