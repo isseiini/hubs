@@ -108,7 +108,14 @@ AFRAME.registerComponent("hanabi-animation", {
       this.targetEl = networkedEl;
     });
 
-    this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
+    if(window.team = "BlueTeam") {
+      this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
+    }
+
+    if(window.team = "RedTeam") {
+      this.respwan_point = new THREE.Vector3(116.5, 1, -8);
+    }
+    
   },
 
   update() {
@@ -119,11 +126,13 @@ AFRAME.registerComponent("hanabi-animation", {
         HanabiClip.stop();
         this.characterController.teleportTo(this.respwan_point);
         document.getElementById("Player-Respawn").style.display = "none";
+        Window.invincible = false;
       },3000);
     } 
     if(this.data.action == "false") {
       HanabiClip.stop();
       this.characterController.teleportTo(this.respwan_point);
+      Window.invincible = false;
     }
   },
 
@@ -135,9 +144,10 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   Fire () {
-    this.HanabiMesh.position.set(0, 5.5, 1.5)
+    this.HanabiMesh.position.set(0, 5.5, 1.5);
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);
+    this.HanabiMesh.position.set(0, 1, 1.5);
   }
 });
 

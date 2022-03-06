@@ -1919,6 +1919,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
+                  window.invincible = true;
 
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
@@ -1934,7 +1935,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log("myteam:" + window.team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
-                  }, 5000);
+
+                    window.invincible = false;
+                  }, 3000);
                   
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 

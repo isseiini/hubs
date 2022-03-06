@@ -8,6 +8,8 @@ import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
 import {waitForDOMContentLoaded} from "./utils/async-utils";
+import { width } from "@fortawesome/free-solid-svg-icons/faTimes";
+import { WindowsMixedRealityControllerDevice } from "./systems/userinput/devices/windows-mixed-reality-controller";
 
 /*AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -88,6 +90,9 @@ export default class MessageDispatch extends EventTarget {
   }
  
   damage() {  
+    if(window.invincible == true){
+      return
+    }
     const lifeBar = document.getElementById('life-background')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
@@ -219,6 +224,7 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+        Window.invincible = true;
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
