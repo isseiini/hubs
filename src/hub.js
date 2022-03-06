@@ -1015,6 +1015,7 @@ export function Get_Coupon(number){
       Item:{
         Play_ID: Play_ID,
         coupon_number: number,
+        content: "○○にて○○が○○パーセントオフ!",
         User_ID: currentUserData["sub"],
         available_or_used: "available",
         get_Date: current_Date
@@ -2659,7 +2660,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           var Coupon_Number = i + 1;
           var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
+          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する" onclick="Use_Coupon(' + i + ')">';
 
           row.appendChild(cell_1_4);
           
@@ -2932,6 +2933,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     
   function Use_Coupon(number) {
+    console.log("aaa")
     const current_Date = get_current_Date();
     const coupon_table = document.getElementById("coupon_table");
     let interested_coupon = coupon_table.rows[number];
