@@ -233,7 +233,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine && window.team == "BlueTeam") {
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         Window.invincible = true;
@@ -257,7 +257,7 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine && window.team == "RedTeam") {
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
         Window.invincible = true;
