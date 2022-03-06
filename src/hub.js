@@ -2680,7 +2680,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
-  /*export function Get_Coupon(){
+  export function Get_Coupon(){
     var cognitoUser_me2 = userPool.getCurrentUser(); 
     cognitoUser_me2.getSession((err, session) => {
       if (err) {
@@ -2731,7 +2731,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       });
     }
-  }*/
+  }
 
   /*document.addEventListener('keyup', event => {
     if (event.code = "") {
