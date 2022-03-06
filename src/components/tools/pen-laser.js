@@ -184,8 +184,8 @@ AFRAME.registerComponent("pen-laser", {
         //this.laserTip.position.copy(target);
         //this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
-        let sx = String((this.width / 2) * (+projection.x + 1.0) - 26.5) + "px";
-        let sy = String((this.height / 2) * (-projection.y + 1.0) -26.5) + "px";
+        let sx = String((this.width / 2) * (+projection.x + 1.0) - 26) + "px";
+        let sy = String((this.height / 2) * (-projection.y + 1.0) -26) + "px";
 
         this.reticle.style.top = sy;
         this.reticle.style.left = sx;
@@ -204,7 +204,7 @@ AFRAME.registerComponent("pen-laser", {
 
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
-    this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+    //this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D("mesh");
     this.reticle.style.display = "none"
   }
