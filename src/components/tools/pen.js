@@ -338,7 +338,7 @@ AFRAME.registerComponent("pen", {
 
       const intersection = this._getIntersection(cursorPose);
 
-      this._updatePenTip(intersection);
+      //this._updatePenTip(intersection);
 
       const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!intersection;
       const laserInHand = this.el.sceneEl.is("vr-mode") && laserVisible;
@@ -554,7 +554,6 @@ AFRAME.registerComponent("pen", {
         //var targetbox = JSON.stringify(intersection.object.parent.parent.parent.el, hoge());
         
         var targetbox = Object.entries(intersection.object.parent.parent.parent.el);
-        
 
         if (targetbox[5][1].networked) {
           this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
