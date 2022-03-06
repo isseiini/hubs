@@ -113,13 +113,14 @@ AFRAME.registerComponent("hanabi-animation", {
       setInterval(() => {
         HanabiClip.stop();
         this.el.sceneEl.removeObject3D("mesh");
-      }, 2000);
+      }, 1000);
     } else {
       //HanabiClip.reset();
       //this.HanabiMesh.position.set(0, 1, 1.5)
       //this.el.setObject3D("mesh", this.HanabiMesh);
       const avatarPOV = document.getElementById("avatar-pov-node").object3D.position; 
-      this.HanabiMesh.position.set(avatarPOV.x, avatarPOV.y + 1, avatarPOV.z + 1)
+      this.HanabiMesh.position.set(avatarPOV.x, avatarPOV.y + 1, avatarPOV.z + 1);
+      this.el.setObject3D("mesh", this.HanabiMesh);
       HanabiClip.stop();
     }
   },

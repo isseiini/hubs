@@ -1787,15 +1787,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
 
-                  if (window.RedSum >= window.BlueSum) {
-                    window.team = "RedTeam"
-                  } else {
-                    window.team = "BlueTeam"
-                  }
-
-                  console.log(window.team);
-                  console.log(window.RedSum);
-                  console.log(window.BlueSum);
+                  setInterval(() => {
+                    if (window.RedSum >= window.BlueSum) {
+                      window.team = "BlueTeam"
+                    } else {
+                      window.team = "RedTeam"
+                    }
+  
+                    console.log("myteam:" + window.team);
+                    console.log("Red:" + window.RedSum);
+                    console.log("Blue*" + window.BlueSum);
+                  }, 5000);
+                  
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
