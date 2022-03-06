@@ -395,24 +395,26 @@ AFRAME.registerComponent("pen", {
       const sfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
-        this._startDraw();
-        sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
+        //this._startDraw();
+        //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
       }
       if (userinput.get(paths.stopDrawing)) {
-        this._endDraw();    
-        sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
+        AirCanonAction.setAttribute("pen-laser", {action: "true"});
+        //this._endDraw();    
+        //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
       const penScaleMod = userinput.get(paths.scalePenTip);
       if (penScaleMod) {
-        this._changeRadius(penScaleMod);
+        //this._changeRadius(penScaleMod);
       }
       if (userinput.get(paths.penNextColor)) {
-        this._changeColor(1);
-        sfx.playSoundOneShot(SOUND_PEN_CHANGE_COLOR);
+        //this._changeColor(1);
+        //sfx.playSoundOneShot(SOUND_PEN_CHANGE_COLOR);
       }
       if (userinput.get(paths.penPrevColor)) {
-        this._changeColor(-1);
-        sfx.playSoundOneShot(SOUND_PEN_CHANGE_COLOR);
+        //this._changeColor(-1);
+        //sfx.playSoundOneShot(SOUND_PEN_CHANGE_COLOR);
       }
       if (userinput.get(paths.undoDrawing)) {
         this._undoDraw();
@@ -602,8 +604,6 @@ AFRAME.registerComponent("pen", {
       this._getNormal(this.normal, this.worldPosition, this.direction);
       this.currentDrawing.startDraw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
       var AirCanonAction = document.getElementById("pen");
-      AirCanonAction.setAttribute("pen-laser", {action: "true"});
-      AirCanonAction.emit("true");
     });
   },
 
