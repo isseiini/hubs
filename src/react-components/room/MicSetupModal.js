@@ -108,7 +108,7 @@ export function MicSetupModal({
           </ToolbarButton>
           <ToolbarButton
             icon={soundPlaying ? <VolumeHighIcon width={48} height={48} /> : <VolumeOffIcon width={48} height={48} />}
-            label={<FormattedMessage id="mic-setup-modal.test-audio" defaultMessage="Click to Test Audio" />}
+            label={<FormattedMessage id="mic-setup-modal.test-audio" defaultMessage="スピーカーをテストする" />}
             preset={soundPlaying ? "primary" : "basic"}
             className={styles.largeToolbarButton}
             onClick={onPlaySound}
@@ -118,13 +118,13 @@ export function MicSetupModal({
         <>
           <SelectInputField value={selectedMicrophone} options={microphoneOptions} onChange={onChangeMicrophone} />
           <ToggleInput
-            label={<FormattedMessage id="mic-setup-modal.mute-mic-toggle" defaultMessage="Mute My Microphone" />}
+            label={<FormattedMessage id="mic-setup-modal.mute-mic-toggle" defaultMessage="ミュートする" />}
             checked={microphoneMuted}
             onChange={onChangeMicrophoneMuted}
           />
         </>
         <Button preset="accept" onClick={onEnterRoom}>
-          <FormattedMessage id="mic-setup-modal.enter-room-button" defaultMessage="Enter Room" />
+          <FormattedMessage id="mic-setup-modal.enter-room-button" defaultMessage="入場する" />
         </Button>
       </Column>
     </Modal>

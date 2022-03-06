@@ -26,7 +26,7 @@ export const AllButtons = args => (
       <ToolbarButton key={preset} icon={<ShareIcon />} label={preset} preset={preset} {...args} />
     ))}
     <ToolbarButton icon={<ShareIcon />} label="Share" preset="accent5" statusColor="recording" />
-    <ToolbarButton icon={<MicrophoneIcon />} label="Voice" statusColor="enabled" />
+    <ToolbarButton icon={<MicrophoneIcon />} label="マイク" statusColor="enabled" />
   </Column>
 );
 
@@ -39,7 +39,25 @@ export const RoomToolbar = () => (
     toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
     toolbarCenter={
       <>
-        <ToolbarButton icon={<MicrophoneIcon />} label="Voice" preset="basic" />
+        <ToolbarButton icon={<MicrophoneIcon />} label="マイク" preset="basic" />
+        <ToolbarButton icon={<ObjectIcon />} label="Place" preset="accent3" />
+        <ToolbarButton icon={<ChatIcon />} label="チャット" preset="accent4" />
+      </>
+    }
+    toolbarRight={
+      <>
+        <ToolbarButton icon={<LeaveIcon />} label="退出する" preset="accent1" />
+      </>
+    }
+  />
+);
+
+/*export const RoomToolbar = () => (
+  <RoomLayout
+    toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
+    toolbarCenter={
+      <>
+        <ToolbarButton icon={<MicrophoneIcon />} label="マイク" preset="basic" />
         <ToolbarButton icon={<ShareIcon />} label="Share" preset="accent5" />
         <ToolbarButton icon={<ObjectIcon />} label="Place" preset="accent3" />
         <ToolbarButton icon={<ReactionIcon />} label="React" preset="accent2" />
@@ -53,7 +71,7 @@ export const RoomToolbar = () => (
       </>
     }
   />
-);
+);*/
 
 // //change points
 
@@ -70,6 +88,22 @@ export const EntryToolbar = () => (
   ///>
 
   <RoomLayout
+    toolbarCenter={
+      <>
+        <ToolbarButton icon={<MicrophoneIcon />} label="マイク" preset="basic" />
+        <ToolbarButton icon={<ObjectIcon />} label="Place" preset="accent3" />
+        <ToolbarButton icon={<ChatIcon />} label="チャット" preset="accent4" />
+      </>
+    }
+    toolbarRight={
+      <>
+        <ToolbarButton icon={<LeaveIcon />} label="退出する" preset="accent1" />
+      </>
+    }
+  />
+);
+
+/*<RoomLayout
     toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
     toolbarCenter={
       <>
@@ -87,6 +121,5 @@ export const EntryToolbar = () => (
       </>
     }
   />
-);
-
+);*/
 // //change points
