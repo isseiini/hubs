@@ -35,7 +35,7 @@ export function MicSetupModal({
 }) {
   return (
     <Modal
-      title={<FormattedMessage id="mic-setup-modal.title" defaultMessage="Microphone Setup" />}
+      title={<FormattedMessage id="mic-setup-modal.title" defaultMessage="音声の設定" />}
       beforeTitle={<BackButton onClick={onBack} />}
       className={className}
       {...rest}
@@ -44,7 +44,7 @@ export function MicSetupModal({
         <p>
           <FormattedMessage
             id="mic-setup-modal.check-mic"
-            defaultMessage="Check your microphone and audio before entering."
+            defaultMessage="入場する前にマイクとスピーカーを確認してください。"
           />
         </p>
         <div className={styles.audioCheckContainer}>
@@ -58,7 +58,7 @@ export function MicSetupModal({
             }
             label={
               microphoneEnabled ? (
-                <FormattedMessage id="mic-setup-modal.test-mic" defaultMessage="Talk to Test Microphone" />
+                <FormattedMessage id="mic-setup-modal.test-mic" defaultMessage="マイクをテストする" />
               ) : (
                 <FormattedMessage id="mic-setup-modal.mic-disabled" defaultMessage="Microphone Disabled" />
               )

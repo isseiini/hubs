@@ -82,7 +82,7 @@ export function ContinueButton(props) {
 export function AcceptButton(props) {
   return (
     <Button preset="accept" {...props}>
-      <FormattedMessage id="button.accept" defaultMessage="Accept" />
+      <FormattedMessage id="button.accept" defaultMessage="決定" />
     </Button>
   );
 }
