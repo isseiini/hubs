@@ -108,7 +108,7 @@ AFRAME.registerComponent("hanabi-animation", {
       this.targetEl = networkedEl;
     });
 
-    this.respwan_point = new THREE.Vector3(10, 1.6, 0);
+    this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
   },
 
   update() {
