@@ -393,6 +393,7 @@ AFRAME.registerComponent("pen", {
 
     if (this.grabberId && pathsMap[this.grabberId]) {
       const sfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+      const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
         //this._startDraw();
@@ -563,7 +564,6 @@ AFRAME.registerComponent("pen", {
           hit_target_container.value = hit_target;
           hit_target_container.dispatchEvent(event);
           setInterval(() => {
-            document.getElementById("reticle").classList.remove("rotate120");
             document.getElementById("reticle").classList.remove("extend");
           }, 1000);
         };
@@ -603,7 +603,6 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing = drawing;
       this._getNormal(this.normal, this.worldPosition, this.direction);
       this.currentDrawing.startDraw(this.worldPosition, this.direction, this.normal, this.data.color, this.data.radius);
-      var AirCanonAction = document.getElementById("pen");
     });
   },
 
@@ -614,11 +613,6 @@ AFRAME.registerComponent("pen", {
       this.currentDrawing.endDraw(this.worldPosition, this.direction, this.normal);
       this.drawingManager.returnDrawing(this);
       this.currentDrawing = null;
-      if (!AirCanonAction2) {
-        var AirCanonAction2 = document.getElementById("pen");
-      }
-      AirCanonAction2.setAttribute("pen-laser", {action: "false"});
-      AirCanonAction2.emit("false");
     }
   },
 
