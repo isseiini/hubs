@@ -84,8 +84,8 @@ AFRAME.registerComponent("open-media-button", {
         await exitImmersive();
         console.log(this.src)
         if(this.src.hash) {
-          if(this.src.hash == "#coupon") {
-            //Get_Coupon();
+          if(this.src.hash == "#1") {
+            Get_Coupon(1);
           } else {
             return
           }

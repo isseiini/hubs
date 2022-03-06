@@ -293,6 +293,13 @@ const poolData = {
 const isBrowser = typeof navigator !== 'undefined';
 const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
 class myCognitouserclass extends CognitoUser {
+  /**
+	 * Constructs a new CognitoUser object
+	 * @param {object} data Creation options
+	 * @param {string} data.Username The user's username.
+	 * @param {CognitoUserPool} data.Pool Pool containing the user.
+	 * @param {object} data.Storage Optional storage object.
+	 */
   constructor(data) {
     super(data);
 
@@ -959,6 +966,59 @@ function checkForAccountRequired() {
   document.location = `/?sign_in&sign_in_destination=hub&sign_in_destination_url=${encodeURIComponent(
     document.location.toString()
   )}`;
+}
+
+export function Get_Coupon(number){
+  var cognitoUser_me2 = userPool.getCurrentUser(); 
+  cognitoUser_me2.getSession((err, session) => {
+    if (err) {
+      console.log(err)
+    } else {
+      cognitoUser_me2.getUserAttributes((err,result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          var i;
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          };   
+      
+        };
+      });
+    };
+  });
+  const current_Date = get_current_Date();
+  
+  function getUniqueStr(myStrong){
+    var strong = 1000;
+    if (myStrong) strong = myStrong;
+    return current_Date + Math.floor(strong*Math.random()).toString(16)
+  }
+
+  let Play_ID = getUniqueStr();
+
+
+  if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
+    var coupon_params = {
+      TableName: 'coupon',
+      Item:{
+        Play_ID: Play_ID,
+        coupon_number: number,
+        content: "○○にて○○が○○パーセントオフ!",
+        User_ID: currentUserData["sub"],
+        available_or_used: "available",
+        get_Date: current_Date
+      }
+    };
+
+    docClient.put(coupon_params, function(err, data){
+      if(err){
+        console.log('error');
+      }else{
+        console.log('success');
+      }
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
