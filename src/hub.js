@@ -1072,9 +1072,9 @@ export function Get_Coupon(number){
 document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
-
+  const cognito_mine = userPool.getCurrentUser();
   if (room_name == "kooky-passionate-safari") {
-    const cognito_mine = userPool.getCurrentUser();
+    
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -1092,15 +1092,35 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
   } else if(room_name == "silky-quick-congregation") {
-    document.getElementById("life").style.display = "none";
-    document.getElementById("score-display").style.display = "none";
-    document.getElementById("hex-background").style.display = "none";
+    if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+        } else {
+          document.getElementById("life").style.display = "none";
+          document.getElementById("score-display").style.display = "none";
+          document.getElementById("hex-background").style.display = "none";
+        }
+      })
+    } else {
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+    }
   } else if (room_name == "euphoric-rare-commons") {
-    document.getElementById("life").style.display = "none";
-    document.getElementById("score-display").style.display = "none";
-    document.getElementById("hex-background").style.display = "none";
-    document.getElementById("go-to-game").style.display = "none";
-    document.getElementById("Player_map").style.display = "none";
+    if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+        } else {
+          document.getElementById("life").style.display = "none";
+          document.getElementById("score-display").style.display = "none";
+          document.getElementById("hex-background").style.display = "none";
+          document.getElementById("go-to-game").style.display = "none";
+          document.getElementById("Player_map").style.display = "none";
+        }
+      })
+    } else {
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+    }
   } else {
     location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
   };
@@ -2482,6 +2502,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const cognito_mine = userPool.getCurrentUser();
     if(cognito_mine == null){
       alert("ログインしてください。");
+      return
     }
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
