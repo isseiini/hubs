@@ -2498,7 +2498,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
-    document.getElementById("hex-background").style.display = "none";
+  
     const cognito_mine = userPool.getCurrentUser();
     if(cognito_mine == null){
       alert("ログインしてください。");
