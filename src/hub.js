@@ -1074,9 +1074,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
 
   if (room_name == "kooky-passionate-safari") {
-    document.getElementById("hex-background").style.display = "none";
-    document.getElementById("go-to-game").style.display = "none";
-    /*const cognito_mine = userPool.getCurrentUser();
+    const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -1088,7 +1086,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     } else {
       location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }*/
+    }
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life").style.display = "none";
@@ -2481,7 +2479,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
     document.getElementById("hex-background").style.display = "none";
-    /*const cognito_mine = userPool.getCurrentUser();
+    const cognito_mine = userPool.getCurrentUser();
+    if(cognito_mine == null){
+      alert("ログインしてください。");
+    }
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -2490,7 +2491,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById("hex-background").style.display = "none";
         }
       })
-    }*/
+    }
   })
 
   document.getElementById("path-to-VRChat").addEventListener("click", function() {
