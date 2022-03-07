@@ -52,11 +52,6 @@ function registerNetworkSchemas() {
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
       {
-        selector: ".sanshakudama",
-        component: "hanabi-animation",
-        property: "action"
-      },
-      {
         selector: ".left-controller",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
@@ -353,11 +348,6 @@ function registerNetworkSchemas() {
         component: "pen-laser",
         property: "remoteLaserOrigin",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
-        property: "action"
       }
     ]
   });

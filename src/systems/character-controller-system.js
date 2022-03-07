@@ -179,14 +179,14 @@ export class CharacterControllerSystem {
     const waypointPosition = new THREE.Vector3();
     const v = new THREE.Vector3();
 
-    document.addEventListener('keyup', event => {
+    /*document.addEventListener('keyup', event => {
       if (event.code === 'KeyH') {
         plus_speed += 0.5
       };
       if (event.code === 'KeyG') {
         plus_speed -= 0.5
       }
-    });
+    });*/
 
     let uiRoot;
     return function tick(t, dt) {

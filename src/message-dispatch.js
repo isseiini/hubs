@@ -102,87 +102,87 @@ export default class MessageDispatch extends EventTarget {
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
-    var life = HP - 20;
-
-    
-    if ( life <= 0 ){
-      const scene = document.querySelector("a-scene");
-      //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-      //waypointSystem.moveToSpawnPoint();
-
-      if(window.team =="BlueTeam") {
-        var hit_target2 = "_Red_+1#" + playerMine;
-      }
-
-      if(window.team == "RedTeam") {
-        var hit_target2 = "_BLUE_+1#" + playerMine;
-      }
-      
-      var event3 = new Event('change');
-      var hit_target_container = document.getElementById("hit_target_container");
-      hit_target_container.value = hit_target2;
-      hit_target_container.dispatchEvent(event3);
-
-      life = 0
- 
-      Player_Respawn.style.display = "block";
-      //const general_scene = document.querySelector("a-scene");
-      //general_scene.pause();
-      life = 100  
+      var life = HP - 20;
 
       
-      //sanshakudama.setAttribute("animation-mixer")
-      /*var down_count = {
-        TableName: 'Matching-table',
-        Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-          URL: current_room
-        },
-        ExpressionAttributeNames: {
-          '#red': "RedPoints",
-        },
-        ExpressionAttributeValues: {
-          ':newScore': 1,
-        },
-        UpdateExpression: 'SET #red = #red + :newScore'
-      };
-      docClient.update(down_count, function(err, data2){
-        if(err){
-          console.log('error');
-        }else{
-          console.log('success');
-        }
-      });
+      if ( life <= 0 ){
+        const scene = document.querySelector("a-scene");
+        //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+        //waypointSystem.moveToSpawnPoint();
 
-      var params = {
-        TableName: 'Matching-table',
-        Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
-          URL: current_room,
+        if(window.team =="BlueTeam") {
+          var hit_target2 = "_Red_+1#" + playerMine;
         }
-      };
-      docClient.get(params, function(err, data){
-        if(err){
-          console.log(err);
-        }else{
-          if(data.Item.RedPoints >= 25) {
-            var hit_target2 = "_Win_Red";
-            var event2 = new Event('change');
-            var hit_target_container = document.getElementById("hit_target_container");
-            hit_target_container.value = hit_target2;
-            hit_target_container.dispatchEvent(event2);
-            const Game_Result = document.getElementById("Game-Result");
-            Game_Result.style.display = "block";
+
+        if(window.team == "RedTeam") {
+          var hit_target2 = "_BLUE_+1#" + playerMine;
+        }
+        
+        var event3 = new Event('change');
+        var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.value = hit_target2;
+        hit_target_container.dispatchEvent(event3);
+
+        life = 0
+  
+        Player_Respawn.style.display = "block";
+        //const general_scene = document.querySelector("a-scene");
+        //general_scene.pause();
+        life = 100  
+
+        
+        //sanshakudama.setAttribute("animation-mixer")
+        /*var down_count = {
+          TableName: 'Matching-table',
+          Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+            URL: current_room
+          },
+          ExpressionAttributeNames: {
+            '#red': "RedPoints",
+          },
+          ExpressionAttributeValues: {
+            ':newScore': 1,
+          },
+          UpdateExpression: 'SET #red = #red + :newScore'
+        };
+        docClient.update(down_count, function(err, data2){
+          if(err){
+            console.log('error');
+          }else{
+            console.log('success');
           }
-        }
-      });*/
-    } else {
-    // 算出の結果 100 を超過した場合
-    if ( life > 100 ) {
-        life = 100
-    }
-   
-    }
+        });
 
-    lifeBar.style.width = life + "%"
+        var params = {
+          TableName: 'Matching-table',
+          Key:{//取得したい項目をプライマリキー(及びソートキー)によって１つ指定
+            URL: current_room,
+          }
+        };
+        docClient.get(params, function(err, data){
+          if(err){
+            console.log(err);
+          }else{
+            if(data.Item.RedPoints >= 25) {
+              var hit_target2 = "_Win_Red";
+              var event2 = new Event('change');
+              var hit_target_container = document.getElementById("hit_target_container");
+              hit_target_container.value = hit_target2;
+              hit_target_container.dispatchEvent(event2);
+              const Game_Result = document.getElementById("Game-Result");
+              Game_Result.style.display = "block";
+            }
+          }
+        });*/
+      } else {
+      // 算出の結果 100 を超過した場合
+      if ( life > 100 ) {
+          life = 100
+      }
+    
+      }
+
+      lifeBar.style.width = life + "%"
     }
   }
 
