@@ -131,7 +131,6 @@ AFRAME.registerComponent("hanabi-animation", {
     if(this.data.action == "false") {
       HanabiClip.stop();
       this.characterController.teleportTo(this.respwan_point);
-      Window.invincible = false;
     }
   },
 

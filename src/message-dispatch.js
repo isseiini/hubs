@@ -90,9 +90,7 @@ export default class MessageDispatch extends EventTarget {
   }
  
   damage() {  
-    if(window.invincible == true){
-      return
-    }
+    
     const lifeBar = document.getElementById('life-background')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
@@ -241,7 +239,6 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-        Window.invincible = true;
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
@@ -265,7 +262,6 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-        Window.invincible = true;
       }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");

@@ -1981,7 +1981,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
-                  window.invincible = true;
+                  
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController
 
                   setTimeout(() => {
