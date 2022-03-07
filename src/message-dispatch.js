@@ -96,11 +96,14 @@ export default class MessageDispatch extends EventTarget {
     const lifeBar = document.getElementById('life-background')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
     const Player_Respawn = document.getElementById("Player-Respawn");
+    const Player_UI = document.getElementById("Player-Ui");
+    Player_UI.classList.add("moveToRight");
     if(HP > 0) {
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
     var life = HP - 20;
 
+    Player_UI.classList.remove("moveToRight");
     if ( life <= 0 ){
       const scene = document.querySelector("a-scene");
       //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;

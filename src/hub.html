@@ -432,6 +432,20 @@
       --aug-b-inset1: -10px;
     }
 
+    @keyframes move {
+      0% {transform: translate(0px, 0px) rotateZ(0deg)}
+      25% {transform: translate(2px, 2px) rotateZ(1deg)}
+      50% {transform: translate(0px, 2px) rotateZ(0deg)}
+      75% {transform: translate(2px, 0px) rotateZ(-1deg)}
+      100% {transform: translate(0px, 0px) rotateZ(0deg)}
+    }
+    .moveToRight {
+      animation-name: move;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
     #Player_UI_top {
       width: 100%;
       margin: 0px auto;
