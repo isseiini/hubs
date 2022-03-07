@@ -214,6 +214,7 @@ export default class MessageDispatch extends EventTarget {
     }*/
 
     if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
+      console.log(naf_Mine)
       if ("_" + naf_Mine == entry.body) {
         this.damage();
       };
