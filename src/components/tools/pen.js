@@ -109,13 +109,7 @@ AFRAME.registerComponent("hanabi-animation", {
       this.targetEl = networkedEl;
     });
 
-    if(this.team = "BlueTeam") {
-      this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
-    }
-
-    if(this.team = "RedTeam") {
-      this.respwan_point = new THREE.Vector3(116.5, 1, -8);
-    }
+    
     
   },
 
@@ -125,12 +119,13 @@ AFRAME.registerComponent("hanabi-animation", {
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       setTimeout(() => {
         document.getElementById("Player-Respawn").style.display = "none";
-        this.characterController.teleportTo(this.respwan_point);
+        HanabiClip.reset();
+        //this.characterController.teleportTo(this.respwan_point);
       },3000);
     } 
     if(this.data.action == "false") {
       HanabiClip.stop();
-      this.characterController.teleportTo(this.respwan_point);
+      //this.characterController.teleportTo(this.respwan_point);
     }
   },
 

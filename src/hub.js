@@ -1075,8 +1075,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
   if (room_name == "kooky-passionate-safari") {
-    
-    if (cognito_mine != null){
+    document.getElementById("hex-background").style.display = "none";
+          document.getElementById("go-to-game").style.display = "none";
+    /*if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
@@ -1087,7 +1088,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     } else {
       location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }
+    }*/
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life").style.display = "none";
@@ -2311,6 +2312,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
     const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
+    if(team = "BlueTeam") {
+      this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
+    }
+
+    if(team = "RedTeam") {
+      this.respwan_point = new THREE.Vector3(116.5, 1, -8);
+    }
+    AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(this.respwan_point);
   })
 
   const lifeBar = document.getElementById('life-background')         // ライフバー     // ライフの光部分
