@@ -2508,6 +2508,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cognito_mine.getSession((err, session) => {
         if (err) {
           alert("ログインしてください。")
+          return
         } else {
           document.getElementById("hex-background").style.display = "none";
         }
