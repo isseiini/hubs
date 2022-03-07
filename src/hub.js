@@ -1096,6 +1096,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else if(room_name == "silky-quick-congregation") {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
+    document.getElementById("hex-background").style.display = "none";
   } else if (room_name == "euphoric-rare-commons") {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
