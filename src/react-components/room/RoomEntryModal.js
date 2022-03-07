@@ -43,6 +43,8 @@ export function RoomEntryModal({
             <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="バーチャル道頓堀" />
           </h5>
           <p>{roomName}</p>
+          <p>入場される前に規約をご確認ください。</p>
+          <p>規約本文</p>
         </div>
         <Column center className={styles.buttons}>
           {showJoinRoom && (
