@@ -1093,6 +1093,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else if (room_name == "strong-elementary-meetup") {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
+  } else if(room_name == "silky-quick-congregation") {
+    document.getElementById("life").style.display = "none";
+    document.getElementById("score-display").style.display = "none";
   } else if (room_name == "euphoric-rare-commons") {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
@@ -2476,7 +2479,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
   
   document.getElementById("path-to-hubs").addEventListener("click", function() {
-    const cognito_mine = userPool.getCurrentUser();
+    document.getElementById("hex-background").style.display = "none";
+    /*const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -2485,7 +2489,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           document.getElementById("hex-background").style.display = "none";
         }
       })
-    }
+    }*/
   })
 
   document.getElementById("path-to-VRChat").addEventListener("click", function() {
