@@ -2326,13 +2326,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   let life = 100                                              // ライフ初期値
   lifeBar.style.width = "100%"                                // ライフ初期幅
 
-  setInterval(() => {
+  /*setInterval(() => {
   life = life + 10;
   if ( life > 100 ) {
       life = 100
   }
   lifeBar.style.width = life + "%"
-  },1500);
+  },1500);*/
 
   document.addEventListener('keydown', event => {
   if (event.ctrlKey && event.code === 'Slash') {

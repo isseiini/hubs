@@ -258,10 +258,10 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+      /*if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-      }
+      }*/
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
       Blue_Progress.value = Blue_Progress.value + 1;
