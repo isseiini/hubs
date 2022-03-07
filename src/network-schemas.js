@@ -50,7 +50,7 @@ function registerNetworkSchemas() {
         selector: ".camera",
         component: "rotation",
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
-      }
+      },
       {
         selector: ".left-controller",
         component: "position",
