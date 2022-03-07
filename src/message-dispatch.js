@@ -98,7 +98,7 @@ export default class MessageDispatch extends EventTarget {
     Player_UI.classList.add("moveToRight");
     Player_UI.classList.remove("moveToRight");*/
     if(HP > 0) {
-      this.team = document.getElementById("score-display-top").innerText;
+      let team = document.getElementById("score-display-top").innerText;
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
       var life = HP - 20;
@@ -109,12 +109,12 @@ export default class MessageDispatch extends EventTarget {
         //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
         //waypointSystem.moveToSpawnPoint();
 
-        if(this.team == "BlueTeam") {
+        if(team == "BlueTeam") {
           var hit_target2 = "_Red_+1#" + playerMine;
         }
 
-        if(this.team == "RedTeam") {
-          var hit_target2 = "_BLUE_+1#" + playerMine;
+        if(team == "RedTeam") {
+          var hit_target2 = "_Blue_+1#" + playerMine;
         }
         
         var event3 = new Event('change');
