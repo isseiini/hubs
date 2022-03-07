@@ -103,16 +103,17 @@ AFRAME.registerComponent("hanabi-animation", {
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;
+    this.team = document.getElementById("score-display-top").innerText;
 
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
     });
 
-    if(window.team = "BlueTeam") {
+    if(this.team = "BlueTeam") {
       this.respwan_point = new THREE.Vector3(10.5, 4.5, -31);
     }
 
-    if(window.team = "RedTeam") {
+    if(this.team = "RedTeam") {
       this.respwan_point = new THREE.Vector3(116.5, 1, -8);
     }
     

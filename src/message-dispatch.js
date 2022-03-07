@@ -86,7 +86,7 @@ export default class MessageDispatch extends EventTarget {
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
 
-    
+    this.team = document.getElementById("score-display-top").innerText;
   }
  
   damage() {  
@@ -110,11 +110,11 @@ export default class MessageDispatch extends EventTarget {
         //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
         //waypointSystem.moveToSpawnPoint();
 
-        if(window.team =="BlueTeam") {
+        if(this.team =="BlueTeam") {
           var hit_target2 = "_Red_+1#" + playerMine;
         }
 
-        if(window.team == "RedTeam") {
+        if(this.team == "RedTeam") {
           var hit_target2 = "_BLUE_+1#" + playerMine;
         }
         

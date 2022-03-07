@@ -218,6 +218,7 @@ document.addEventListener('keyup', event => {
   }
 });
 
+let team;
 
 window.APP = new App();
 window.APP.RENDER_ORDER = {
@@ -1931,8 +1932,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var hit_target_container = document.getElementById("hit_target_container");
                   hit_target_container.value = "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
                   hit_target_container.dispatchEvent(event3);
-                  if (window.team) {
-                    hit_target_container.value = "_" + window.team;
+                  if (document.getElementById("score-display-top").innerText != "") {
+                    hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
                   }
                   hit_target_container.value = window.timeCount;
@@ -1985,21 +1986,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
-                      window.team = "BlueTeam";
+                      team = "BlueTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
+                      document.getElementById("score-display-top").innerText = team;
                       const respwan_point = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respwan_point);
-                      window.invincible = false;
                     } else {
-                      window.team = "RedTeam";
+                      team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
+                      document.getElementById("score-display-top").innerText = team;
                       const respwan_point = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respwan_point);
-                      window.invincible = false;
                     }
-                    console.log("myteam:" + window.team);
+                    console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
                   }, 3000);
