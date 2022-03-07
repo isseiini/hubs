@@ -86,7 +86,7 @@ export default class MessageDispatch extends EventTarget {
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
 
-    this.team = document.getElementById("score-display-top").innerText;
+    
   }
  
   damage() {  
@@ -98,6 +98,7 @@ export default class MessageDispatch extends EventTarget {
     Player_UI.classList.add("moveToRight");
     Player_UI.classList.remove("moveToRight");*/
     if(HP > 0) {
+      this.team = document.getElementById("score-display-top").innerText;
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
       var life = HP - 20;
@@ -108,7 +109,7 @@ export default class MessageDispatch extends EventTarget {
         //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
         //waypointSystem.moveToSpawnPoint();
 
-        if(this.team =="BlueTeam") {
+        if(this.team == "BlueTeam") {
           var hit_target2 = "_Red_+1#" + playerMine;
         }
 
@@ -120,8 +121,6 @@ export default class MessageDispatch extends EventTarget {
         var hit_target_container = document.getElementById("hit_target_container");
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event3);
-
-        life = 0
   
         Player_Respawn.style.display = "block";
         //const general_scene = document.querySelector("a-scene");
