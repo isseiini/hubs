@@ -1076,7 +1076,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cognito_mine = userPool.getCurrentUser();
   if (room_name == "kooky-passionate-safari") {
     document.getElementById("hex-background").style.display = "none";
-          document.getElementById("go-to-game").style.display = "none";
+    document.getElementById("go-to-game").style.display = "none";
     /*if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
