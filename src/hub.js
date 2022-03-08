@@ -2698,241 +2698,242 @@ document.addEventListener("DOMContentLoaded", async () => {
               currentUserData[result[i].getName()] = result[i].getValue();
             };   
             
+            var coupon_params = {
+              TableName: 'coupon',
+              IndexName: 'User_ID-index',
+              ExpressionAttributeNames:{'#U': 'User_ID'},
+              ExpressionAttributeValues:{':val': currentUserData["sub"]},
+              KeyConditionExpression: '#U = :val'
+            };            
+            docClient.query(coupon_params, function(err, coupon_data){
+              if(err){
+                console.log(err);
+              }else{
+                let coupon_available = document.getElementById("coupon-available");
+                let coupon_used = document.getElementById("coupon-used");
+        
+                coupon_available.innerHTML = "";
+                coupon_used.innerHTML = "";
+        
+                let coupon_list = coupon_data.Items
+                let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
+                let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
+              
+                // creates a <table> element and a <tbody> element
+                var tbl = document.createElement("table");
+                tbl.setAttribute("id", "coupon_table");
+                var tblBody = document.createElement("tbody");
+        
+                var label_1 = document.createElement("tr");
+        
+                var label_1_number = document.createElement("th");
+                label_1_number.classList.add("arrow_box")
+                var label_1_number_txt = document.createTextNode("対象店舗");
+                label_1_number.appendChild(label_1_number_txt);
+                label_1.appendChild(label_1_number)
+        
+                var label_1_content = document.createElement("td");
+                var label_1_content_txt = document.createTextNode("クーポン内容");
+                label_1_content.appendChild(label_1_content_txt);
+                label_1.appendChild(label_1_content);
+        
+                var label_1_Date = document.createElement("td");
+                var label_1_Date_txt = document.createTextNode("獲得日時");
+                label_1_Date.appendChild(label_1_Date_txt);
+                label_1.appendChild(label_1_Date);
+        
+                var label_1_margin = document.createElement("td");
+                var label_1_margin_txt = document.createTextNode("");
+                label_1_margin.appendChild(label_1_margin_txt);
+                label_1.appendChild(label_1_margin);
+        
+                tblBody.appendChild(label_1);
+              
+                // creating all cells
+                for (var i = 0; i < coupon_available_list.length; i++) {
+                  // creates a table row
+                  var row = document.createElement("tr");
+              
+                  var cell_1_1 = document.createElement("th");
+                  cellText_1_1.classList.add("arrow_box");
+                  var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
+                  cell_1_1.appendChild(cellText_1_1);
+                  row.appendChild(cell_1_1);
+        
+                  var cell_1_2 = document.createElement("td");
+                  var cellText_1_2 = document.createTextNode(coupon_available_list[i].content);
+                  cell_1_2.appendChild(cellText_1_2);
+                  row.appendChild(cell_1_2);
+        
+                  var cell_1_3 = document.createElement("td");
+                  var cellText_1_3 = document.createTextNode(coupon_available_list[i].get_Date);
+                  cell_1_3.appendChild(cellText_1_3);
+                  row.appendChild(cell_1_3);
+        
+                  var Coupon_Number = i + 1;
+                  var cell_1_4 = document.createElement("td");
+                  cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
+        
+                  row.appendChild(cell_1_4);
+                  
+                  // add the row to the end of the table body
+                  tblBody.appendChild(row);
+                }
+        
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body>
+                coupon_available.appendChild(tbl);
+        
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+                // creates a <table> element and a <tbody> element
+                var tbl2 = document.createElement("table");
+                tbl2.setAttribute("id", "coupon_table2");
+                var tblBody2 = document.createElement("tbody");
+        
+                var label_2 = document.createElement("tr");
+        
+                var label_2_number = document.createElement("th");
+                label_2_number.classList.add("arrow_box");
+                var label_2_number_txt = document.createTextNode("対象店舗");
+                label_2_number.appendChild(label_2_number_txt);
+                label_2.appendChild(label_2_number)
+        
+                var label_2_content = document.createElement("td");
+                var label_2_content_txt = document.createTextNode("クーポン内容");
+                label_2_content.appendChild(label_2_content_txt);
+                label_2.appendChild(label_2_content);
+        
+                var label_2_Date = document.createElement("td");
+                var label_2_Date_txt = document.createTextNode("使用日時");
+                label_2_Date.appendChild(label_2_Date_txt);
+                label_2.appendChild(label_2_Date);
+        
+                var label_2_margin = document.createElement("td");
+                var label_2_margin_txt = document.createTextNode("");
+                label_2_margin.appendChild(label_2_margin_txt);
+                label_2.appendChild(label_2_margin);
+        
+                tblBody2.appendChild(label_2);
+              
+                // creating all cells
+                for (var i = 0; i < coupon_used_list.length; i++) {
+                  // creates a table row
+                  var row2 = document.createElement("tr");
+              
+                  var cell_2_1 = document.createElement("th");
+                  cellText_2_1.classList.add("arrow_box");
+                  var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
+                  cell_2_1.appendChild(cellText_2_1);
+                  row2.appendChild(cell_2_1);
+        
+                  var cell_2_2 = document.createElement("td");
+                  var cellText_2_2 = document.createTextNode(coupon_used_list[i].content);
+                  cell_2_2.appendChild(cellText_2_2);
+                  row2.appendChild(cell_2_2);
+        
+                  var cell_2_3 = document.createElement("td");
+                  var cellText_2_3 = document.createTextNode(coupon_used_list[i].get_Date);
+                  cell_2_3.appendChild(cellText_2_3);
+                  row2.appendChild(cell_2_3);
+        
+                  var cell_2_4 = document.createElement("td");
+                  var cellText_2_4 = document.createTextNode("ご利用いただきありがとうございます。");
+                  cell_2_4.appendChild(cellText_2_4);
+                  row2.appendChild(cell_2_4);
+                  
+                  // add the row to the end of the table body
+                  tblBody2.appendChild(row2);
+                
+                }
+                
+                // put the <tbody> in the <table>
+                tbl2.appendChild(tblBody2);
+                // appends <table> into <body>
+                coupon_used.appendChild(tbl2);
+                
+                tbl.setAttribute("border", "1");
+                tbl2.setAttribute("border", "1");
+        
+        
+                var trigger = document.querySelectorAll(".use_Coupon");
+        
+                trigger.forEach(function(target) {
+                  target.addEventListener('click', function() {
+                    const current_Date = get_current_Date();
+                    const coupon_table = document.getElementById("coupon_table");
+                    console.log(target.parentNode.parentNode.firstChild.innerText)
+        
+                    // モーダルウィンドウと中身の要素を生成・クラスを付与
+                    const modalElement = document.createElement('div');
+                    modalElement.classList.add('modal');
+                    const innerElement = document.createElement('div');
+                    innerElement.classList.add('inner');
+        
+                    // モーダルウィンドウに表示する要素を記述
+                    innerElement.innerHTML = 
+                      '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
+                      '<h2 style="text-align: center;line-height: 1.5;padding: 10px;font-weight: normal;font-size: 1.3rem;">' +
+                      target.parentNode.parentNode.children[0] + '<br>' +
+                      '<span style="border-top: 1px solid #000000;">' + target.parentNode.parentNode.children[1] + '</span>' + '</h2>' +
+                      '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2] + '</p>' +
+                      '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
+                      '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input id="confirm_use_Coupon" type="button" value="使用する"><input id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
+        
+                    // モーダルウィンドウに中身を配置
+                    modalElement.appendChild(innerElement);
+                    document.getElementById("hex-background").appendChild(modalElement);
+        
+                    function closeModal(modalElement) {
+                      document.getElementById("hex-background").removeChild(modalElement);
+                    }
+        
+                    // 中身をクリックしたらモーダルウィンドウを閉じる
+                    innerElement.addEventListener('click', () => {
+                      closeModal(modalElement);
+                    });
+        
+                    document.getElementById("confirm_use_Coupon").addEventListener('click', () => {
+                      var confirmed_coupon = {
+                        TableName: 'coupon',
+                        Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+                          Play_ID: target.parentNode.parentNode.firstChild.innerText
+                        },
+                        ExpressionAttributeNames: {
+                          '#available_or_used': "available_or_used",
+                          '#used_Date' : 'used_Date'
+                        },
+                        ExpressionAttributeValues: {
+                          ':used': "used",
+                          ':used_Date' : current_Date
+                        },
+                        UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
+                      };
+                      docClient.update(confirmed_coupon, function(err, data2){
+                        if(err){
+                          console.log('error');
+                        }else{
+                          console.log('success');
+                        }
+                      });
+                      document.getElementById("hex-background").removeChild(modalElement);
+                    });
+                    
+                  });
+                });
+        
+        
+                
+              };
+            });
           };
         });
       };
     });
 
-    var coupon_params = {
-      TableName: 'coupon',
-      IndexName: 'User_ID-index',
-      ExpressionAttributeNames:{'#U': 'User_ID'},
-      ExpressionAttributeValues:{':val': currentUserData["sub"]},
-      KeyConditionExpression: '#U = :val'
-    };            
-    docClient.query(coupon_params, function(err, coupon_data){
-      if(err){
-        console.log(err);
-      }else{
-        let coupon_available = document.getElementById("coupon-available");
-        let coupon_used = document.getElementById("coupon-used");
-
-        coupon_available.innerHTML = "";
-        coupon_used.innerHTML = "";
-
-        let coupon_list = coupon_data.Items
-        let coupon_available_list = coupon_list.filter(x => x.available_or_used === 'available');
-        let coupon_used_list = coupon_list.filter(x => x.available_or_used === 'used');
-      
-        // creates a <table> element and a <tbody> element
-        var tbl = document.createElement("table");
-        tbl.setAttribute("id", "coupon_table");
-        var tblBody = document.createElement("tbody");
-
-        var label_1 = document.createElement("tr");
-
-        var label_1_number = document.createElement("th");
-        label_1_number.classList.add("arrow_box")
-        var label_1_number_txt = document.createTextNode("対象店舗");
-        label_1_number.appendChild(label_1_number_txt);
-        label_1.appendChild(label_1_number)
-
-        var label_1_content = document.createElement("td");
-        var label_1_content_txt = document.createTextNode("クーポン内容");
-        label_1_content.appendChild(label_1_content_txt);
-        label_1.appendChild(label_1_content);
-
-        var label_1_Date = document.createElement("td");
-        var label_1_Date_txt = document.createTextNode("獲得日時");
-        label_1_Date.appendChild(label_1_Date_txt);
-        label_1.appendChild(label_1_Date);
-
-        var label_1_margin = document.createElement("td");
-        var label_1_margin_txt = document.createTextNode("");
-        label_1_margin.appendChild(label_1_margin_txt);
-        label_1.appendChild(label_1_margin);
-
-        tblBody.appendChild(label_1);
-      
-        // creating all cells
-        for (var i = 0; i < coupon_available_list.length; i++) {
-          // creates a table row
-          var row = document.createElement("tr");
-      
-          var cell_1_1 = document.createElement("th");
-          cellText_1_1.classList.add("arrow_box");
-          var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
-          cell_1_1.appendChild(cellText_1_1);
-          row.appendChild(cell_1_1);
-
-          var cell_1_2 = document.createElement("td");
-          var cellText_1_2 = document.createTextNode(coupon_available_list[i].content);
-          cell_1_2.appendChild(cellText_1_2);
-          row.appendChild(cell_1_2);
-
-          var cell_1_3 = document.createElement("td");
-          var cellText_1_3 = document.createTextNode(coupon_available_list[i].get_Date);
-          cell_1_3.appendChild(cellText_1_3);
-          row.appendChild(cell_1_3);
-
-          var Coupon_Number = i + 1;
-          var cell_1_4 = document.createElement("td");
-          cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
-
-          row.appendChild(cell_1_4);
-          
-          // add the row to the end of the table body
-          tblBody.appendChild(row);
-        }
-
-        // put the <tbody> in the <table>
-        tbl.appendChild(tblBody);
-        // appends <table> into <body>
-        coupon_available.appendChild(tbl);
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        // creates a <table> element and a <tbody> element
-        var tbl2 = document.createElement("table");
-        tbl2.setAttribute("id", "coupon_table2");
-        var tblBody2 = document.createElement("tbody");
-
-        var label_2 = document.createElement("tr");
-
-        var label_2_number = document.createElement("th");
-        label_2_number.classList.add("arrow_box");
-        var label_2_number_txt = document.createTextNode("対象店舗");
-        label_2_number.appendChild(label_2_number_txt);
-        label_2.appendChild(label_2_number)
-
-        var label_2_content = document.createElement("td");
-        var label_2_content_txt = document.createTextNode("クーポン内容");
-        label_2_content.appendChild(label_2_content_txt);
-        label_2.appendChild(label_2_content);
-
-        var label_2_Date = document.createElement("td");
-        var label_2_Date_txt = document.createTextNode("使用日時");
-        label_2_Date.appendChild(label_2_Date_txt);
-        label_2.appendChild(label_2_Date);
-
-        var label_2_margin = document.createElement("td");
-        var label_2_margin_txt = document.createTextNode("");
-        label_2_margin.appendChild(label_2_margin_txt);
-        label_2.appendChild(label_2_margin);
-
-        tblBody2.appendChild(label_2);
-      
-        // creating all cells
-        for (var i = 0; i < coupon_used_list.length; i++) {
-          // creates a table row
-          var row2 = document.createElement("tr");
-      
-          var cell_2_1 = document.createElement("th");
-          cellText_2_1.classList.add("arrow_box");
-          var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
-          cell_2_1.appendChild(cellText_2_1);
-          row2.appendChild(cell_2_1);
-
-          var cell_2_2 = document.createElement("td");
-          var cellText_2_2 = document.createTextNode(coupon_used_list[i].content);
-          cell_2_2.appendChild(cellText_2_2);
-          row2.appendChild(cell_2_2);
-
-          var cell_2_3 = document.createElement("td");
-          var cellText_2_3 = document.createTextNode(coupon_used_list[i].get_Date);
-          cell_2_3.appendChild(cellText_2_3);
-          row2.appendChild(cell_2_3);
-
-          var cell_2_4 = document.createElement("td");
-          var cellText_2_4 = document.createTextNode("ご利用いただきありがとうございます。");
-          cell_2_4.appendChild(cellText_2_4);
-          row2.appendChild(cell_2_4);
-          
-          // add the row to the end of the table body
-          tblBody2.appendChild(row2);
-        
-        }
-        
-        // put the <tbody> in the <table>
-        tbl2.appendChild(tblBody2);
-        // appends <table> into <body>
-        coupon_used.appendChild(tbl2);
-        
-        tbl.setAttribute("border", "1");
-        tbl2.setAttribute("border", "1");
-
-
-        var trigger = document.querySelectorAll(".use_Coupon");
-
-        trigger.forEach(function(target) {
-          target.addEventListener('click', function() {
-            const current_Date = get_current_Date();
-            const coupon_table = document.getElementById("coupon_table");
-            console.log(target.parentNode.parentNode.firstChild.innerText)
-
-            // モーダルウィンドウと中身の要素を生成・クラスを付与
-            const modalElement = document.createElement('div');
-            modalElement.classList.add('modal');
-            const innerElement = document.createElement('div');
-            innerElement.classList.add('inner');
-
-            // モーダルウィンドウに表示する要素を記述
-            innerElement.innerHTML = 
-              '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
-              '<h2 style="text-align: center;line-height: 1.5;padding: 10px;font-weight: normal;font-size: 1.3rem;">' +
-              target.parentNode.parentNode.children[0] + '<br>' +
-              '<span style="border-top: 1px solid #000000;">' + target.parentNode.parentNode.children[1] + '</span>' + '</h2>' +
-              '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2] + '</p>' +
-              '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
-              '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input id="confirm_use_Coupon" type="button" value="使用する"><input id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
-
-            // モーダルウィンドウに中身を配置
-            modalElement.appendChild(innerElement);
-            document.getElementById("hex-background").appendChild(modalElement);
-
-            function closeModal(modalElement) {
-              document.getElementById("hex-background").removeChild(modalElement);
-            }
-
-            // 中身をクリックしたらモーダルウィンドウを閉じる
-            innerElement.addEventListener('click', () => {
-              closeModal(modalElement);
-            });
-
-            document.getElementById("confirm_use_Coupon").addEventListener('click', () => {
-              var confirmed_coupon = {
-                TableName: 'coupon',
-                Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                  Play_ID: target.parentNode.parentNode.firstChild.innerText
-                },
-                ExpressionAttributeNames: {
-                  '#available_or_used': "available_or_used",
-                  '#used_Date' : 'used_Date'
-                },
-                ExpressionAttributeValues: {
-                  ':used': "used",
-                  ':used_Date' : current_Date
-                },
-                UpdateExpression: 'SET #available_or_used = :used, #used_Date = :used_Date'
-              };
-              docClient.update(confirmed_coupon, function(err, data2){
-                if(err){
-                  console.log('error');
-                }else{
-                  console.log('success');
-                }
-              });
-              document.getElementById("hex-background").removeChild(modalElement);
-            });
-            
-          });
-        });
-
-
-        
-      };
-    });
+    
     
 
 
