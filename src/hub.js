@@ -2755,7 +2755,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var row = document.createElement("tr");
               
                   var cell_1_1 = document.createElement("th");
-                  cellText_1_1.classList.add("arrow_box");
+                  cell_1_1.classList.add("arrow_box");
                   var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
                   cell_1_1.appendChild(cellText_1_1);
                   row.appendChild(cell_1_1);
@@ -2824,7 +2824,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var row2 = document.createElement("tr");
               
                   var cell_2_1 = document.createElement("th");
-                  cellText_2_1.classList.add("arrow_box");
+                  cell_2_1.classList.add("arrow_box");
                   var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
                   cell_2_1.appendChild(cellText_2_1);
                   row2.appendChild(cell_2_1);
