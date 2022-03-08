@@ -2873,6 +2873,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     innerElement.classList.add('inner');
                     innerElement.classList.add('styleme');
                     innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");
+
+                    console.log(target.parentNode.parentNode)
+                    console.log(target.parentNode)
         
                     // モーダルウィンドウに表示する要素を記述
                     innerElement.innerHTML = 
