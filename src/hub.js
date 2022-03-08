@@ -1991,14 +1991,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
                       document.getElementById("score-display-top").innerText = team;
-                      const respawn_point = new THREE.Vector3(10.5, 4.5, -31);
+                      let respawn_point = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point);
                     } else {
                       team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
                       document.getElementById("score-display-top").innerText = team;
-                      const respawn_point = new THREE.Vector3(116.5, 1, -8);
+                      let respawn_point = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point);
                     }
                     console.log("myteam:" + team);
@@ -2313,12 +2313,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
     if(document.getElementById("score-display-top").innerText = "BlueTeam") {
-      const respawn_point = new THREE.Vector3(10.5, 4.5, -31);
+      let respawn_point = new THREE.Vector3(10.5, 4.5, -31);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point);
     }
 
     if(document.getElementById("score-display-top").innerText = "RedTeam") {
-      const respawn_point = new THREE.Vector3(116.5, 1, -8);
+      let respawn_point = new THREE.Vector3(116.5, 1, -8);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point);
     }
   })

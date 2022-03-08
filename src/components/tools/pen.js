@@ -120,11 +120,7 @@ AFRAME.registerComponent("hanabi-animation", {
     if (this.data.action == "true") {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
-      setTimeout(() => {
-        document.getElementById("Player-Respawn").style.display = "none";
-        HanabiClip.reset();
-        //this.characterController.teleportTo(this.respwan_point);
-      },3000);
+      HanabiClip.stop();
     } 
     if(this.data.action == "false") {
       HanabiClip.stop();
