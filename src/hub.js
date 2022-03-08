@@ -1072,7 +1072,7 @@ export function Get_Coupon(number){
             var coupon_params = {
               TableName: 'coupon',
               Item:{
-                Play_ID: currentUserData["sub"] + ":" + current_Date,
+                Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
                 coupon_number: number,
                 shop: shop_name,
                 content: shop_content,
@@ -2904,7 +2904,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       var confirmed_coupon = {
                         TableName: 'coupon',
                         Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                          Play_ID: currentUserData["sub"] + ":" + target.parentNode.parentNode.children[2].innerText
+                          Play_ID: currentUserData["sub"] + ":" + target.parentNode.parentNode.children[2].innerText + ":" + target.parentNode.parentNode.children[0].innerText
                         },
                         ExpressionAttributeNames: {
                           '#available_or_used': "available_or_used",
