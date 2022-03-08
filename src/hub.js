@@ -1009,11 +1009,9 @@ function checkForAccountRequired() {
 function get_current_Date() {
   var date = new Date();
   var str = date.getFullYear()
-  + '/' + ('0' + (date.getMonth() + 1)).slice(-2)
-  + '/' + ('0' + date.getDate()).slice(-2)
-  + ' ' + ('0' + date.getHours()).slice(-2)
-  + ':' + ('0' + date.getMinutes()).slice(-2)
-  + ':' + ('0' + date.getSeconds()).slice(-2);
+  + '年' + ('0' + (date.getMonth() + 1)).slice(-2)
+  + '月' + ('0' + date.getDate()).slice(-2)
+  + '日' ;
   return str;
 }
 
@@ -1037,6 +1035,32 @@ export function Get_Coupon(number){
     };
   });
   const current_Date = get_current_Date();
+
+  const shop_name;
+  const shop_content;
+
+  if(number == 1){
+    shop_name = "アンドリューのエッグタルト 大阪難波駅店";
+    shop_content = "5個お買い上げ毎にエッグタルトを1個サービス";
+  } else if(number == 2) {
+    shop_name = "お好み焼き 千房 道頓堀支店";
+    shop_content = "ご飲食代金10%OFF（割引額上限2,000円まで）";
+  } else if(number == 3) {
+    shop_name = "串カツだるま 道頓堀店";
+    shop_content = "串カツ（120円/本・税別）1本サービス";
+  } else if(number == 4) {
+    shop_name = "くれおーる 道頓堀店";
+    shop_content = "たこ焼お買い上げのお客様に2個増量";
+  } else if(number == 5) {
+    shop_name = "道頓堀コナモンミュージアム";
+    shop_content = "たこ焼10個お買い上げのお客様に2個増量";
+  } else if(number == 6) {
+    shop_name = "たこ八 道頓堀総本店";
+    shop_content = "たこ焼き1個おまけ!+オンラインショップで使える10%OFFクーポンコード";
+  } else if(number == 7) {
+    shop_name = "なにわ名物 いちびり庵 道頓堀店";
+    shop_content = "1,100円（税込）以上のお買い上げで10%割引き（一部商品を除く）";
+  }
   
   function getUniqueStr(myStrong){
     var strong = 1000;
@@ -1053,7 +1077,8 @@ export function Get_Coupon(number){
       Item:{
         Play_ID: Play_ID,
         coupon_number: number,
-        content: "○○にて○○が○○パーセントオフ!",
+        shop: shop_name,
+        content: shop_content,
         User_ID: currentUserData["sub"],
         available_or_used: "available",
         get_Date: current_Date
@@ -2706,7 +2731,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         var label_1 = document.createElement("tr");
 
         var label_1_number = document.createElement("td");
-        var label_1_number_txt = document.createTextNode("クーポンID");
+        var label_1_number_txt = document.createTextNode("対象店舗");
         label_1_number.appendChild(label_1_number_txt);
         label_1.appendChild(label_1_number)
 
@@ -2733,7 +2758,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row = document.createElement("tr");
       
           var cell_1_1 = document.createElement("td");
-          var cellText_1_1 = document.createTextNode(coupon_available_list[i].Play_ID);
+          var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
           cell_1_1.appendChild(cellText_1_1);
           row.appendChild(cell_1_1);
 
@@ -2772,7 +2797,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         var label_2 = document.createElement("tr");
 
         var label_2_number = document.createElement("td");
-        var label_2_number_txt = document.createTextNode("クーポンID");
+        var label_2_number_txt = document.createTextNode("対象店舗");
         label_2_number.appendChild(label_2_number_txt);
         label_2.appendChild(label_2_number)
 
@@ -2799,7 +2824,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           var row2 = document.createElement("tr");
       
           var cell_2_1 = document.createElement("td");
-          var cellText_2_1 = document.createTextNode(coupon_used_list[i].Play_ID);
+          var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
           cell_2_1.appendChild(cellText_2_1);
           row2.appendChild(cell_2_1);
 
@@ -2848,12 +2873,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // モーダルウィンドウに表示する要素を記述
             innerElement.innerHTML = 
-              "<h2>クーポン詳細</h2>" +
-              "<p>獲得日時:" + target.parentNode.parentNode.children[2] + "</p>" + 
-              "<p>クーポン内容:" + target.parentNode.parentNode.children[1] + "</p>" +
-              '<input id="confirm_use_Coupon" type="button" value="使用する">' +
-              '<input id="cancel_use_Coupon" type="button" value="キャンセル">'
-            ;
+              '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
+              '<h2 style="text-align: center;line-height: 1.5;padding: 10px;font-weight: normal;font-size: 1.3rem;">' +
+              target.parentNode.parentNode.children[0] + '<br>' +
+              '<span style="border-top: 1px solid #000000;">' + target.parentNode.parentNode.children[1] + '</span>' + '</h2>' +
+              '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2] + '</p>'
+              '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
+              '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input id="confirm_use_Coupon" type="button" value="使用する"><input id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
 
             // モーダルウィンドウに中身を配置
             modalElement.appendChild(innerElement);
