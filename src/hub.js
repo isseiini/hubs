@@ -1029,7 +1029,7 @@ export function Get_Coupon(number){
           for (i = 0; i < result.length; i++) {
             currentUserData[result[i].getName()] = result[i].getValue();
           };   
-      
+          return currentUserData["sub"]
         };
       });
     };
