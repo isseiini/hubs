@@ -2008,7 +2008,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
-                  }, 3000);
+                  }, 1000);
                   
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
@@ -3118,12 +3118,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const Game_Restart = document.getElementById("Game-Restart");
   const Game_Result = document.getElementById("Game-Result");
+  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
   Game_Restart.addEventListener("click", function(){
     Game_Result.style.display = "none";
-    const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint();
+    //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
+    //waypointSystem.moveToSpawnPoint();
     //const Red_Progress = document.getElementById("Red-Container");
     //Red_Progress.value = 0;
+    const gameSetTeam = document.getElementById("score-display-top").innerText;
+    if (gameSetTeam = "BlueTeam") {
+      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+      characterController.teleportTo(respawn_point1);
+    } else {
+      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+      characterController.teleportTo(respawn_point2);
+    }
     scene.play();
   })
 });

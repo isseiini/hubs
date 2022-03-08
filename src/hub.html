@@ -562,17 +562,21 @@
       padding: 10px 15px;
     }
 
-    #Player_map {
+    #Player_map_container {
       width: calc(var(--UI-width) * 0.25);
       max-width: calc(var(--UI-width) * 0.25);
-      background-color: transparent;
       border: 1px solid gray;
       outline: 1px solid var(--team-color);
-      background-image: url(assets/images/help-hud.png);
+      background-image: url(assets/images/hubsmap1.png);
       background-size:  cover;
       position: fixed;
       top: 15px;
       right: 15px;
+    }
+
+    #Player_map {
+      width: 100%;
+      background-color: transparent;
     }
 
     #btns-wrap {
@@ -955,9 +959,11 @@
               <p id="time"></p>
             </div>
     
-            <svg id="Player_map" viewBox="0 0 128 74" data-augmented-ui="both" class="styleme">
-              <circle id="Player_pos" cx="0" cy="0" r="5" fill="var(--team-color)" />
-            </svg>
+            <div data-augmented-ui="both" class="styleme" id="Player_map_container">
+              <svg id="Player_map" viewBox="0 0 128 74">
+                <circle id="Player_pos" cx="0" cy="0" r="5" fill="var(--team-color)" />
+              </svg>
+            </div>
           </div>
     
           <div data-augmented-ui="all-hexangle-up border" class="reticle" id="reticle"></div>
