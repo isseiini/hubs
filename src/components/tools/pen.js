@@ -39,6 +39,8 @@ var HanabiSfx;
 
 var duration = 0.065;
 
+const HanabiMine = Math.random().toString(36).slice(-8);
+
 waitForDOMContentLoaded().then(() => {
   /*loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
@@ -91,8 +93,9 @@ AFRAME.registerComponent("hanabi-animation", {
 
   init() {
     this.Fire = this.Fire.bind(this);
-    this.HanabiMesh = cloneObject3D(Hanabi.scene)
-    this.el.setObject3D("mesh", this.HanabiMesh);
+    this.HanabiMesh = cloneObject3D(Hanabi.scene);
+
+    this.el.setObject3D(HanabiMine, this.HanabiMesh);
     
     this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);

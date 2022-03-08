@@ -27,7 +27,7 @@ waitForDOMContentLoaded().then(() => {
   });
 });
 
-
+const AirCanonMine = Math.random().toString(36).slice(-8);
 
 AFRAME.registerComponent("pen-laser", {
   schema: {
@@ -44,7 +44,7 @@ AFRAME.registerComponent("pen-laser", {
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.06, 0.06, 0.06);
-    this.el.sceneEl.setObject3D("mesh", this.AirCanonMesh);
+    this.el.sceneEl.setObject3D(AirCanonMine, this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
     this.width = innerWidth;
@@ -206,7 +206,7 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     //this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
-    this.el.sceneEl.removeObject3D("mesh");
+    this.el.sceneEl.removeObject3D(AirCanonMine);
     this.reticle.style.display = "none";
     this.rotate120 = 0;
   }
