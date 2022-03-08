@@ -572,6 +572,8 @@
     #Player_map {
       width: 100%;
       background-color: transparent;
+      position: relative;
+      z-index: 2;
     }
 
     #btns-wrap {
@@ -1034,7 +1036,7 @@
             </div>
     
             <div data-augmented-ui="both" class="styleme" id="Player_map_container">
-              <img src="assets/images/hubsmap1.png" alt="画像">
+              <img src="assets/images/hubsmap1.png" alt="画像" style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 1;">
               <svg id="Player_map" viewBox="0 0 128 74">
                 <circle id="Player_pos" cx="0" cy="0" r="5" fill="var(--team-color)" />
               </svg>
