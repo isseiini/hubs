@@ -139,11 +139,6 @@ AFRAME.registerComponent("player-info", {
     const nametagEl = this.el.querySelector(".nametag");
     if (this.displayName && nametagEl) {
       nametagEl.setAttribute("text", { value: this.displayName });
-      var current_url = (location.protocol + '//' + location.hostname + location.pathname).split("/");
-      var room_name = current_url[current_url.length - 1];
-      if(room_name = "kooky-passionate-safari"){
-        nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)"});
-      }
       nametagEl.object3D.visible = !infoShouldBeHidden;
     }
     const identityNameEl = this.el.querySelector(".identityName");

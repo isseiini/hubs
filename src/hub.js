@@ -1983,7 +1983,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   
-                  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController
+                  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
 
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
@@ -1993,6 +1993,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
+                      const nametagEl = document.querySelector(".nametag");
+                      nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)"});
                     } else {
                       team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
@@ -2000,6 +2002,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
+                      const nametagEl = document.querySelector(".nametag");
+                      nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)"});
                     }
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
