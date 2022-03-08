@@ -55,24 +55,23 @@ AFRAME.registerComponent("open-media-button", {
       const src = (this.src = (mediaLoader.mediaOptions && mediaLoader.mediaOptions.href) || mediaLoader.src);
       const exitImmersive = async () => await handleExitTo2DInterstitial(false, () => {}, true);
       const url = new URL(src);
-      const hash = url.substring(url.indexOf("#") + 1);
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(hash != undefined) {
-          if(hash == "1") {
+        if(url.hash != undefined) {
+          if(url.hash == "#1") {
             Get_Coupon(1);
-          } else if(hash == "2") {
+          } else if(url.hash == "#2") {
             Get_Coupon(2);
-          } else if(hash == "3") {
+          } else if(url.hash == "#3") {
             Get_Coupon(3);
-          } else if(hash == "4") {
+          } else if(url.hash == "#4") {
             Get_Coupon(4);
-          } else if(hash == "5") {
+          } else if(url.hash == "#5") {
             Get_Coupon(5);
-          } else if(hash == "6") {
+          } else if(url.hash == "#6") {
             Get_Coupon(6);
-          } else if(hash == "7") {
+          } else if(url.hash == "#7") {
             Get_Coupon(7);
           } 
         } else {
@@ -96,20 +95,20 @@ AFRAME.registerComponent("open-media-button", {
       } else {
         await exitImmersive();
         console.log(this.src)
-        if(hash != undefined) {
-          if(hash == "1") {
+        if(url.hash != undefined) {
+          if(url.hash == "#1") {
             Get_Coupon(1);
-          } else if(hash == "2") {
+          } else if(url.hash == "#2") {
             Get_Coupon(2);
-          } else if(hash == "3") {
+          } else if(url.hash == "#3") {
             Get_Coupon(3);
-          } else if(hash == "4") {
+          } else if(url.hash == "#4") {
             Get_Coupon(4);
-          } else if(hash == "5") {
+          } else if(url.hash == "#5") {
             Get_Coupon(5);
-          } else if(hash == "6") {
+          } else if(url.hash == "#6") {
             Get_Coupon(6);
-          } else if(hash == "7") {
+          } else if(url.hash == "#7") {
             Get_Coupon(7);
           } 
         } else {
