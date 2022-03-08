@@ -1016,26 +1016,6 @@ function get_current_Date() {
 }
 
 export function Get_Coupon(number){
-  var cognitoUser_me2 = userPool.getCurrentUser(); 
-  currentuser = cognitoUser_me2.getSession((err, session) => {
-    if (err) {
-      console.log(err)
-      return
-    } else {
-      cognitoUser_me2.getUserAttributes((err,result) => {
-        if (err) {
-          console.log(err)
-          return
-        } else {
-          var i;
-          for (i = 0; i < result.length; i++) {
-            currentUserData[result[i].getName()] = result[i].getValue();
-          };   
-          return currentUserData["sub"]
-        };
-      });
-    };
-  });
   const current_Date = get_current_Date();
 
   let shop_name;
@@ -1063,7 +1043,7 @@ export function Get_Coupon(number){
     shop_name = "なにわ名物 いちびり庵 道頓堀店";
     shop_content = "1,100円（税込）以上のお買い上げで10%割引き（一部商品を除く）";
   }
-  
+
   function getUniqueStr(myStrong){
     var strong = 1000;
     if (myStrong) strong = myStrong;
@@ -1072,29 +1052,48 @@ export function Get_Coupon(number){
 
   let Play_ID = getUniqueStr();
 
-
-  if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
-    var coupon_params = {
-      TableName: 'coupon',
-      Item:{
-        Play_ID: Play_ID,
-        coupon_number: number,
-        shop: shop_name,
-        content: shop_content,
-        User_ID: currentuser,
-        available_or_used: "available",
-        get_Date: current_Date
-      }
+  var cognitoUser_me2 = userPool.getCurrentUser(); 
+  cognitoUser_me2.getSession((err, session) => {
+    if (err) {
+      console.log(err)
+      return
+    } else {
+      cognitoUser_me2.getUserAttributes((err,result) => {
+        if (err) {
+          console.log(err)
+          return
+        } else {
+          var i;
+          for (i = 0; i < result.length; i++) {
+            currentUserData[result[i].getName()] = result[i].getValue();
+          };   
+          
+          if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
+            var coupon_params = {
+              TableName: 'coupon',
+              Item:{
+                Play_ID: Play_ID,
+                coupon_number: number,
+                shop: shop_name,
+                content: shop_content,
+                User_ID: currentUserData["sub"],
+                available_or_used: "available",
+                get_Date: current_Date
+              }
+            };
+        
+            docClient.put(coupon_params, function(err, data){
+              if(err){
+                console.log('error');
+              }else{
+                console.log('success');
+              }
+            });
+          }
+        };
+      });
     };
-
-    docClient.put(coupon_params, function(err, data){
-      if(err){
-        console.log('error');
-      }else{
-        console.log('success');
-      }
-    });
-  }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
