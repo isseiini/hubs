@@ -2926,6 +2926,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("hex-background").removeChild(modalElement);
                       tblBody.removeChild(target.parentNode.parentNode);
                       tblBody2.appendChild(target.parentNode.parentNode);
+                      target.parentNode.parentNode.children[3].innerText = "ご利用いただきありがとうございます。";
                     });
                     
                   });
