@@ -1991,15 +1991,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
                       document.getElementById("score-display-top").innerText = team;
-                      let respawn_point = new THREE.Vector3(10.5, 4.5, -31);
-                      characterController.teleportTo(respawn_point);
+                      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+                      characterController.teleportTo(respawn_point1);
                     } else {
                       team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
                       document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
                       document.getElementById("score-display-top").innerText = team;
-                      let respawn_point = new THREE.Vector3(116.5, 1, -8);
-                      characterController.teleportTo(respawn_point);
+                      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+                      characterController.teleportTo(respawn_point2);
                     }
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
@@ -2312,14 +2312,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
     const HanabiAction = document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
-    if(document.getElementById("score-display-top").innerText = "BlueTeam") {
-      let respawn_point = new THREE.Vector3(10.5, 4.5, -31);
-      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point);
+    if(document.getElementById("score-display-top").innerText == "BlueTeam") {
+      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
     }
 
-    if(document.getElementById("score-display-top").innerText = "RedTeam") {
-      let respawn_point = new THREE.Vector3(116.5, 1, -8);
-      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point);
+    if(document.getElementById("score-display-top").innerText == "RedTeam") {
+      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
     }
   })
 
