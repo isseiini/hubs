@@ -2871,6 +2871,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     modalElement.classList.add('modal');
                     const innerElement = document.createElement('div');
                     innerElement.classList.add('inner');
+                    innerElement.classList.add('styleme');
+                    innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");
         
                     // モーダルウィンドウに表示する要素を記述
                     innerElement.innerHTML = 
@@ -2940,6 +2942,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   document.getElementById('grid-bl').addEventListener("click", function() {
+    generate_table();
     document.documentElement.style.setProperty('--main-color', 'rgb(255, 93, 215)');
     document.documentElement.style.setProperty('--sub-color', 'rgb(255, 93, 215, 0.3)');
     document.documentElement.style.setProperty('--display1', 'none');
@@ -2947,7 +2950,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty('--display3', 'none');
     document.documentElement.style.setProperty('--display4', 'none');
     document.documentElement.style.setProperty('--display5', 'block');
-    generate_table();
     document.documentElement.style.setProperty('--display6', 'none');
   });
 
