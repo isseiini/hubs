@@ -1017,13 +1017,15 @@ function get_current_Date() {
 
 export function Get_Coupon(number){
   var cognitoUser_me2 = userPool.getCurrentUser(); 
-  cognitoUser_me2.getSession((err, session) => {
+  currentuser = cognitoUser_me2.getSession((err, session) => {
     if (err) {
       console.log(err)
+      return
     } else {
       cognitoUser_me2.getUserAttributes((err,result) => {
         if (err) {
           console.log(err)
+          return
         } else {
           var i;
           for (i = 0; i < result.length; i++) {
@@ -1079,7 +1081,7 @@ export function Get_Coupon(number){
         coupon_number: number,
         shop: shop_name,
         content: shop_content,
-        User_ID: currentUserData["sub"],
+        User_ID: currentuser,
         available_or_used: "available",
         get_Date: current_Date
       }
@@ -2794,6 +2796,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // creates a <table> element and a <tbody> element
         var tbl2 = document.createElement("table");
+        tbl2.setAttribute("id", "coupon_table2");
         var tblBody2 = document.createElement("tbody");
 
         var label_2 = document.createElement("tr");
