@@ -60,25 +60,25 @@ AFRAME.registerComponent("open-media-button", {
         await exitImmersive();
         if(url.hash) {
           if(url.hash == "#1") {
-            Get_Coupon(1);
+            Get_Coupon(1)
           } 
           if(url.hash == "#2") {
-            Get_Coupon(2);
+            Get_Coupon(2)
           } 
           if(url.hash == "#3") {
-            Get_Coupon(3);
+            Get_Coupon(3)
           } 
           if(url.hash == "#4") {
-            Get_Coupon(4);
+            Get_Coupon(4)
           } 
           if(url.hash == "#5") {
-            Get_Coupon(5);
+            Get_Coupon(5)
           } 
           if(url.hash == "#6") {
-            Get_Coupon(6);
+            Get_Coupon(6)
           } 
           if(url.hash == "#7") {
-            Get_Coupon(7);
+            Get_Coupon(7)
           } 
         } else {
           window.open(this.src);
@@ -103,25 +103,25 @@ AFRAME.registerComponent("open-media-button", {
         console.log(this.src)
         if(url.hash) {
           if(url.hash == "#1") {
-            Get_Coupon(1);
+            Get_Coupon(1)
           } 
           if(url.hash == "#2") {
-            Get_Coupon(2);
+            Get_Coupon(2)
           } 
           if(url.hash == "#3") {
-            Get_Coupon(3);
+            Get_Coupon(3)
           } 
           if(url.hash == "#4") {
-            Get_Coupon(4);
+            Get_Coupon(4)
           } 
           if(url.hash == "#5") {
-            Get_Coupon(5);
+            Get_Coupon(5)
           } 
           if(url.hash == "#6") {
-            Get_Coupon(6);
+            Get_Coupon(6)
           } 
           if(url.hash == "#7") {
-            Get_Coupon(7);
+            Get_Coupon(7)
           }
         } else {
           window.open(this.src);
