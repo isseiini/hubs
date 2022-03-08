@@ -61,17 +61,23 @@ AFRAME.registerComponent("open-media-button", {
         if(url.hash) {
           if(url.hash == "#1") {
             Get_Coupon(1);
-          } else if(url.hash == "#2") {
+          } 
+          if(url.hash == "#2") {
             Get_Coupon(2);
-          } else if(url.hash == "#3") {
+          } 
+          if(url.hash == "#3") {
             Get_Coupon(3);
-          } else if(url.hash == "#4") {
+          } 
+          if(url.hash == "#4") {
             Get_Coupon(4);
-          } else if(url.hash == "#5") {
+          } 
+          if(url.hash == "#5") {
             Get_Coupon(5);
-          } else if(url.hash == "#6") {
+          } 
+          if(url.hash == "#6") {
             Get_Coupon(6);
-          } else if(url.hash == "#7") {
+          } 
+          if(url.hash == "#7") {
             Get_Coupon(7);
           } 
         } else {
@@ -98,17 +104,23 @@ AFRAME.registerComponent("open-media-button", {
         if(url.hash) {
           if(url.hash == "#1") {
             Get_Coupon(1);
-          } else if(url.hash == "#2") {
+          } 
+          if(url.hash == "#2") {
             Get_Coupon(2);
-          } else if(url.hash == "#3") {
+          } 
+          if(url.hash == "#3") {
             Get_Coupon(3);
-          } else if(url.hash == "#4") {
+          } 
+          if(url.hash == "#4") {
             Get_Coupon(4);
-          } else if(url.hash == "#5") {
+          } 
+          if(url.hash == "#5") {
             Get_Coupon(5);
-          } else if(url.hash == "#6") {
+          } 
+          if(url.hash == "#6") {
             Get_Coupon(6);
-          } else if(url.hash == "#7") {
+          } 
+          if(url.hash == "#7") {
             Get_Coupon(7);
           }
         } else {
