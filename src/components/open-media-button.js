@@ -39,7 +39,7 @@ AFRAME.registerComponent("open-media-button", {
         }
         this.label.setAttribute("text", "value", label);
         if(url.hash) {
-          if(url.hash == "#1") {
+          if(url.hash == "#1"||"#2"||"#3"||"#4"||"#5"||"#6"||"#7") {
             label = "Get Coupon";
             this.label.setAttribute("text", "value", label);
           } else {
@@ -59,7 +59,7 @@ AFRAME.registerComponent("open-media-button", {
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(url.hash != undefined) {
+        if(hash != undefined) {
           if(hash == "1") {
             Get_Coupon(1);
           } else if(hash == "2") {
