@@ -1036,8 +1036,8 @@ export function Get_Coupon(number){
   });
   const current_Date = get_current_Date();
 
-  const shop_name;
-  const shop_content;
+  let shop_name;
+  let shop_content;
 
   if(number == 1){
     shop_name = "アンドリューのエッグタルト 大阪難波駅店";

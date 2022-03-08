@@ -39,7 +39,7 @@ AFRAME.registerComponent("open-media-button", {
         }
         this.label.setAttribute("text", "value", label);
         if(url.hash) {
-          if(url.hash == "#1") {
+          if(url.hash == "#1"||"#2"||"#3"||"#4"||"#5"||"#6"||"#7") {
             label = "Get Coupon";
             this.label.setAttribute("text", "value", label);
           } else {
@@ -54,16 +54,27 @@ AFRAME.registerComponent("open-media-button", {
       const mayChangeScene = this.el.sceneEl.systems.permissions.canOrWillIfCreator("update_hub");
       const src = (this.src = (mediaLoader.mediaOptions && mediaLoader.mediaOptions.href) || mediaLoader.src);
       const exitImmersive = async () => await handleExitTo2DInterstitial(false, () => {}, true);
-      const url = new URL(src)
+      const url = new URL(src);
+      const hash = url.substring(url.indexOf("#") + 1);
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(url.hash) {
-          if(url.hash == "#1") {
+        if(hash != undefined) {
+          if(hash == "1") {
             Get_Coupon(1);
-          } else {
-            return
-          }
+          } else if(hash == "2") {
+            Get_Coupon(2);
+          } else if(hash == "3") {
+            Get_Coupon(3);
+          } else if(hash == "4") {
+            Get_Coupon(4);
+          } else if(hash == "5") {
+            Get_Coupon(5);
+          } else if(hash == "6") {
+            Get_Coupon(6);
+          } else if(hash == "7") {
+            Get_Coupon(7);
+          } 
         } else {
           window.open(this.src);
         }
@@ -85,12 +96,22 @@ AFRAME.registerComponent("open-media-button", {
       } else {
         await exitImmersive();
         console.log(this.src)
-        if(url.hash) {
-          if(url.hash == "#1") {
+        if(hash != undefined) {
+          if(hash == "1") {
             Get_Coupon(1);
-          } else {
-            return
-          }
+          } else if(hash == "2") {
+            Get_Coupon(2);
+          } else if(hash == "3") {
+            Get_Coupon(3);
+          } else if(hash == "4") {
+            Get_Coupon(4);
+          } else if(hash == "5") {
+            Get_Coupon(5);
+          } else if(hash == "6") {
+            Get_Coupon(6);
+          } else if(hash == "7") {
+            Get_Coupon(7);
+          } 
         } else {
           window.open(this.src);
         }
