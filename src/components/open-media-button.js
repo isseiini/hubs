@@ -73,9 +73,7 @@ AFRAME.registerComponent("open-media-button", {
             Get_Coupon(6);
           } else if(url.hash == "#7") {
             Get_Coupon(7);
-          } else {
-            return
-          }
+          } 
         } else {
           window.open(this.src);
         }
@@ -112,8 +110,6 @@ AFRAME.registerComponent("open-media-button", {
             Get_Coupon(6);
           } else if(url.hash == "#7") {
             Get_Coupon(7);
-          } else {
-            return
           }
         } else {
           window.open(this.src);
