@@ -1100,7 +1100,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
+  const map_img = document.getElementById("map_img");
+  const Player_map = document.getElementById("Player_map");
   if (room_name == "kooky-passionate-safari") {
+    map_img.setAttribute("src", "assets/images/game_map1.png");
+    Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
     /*if (cognito_mine != null){
@@ -1117,6 +1121,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }*/
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
+    Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
   } else if(room_name == "silky-quick-congregation") {
@@ -1125,6 +1130,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
         } else {
+          Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
+          map_img.setAttribute("src", "assets/images/game_map1.png");
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
           document.getElementById("hex-background").style.display = "none";
@@ -1139,6 +1146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
         } else {
+          map_img.setAttribute("src", "");
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
           document.getElementById("hex-background").style.display = "none";
