@@ -320,9 +320,7 @@ export default class MessageDispatch extends EventTarget {
           return
         }
       }
-      const Red_Progress = document.getElementById("Red-Progress");
       Red_Progress.value = Number(entered_red);
-      const Blue_Progress = document.getElementById("Blue-Progress");
       Blue_Progress.value = Number(entered_blue);
       return
     };
