@@ -1103,7 +1103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img = document.getElementById("map_img");
   const Player_map = document.getElementById("Player_map");
   if (room_name == "kooky-passionate-safari") {
-    map_img.setAttribute("src", "assets/images/game_map1.png");
+    map_img.src = "assets/images/game_map1.png";
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
@@ -1131,7 +1131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
         } else {
           Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
-          map_img.setAttribute("src", "assets/images/game_map1.png");
+          map_img.src = "assets/images/game_map1.png";
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
           document.getElementById("hex-background").style.display = "none";
