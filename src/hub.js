@@ -2730,7 +2730,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         var label_1 = document.createElement("tr");
 
-        var label_1_number = document.createElement("td");
+        var label_1_number = document.createElement("th");
+        label_1_number.classList.add("arrow_box")
         var label_1_number_txt = document.createTextNode("対象店舗");
         label_1_number.appendChild(label_1_number_txt);
         label_1.appendChild(label_1_number)
@@ -2757,7 +2758,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           // creates a table row
           var row = document.createElement("tr");
       
-          var cell_1_1 = document.createElement("td");
+          var cell_1_1 = document.createElement("th");
+          cellText_1_1.classList.add("arrow_box");
           var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
           cell_1_1.appendChild(cellText_1_1);
           row.appendChild(cell_1_1);
@@ -2796,7 +2798,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         var label_2 = document.createElement("tr");
 
-        var label_2_number = document.createElement("td");
+        var label_2_number = document.createElement("th");
+        label_2_number.classList.add("arrow_box");
         var label_2_number_txt = document.createTextNode("対象店舗");
         label_2_number.appendChild(label_2_number_txt);
         label_2.appendChild(label_2_number)
@@ -2823,7 +2826,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           // creates a table row
           var row2 = document.createElement("tr");
       
-          var cell_2_1 = document.createElement("td");
+          var cell_2_1 = document.createElement("th");
+          cellText_2_1.classList.add("arrow_box");
           var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
           cell_2_1.appendChild(cellText_2_1);
           row2.appendChild(cell_2_1);
