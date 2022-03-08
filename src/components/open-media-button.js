@@ -58,7 +58,7 @@ AFRAME.registerComponent("open-media-button", {
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(url.hash) {
+        if(url.hash != undefined) {
           if(url.hash == "#1") {
             Get_Coupon(1)
           } 
@@ -101,7 +101,7 @@ AFRAME.registerComponent("open-media-button", {
       } else {
         await exitImmersive();
         console.log(this.src)
-        if(url.hash) {
+        if(url.hash != undefined) {
           if(url.hash == "#1") {
             Get_Coupon(1)
           } 
