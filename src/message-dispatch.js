@@ -284,7 +284,7 @@ export default class MessageDispatch extends EventTarget {
       console.log(entry.body)
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
-      const Blue_Score = document.getElementById("blue-score");
+      const Red_Progress = document.getElementById("Red-Progress");
       const Blue_Progress = document.getElementById("Blue-Progress");
       var entered_red = entry.body.substring(0, entry.body.indexOf('_Blue:'));
       entered_red = entered_red.substr(entered_red.indexOf(':') + 1);
@@ -292,8 +292,6 @@ export default class MessageDispatch extends EventTarget {
       var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
       entered_blue = entered_blue.substr(entered_blue.indexOf(':') + 1);
       //entered_blue = entered_blue.slice(-1);
-      console.log(entered_red)
-      console.log(entered_blue)
       if (Number(Red_Score.innerText) <= Number(entered_red) && Number(Blue_Score.innerText) <= Number(entered_blue)) {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
