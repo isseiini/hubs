@@ -2924,6 +2924,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         }
                       });
                       document.getElementById("hex-background").removeChild(modalElement);
+                      tblBody.removeChild(target);
+                      tblBody2.appendChild(target);
                     });
                     
                   });
