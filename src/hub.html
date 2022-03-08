@@ -710,8 +710,8 @@
     .inner {
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
-      --aug-border-all:2px;
+      background-color: rgb(255, 255, 255);
+      --aug-border-all:1.5px;
     }
 
     #useCouponButtonContainer {
@@ -835,6 +835,45 @@
     .extend {
       --reticle-color: red;
       transform: scale(1.5);
+    }
+
+    @media screen and (orientation: portrait) {
+      #orientation_message {
+        display: block;
+      }
+
+      #mobile-img {
+        animation-name:rotate;
+        animation-duration:2s;
+        animation-timing-function:ease-in;
+        animation-delay:1s;
+        animation-iteration-count:3;
+        animation-direction:alternate;
+        animation-fill-mode:forwards;
+        animation-play-state:running;
+      }
+
+      @keyframes rotate{
+        0%{
+          transform: rotate(0deg);
+        }
+        100%{
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    @media screen and (orientation: landscape) {
+      #orientationmessage {
+        display: none;
+      }
+    }
+
+    #mobile-img {
+      width: 100px;
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
     }
   </style>
 </head>
@@ -1147,7 +1186,12 @@
           </div>
         </div>
     
-        
+        <div class="modal" id="orientationmessage">
+          <div class="inner styleme" data-augmented-ui="tl-clip-x br-clip border" style="padding-top: 20px;">
+            <img src="assets/images/iconmonstr-smartphone-3-240.png" alt="画像" id="mobile-img">
+            <p style="text-align: center;padding: 10px 0;background-color: yellow;">端末を横向きにしてお使いください。</p>
+          </div>
+        </div>
       </div>
         
         <a-assets>
