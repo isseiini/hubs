@@ -258,10 +258,10 @@ export default class MessageDispatch extends EventTarget {
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
-      /*if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         const HanabiAction = document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
-      }*/
+      }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
       Blue_Progress.value = Blue_Progress.value + 1;
@@ -284,6 +284,8 @@ export default class MessageDispatch extends EventTarget {
       console.log(entry.body)
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
+      const Blue_Score = document.getElementById("blue-score");
+      const Blue_Progress = document.getElementById("Blue-Progress");
       var entered_red = entry.body.substring(0, entry.body.indexOf('_Blue:'));
       entered_red = entered_red.substr(entered_red.indexOf(':') + 1);
       //entered_red = entered_red.slice(-1);
@@ -302,6 +304,21 @@ export default class MessageDispatch extends EventTarget {
           hit_target_container.value = hit_target2;
           hit_target_container.dispatchEvent(event2);
           Red_Score.innerText = "0";
+          Blue_Score.innerText = "0";
+          Red_Progress.value = 0;
+          Blue_Progress.value = 0;
+          return
+        }
+        if (Number(entered_blue) >= 25) {
+          var hit_target2 = "_Win_Blue";
+          var event2 = new Event('change');
+          var hit_target_container = document.getElementById("hit_target_container");
+          hit_target_container.value = hit_target2;
+          hit_target_container.dispatchEvent(event2);
+          Red_Score.innerText = "0";
+          Blue_Score.innerText = "0";
+          Red_Progress.value = 0;
+          Blue_Progress.value = 0;
           return
         }
       }
