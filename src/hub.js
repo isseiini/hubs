@@ -758,10 +758,6 @@ async function updateEnvironmentForHub(hub, entryManager) {
             // We've already entered, so move to new spawn point once new environment is loaded
             if (sceneEl.is("entered")) {
               waypointSystem.moveToSpawnPoint();
-              if(room_name == "kooky-passionate-safari"){
-                const map_img = document.getElementById("map_img");
-                map_img.src = "assets/images/game_map1.png";
-              }
             }
 
             const fader = document.getElementById("viewing-camera").components["fader"];
@@ -2023,7 +2019,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
-
+                  const map_img = document.getElementById("map_img");
+                  map_img.onload = function() {
+                    map_img.src = "assets/images/game_map1.png";
+                  }
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
