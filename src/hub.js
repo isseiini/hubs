@@ -1133,8 +1133,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
         } else {
-          Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
-          map_img.src = "assets/images/game_map1.png";
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
           document.getElementById("hex-background").style.display = "none";
