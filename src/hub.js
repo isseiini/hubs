@@ -293,7 +293,7 @@ import Client from "amazon-cognito-identity-js/src/Client";
 
 import CognitoUserAttribute from 'amazon-cognito-identity-js/src/CognitoUserAttribute';
 import StorageHelper from 'amazon-cognito-identity-js/src/StorageHelper';
-import { string } from "prop-types";
+import { func, string } from "prop-types";
 import { room } from "networked-aframe/src/NafIndex";
 
 
@@ -2941,7 +2941,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("hex-background").removeChild(modalElement);
                     }
 
-                    document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
+                    document.getElementById("coupon_logo").onload = function(){
+                      document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
+                    };
+                    
         
                     // 中身をクリックしたらモーダルウィンドウを閉じる
                     innerElement.addEventListener('click', () => {
