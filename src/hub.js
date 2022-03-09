@@ -1102,9 +1102,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
   const map_img = document.getElementById("map_img");
+  const map_img2 = document.getElementById("map_img2");
   const Player_map = document.getElementById("Player_map");
   if (room_name == "kooky-passionate-safari") {
-    map_img.src = "assets/images/game_map1.png";
+    map_img.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
@@ -1122,6 +1123,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }*/
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
+    map_img2.style.display = "none";
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
@@ -2019,10 +2021,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
-                  const map_img = document.getElementById("map_img");
-                  map_img.onload = function() {
-                    map_img.src = "assets/images/game_map1.png";
-                  }
+                  
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
