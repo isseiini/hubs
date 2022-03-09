@@ -2927,10 +2927,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                       target.parentNode.parentNode.children[1].innerText + '</h2>' + '</div>' +
                       '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2].innerText + '</p>' +
                       '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
-                      '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input class="coupon_button" id="confirm_use_Coupon" type="button" value="使用する"><input class="coupon_button" id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
+                      '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input class="coupon_button" id="confirm_use_Coupon" type="button" value="使用する"><input class="coupon_button" id="cancel_use_Coupon" type="button" value="キャンセル"></div>'
+                    ;
         
                     // モーダルウィンドウに中身を配置
                     modalElement.appendChild(innerElement);
+                    // img要素を生成
+                    var img = document.createElement('img');
+                    // 画像パスを追加
+                    img.src = 'assets/images/' + coupon_logo;
+                    // altを追加
+                    img.alt = 'ロゴ';
+
+                    img.style.cssText = "width: 200px;margin: 10px auto; display:block;"
+                    
+                    // 生成したimg要素を追加する
+                    modalElement.appendChild(img);
+                    
+                    
                     document.getElementById("hex-background").appendChild(modalElement);
         
                     function closeModal(modalElement) {
