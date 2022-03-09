@@ -1103,9 +1103,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const cognito_mine = userPool.getCurrentUser();
   const map_img = document.getElementById("map_img");
   const map_img2 = document.getElementById("map_img2");
+  const map_img3 = document.getElementById("map_img3");
   const Player_map = document.getElementById("Player_map");
   if (room_name == "kooky-passionate-safari") {
     map_img.style.display = "none"; 
+    map_img3.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("hex-background").style.display = "none";
     document.getElementById("go-to-game").style.display = "none";
@@ -1124,10 +1126,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     map_img2.style.display = "none";
+    map_img3.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
   } else if(room_name == "silky-quick-congregation") {
+    map_img.style.display = "none"; 
+    map_img2.style.display = "none"; 
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     document.getElementById("hex-background").style.display = "none";
