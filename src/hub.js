@@ -2933,13 +2933,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                     // モーダルウィンドウに中身を配置
                     modalElement.appendChild(innerElement);
                     
-                    document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
+                    
                     
                     document.getElementById("hex-background").appendChild(modalElement);
         
                     function closeModal(modalElement) {
                       document.getElementById("hex-background").removeChild(modalElement);
                     }
+
+                    document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
         
                     // 中身をクリックしたらモーダルウィンドウを閉じる
                     innerElement.addEventListener('click', () => {
