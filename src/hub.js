@@ -2888,8 +2888,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const modalElement = document.getElementById("coupon_modal");
                 const innerElement = document.getElementById("coupon_inner");
                 const span1 = document.getElementById("coupon_data_1");
-                const span2 = document.getElementById("coupon_data_1");
-                const span3 = document.getElementById("coupon_data_1");
+                const span2 = document.getElementById("coupon_data_2");
+                const span3 = document.getElementById("coupon_data_3");
         
                 trigger.forEach(function(target) {
                   target.addEventListener('click', function() {
