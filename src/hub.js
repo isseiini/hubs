@@ -2920,7 +2920,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     innerElement.innerHTML = 
                       '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
                       '<div style="display: flex;justify-content: center;padding: 20px 20px;flex-wrap: wrap;">' +
-                      '<img src="assets/images/' + coupon_logo + '" alt="ロゴ" style="width: 200px;margin: 10px auto; display:block">' +
+                      '<img id="coupon_logo" src="" alt="ロゴ" style="width: 200px;margin: 10px auto; display:block">' +
                       '<h2 style="text-align: center;line-height: 1.5;padding: 0;font-weight: normal;font-size: 1.5rem;display: flex;flex-direction: column;justify-content: center;">' +
                       target.parentNode.parentNode.children[0].innerText + '<br>' +
                       '<span style="margin: 0 auto;width:80%;height: 1px; border-top: 1px solid #000000;"></span>' + 
@@ -2932,18 +2932,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         
                     // モーダルウィンドウに中身を配置
                     modalElement.appendChild(innerElement);
-                    // img要素を生成
-                    var img = document.createElement('img');
-                    // 画像パスを追加
-                    img.src = 'assets/images/' + coupon_logo;
-                    // altを追加
-                    img.alt = 'ロゴ';
-
-                    img.style.cssText = "width: 200px;margin: 10px auto; display:block;"
                     
-                    // 生成したimg要素を追加する
-                    modalElement.appendChild(img);
-                    
+                    document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
                     
                     document.getElementById("hex-background").appendChild(modalElement);
         
