@@ -1099,6 +1099,42 @@
         </div>
       </div>
 
+      <div id="coupon_modal" class="madal" style="display: none;">
+        <div id="coupon_inner" class="inner styleme" data-augmented-ui="tl-clip-x br-clip border">
+          <p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>
+          <div style="display: flex;justify-content: center;padding: 20px 20px;flex-wrap: wrap;">
+            <img id="coupon_logo1" src="assets/images/coupon_1.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo2" src="assets/images/coupon_2.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo3" src="assets/images/coupon_3.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo4" src="assets/images/coupon_4.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo5" src="assets/images/coupon_5.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo6" src="assets/images/coupon_6.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <img id="coupon_logo7" src="assets/images/coupon_7.jpg" alt="ロゴ" style="width: 200px;margin: 10px auto; display:none">
+            <h2 style="text-align: center;line-height: 1.5;padding: 0;font-weight: normal;font-size: 1.5rem;display: flex;flex-direction: column;justify-content: center;">
+              <span #coupon_data_1></span><br>
+              <span style="margin: 0 auto;width:80%;height: 1px; border-top: 1px solid #000000;"></span>
+              <span #coupon_data_2></span>
+            </h2>
+          </div>
+          <p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;"><span #coupon_data_1></span></p>
+          <p style="border-top: 2px dashed #000000;padding: 10px;">【
+            注意事項】<br>
+            ※一度使用したクーポンは再度の取得および使用ができません。<br>
+            ※必ず店舗でご使用ください。
+          </p>
+          <div id="useCouponButtonContainer">
+            <p style="width: 100%;">
+              ここから下の操作は<br>
+              ・店員に「使用する」ボタンを押してもらう<br>
+              ・店員合意の元、使用者自身で「使用する」ボタンを押す<br>
+              上記いずれかをお願いします。
+            </p>
+            <input class="coupon_button" id="confirm_use_Coupon" type="button" value="使用する">
+            <input class="coupon_button" id="cancel_use_Coupon" type="button" value="キャンセル">
+          </div>
+        </div>
+      </div>
+
       <footer style="width: 100%;background-color: #ffffff;padding: 5px 15px;">
         <p style="text-align:center">©2022 NTT DOCOMO, INC. All Rights Reserved.</p>
       </footer>

@@ -2884,40 +2884,53 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         
                 var trigger = document.querySelectorAll(".use_Coupon");
+
+                const modalElement = document.getElementById("coupon_modal");
+                const innerElement = document.getElementById("coupon_inner");
+                const span1 = document.getElementById("coupon_data_1");
+                const span2 = document.getElementById("coupon_data_1");
+                const span3 = document.getElementById("coupon_data_1");
         
                 trigger.forEach(function(target) {
                   target.addEventListener('click', function() {
                     const current_Date = get_current_Date();
                     const coupon_table = document.getElementById("coupon_table");
-                    console.log(target.parentNode.parentNode.firstChild.innerText)
-        
+
+                    modalElement.style.display = "block";
+                    
                     // モーダルウィンドウと中身の要素を生成・クラスを付与
-                    const modalElement = document.createElement('div');
+                    /*const modalElement = document.createElement('div');
                     modalElement.classList.add('modal');
                     const innerElement = document.createElement('div');
                     innerElement.classList.add('inner');
                     innerElement.classList.add('styleme');
-                    innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");
+                    innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");*/
 
                     let coupon_logo;
                     if(target.parentNode.parentNode.children[0].innerText = "アンドリューのエッグタルト 大阪難波駅店") {
-                      coupon_logo = "coupon_1.jpg";
+                      coupon_logo = "coupon_logo1"
                     } else if(target.parentNode.parentNode.children[0].innerText = "お好み焼き 千房 道頓堀支店") {
-                      coupon_logo = "coupon_2.jpg";
+                      coupon_logo = "coupon_logo2";
                     } else if(target.parentNode.parentNode.children[0].innerText = "串カツだるま 道頓堀店") {
-                      coupon_logo = "coupon_3.jpg";
+                      coupon_logo = "coupon_logo3";
                     } else if(target.parentNode.parentNode.children[0].innerText = "くれおーる 道頓堀店") {
-                      coupon_logo = "coupon_4.jpg";
+                      coupon_logo = "coupon_logo4";
                     } else if(target.parentNode.parentNode.children[0].innerText = "道頓堀コナモンミュージアム") {
-                      coupon_logo = "coupon_5.jpg";
+                      coupon_logo = "coupon_logo5";
                     } else if(target.parentNode.parentNode.children[0].innerText = "たこ八 道頓堀総本店") {
-                      coupon_logo = "coupon_6.jpg";
+                      coupon_logo = "coupon_logo6";
                     } else if(target.parentNode.parentNode.children[0].innerText = "なにわ名物 いちびり庵 道頓堀店") {
-                      coupon_logo = "coupon_7.jpg";
+                      coupon_logo = "coupon_logo7";
                     }
+
+                    document.getElementById(coupon_logo).style.display = "block";
+
+                    span1.innerText = target.parentNode.parentNode.children[0].innerText;
+                    span2.innerText = target.parentNode.parentNode.children[1].innerText;
+                    span3.innerText = "獲得日時 " + target.parentNode.parentNode.children[2].innerText;
         
                     // モーダルウィンドウに表示する要素を記述
-                    innerElement.innerHTML = 
+                    /*innerElement.innerHTML = 
                       '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
                       '<div style="display: flex;justify-content: center;padding: 20px 20px;flex-wrap: wrap;">' +
                       '<img id="coupon_logo" data-src="' + "assets/images/" + coupon_logo + '" src="" alt="ロゴ" style="width: 200px;margin: 10px auto; display:block">' +
@@ -2935,27 +2948,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                     
                     
                     
-                    document.getElementById("hex-background").appendChild(modalElement);
-
-                    document.getElementById("coupon_logo").addEventListener('load', (e)=> {
-                      console.log(e.target.alt + " load");
-                    });
-                
-                    // 遅延読み込み
-                    document.getElementById("coupon_logo").src = document.getElementById("coupon_logo").getAttribute("data-src");
+                    document.getElementById("hex-background").appendChild(modalElement);*/
         
-                    function closeModal(modalElement) {
-                      document.getElementById("hex-background").removeChild(modalElement);
+                    function closeModal() {
+                      //document.getElementById("hex-background").removeChild(modalElement);
+                      modalElement.style.display = "none";
+                      document.getElementById(coupon_logo).style.display = "none";
                     }
-
-                    document.getElementById("coupon_logo").onload = function(){
-                      document.getElementById("coupon_logo").src = "assets/images/" + coupon_logo;
-                    };
                     
         
                     // 中身をクリックしたらモーダルウィンドウを閉じる
                     innerElement.addEventListener('click', () => {
-                      closeModal(modalElement);
+                      closeModal();
                     });
         
                     document.getElementById("confirm_use_Coupon").addEventListener('click', () => {
@@ -2981,7 +2985,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                           console.log('success');
                         }
                       });
-                      document.getElementById("hex-background").removeChild(modalElement);
+                      //document.getElementById("hex-background").removeChild(modalElement);
+                      modalElement.style.display = "none";
+                      document.getElementById(coupon_logo).style.display = "none";
                       tblBody.removeChild(target.parentNode.parentNode);
                       tblBody2.appendChild(target.parentNode.parentNode);
                       target.parentNode.parentNode.children[3].innerText = "ご利用いただきありがとうございます。";
