@@ -732,115 +732,119 @@
       margin: 0 auto;
       font-size: 12px;
       border-spacing: 0px 60px;
-      }
+    }
 
-      #coupon_table th,
-      #coupon_table td,
-      #coupon_table2 th,
-      #coupon_table2 td {
-      padding: 10px;
-      }
-
-      #coupon_table th,
-      #coupon_table2 th {
-      background: #295890;
-      vertical-align: middle;
-      text-align: left;
-      overflow: visible;
-      position: relative;
-      color: #fff;
-      font-weight: normal;
-      font-size: 15px;
-      }
-
-      #coupon_table td,
-      #coupon_table2 td {
-      background: #f8f8f8;
+    #coupon_table th,
+    #coupon_table td,
+    #coupon_table2 th,
+    #coupon_table2 td {
       padding: 10px;
     }
 
-    .reticle {
-      --aug-all-width: 50px;
-      --reticle-color: var(--team-color);
-      --reticle-size: calc(var(--aug-all-width) * 0.25);
-      --aug-border-bg: radial-gradient(
-        circle at top center,
-        var(--reticle-color) var(--reticle-size),
-        transparent var(--reticle-size)
-      ), radial-gradient(
-        circle at bottom 13.92% right 6.89%,
-        var(--reticle-color) var(--reticle-size),
-        transparent var(--reticle-size)
-      ), radial-gradient(
-        circle at bottom 13.92% left 6.89%,
-        var(--reticle-color) var(--reticle-size),
-        transparent var(--reticle-size)
-      );
-      transform-origin: 50% 56%;
-      transform: rotateZ(0deg);
-      transition: transform 0.75s ease-out, color 0.75s ease-out;
-      
-      pointer-events:none;
-      --aug-border-all: 2px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: none;
+    #coupon_table th,
+    #coupon_table2 th {
+    background: #295890;
+    vertical-align: middle;
+    text-align: left;
+    overflow: visible;
+    position: relative;
+    color: #fff;
+    font-weight: normal;
+    font-size: 15px;
     }
 
-    /*.reticle:hover {
-      transform: rotateZ(120deg);
-      --aug-all-width: 80px;
-      --reticle-color: red;
-    }*/
+    #coupon_table td,
+    #coupon_table2 td {
+    background: #f8f8f8;
+    padding: 10px;
+  }
 
-    .rotate120 {
-      transform: rotateZ(120deg);
-    }
+  .reticle {
+    --aug-all-width: 50px;
+    --reticle-color: var(--team-color);
+    --reticle-size: calc(var(--aug-all-width) * 0.25);
+    --aug-border-bg: radial-gradient(
+      circle at top center,
+      var(--reticle-color) var(--reticle-size),
+      transparent var(--reticle-size)
+    ), radial-gradient(
+      circle at bottom 13.92% right 6.89%,
+      var(--reticle-color) var(--reticle-size),
+      transparent var(--reticle-size)
+    ), radial-gradient(
+      circle at bottom 13.92% left 6.89%,
+      var(--reticle-color) var(--reticle-size),
+      transparent var(--reticle-size)
+    );
+    transform-origin: 50% 56%;
+    transform: rotateZ(0deg);
+    transition: transform 0.75s ease-out, color 0.75s ease-out;
+    
+    pointer-events:none;
+    --aug-border-all: 2px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+  }
 
-    .extend {
-      --reticle-color: red;
-      transform: scale(1.5);
-    }
+  /*.reticle:hover {
+    transform: rotateZ(120deg);
+    --aug-all-width: 80px;
+    --reticle-color: red;
+  }*/
 
-    @media screen and (orientation: portrait) {
-      #orientation_message {
-        display: block;
-      }
+  .rotate120 {
+    transform: rotateZ(120deg);
+  }
 
-      #mobile-img {
-        animation-name:rotate;
-        animation-duration:2s;
-        animation-iteration-count:infinite;
-        animation-fill-mode:backwards;
-      }
+  .extend {
+    --reticle-color: red;
+    transform: scale(1.5);
+  }
 
-      @keyframes rotate{
-        0%{
-          transform: rotate(0deg);
-        }
-        100%{
-          transform: rotate(90deg);
-        }
-      }
-    }
-
-    @media screen and (orientation: landscape) {
-      #orientationmessage {
-        display: none;
-      }
+  @media screen and (orientation: portrait) {
+    #orientation_message {
+      display: block;
     }
 
     #mobile-img {
-      width: 100px;
-      margin: 20px auto;
-      display: flex;
-      justify-content: center;
+      animation-name:rotate;
+      animation-duration:2s;
+      animation-iteration-count:infinite;
+      animation-fill-mode:backwards;
     }
-  </style>
+
+    @keyframes rotate{
+      0%{
+        transform: rotate(0deg);
+      }
+      100%{
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    #orientationmessage {
+      display: none;
+    }
+  }
+
+  #mobile-img {
+    width: 100px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+  }
+</style>
+
+
+  
 </head>
 
 <body>
+    
     <div id="support-root"></div>
 
     <div id="hex-background">
