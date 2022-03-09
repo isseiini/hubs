@@ -2015,7 +2015,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   const map_img = document.getElementById("map_img");
-                  map_img.src = "assets/images/game_map1.png";
+                  map_img.setAttribute('src', 'assets/images/game_map1.png');
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
