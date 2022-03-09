@@ -2899,15 +2899,33 @@ document.addEventListener("DOMContentLoaded", async () => {
                     innerElement.classList.add('styleme');
                     innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");
 
-                    console.log(target.parentNode.parentNode)
-                    console.log(target.parentNode)
+                    let coupon_logo;
+                    if(target.parentNode.parentNode.children[0].innerText = "アンドリューのエッグタルト 大阪難波駅店") {
+                      coupon_logo = "coupon_1.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "お好み焼き 千房 道頓堀支店") {
+                      coupon_logo = "coupon_2.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "串カツだるま 道頓堀店") {
+                      coupon_logo = "coupon_3.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "くれおーる 道頓堀店") {
+                      coupon_logo = "coupon_4.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "道頓堀コナモンミュージアム") {
+                      coupon_logo = "coupon_5.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "たこ八 道頓堀総本店") {
+                      coupon_logo = "coupon_6.jpg";
+                    } else if(target.parentNode.parentNode.children[0].innerText = "なにわ名物 いちびり庵 道頓堀店") {
+                      coupon_logo = "coupon_7.jpg";
+                    }
         
                     // モーダルウィンドウに表示する要素を記述
                     innerElement.innerHTML = 
                       '<p style="background-color:yellow;text-align: center;padding: 5px 10px;">有効期限 2022年4月10日まで</p>' +
-                      '<h2 style="text-align: center;line-height: 1.5;padding: 10px;font-weight: normal;font-size: 1.3rem;">' +
+                      '<div style="display: flex;justify-content: center;padding: 20px 20px;flex-wrap: wrap;">' +
+                      '<img src="assets/images/' + coupon_logo + '" alt="ロゴ" style="width: 200px;margin: 10px auto;">' +
+
+                      '<h2 style="text-align: center;line-height: 1.5;padding: 0;font-weight: normal;font-size: 1.5rem;display: flex;flex-direction: column;justify-content: center;">' +
                       target.parentNode.parentNode.children[0].innerText + '<br>' +
-                      '<span style="border-top: 1px solid #000000;">' + target.parentNode.parentNode.children[1].innerText + '</span>' + '</h2>' +
+                      '<span style="margin: 0 auto;width:80%;height: 1px; border-top: 1px solid #000000;"></span>' + 
+                      target.parentNode.parentNode.children[1].innerText + '</h2>' + '</div>' +
                       '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2].innerText + '</p>' +
                       '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
                       '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input class="coupon_button" id="confirm_use_Coupon" type="button" value="使用する"><input class="coupon_button" id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
