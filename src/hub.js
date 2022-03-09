@@ -2739,6 +2739,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 var label_1 = document.createElement("tr");
         
                 var label_1_number = document.createElement("th");
+                label_1_number.classList.add("arrow_box")
                 label_1_number.classList.add("styleme");
                 label_1_number.setAttribute("data-augment-ui", "tl-clip tr-clip-x br-clip both");
                 var label_1_number_txt = document.createTextNode("対象店舗");
@@ -2768,6 +2769,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var row = document.createElement("tr");
               
                   var cell_1_1 = document.createElement("th");
+                  cell_1_1.classList.add("arrow_box");
                   cell_1_1.classList.add("styleme");
                   cell_1_1.setAttribute("data-augment-ui", "tl-clip tr-clip-x br-clip both");
                   var cellText_1_1 = document.createTextNode(coupon_available_list[i].shop);
@@ -2810,6 +2812,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 var label_2 = document.createElement("tr");
         
                 var label_2_number = document.createElement("th");
+                label_2_number.classList.add("arrow_box");
                 label_2_number.classList.add("styleme");
                 label_2_number.setAttribute("data-augment-ui", "tl-clip tr-clip-x br-clip both");
                 var label_2_number_txt = document.createTextNode("対象店舗");
@@ -2839,6 +2842,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var row2 = document.createElement("tr");
               
                   var cell_2_1 = document.createElement("th");
+                  cell_2_1.classList.add("arrow_box");
                   cellText_2_1.classList.add("styleme");
                   cellText_2_1.setAttribute("data-augment-ui", "tl-clip tr-clip-x br-clip both");
                   var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
