@@ -1069,7 +1069,7 @@ export function Get_Coupon(number){
             currentUserData[result[i].getName()] = result[i].getValue();
           };   
           
-          if (!alert("○○のクーポンを獲得しました!!マイページで確認しましょう。")) {
+          if (!alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。")) {
             var coupon_params = {
               TableName: 'coupon',
               Item:{
@@ -2784,6 +2784,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var Coupon_Number = i + 1;
                   var cell_1_4 = document.createElement("td");
                   cell_1_4.innerHTML = '<input class="use_Coupon" type="button" value="クーポンを使用する">';
+                  cell_1_4.classList.add("coupon_button");
         
                   row.appendChild(cell_1_4);
                   
@@ -2896,7 +2897,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       '<span style="border-top: 1px solid #000000;">' + target.parentNode.parentNode.children[1].innerText + '</span>' + '</h2>' +
                       '<p style="text-align: right; padding: 0;margin: 0 5px;font-size: 0.8rem;">獲得日時 ' + target.parentNode.parentNode.children[2].innerText + '</p>' +
                       '<p style="border-top: 2px dashed #000000;padding: 10px;">【注意事項】<br>※一度使用したクーポンは再度の取得および使用ができません。<br>※必ず店舗でご使用ください。</p>' +
-                      '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input id="confirm_use_Coupon" type="button" value="使用する"><input id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
+                      '<div id="useCouponButtonContainer"><p style="width: 100%;">ここから下の操作は<br>・店員に「使用する」ボタンを押してもらう<br>・店員合意の元、使用者自身で「使用する」ボタンを押す<br>上記いずれかをお願いします。</p><input class="coupon_button" id="confirm_use_Coupon" type="button" value="使用する"><input class="coupon_button" id="cancel_use_Coupon" type="button" value="キャンセル"></div>';
         
                     // モーダルウィンドウに中身を配置
                     modalElement.appendChild(innerElement);
