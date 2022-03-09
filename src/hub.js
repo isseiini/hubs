@@ -2848,8 +2848,8 @@ document.addEventListener("DOMContentLoaded", async () => {
               
                   var cell_2_1 = document.createElement("th");
                   cell_2_1.classList.add("arrow_box");
-                  cellText_2_1.classList.add("styleme");
-                  cellText_2_1.setAttribute("data-augmented-ui", "tl-clip tr-clip-x br-clip both");
+                  cell_2_1.classList.add("styleme");
+                  cell_2_1.setAttribute("data-augmented-ui", "tl-clip tr-clip-x br-clip both");
                   var cellText_2_1 = document.createTextNode(coupon_used_list[i].shop);
                   cell_2_1.appendChild(cellText_2_1);
                   row2.appendChild(cell_2_1);
