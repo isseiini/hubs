@@ -76,7 +76,7 @@ export class CharacterControllerSystem {
       setInterval(() => {
         this.avatarRig.object3D.getWorldPosition(avatar_position);
         minimap_player_pos.setAttribute("cx", Number(avatar_position.x - 0.4));
-        minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 62.2));
+        minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
       }, 500);
     });
   }
