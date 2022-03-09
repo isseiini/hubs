@@ -2925,9 +2925,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     document.getElementById(coupon_logo).style.display = "block";
 
-                    span1.innerText = target.parentNode.parentNode.children[0].innerText;
+                    /*span1.innerText = target.parentNode.parentNode.children[0].innerText;
                     span2.innerText = target.parentNode.parentNode.children[1].innerText;
-                    span3.innerText = "獲得日時 " + target.parentNode.parentNode.children[2].innerText;
+                    span3.innerText = "獲得日時 " + target.parentNode.parentNode.children[2].innerText;*/
         
                     // モーダルウィンドウに表示する要素を記述
                     /*innerElement.innerHTML = 
