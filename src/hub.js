@@ -2908,23 +2908,32 @@ document.addEventListener("DOMContentLoaded", async () => {
                     innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");*/
 
                     let coupon_logo;
+                    let coupon_message;
                     if(target.parentNode.parentNode.children[0].innerText == "アンドリューのエッグタルト 大阪難波駅店") {
                       coupon_logo = "coupon_logo1"
+                      coupon_message = "message_1";
                     } else if(target.parentNode.parentNode.children[0].innerText == "お好み焼き 千房 道頓堀支店") {
                       coupon_logo = "coupon_logo2";
+                      coupon_message = "message_2";
                     } else if(target.parentNode.parentNode.children[0].innerText == "串カツだるま 道頓堀店") {
                       coupon_logo = "coupon_logo3";
+                      coupon_message = "message_3";
                     } else if(target.parentNode.parentNode.children[0].innerText == "くれおーる 道頓堀店") {
                       coupon_logo = "coupon_logo4";
+                      coupon_message = "message_4";
                     } else if(target.parentNode.parentNode.children[0].innerText == "道頓堀コナモンミュージアム") {
                       coupon_logo = "coupon_logo5";
+                      coupon_message = "message_5";
                     } else if(target.parentNode.parentNode.children[0].innerText == "たこ八 道頓堀総本店") {
                       coupon_logo = "coupon_logo6";
+                      coupon_message = "message_6";
                     } else if(target.parentNode.parentNode.children[0].innerText == "なにわ名物 いちびり庵 道頓堀店") {
                       coupon_logo = "coupon_logo7";
+                      coupon_message = "message_7";
                     }
 
                     document.getElementById(coupon_logo).style.display = "block";
+                    document.getElementById(coupon_message).style.display = "block";
 
                     span1.innerText = target.parentNode.parentNode.children[0].innerText;
                     span2.innerText = target.parentNode.parentNode.children[1].innerText;
@@ -2955,6 +2964,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       //document.getElementById("hex-background").removeChild(modalElement);
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
+                      document.getElementById(coupon_message).style.display = "none";
                     }
                     
         
@@ -2989,6 +2999,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       //document.getElementById("hex-background").removeChild(modalElement);
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
+                      document.getElementById(coupon_message).style.display = "none";
                       //tblBody.removeChild(target.parentNode.parentNode);
                       //tblBody2.appendChild(target.parentNode.parentNode);
                       target.parentNode.parentNode.children[3].innerText = "ご利用いただきありがとうございます。";
