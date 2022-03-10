@@ -2793,7 +2793,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
                   var Coupon_Number = i + 1;
                   var cell_1_4 = document.createElement("td");
-                  cell_1_4.innerHTML = '<input class="use_Coupon" style="padding: 8px 15px" type="button" value="使用する">';
+                  cell_1_4.innerHTML = '<input class="use_Coupon" style="padding: 8px 15px" type="button" value="表示する">';
         
                   row.appendChild(cell_1_4);
                   
