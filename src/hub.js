@@ -2989,8 +2989,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       //document.getElementById("hex-background").removeChild(modalElement);
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
-                      tblBody.removeChild(target.parentNode.parentNode);
-                      tblBody2.appendChild(target.parentNode.parentNode);
+                      //tblBody.removeChild(target.parentNode.parentNode);
+                      //tblBody2.appendChild(target.parentNode.parentNode);
                       target.parentNode.parentNode.children[3].innerText = "ご利用いただきありがとうございます。";
                     });
                     
