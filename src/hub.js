@@ -2937,7 +2937,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     span1.innerText = target.parentNode.parentNode.children[0].innerText;
                     span2.innerText = target.parentNode.parentNode.children[1].innerText;
-                    span3.innerText = "獲得日時 " + target.parentNode.parentNode.children[2].innerText;
+                    span3.innerText = target.parentNode.parentNode.children[2].innerText;
         
                     // モーダルウィンドウに表示する要素を記述
                     /*innerElement.innerHTML = 
@@ -2975,10 +2975,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                     });
         
                     document.getElementById("confirm_use_Coupon").addEventListener('click', () => {
+                      if(
+                        span1.innerText != target.parentNode.parentNode.children[0].innerText ||
+                        span2.innerText != target.parentNode.parentNode.children[1].innerText ||
+                        span3.innerText != target.parentNode.parentNode.children[2].innerText) {
+                        return false
+                      }
                       var confirmed_coupon = {
                         TableName: 'coupon',
                         Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                          Play_ID: currentUserData["sub"] + ":" + target.parentNode.parentNode.children[2].innerText + ":" + target.parentNode.parentNode.children[0].innerText
+                          Play_ID: currentUserData["sub"] + ":" + span3.innerText + ":" + span1.innerText
                         },
                         ExpressionAttributeNames: {
                           '#available_or_used': "available_or_used",
@@ -3001,6 +3007,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
                       document.getElementById(coupon_message).style.display = "none";
+
                       tblBody.removeChild(target.parentNode.parentNode);
                       tblBody2.appendChild(target.parentNode.parentNode);
                       target.parentNode.parentNode.children[3].innerText = "ご利用いただきありがとうございます。";
