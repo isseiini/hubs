@@ -2965,6 +2965,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
                       document.getElementById(coupon_message).style.display = "none";
+                      return
                     }
                     
         
