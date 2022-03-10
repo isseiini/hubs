@@ -2888,7 +2888,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
         
                 trigger.forEach(function(target) {
-                  target.addEventListener('click', function() {
+                  target.addEventListener('click', function(event) {
                     const current_Date = get_current_Date();
                     const coupon_table = document.getElementById("coupon_table");
                     const modalElement = document.getElementById("coupon_modal");
@@ -2965,7 +2965,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       modalElement.style.display = "none";
                       document.getElementById(coupon_logo).style.display = "none";
                       document.getElementById(coupon_message).style.display = "none";
-                      return
+                      event.preventDefault;
                     }
                     
         
