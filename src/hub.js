@@ -2908,19 +2908,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     innerElement.setAttribute("data-augmented-ui", "tl-clip-x br-clip border");*/
 
                     let coupon_logo;
-                    if(target.parentNode.parentNode.children[0].innerText = "アンドリューのエッグタルト 大阪難波駅店") {
+                    if(target.parentNode.parentNode.children[0].innerText == "アンドリューのエッグタルト 大阪難波駅店") {
                       coupon_logo = "coupon_logo1"
-                    } else if(target.parentNode.parentNode.children[0].innerText = "お好み焼き 千房 道頓堀支店") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "お好み焼き 千房 道頓堀支店") {
                       coupon_logo = "coupon_logo2";
-                    } else if(target.parentNode.parentNode.children[0].innerText = "串カツだるま 道頓堀店") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "串カツだるま 道頓堀店") {
                       coupon_logo = "coupon_logo3";
-                    } else if(target.parentNode.parentNode.children[0].innerText = "くれおーる 道頓堀店") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "くれおーる 道頓堀店") {
                       coupon_logo = "coupon_logo4";
-                    } else if(target.parentNode.parentNode.children[0].innerText = "道頓堀コナモンミュージアム") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "道頓堀コナモンミュージアム") {
                       coupon_logo = "coupon_logo5";
-                    } else if(target.parentNode.parentNode.children[0].innerText = "たこ八 道頓堀総本店") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "たこ八 道頓堀総本店") {
                       coupon_logo = "coupon_logo6";
-                    } else if(target.parentNode.parentNode.children[0].innerText = "なにわ名物 いちびり庵 道頓堀店") {
+                    } else if(target.parentNode.parentNode.children[0].innerText == "なにわ名物 いちびり庵 道頓堀店") {
                       coupon_logo = "coupon_logo7";
                     }
 
