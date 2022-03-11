@@ -99,7 +99,7 @@ AFRAME.registerComponent("text", {
     // `anchor` defaults to center to match geometries.
     anchor: { default: "center", oneOf: ["left", "right", "center", "align"] },
     baseline: { default: "center", oneOf: ["top", "center", "bottom"] },
-    color: { type: "color", default: "#FFF" },
+    color: { type: "color", default: "var(--team-color)" },
     font: { type: "string", default: "roboto" },
     // `height` has no default, will be populated at layout.
     height: { type: "number" },
