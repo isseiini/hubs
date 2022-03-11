@@ -209,6 +209,10 @@ function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
 };
 
+let isCharged = false;
+
+
+
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -408,11 +412,14 @@ AFRAME.registerComponent("pen", {
       const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
-        if(this.intersection){
+        if(this.intersection && isCharged == false){
+          isCharged = true;
+          setTimeout(() => {
+            isCharged = false;
+          }, 2000);
           const AirCanonAction = document.getElementById("pen");
           AirCanonAction.setAttribute("pen-laser", {action: "true"});
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
-          console.log(targetbox)
           if (targetbox[5][1].networked) {
             this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
             document.getElementById("reticle").classList.add("extend");

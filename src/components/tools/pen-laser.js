@@ -101,16 +101,17 @@ AFRAME.registerComponent("pen-laser", {
 
     return function(prevData) {
       if (this.data.action == "true") {
+        AirCanonClip.reset();
         AirCanonClip.play();
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
         this.rotate120 += 120;
         this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)"
-        AirCanonClip.reset();
+        
       } 
       if(this.data.action == "false") {
         //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
         //current_animation.reset();
-        AirCanonClip.stop();
+        //AirCanonClip.stop();
       }
 
       if (prevData.color != this.data.color) {
