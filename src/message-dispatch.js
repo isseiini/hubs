@@ -236,7 +236,7 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
-        const HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
+        let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       }
       const Red_Score = document.getElementById("red-score");
@@ -259,7 +259,7 @@ export default class MessageDispatch extends EventTarget {
 
     if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
-        const HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
+        let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       }
       const Blue_Score = document.getElementById("blue-score");

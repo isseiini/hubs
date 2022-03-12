@@ -2357,7 +2357,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   Player_Respawn.addEventListener("click", function(){
     Player_Respawn.style.display = "none";
-    const HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
+    let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
     if(document.getElementById("score-display-top").innerText == "BlueTeam") {
       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
