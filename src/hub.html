@@ -186,6 +186,14 @@
     #chat-terms {
       overflow-y: scroll;
       height: 200px;
+      -ms-overflow-style: none;    /* IE, Edge 対応 */
+      scrollbar-width: none;       /* Firefox 対応 */
+      background-color: #d8d8d8;
+      padding: 10px 15px;
+    }
+
+    #chat-terms::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+      display:none;
     }
 
     #hex-background {
