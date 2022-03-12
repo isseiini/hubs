@@ -29,6 +29,7 @@ export function RoomEntryModal({
   ...rest
 }) {
   const breakpoint = useCssBreakpoints();
+
   return (
     <Modal className={classNames(styles.roomEntryModal, className)} disableFullscreen {...rest}>
       <Column center className={styles.content}>
@@ -38,13 +39,12 @@ export function RoomEntryModal({
               <img src={logoSrc} alt={appName} />
             </div>
           )}
-        <div className={styles.roomName}>
+        <div id="enter-modal" className={styles.roomName}>
           <h5>
-            <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="バーチャル道頓堀" />
+            <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="ようこそバーチャル道頓堀へ" />
           </h5>
-          <p>{roomName}</p>
-          <p>入場される前に規約をご確認ください。</p>
-          <p>規約本文</p>
+          
+          
         </div>
         <Column center className={styles.buttons}>
           {showJoinRoom && (
@@ -71,18 +71,7 @@ export function RoomEntryModal({
               </span>
             </Button>
           )}
-          {showOptions &&
-            breakpoint !== "sm" && (
-              <>
-                <hr className={styleUtils.showLg} />
-                <Button preset="transparent" className={styleUtils.showLg} onClick={onOptions}>
-                  <SettingsIcon />
-                  <span>
-                    <FormattedMessage id="room-entry-modal.options-button" defaultMessage="Options" />
-                  </span>
-                </Button>
-              </>
-            )}
+          
         </Column>
       </Column>
     </Modal>
