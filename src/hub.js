@@ -2359,6 +2359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
     let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
+    console.log(HanabiAction)
     if(document.getElementById("score-display-top").innerText == "BlueTeam") {
       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);

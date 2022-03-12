@@ -238,6 +238,7 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+        console.log(HanabiAction)
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
@@ -261,6 +262,7 @@ export default class MessageDispatch extends EventTarget {
       if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
+        console.log(HanabiAction)
       }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
