@@ -42,7 +42,7 @@ export function MicSetupModal({
     >
       <Column center padding className={styles.content}>
         <p>入場される前に規約をご確認ください。</p>
-        <p style="overflow-y: scroll;height: 200px;">
+        <p id="chat-terms">
           テキストチャット及びボイスチャットの利用における合意のお願い<br/><br/>
 
           A.チャット利用データ取得について<br/>
