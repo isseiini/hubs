@@ -182,7 +182,7 @@ AFRAME.registerComponent("pen-laser", {
         //this.laser.position.copy(origin);
         //this.laser.lookAt(target);
         ///this.AirCanonMesh.position.copy(origin);
-        //this.AirCanonMesh.position.copy(origin)
+        this.AirCanonMesh.position.copy(origin)
         this.AirCanonMesh.lookAt(target);
         this.AirCanonMesh.matrixNeedsUpdate = true;
         //this.laser.scale.set(1, 1, origin.distanceTo(target));

@@ -408,7 +408,7 @@ AFRAME.registerComponent("pen", {
 
     if (this.grabberId && pathsMap[this.grabberId]) {
       const sfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-      const AirCanonAction = document.getElementById("pen");
+      //const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
         if(this.intersection && isCharged == false){
