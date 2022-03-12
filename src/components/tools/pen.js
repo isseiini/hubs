@@ -101,7 +101,7 @@ AFRAME.registerComponent("hanabi-animation", {
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
     HanabiClip = this.loadingClip;
-    //HanabiClip.setLoop(THREE.LoopOnce);
+    HanabiClip.setLoop(THREE.LoopOnce);
     HanabiSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;

@@ -65,7 +65,7 @@ AFRAME.registerComponent("pen-laser", {
     });
     
     AirCanonClip = this.loadingClip;
-    //AirCanonClip.setLoop(THREE.LoopOnce);
+    AirCanonClip.setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
@@ -102,8 +102,11 @@ AFRAME.registerComponent("pen-laser", {
 
     return function(prevData) {
       if (this.data.action == "true") {
-        AirCanonClip.reset();
+        //AirCanonClip.reset();
         AirCanonClip.play();
+        setTimeout(() => {
+          AirCanonClip.stop();
+        }, 2000);
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
         this.rotate120 += 120;
         this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)"
