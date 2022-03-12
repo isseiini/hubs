@@ -2556,7 +2556,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
   
-  document.getElementById("path-to-hubs").addEventListener("click", function() {
+  document.getElementById("hubs-middle").addEventListener("click", function() {
   
     const cognito_mine = userPool.getCurrentUser();
     if(cognito_mine == null){
@@ -2575,7 +2575,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   })
 
-  document.getElementById("path-to-VRChat").addEventListener("click", function() {
+  document.getElementById("VRChat-middle").addEventListener("click", function() {
     location.href = "https://vrch.at/wrld_4432ea9b-729c-46e3-8eaf-846aa0a37fdd";
   })
   

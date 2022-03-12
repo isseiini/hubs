@@ -175,6 +175,9 @@
       --display4:none;
       --display5:none;
       --display6:none;
+
+      --hex-width: 40px;
+      --hex-width-reverse: calc(8px - var(--hex-width));
     }
 
     @media (min-width: 1000px) {
@@ -213,6 +216,304 @@
       padding-top: 50px;
       z-index: 10000;
       overflow-y: scroll;
+    }
+
+    #terms-container {
+      position: fixed;
+      background-color: #aaaaaa;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 100000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #terms {
+      width: 90%;
+      max-width: 600px;
+      height: 90%;
+      max-height: 800px;
+      overflow-y: scroll;
+      -ms-overflow-style: none;    /* IE, Edge 対応 */
+      scrollbar-width: none;       /* Firefox 対応 */
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px 25px;
+      position: relative;
+      border: 2px solid #00fff2;
+    }
+
+    #terms::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+      display:none;
+    }
+
+    #confirm-terms {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #aaaaaa;
+      text-align: center;
+      
+    }
+
+    #confirm-terms-button {
+      background-color: #d8d8d8;
+      padding: 10px 15px;
+   
+      font-size: 1.6rem;
+      border: 1px solid #00e1ff63;
+    }
+
+    .contents-container {
+      width: 100%;
+      padding: 5px;
+      letter-spacing: 1.5px;
+      font-size: 1.5rem;
+      color: #ffffff;
+    }
+
+    .contents-container h3 {
+      color: yellow;
+      font-weight: normal;
+    }
+
+    #hubs-top {
+      --aug-b-extend1: calc(var(--hex-width) + 6px);
+      --aug-b1-width:calc(var(--hex-width) * 0.5);
+      --aug-b1-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-b2-width: calc(var(--hex-width) * 0.5);
+      --aug-b2-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-b-inset1: 0px;
+      --aug-b-center: calc(50%);
+
+      --aug-bl-inset2: 0%;
+      --aug-bl-extend2: calc(100% - 65px);
+
+      background-image: url("images/image (4).png");
+      background-size: cover;
+      
+      width: 100%;
+      height: 200px;
+
+      position: relative;
+    }
+
+    #hubs-container-top {
+      width: 100%;
+      height: 200px;
+      background-color: #00fff2;
+
+      --aug-tr: 26px;
+      --aug-bl: 26px;
+      --aug-br: 11px;
+      
+      background-image: repeating-linear-gradient(90deg,rgb(97, 97, 97) 0, rgb(97, 97, 97) 6px,transparent 6px, transparent 100%);
+    }
+
+    #hubs-middle {
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      --aug-border-all: 4px;
+      --aug-border-bg: red;
+      --aug-all-width: calc(var(--hex-width) * 2);
+      margin: var(--hex-width-reverse) auto;
+      background-color: rgba(0, 0, 0, 0.2);
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,rgb(97, 97, 97) 1.5px, rgb(97, 97, 97) 3px);
+    }
+
+    #hubs-bottom {
+      --aug-t-extend1: calc(var(--hex-width) + 6px);
+      --aug-t1-width:calc(var(--hex-width) * 0.5);
+      --aug-t1-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-t2-width: calc(var(--hex-width) * 0.5);
+      --aug-t2-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-t-inset1: 0px;
+      --aug-b-extend1: 60%;
+      --aug-b1: 3px;
+      --aug-l-extend1: 60%;
+      --aug-l: 3px;
+      --aug-r-extend1: 60%;
+      --aug-r: 3px;
+
+      width: 100%;
+      height: 550px;
+      padding: 40px 10px 30px 10px;
+      background-color: rgb(97, 97, 97);
+      position: relative;
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,rgb(97, 97, 97) 1.5px, rgb(97, 97, 97) 3px);
+    }
+
+    #hubs-container-bottom {
+      width: 100%;
+      background-color: #00fff2;
+
+      --aug-tr: 11px;
+      --aug-tl: 11px;
+      
+      
+    }
+
+    #VRChat-top {
+      --aug-b-extend1: calc(var(--hex-width) + 6px);
+      --aug-b1-width:calc(var(--hex-width) * 0.5);
+      --aug-b1-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-b2-width: calc(var(--hex-width) * 0.5);
+      --aug-b2-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-b-inset1: 0px;
+      --aug-b-center: calc(50%);
+
+      --aug-br-inset1: 0%;
+      --aug-br-extend1: calc(100% - 65px);
+
+      width: 100%;
+      height: 200px;
+
+      background-image: url("images/VRChat_1920x1080_2022-03-12_08-46-41.820.png");
+      background-size: cover;
+    }
+
+    #VRChat-container-top {
+      width: 100%;
+      height: 200px;
+      background-color: #00fff2;
+
+      --aug-tl: 26px;
+      --aug-br: 26px;
+      --aug-bl: 11px;
+      
+      background-image: repeating-linear-gradient(90deg, transparent 0px, transparent calc(100% - 6px), rgb(97, 97, 97) calc(100% - 6px), rgb(97, 97, 97) 100%);
+    }
+
+    #VRChat-middle {
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      --aug-border-all: 4px;
+      --aug-border-bg: red;
+      --aug-all-width: calc(var(--hex-width) * 2);
+      margin: var(--hex-width-reverse) auto;
+      background-color: rgba(0, 0, 0, 0.2);
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,rgb(97, 97, 97) 1.5px, rgb(97, 97, 97) 3px);
+    }
+
+    #VRChat-bottom {
+      --aug-t-extend1: calc(var(--hex-width) + 6px);
+      --aug-t1-width:calc(var(--hex-width) * 0.5);
+      --aug-t1-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-t2-width: calc(var(--hex-width) * 0.5);
+      --aug-t2-height: calc(var(--hex-width) * 0.5 * 1.73205080757);
+      --aug-t-inset1: 0px;
+      --aug-b-extend1: 60%;
+      --aug-b1: 3px;
+      --aug-l-extend1: 60%;
+      --aug-l: 3px;
+      --aug-r-extend1: 60%;
+      --aug-r: 3px;
+
+      width: 100%;
+      height: 550px;
+      padding: 40px 10px 30px 10px;
+      background-color: rgb(97, 97, 97);
+     
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,transparent 1.5px, transparent 3px);
+    }
+
+    #VRChat-container-bottom {
+      width: 100%;
+      background-color: #00fff2;
+
+      --aug-tr: 11px;
+      --aug-tl: 11px;
+      
+      
+    }
+
+    #main1-top {
+      --aug-b-extend1: 25px;
+      --aug-b1-width:7px;
+      --aug-b1-height: 10px;
+      --aug-b2-width: 7px;
+      --aug-b2-height: 10px;
+      --aug-b-inset1: 0px;
+      --aug-b-center: calc(50%);
+
+      --aug-bl-inset2: 0%;
+      --aug-bl-extend2: 70%;
+
+      width: 100%;
+      height: 70px;
+    }
+
+    #main1-middle {
+      --aug-all-width: 32px;
+      margin: -7px auto -18px auto;
+      background-color: var(--main-color);
+    }
+
+    #main1-bottom {
+      --aug-t-extend1: 10px;
+      --aug-t1-width:14px;
+      --aug-t1-height: 24px;
+      --aug-t2-width: 14px;
+      --aug-t2-height: 24px;
+      --aug-t-inset1: 0px;
+      --aug-b-extend1: 60%;
+      --aug-b1: 5px;
+
+      width: 100%;
+      height: 350px;
+      position: relative;
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,transparent 1.5px, transparent 3px);
+    }
+
+    #main2-top {
+      --aug-b-extend1: 25px;
+      --aug-b1-width:7px;
+      --aug-b1-height: 10px;
+      --aug-b2-width: 7px;
+      --aug-b2-height: 10px;
+      --aug-b-inset1: 0px;
+      --aug-b-center: calc(50%);
+
+      --aug-bl-inset2: 0%;
+      --aug-bl-extend2: 70%;
+
+      width: 100%;
+      height: 70px;
+    }
+
+    #main2-middle {
+      --aug-all-width: 32px;
+      margin: -7px auto -18px auto;
+      background-color: var(--main-color);
+    }
+
+    #main2-bottom {
+      --aug-t-extend1: 10px;
+      --aug-t1-width:14px;
+      --aug-t1-height: 24px;
+      --aug-t2-width: 14px;
+      --aug-t2-height: 24px;
+      --aug-t-inset1: 0px;
+      --aug-b-extend1: 60%;
+      --aug-b1: 5px;
+
+      width: 100%;
+      height: 350px;
+      position: relative;
+      background-image: repeating-linear-gradient(#6e6b6b 0, #6e6b6b 1.5px,transparent 1.5px, transparent 3px);
+    }
+
+    .pathes {
+      background-color: rgba(0, 0, 0, 0.2);
+     
+      --aug-border-all: 1px;
+      --aug-border-bg: #00fff2;
     }
 
     #path-to-world {
@@ -983,7 +1284,7 @@
     <div id="hex-background">
 
 
-      <div id="path-to-world" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-round-inset bl-round-inset both" class="styleme">
+      <!--<div id="path-to-world" data-augmented-ui="tl-2-clip-x tr-2-clip-x br-round-inset bl-round-inset both" class="styleme">
         <h1>バーチャル道頓堀に入場する</h1>
         <div id="path-to-hubs" data-augmented-ui="tl-2-clip-xy tr-2-rect-y br-2-rect-y both" class="styleme">
           <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_14_27.png" style="object-fit:cover;" alt="">
@@ -992,6 +1293,89 @@
         <div id="path-to-VRChat" data-augmented-ui="tl-2-rect-y tr-2-clip-xy bl-2-rect-y both" class="styleme">
           <img src="assets/images/Dotonbori_VRChat_001 - Doutonbori_World - PC, Mac & Linux Standalone - Unity 2019.4.29f1 Personal [PREVIEW PACKAGES IN USE] _DX11_ 2021_12_20 17_17_12.png" style="object-fit: cover;" alt="">
           <h1>VRChat</h1>
+        </div>
+      </div>-->
+
+      <div style="display:flex;justify-content:center;gap: 5px 15px;margin: 50px auto;">
+        <div style="width: 300px;">
+          <div id="hubs-container-top" data-augmented-ui="tr-clip bl-clip br-clip" class="styleme">
+            <div id="hubs-top" data-augmented-ui="b-clip-x bl-2-clip-y tr-2-clip-x br-clip border" class="styleme pathes">
+              <p data-augmented-ui=" br-2-clip-x border" class="styleme" style="background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.4) 1.5px,transparent 1.5px, transparent 3px);--aug-border-all:1px;background-color: rgba(0, 0, 0, 0.6);width: calc(100% - 30px);height: 50px;color: yellow;font-size: 1.7rem;font-weight: bold;text-align: center;letter-spacing: 3px;display: flex;flex-direction: column;justify-content: center;">hubs</p>
+            </div>
+          </div>
+          
+          <div id="hubs-middle" data-augmented-ui="all-hex-alt border">
+            <div style="display: flex;justify-content: center;">
+              <p style="height:70px;display: flex; flex-direction: column;justify-content: center; color: #ffffff;font-size: 1.5rem;">Play</p>
+              <div data-augmented-ui="all-hexangle-right" style="background-color: red;--aug-all-width:15px;margin: auto 5px;"></div>
+            </div>
+          </div>
+    
+          <div id="hubs-container-bottom" data-augmented-ui="tl-clip tr-clip" class="styleme">
+            <div id="hubs-bottom" data-augmented-ui="l-clip-y r-clip-y t-clip-xy tr-clip tl-clip b-clip-x  border" class="styleme pathes">
+              <div class="contents-container">
+                <h3>できること</h3>
+                <p>
+                  ・道頓堀の街を再現したバーチャルワールドの散策<br>
+                  ・シューティングゲーム
+                </p><br>
+                <h3>対象ユーザー</h3>
+                <p>
+                  ・VR機器のみ、またはPCのみを持っている方<br>
+                  ・スマホのみ持っている方<br>
+                  ・より手軽にバーチャル道頓堀を体験したい方</p><br>
+                <h3>必要なもの</h3>
+                <p>
+                  ①バージョン道頓堀のアカウントを作成しログイン<br>
+                  (右下のメニューボタンをクリックし「ログイン・新規登録」画面へ移動してください)<br>
+                  →「Play」ボタンをクリック
+                </p><br>
+              </div>
+              <div style="position:absolute;bottom: 0;width:100%;">
+                <p style="color: #ffffff;text-align: center;">クリックして閉じる</p>
+                <div data-augmented-ui="all-triangle-up" style="background-color: #ffffff;--aug-all-width:10px;margin: 10px auto;"></div>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+    
+        <div style="width: 300px;">
+          <div id="VRChat-container-top" data-augmented-ui="tl-clip bl-clip br-clip" class="styleme">
+            <div id="VRChat-top" data-augmented-ui="b-clip-x br-2-clip-y tl-2-clip-x bl-clip border" class="styleme pathes">
+              <p data-augmented-ui=" bl-2-clip-x border" class="styleme" style="background-image: repeating-linear-gradient(rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.4) 1.5px,transparent 1.5px, transparent 3px);margin: 0 0 0 auto;--aug-border-all:1px;background-color: rgba(0, 0, 0, 0.6);width: calc(100% - 30px);height: 50px;color: yellow;font-size: 1.7rem;font-weight: bold;text-align: center;letter-spacing: 3px;display: flex;flex-direction: column;justify-content: center;">VRChat</p>
+            </div>
+          </div>
+          <div id="VRChat-middle" data-augmented-ui="all-hex-alt border">
+            <div style="display: flex;justify-content: center;">
+              <p style="height:70px;display: flex; flex-direction: column;justify-content: center; color: #ffffff;font-size: 1.5rem;">Play</p>
+              <div data-augmented-ui="all-hexangle-right" style="background-color: red;--aug-all-width:15px;margin: auto 5px;"></div>
+            </div>
+          </div>
+          <div id="VRChat-container-bottom" data-augmented-ui="tl-clip tr-clip" class="styleme">
+            <div id="VRChat-bottom" data-augmented-ui="l-clip-y r-clip-y t-clip-xy tr-clip tl-clip b-clip-x  border" class="styleme pathes">
+              <div class="contents-container">
+                <h3>できること</h3>
+                <p>
+                  ・道頓堀の街を再現したバーチャルワールドの散策<br>
+                  ・パルクールゲームとテーブルゲーム
+                </p><br>
+                <h3>対象ユーザー</h3>
+                <p>・VR機器とVRに対応したスペックのPCの両方を持っている方<br>
+                  ・より深くバーチャル道頓堀を体験したい方</p><br>
+                <h3>必要なもの</h3>
+                <p>
+                  ①VRChatのアカウント<br>
+                  ②VRChatに適した性能のPC<br>
+                  →「Play」ボタンをクリック
+                </p><br><br>
+              </div>
+              <div style="position:absolute;bottom: 0;width:100%;">
+                <p style="color: #ffffff;text-align: center;">クリックして閉じる</p>
+                <div data-augmented-ui="all-triangle-up" style="background-color: #ffffff;--aug-all-width:10px;margin: 10px auto;"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
