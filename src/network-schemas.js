@@ -358,6 +358,12 @@ function registerNetworkSchemas() {
         selector: "#pen",
         component: "pen-laser",
         property: "remoteLaserOrigin"
+      },
+      {
+        selector: "#pen",
+        component: "pen-laser",
+        property: "position",
+        requiresNetworkUpdate: vectorRequiresUpdate(0.0001)
       }
     ]
   });
