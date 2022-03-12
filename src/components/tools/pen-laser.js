@@ -65,6 +65,7 @@ AFRAME.registerComponent("pen-laser", {
     });
     
     AirCanonClip = this.loadingClip;
+    AirCanonClip.setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
     let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
