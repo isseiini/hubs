@@ -170,6 +170,8 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
+window.scrollTo(0,0);
+
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
