@@ -417,7 +417,7 @@ AFRAME.registerComponent("pen", {
           setTimeout(() => {
             isCharged = false;
           }, 2000);
-          const AirCanonAction = document.getElementById("pen");
+          const AirCanonAction = document.querySelector(".aircanon");//document.getElementById("pen");
           AirCanonAction.setAttribute("pen-laser", {action: "true"});
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
           if (targetbox[5][1].networked) {
