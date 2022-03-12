@@ -170,8 +170,6 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
-window.scrollTo(0,0);
-
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
@@ -1832,6 +1830,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   hubPhxChannel
     .join()
     .receive("ok", async data => {
+      window.scrollTo(0,0);
       socket.params().session_id = data.session_id;
       socket.params().session_token = data.session_token;
 
