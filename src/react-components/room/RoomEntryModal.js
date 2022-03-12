@@ -40,11 +40,7 @@ export function RoomEntryModal({
             </div>
           )}
         <div id="enter-modal" className={styles.roomName}>
-          <h5>
-            <FormattedMessage id="room-entry-modal.room-name-label" defaultMessage="ようこそバーチャル道頓堀へ" />
-          </h5>
-          
-          
+          <p>ようこそバーチャル道頓堀へ</p>
         </div>
         <Column center className={styles.buttons}>
           {showJoinRoom && (
