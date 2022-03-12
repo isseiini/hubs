@@ -54,7 +54,7 @@ function registerNetworkSchemas() {
       {
         selector: ".sanshakudama",
         component: "hanabi-animation",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
+        property: "action"
       },
       {
         selector: ".left-controller",
