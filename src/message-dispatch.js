@@ -93,7 +93,6 @@ export default class MessageDispatch extends EventTarget {
     
     const lifeBar = document.getElementById('life-background')
     var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
-    const Player_Respawn = document.getElementById("Player-Respawn");
     /*const Player_UI = document.getElementById("Player-Ui");
     Player_UI.classList.add("moveToRight");
     Player_UI.classList.remove("moveToRight");*/
@@ -122,7 +121,6 @@ export default class MessageDispatch extends EventTarget {
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event3);
   
-        Player_Respawn.style.display = "block";
         //const general_scene = document.querySelector("a-scene");
         //general_scene.pause();
         life = 100  
@@ -253,6 +251,9 @@ export default class MessageDispatch extends EventTarget {
         Red_Score.innerText = "0";
         Red_Progress.value = 0;
         return
+      } else {
+        const Player_Respawn = document.getElementById("Player-Respawn");
+        Player_Respawn.style.display = "block";
       }
       Red_Score.innerText = current_Red_Score;
       return
@@ -277,6 +278,9 @@ export default class MessageDispatch extends EventTarget {
         Blue_Score.innerText = "0";
         Blue_Progress.value = 0;
         return
+      } else {
+        const Player_Respawn = document.getElementById("Player-Respawn");
+        Player_Respawn.style.display = "block";
       }
       Blue_Score.innerText = current_Blue_Score;
       return
