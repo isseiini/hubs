@@ -346,6 +346,7 @@ export default class MessageDispatch extends EventTarget {
       Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
+        scene.play();
       }, 30000);
       return
     };
@@ -365,6 +366,7 @@ export default class MessageDispatch extends EventTarget {
       Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
+        scene.play();
       }, 30000);
       return
     };

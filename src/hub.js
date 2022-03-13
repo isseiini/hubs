@@ -176,6 +176,24 @@ let sec = 0;
 let interval;
 let isStart = false;
 
+const Red_Score = document.getElementById("red-score");
+const Blue_Score = document.getElementById("blue-score");
+var hit_target_container = document.getElementById("hit_target_container");
+
+if (current_Red_Score >= 25) {
+  var hit_target2 = "_Win_Red";
+  var event2 = new Event('change');
+  var hit_target_container = document.getElementById("hit_target_container");
+  hit_target_container.value = hit_target2;
+  hit_target_container.dispatchEvent(event2);
+  Red_Score.innerText = "0";
+  Red_Progress.value = 0;
+  return
+} else {
+  const Player_Respawn = document.getElementById("Player-Respawn");
+  Player_Respawn.style.display = "block";
+}
+
 function count_start() {
   if(isStart === false) {
     interval = setInterval(count_down, 1000);
@@ -189,6 +207,36 @@ function count_down(){
     display.style.color = 'red';
     display.innerHTML = "TIME UP!";
     clearInterval(interval);
+    if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
+      var hit_target2 = "_Win_Red";
+      var event2 = new Event('change');
+      
+      hit_target_container.value = hit_target2;
+      hit_target_container.dispatchEvent(event2);
+    } else if(Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
+      var hit_target2 = "_Win_Blue";
+      var event2 = new Event('change');
+      
+      hit_target_container.value = hit_target2;
+      hit_target_container.dispatchEvent(event2);
+    } else {
+      const scene = document.querySelector("a-scene");
+      scene.pause();
+      const Game_Result = document.getElementById("game-progress-origin");
+      const Game_Result1 = document.getElementById("game-progress-main");
+      const Game_Result2 = document.getElementById("game-progress-cover1");
+      const Game_Result3 = document.getElementById("game-progress-cover2");
+      const Game_Result_sub = document.getElementById("game-progress-sub");
+      Game_Result1.innerText = "Game Finish";
+      Game_Result2.innerText = "Game Finish";
+      Game_Result3.innerText = "Game Finish";
+      Game_Result_sub.innerText = "引き分けです";
+      Game_Result.style.display = "flex";
+      setTimeout(() => {
+        Game_Result.style.display = "none";
+        scene.play();
+      }, 30000);
+    }
   } else {
     timeCount--;
     min = Math.floor(timeCount / 60);
