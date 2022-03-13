@@ -105,7 +105,7 @@ AFRAME.registerComponent("pen-laser", {
         //AirCanonClip.reset();
         AirCanonClip.play();
         setTimeout(() => {
-          AirCanonClip.reset();
+          AirCanonClip.stop();
         }, 2000);
         ShootingSfx.playSoundOneShot(SOUND_SHOOT);
         this.rotate120 += 120;

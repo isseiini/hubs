@@ -46,13 +46,13 @@ let uiRoot;
 window.BlueSum = 0;
 window.RedSum = 0;
 
-waitForDOMContentLoaded().then(() => {
-  var hit_target_container = document.getElementById("hit_target_container");
-  const Game_Result = document.getElementById("Game-Result");
-  const Red_Score = document.getElementById("red-score");
-});
-
 const playerMine = Math.random().toString(36).slice(-8);
+
+const Game_Result = document.getElementById("game-progress-origin");
+const Game_Result1 = document.getElementById("game-progress-main");
+const Game_Result2 = document.getElementById("game-progress-cover1");
+const Game_Result3 = document.getElementById("game-progress-cover2");
+const Game_Result_sub = document.getElementById("game-progress-sub");
 
 /*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
@@ -330,16 +330,28 @@ export default class MessageDispatch extends EventTarget {
     if (entry.type ==="chat" && entry.body.indexOf("_Win_Red") === 0){
       const scene = document.querySelector("a-scene");
       scene.pause();
-      const Game_Result = document.getElementById("Game-Result");
+      Game_Result1.innerText = "Game Finish";
+      Game_Result2.innerText = "Game Finish";
+      Game_Result3.innerText = "Game Finish";
+      Game_Result_sub.innerText = "レッドチームの勝ちです";
       Game_Result.style.display = "block";
+      setTimeout(() => {
+        Game_Result.style.display = "none";
+      }, 30000);
       return
     };
 
     if (entry.type ==="chat" && entry.body.indexOf("_Win_Blue") === 0){
       const scene = document.querySelector("a-scene");
       scene.pause();
-      const Game_Result = document.getElementById("Game-Result");
+      Game_Result1.innerText = "Game Finish";
+      Game_Result2.innerText = "Game Finish";
+      Game_Result3.innerText = "Game Finish";
+      Game_Result_sub.innerText = "ブルーチームの勝ちです";
       Game_Result.style.display = "block";
+      setTimeout(() => {
+        Game_Result.style.display = "none";
+      }, 30000);
       return
     };
 

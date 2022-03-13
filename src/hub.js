@@ -1830,7 +1830,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   hubPhxChannel
     .join()
     .receive("ok", async data => {
-      window.scrollTo(0,0);
       socket.params().session_id = data.session_id;
       socket.params().session_token = data.session_token;
 
@@ -3243,8 +3242,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.body.removeChild(modalElement);
   }*/
 
-  const Game_Restart = document.getElementById("Game-Restart");
-  const Game_Result = document.getElementById("Game-Result");
+  /*const Game_Restart = document.getElementById("Game-Restart");
+  const Game_Result = document.getElementById("game-progress-origin");
   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
   Game_Restart.addEventListener("click", function(){
     Game_Result.style.display = "none";
@@ -3261,5 +3260,5 @@ document.addEventListener("DOMContentLoaded", async () => {
       characterController.teleportTo(respawn_point2);
     }
     scene.play();
-  })
+  })*/
 });
