@@ -180,20 +180,6 @@ const Red_Score = document.getElementById("red-score");
 const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
-if (current_Red_Score >= 25) {
-  var hit_target2 = "_Win_Red";
-  var event2 = new Event('change');
-  var hit_target_container = document.getElementById("hit_target_container");
-  hit_target_container.value = hit_target2;
-  hit_target_container.dispatchEvent(event2);
-  Red_Score.innerText = "0";
-  Red_Progress.value = 0;
-  return
-} else {
-  const Player_Respawn = document.getElementById("Player-Respawn");
-  Player_Respawn.style.display = "block";
-}
-
 function count_start() {
   if(isStart === false) {
     interval = setInterval(count_down, 1000);
