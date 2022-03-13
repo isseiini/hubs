@@ -2020,6 +2020,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
+                  const Game_Result = document.getElementById("game-progress-origin");
+                  Game_Result.style.display = "flex"; 
                   alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\n25ポイントを先取したチームの勝利です。\n\n[操作方法]\n\n射撃モードに移行：Pキー\n\n射撃：射撃モードでクリック\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
                   const naf_tree = Object.keys(NAF.connection.entities.entities)
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
@@ -2036,6 +2038,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
+                      Game_Result.style.display = "none";
                       const nametagEl = document.querySelector(".nametag");
                       nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)"});
                     } else {
@@ -2045,13 +2048,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
+                      Game_Result.style.display = "none";
                       const nametagEl = document.querySelector(".nametag");
                       nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)"});
                     }
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
-                  }, 1000);
+                  }, 2000);
                   
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 

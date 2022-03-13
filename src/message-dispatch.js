@@ -330,11 +330,16 @@ export default class MessageDispatch extends EventTarget {
     if (entry.type ==="chat" && entry.body.indexOf("_Win_Red") === 0){
       const scene = document.querySelector("a-scene");
       scene.pause();
+      const Game_Result = document.getElementById("game-progress-origin");
+      const Game_Result1 = document.getElementById("game-progress-main");
+      const Game_Result2 = document.getElementById("game-progress-cover1");
+      const Game_Result3 = document.getElementById("game-progress-cover2");
+      const Game_Result_sub = document.getElementById("game-progress-sub");
       Game_Result1.innerText = "Game Finish";
       Game_Result2.innerText = "Game Finish";
       Game_Result3.innerText = "Game Finish";
       Game_Result_sub.innerText = "レッドチームの勝ちです";
-      Game_Result.style.display = "block";
+      Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
       }, 30000);
@@ -344,11 +349,16 @@ export default class MessageDispatch extends EventTarget {
     if (entry.type ==="chat" && entry.body.indexOf("_Win_Blue") === 0){
       const scene = document.querySelector("a-scene");
       scene.pause();
+      const Game_Result = document.getElementById("game-progress-origin");
+      const Game_Result1 = document.getElementById("game-progress-main");
+      const Game_Result2 = document.getElementById("game-progress-cover1");
+      const Game_Result3 = document.getElementById("game-progress-cover2");
+      const Game_Result_sub = document.getElementById("game-progress-sub");
       Game_Result1.innerText = "Game Finish";
       Game_Result2.innerText = "Game Finish";
       Game_Result3.innerText = "Game Finish";
       Game_Result_sub.innerText = "ブルーチームの勝ちです";
-      Game_Result.style.display = "block";
+      Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
       }, 30000);
