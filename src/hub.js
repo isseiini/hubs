@@ -189,6 +189,9 @@ function count_start() {
 
 function count_down(){
   if(timeCount === 1){
+    const Red_Score = document.getElementById("red-score");
+    const Blue_Score = document.getElementById("blue-score");
+    var hit_target_container = document.getElementById("hit_target_container");
     var display = document.getElementById("time");
     display.style.color = 'red';
     display.innerHTML = "TIME UP!";
