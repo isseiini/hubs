@@ -220,7 +220,7 @@ AFRAME.registerComponent("pen", {
     minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point 
     camera: { type: "selector" },
     drawingManager: { type: "string" },
-    color: { type: "color", default: "rgb(0, 243, 235)" },
+    color: { type: "color", default: "transparent" }, //rgb(0, 243, 235)
     availableColors: {
       default: [
         "#FF0033",
