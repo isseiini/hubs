@@ -52,8 +52,8 @@
 }
 
 :local(.toolbar) {
-  grid-row-start: toolbar;
-  grid-column-end: -1;
+  /*grid-row-start: toolbar;
+  grid-column-end: -1;*/
   position: fixed;
   width: 100vw;
   bottom: 0;
