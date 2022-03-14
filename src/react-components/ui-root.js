@@ -597,6 +597,22 @@ class UIRoot extends Component {
   };
 
   onAudioReadyButton = async () => {
+    // Chrome & Firefox v64以降
+    if( document.body.requestFullscreen ) {
+      document.body.requestFullscreen();
+      
+    // Firefox v63以前
+    } else if( document.body.mozRequestFullScreen ) {
+      document.body.mozRequestFullScreen();
+
+    // Safari & Edge & Chrome v68以前
+    } else if( document.body.webkitRequestFullscreen ) {
+      document.body.webkitRequestFullscreen();
+      
+    // IE11
+    } else if( document.body.msRequestFullscreen ) {
+      document.body.msRequestFullscreen();
+    }	
     if (!this.state.enterInVR) {
       await showFullScreenIfAvailable();
     }
@@ -797,22 +813,7 @@ class UIRoot extends Component {
           roomName={this.props.hub.name}
           showJoinRoom={!this.state.waitingOnAudio && !this.props.entryDisallowed}
           onJoinRoom={() => {
-            // Chrome & Firefox v64以降
-            if( document.body.requestFullscreen ) {
-              document.body.requestFullscreen();
-              
-            // Firefox v63以前
-            } else if( document.body.mozRequestFullScreen ) {
-              document.body.mozRequestFullScreen();
-
-            // Safari & Edge & Chrome v68以前
-            } else if( document.body.webkitRequestFullscreen ) {
-              document.body.webkitRequestFullscreen();
-              
-            // IE11
-            } else if( document.body.msRequestFullscreen ) {
-              document.body.msRequestFullscreen();
-            }	
+            
             if (promptForNameAndAvatarBeforeEntry || !this.props.forcedVREntryType) {
               this.setState({ entering: true });
               this.props.hubChannel.sendEnteringEvent();
