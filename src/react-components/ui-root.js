@@ -200,6 +200,7 @@ class UIRoot extends Component {
   };
 
   constructor(props) {
+    window.scrollTo(0,0);
     super(props);
 
     props.mediaSearchStore.setHistory(props.history);
@@ -210,6 +211,7 @@ class UIRoot extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    window.scrollTo(0,0);
     const { hubChannel, showSignInDialog } = this.props;
     if (hubChannel) {
       const { signedIn } = hubChannel;
@@ -436,10 +438,12 @@ class UIRoot extends Component {
     if (this.props.onLoaded) {
       this.props.onLoaded();
     }
+    window.scrollTo(0,0);
   };
 
   onSceneLoaded = () => {
     this.setState({ sceneLoaded: true });
+    window.scrollTo(0,0);
   };
 
   onShareVideoEnabled = e => {
@@ -783,7 +787,7 @@ class UIRoot extends Component {
   renderEntryStartPanel = () => {
     const { hasAcceptedProfile, hasChangedName } = this.props.store.state.activity;
     const promptForNameAndAvatarBeforeEntry = this.props.hubIsBound ? !hasAcceptedProfile : !hasChangedName;
-
+    
     // TODO: What does onEnteringCanceled do?
     return (
       <>

@@ -1060,7 +1060,7 @@ export function Get_Coupon(number){
   let shop_content;
 
   if(number == 1){
-    shop_name = "アンドリューのエッグタルト 大阪難波駅店";
+    shop_name = "アンドリューのエッグタルト 道頓堀本店";
     shop_content = "5個お買い上げ毎にエッグタルトを1個サービス";
   } else if(number == 2) {
     shop_name = "お好み焼き 千房 道頓堀支店";
@@ -1135,7 +1135,6 @@ export function Get_Coupon(number){
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  window.scrollTo(0,0);
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
@@ -2952,7 +2951,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                     let coupon_logo;
                     let coupon_message;
-                    if(target.parentNode.parentNode.children[0].innerText == "アンドリューのエッグタルト 大阪難波駅店") {
+                    if(target.parentNode.parentNode.children[0].innerText == "アンドリューのエッグタルト 道頓堀本店") {
                       coupon_logo = "coupon_logo1"
                       coupon_message = "message_1";
                     } else if(target.parentNode.parentNode.children[0].innerText == "お好み焼き 千房 道頓堀支店") {
