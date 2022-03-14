@@ -1135,6 +1135,22 @@ export function Get_Coupon(number){
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Chrome & Firefox v64以降
+  if( document.body.requestFullscreen ) {
+    document.body.requestFullscreen();
+    
+  // Firefox v63以前
+  } else if( document.body.mozRequestFullScreen ) {
+    document.body.mozRequestFullScreen();
+
+  // Safari & Edge & Chrome v68以前
+  } else if( document.body.webkitRequestFullscreen ) {
+    document.body.webkitRequestFullscreen();
+    
+  // IE11
+  } else if( document.body.msRequestFullscreen ) {
+    document.body.msRequestFullscreen();
+  }	
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
