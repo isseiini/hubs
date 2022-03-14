@@ -1135,6 +1135,7 @@ export function Get_Coupon(number){
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  window.scrollTo(0,0);
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
