@@ -342,7 +342,7 @@ export default class MessageDispatch extends EventTarget {
       Game_Result1.innerText = "Game Finish";
       Game_Result2.innerText = "Game Finish";
       Game_Result3.innerText = "Game Finish";
-      Game_Result_sub.innerText = "レッドチームの勝ちです";
+      Game_Result_sub.innerText = "レッドチームの勝ちです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
@@ -362,7 +362,7 @@ export default class MessageDispatch extends EventTarget {
       Game_Result1.innerText = "Game Finish";
       Game_Result2.innerText = "Game Finish";
       Game_Result3.innerText = "Game Finish";
-      Game_Result_sub.innerText = "ブルーチームの勝ちです";
+      Game_Result_sub.innerText = "ブルーチームの勝ちです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";

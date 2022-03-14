@@ -14,8 +14,6 @@ AFRAME.registerComponent("virtual-gamepad-controls", {
   schema: {},
 
   init() {
-    this.createRightStick();
-    this.createLeftStick();
     this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;
 
     this.onEnterVr = this.onEnterVr.bind(this);
