@@ -52,14 +52,14 @@
 }
 
 :local(.toolbar) {
-  /*grid-row-start: toolbar;
-  grid-column-end: -1;*/
+  grid-row-start: toolbar;
+  grid-column-end: -1;
   position: fixed;
   width: 100vw;
   bottom: 0;
   left: 0;
   pointer-events: auto;
-  z-index: 100000000000000000000000000000000000000000;
+  z-index: 10000000000000;
 }
 
 :local(.modal-container) {
