@@ -219,7 +219,7 @@ function count_down(){
       Game_Result1.innerText = "Game Finish";
       Game_Result2.innerText = "Game Finish";
       Game_Result3.innerText = "Game Finish";
-      Game_Result_sub.innerText = "引き分けです";
+      Game_Result_sub.innerText = "引き分けです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
       setTimeout(() => {
         Game_Result.style.display = "none";
