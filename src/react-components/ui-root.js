@@ -850,6 +850,8 @@ class UIRoot extends Component {
         )}
       </>
     );
+
+    
   };
 
   renderDevicePanel = () => {
@@ -1427,7 +1429,7 @@ class UIRoot extends Component {
                     )}
                   </>
                 }
-                /*sidebar={
+                sidebar={
                   this.state.sidebarId ? (
                     <>
                       {this.state.sidebarId === "chat" && (
@@ -1439,7 +1441,7 @@ class UIRoot extends Component {
                           onClose={() => this.setSidebar(null)}
                         />
                       )}
-                      {this.state.sidebarId === "objects" && (
+                      {/*this.state.sidebarId === "objects" && (
                         <ObjectsSidebarContainer
                           hubChannel={this.props.hubChannel}
                           onClose={() => this.setSidebar(null)}
@@ -1514,12 +1516,12 @@ class UIRoot extends Component {
                           onClose={() => this.setSidebar(null)}
                           onChangeScene={this.onChangeScene}
                         />
-                      )}
+                      )*/}
                     </>
                   ) : (
                     undefined
                   )
-                }*/
+                }
                 modal={this.state.dialog}
                 toolbarLeft={
                   <InvitePopoverContainer
