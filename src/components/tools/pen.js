@@ -418,6 +418,9 @@ AFRAME.registerComponent("pen", {
           }, 2000);
           const AirCanonAction = document.querySelector(".aircanon");//document.getElementById("pen");
           AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
+          setTimeout(() => {
+            AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
+          }, 2000);
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
           if (targetbox[5][1].networked) {
             this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);

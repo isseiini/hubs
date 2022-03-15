@@ -53,7 +53,6 @@ AFRAME.registerComponent("aircanon-animation", {
 
   update() {
     if (this.data.action == "true") {
-      AirCanonClip.reset();
       AirCanonClip.play();
       setTimeout(() => {
         AirCanonClip.stop();
@@ -64,6 +63,7 @@ AFRAME.registerComponent("aircanon-animation", {
       //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
       //current_animation.reset();
       //AirCanonClip.stop();
+      AirCanonClip.reset();
     }
   },
 
