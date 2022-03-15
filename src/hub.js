@@ -170,31 +170,7 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
-function orientationCheck(){
-  const orientation_message = document.getElementById("orientationmessage");
-  const orientation = window.orientation;
-  const orientation_scene = document.querySelector("a-scene");
-  if (orientation === 0) {
-    orientation_message.style.display = "block";
-    orientation_scene.pause();
-  } else {
-    return
-  }
-};
-orientationCheck();
 
-window.addEventListener("orientationchange", function() {
-  const orientation_message = document.getElementById("orientationmessage");
-  const orientation = window.orientation;
-  const orientation_scene = document.querySelector("a-scene");
-  if (orientation === 0) {
-    orientation_message.style.display = "block";
-    orientation_scene.pause();
-  } else {
-    orientation_message.style.display = "none";
-    orientation_scene.play();
-  }
-});
 
 window.timeCount = 420;
 let min = 0;
@@ -1168,6 +1144,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img2 = document.getElementById("map_img2");
   const map_img3 = document.getElementById("map_img3");
   const Player_map = document.getElementById("Player_map");
+  function orientationCheck(){
+    const orientation_message = document.getElementById("orientationmessage");
+    const orientation = window.orientation;
+    const orientation_scene = document.querySelector("a-scene");
+    if (orientation === 0) {
+      orientation_message.style.display = "block";
+      orientation_scene.pause();
+    } else {
+      return
+    }
+  };
+  orientationCheck();
+  
+  window.addEventListener("orientationchange", function() {
+    const orientation_message = document.getElementById("orientationmessage");
+    const orientation = window.orientation;              
+    const orientation_scene = document.querySelector("a-scene");
+    if (orientation === 0) {
+      orientation_message.style.display = "block";
+      orientation_scene.pause();
+    } else {
+      orientation_message.style.display = "none";
+      orientation_scene.play();
+    }
+  });
   if (room_name == "kooky-passionate-safari") {
     map_img.style.display = "none"; 
     map_img3.style.display = "none"; 
