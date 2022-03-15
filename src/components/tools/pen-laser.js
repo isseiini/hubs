@@ -29,14 +29,8 @@ waitForDOMContentLoaded().then(() => {
 
 const AirCanonMine = Math.random().toString(36).slice(-8);
 
-AFRAME.registerComponent("pen-laser", {
+AFRAME.registerComponent("aircanon-animation", {
   schema: {
-    color: { type: "color", default: "rgb(0, 243, 235)" },
-    laserVisible: { default: true },
-    laserInHand: { default: false },
-    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
-    remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
-    laserTarget: { default: { x: 0, y: 0, z: 0 } },
     action: {default: ""}
   },
 
@@ -47,18 +41,6 @@ AFRAME.registerComponent("pen-laser", {
     this.el.sceneEl.setObject3D(AirCanonMine, this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-    this.width = innerWidth;
-    this.height = innerHeight;
-    this.rotate120 = 0;
-
-    const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
-    if (environmentMapComponent2) {
-      const currentEnivronmentMap2 = environmentMapComponent2.environmentMap;
-      if (AirCanonEnvMap !== currentEnivronmentMap2) {
-        environmentMapComponent2.applyEnvironmentMap(this.AirCanonMesh);
-        AirCanonEnvMap = currentEnivronmentMap2;
-      }
-    }
 
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
@@ -67,6 +49,57 @@ AFRAME.registerComponent("pen-laser", {
     AirCanonClip = this.loadingClip;
     AirCanonClip.setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
+  },
+
+  update: (() => {
+    if (this.data.action == "true") {
+      AirCanonClip.reset();
+      AirCanonClip.play();
+      setTimeout(() => {
+        AirCanonClip.stop();
+      }, 2000);
+      ShootingSfx.playSoundOneShot(SOUND_SHOOT);
+    } 
+    if(this.data.action == "false") {
+      //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
+      //current_animation.reset();
+      //AirCanonClip.stop();
+    }
+  })(),
+
+  tick: (() => {
+    if (this.loaderMixer && this.data.action == "true") {
+      this.loaderMixer.update(dt / 1000);
+    }
+  })(),
+});
+
+AFRAME.registerComponent("pen-laser", {
+  schema: {
+    color: { type: "color", default: "rgb(0, 243, 235)" },
+    laserVisible: { default: true },
+    laserInHand: { default: false },
+    laserOrigin: { default: { x: 0, y: 0, z: 0 } },
+    remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
+    laserTarget: { default: { x: 0, y: 0, z: 0 } },
+  },
+
+  init() {
+    //this.Shoot = this.Shoot.bind(this);
+    this.width = innerWidth;
+    this.height = innerHeight;
+    this.rotate120 = 0;
+
+    this.AirCanonMesh = document.querySelector(".aircanon").object3D;
+
+    const environmentMapComponent2 = this.el.sceneEl.components["environment-map"];
+    if (environmentMapComponent2) {
+      const currentEnivronmentMap2 = environmentMapComponent2.environmentMap;
+    }
+
+    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+      this.targetEl = networkedEl;
+    });
 
     let material = new THREE.MeshStandardMaterial({ color: "red", opacity: 0.5, transparent: true, visible: true });
     const quality = window.APP.store.materialQualitySetting;
@@ -101,22 +134,6 @@ AFRAME.registerComponent("pen-laser", {
     const targetBufferPosition = new THREE.Vector3();
 
     return function(prevData) {
-      if (this.data.action == "true") {
-        AirCanonClip.reset();
-        AirCanonClip.play();
-        setTimeout(() => {
-          AirCanonClip.stop();
-        }, 2000);
-        ShootingSfx.playSoundOneShot(SOUND_SHOOT);
-        this.rotate120 += 120;
-        this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)"
-        
-      } 
-      if(this.data.action == "false") {
-        //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
-        //current_animation.reset();
-        //AirCanonClip.stop();
-      }
 
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
@@ -146,9 +163,6 @@ AFRAME.registerComponent("pen-laser", {
     const target = new THREE.Vector3();
    
     return function(t, dt) {
-      if (this.loaderMixer && this.data.action == "true") {
-        this.loaderMixer.update(dt / 1000);
-      }
 
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
@@ -182,9 +196,9 @@ AFRAME.registerComponent("pen-laser", {
         //this.laser.position.copy(origin);
         //this.laser.lookAt(target);
         ///this.AirCanonMesh.position.copy(origin);
-        this.AirCanonMesh.position.copy(origin)
+        //this.AirCanonMesh.position.copy(origin)
         this.AirCanonMesh.lookAt(target);
-        this.AirCanonMesh.matrixNeedsUpdate = true;
+        //this.AirCanonMesh.matrixNeedsUpdate = true;
         //this.laser.scale.set(1, 1, origin.distanceTo(target));
         //this.laser.matrixNeedsUpdate = true;
         this.laserTip.position.copy(target);

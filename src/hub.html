@@ -1915,15 +1915,13 @@
                         rotation="0 90 -90" 
                         scale="0.15 0.15 0.15">
                       </a-entity>-->
-                      <!--<a-entity 
-                        ik-root
+                      <a-entity 
                         class="aircanon"
-                        
-                        
-                        position="0.08 1 -0.2" 
-                        rotation="180 -90 90" 
+                        matrix-auto-update
+                        hanabi-animation
+                        follow-in-fov="target: #avatar-pov-node; offset: 0 -2 -1.5;"
                         scale="0.06 0.06 0.06">
-                      </a-entity>-->
+                      </a-entity>
                       
                       <a-entity 
                         class="sanshakudama"
@@ -2446,7 +2444,7 @@
                         pen-laser
                         position="0 -0.18 0"
                         matrix-auto-update 
-                        class="aircanon"
+                        
                     >
                     </a-entity>
                     
