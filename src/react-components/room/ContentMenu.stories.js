@@ -13,10 +13,10 @@ export default {
 export const Base = () => (
   <RoomLayout
     viewport={
-      <ContentMenu>
+      /*<ContentMenu>
         <ObjectsMenuButton />
         <PeopleMenuButton />
-      </ContentMenu>
+      </ContentMenu>*/
     }
   />
 );
