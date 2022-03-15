@@ -51,7 +51,7 @@ AFRAME.registerComponent("aircanon-animation", {
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
-  update: (() => {
+  update() {
     if (this.data.action == "true") {
       AirCanonClip.reset();
       AirCanonClip.play();
@@ -65,13 +65,14 @@ AFRAME.registerComponent("aircanon-animation", {
       //current_animation.reset();
       //AirCanonClip.stop();
     }
-  })(),
+  },
 
-  tick: (() => {
+  tick () {
     if (this.loaderMixer && this.data.action == "true") {
       this.loaderMixer.update(dt / 1000);
     }
-  })(),
+  }
+
 });
 
 AFRAME.registerComponent("pen-laser", {
