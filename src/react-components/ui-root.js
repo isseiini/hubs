@@ -1427,7 +1427,7 @@ class UIRoot extends Component {
                     )}
                   </>
                 }
-                sidebar={
+                /*sidebar={
                   this.state.sidebarId ? (
                     <>
                       {this.state.sidebarId === "chat" && (
@@ -1519,7 +1519,7 @@ class UIRoot extends Component {
                   ) : (
                     undefined
                   )
-                }
+                }*/
                 modal={this.state.dialog}
                 toolbarLeft={
                   <InvitePopoverContainer
