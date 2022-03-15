@@ -867,14 +867,14 @@
 
     #life {
       content: "";
-      width: calc(var(--UI-width) * 0.7);
+      width: calc(var(--UI-width) * 0.5);
       height: calc(var(--UI-width) * 0.075);
       --aug-tl1: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-tl2: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-tl-extend2: calc(var(--UI-width) * 0.03);
       --aug-br1: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-br2: calc(var(--UI-width) * 0.125 * 0.33);
-      --aug-br-extend2: calc(var(--UI-width) * 0.35);
+      --aug-br-extend2: calc(var(--UI-width) * 0.20);
       --aug-border-all:1px;
       color: var(--team-color);
       box-sizing: border-box;
@@ -903,11 +903,12 @@
       display: flex;
       justify-content: center;
       --aug-border-all:1px;
+      --aug-tl: calc(var(--UI-width) * 0.125 * 0.33);
       color: var(--team-color);
       box-sizing: border-box;
       position: fixed;
-      top: calc(var(--UI-width) * 0.075 + 25px);
-      left: 15px;
+      top: 15px;
+      left: calc(50% - var(--UI-width) * 0.03);
       padding: 25px 0;
     }
 
@@ -1703,7 +1704,7 @@
               <div id="life-background"></div>
             </div>
     
-            <div id="score-display" data-augmented-ui="both" class="styleme">
+            <div id="score-display" data-augmented-ui="tl-clip both" class="styleme">
               <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 40%;height: 100%;">
                 <p id="red-score" style="text-align:center;">0</p>
                 <progress id="Red-Progress" value="0" max="25" style="width: 80%;margin: 0 auto;" dir="rtl"></progress>
