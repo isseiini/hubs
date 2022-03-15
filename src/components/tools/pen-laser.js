@@ -67,8 +67,8 @@ AFRAME.registerComponent("aircanon-animation", {
     }
   },
 
-  tick () {
-    if (this.loaderMixer && this.data.action == "true") {
+  tick(t, dt) {
+    if (this.loaderMixer) {
       this.loaderMixer.update(dt / 1000);
     }
     this.AirCanonMesh.matrixNeedsUpdate = true;
