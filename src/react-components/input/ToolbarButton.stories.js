@@ -36,7 +36,7 @@ AllButtons.parameters = {
 
 export const RoomToolbar = () => (
   <RoomLayout
-    toolbarLeft={<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />}
+    toolbarLeft={/*<ToolbarButton icon={<InviteIcon />} label="Invite" preset="basic" />*/}
     toolbarCenter={
       <>
         <ToolbarButton icon={<MicrophoneIcon />} label="マイク" preset="basic" />
