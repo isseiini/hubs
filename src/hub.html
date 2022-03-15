@@ -1238,32 +1238,24 @@
     transform: scale(1.5);
   }
 
-  @media screen and (orientation: portrait) {
-    #orientation_message {
-      display: block;
-    }
-
-    #mobile-img {
-      animation-name:rotate;
-      animation-duration:2s;
-      animation-iteration-count:infinite;
-      animation-fill-mode:backwards;
-    }
-
-    @keyframes rotate{
-      0%{
-        transform: rotate(0deg);
-      }
-      100%{
-        transform: rotate(90deg);
-      }
-    }
+  #mobile-img {
+    animation-name:rotate;
+    animation-duration:2s;
+    animation-iteration-count:1;
+    animation-fill-mode:backwards;
   }
 
-  @media screen and (orientation: landscape) {
-    #orientationmessage {
-      display: none;
+  @keyframes rotate{
+    0%{
+      transform: rotate(0deg);
     }
+    100%{
+      transform: rotate(90deg);
+    }
+  }
+  
+  #orientationmessage {
+    display: none;
   }
 
   #mobile-img {
@@ -1275,7 +1267,7 @@
 
   #game-progress-origin {
     position: relative;
-    z-index: 1;
+    z-index: 1001;
     color: #ffffff;
     font-size: 6em;
     
@@ -1853,7 +1845,7 @@
           </span>
         </div>
     
-        <div class="modal" id="orientationmessage" style="z-index: 1;">
+        <div class="modal" id="orientationmessage" style="z-index: 10;">
           <div class="inner styleme" data-augmented-ui="tl-clip-x br-clip border" style="padding-top: 20px;">
             <img src="assets/images/iconmonstr-smartphone-3-240.png" alt="画像" id="mobile-img">
             <p style="text-align: center;padding: 10px 0;background-color: yellow;">端末を横向きにしてお使いください。</p>

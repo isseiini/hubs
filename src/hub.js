@@ -170,6 +170,30 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
+const orientation_message = document.getElementById("orientationmessage");
+const orientation_scene = document.querySelector("a-scene");
+function orientationCheck(){
+  const orientation = window.orientation;
+  if (orientation === 0) {
+    orientation_message.style.display = "block";
+    orientation_scene.pause();
+  } else {
+    return
+  }
+};
+orientationCheck();
+
+window.addEventListener("orientationchange", function() {
+  const orientation = window.orientation;
+  if (orientation === 0) {
+    orientation_message.style.display = "block";
+    orientation_scene.pause();
+  } else {
+    orientation_message.style.display = "none";
+    orientation_scene.play();
+  }
+});
+
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
