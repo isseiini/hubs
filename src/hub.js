@@ -1147,8 +1147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     map_img3.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("go-to-game").style.display = "none";
-    const sceneEl = document.querySelector("a-scene");
-    sceneEl.addState("visible");
+    
     /*if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -2008,6 +2007,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
+                  const sceneEl = document.querySelector("a-scene");
+                  sceneEl.addState("pen");
                   const Red_Score = document.getElementById("red-score");
                   const Blue_Score = document.getElementById("blue-score");
                   var event3 = new Event('change');
