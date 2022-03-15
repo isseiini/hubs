@@ -2033,16 +2033,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const Player_tips = document.getElementById("Player_tips");
                   Player_tips.style.display = "none";
                   const general_menu = document.getElementById("general_menu");
-                  const general_menu_text = document.getElementById("general_menu_text");
+                  
                   general_menu.addEventListener("click", function(){
                     if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
                       toolbar_under.style.display = "flex";
                       Player_tips.style.display = "block";
-                      general_menu_text.innerText = "クリックして閉じる"
                     } else {
                       toolbar_under.style.display = "none";
                       Player_tips.style.display = "none";
-                      general_menu_text.innerText = "クリックして開く"
                     }
                     
                   });
