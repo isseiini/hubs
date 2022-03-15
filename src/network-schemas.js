@@ -33,11 +33,11 @@ function registerNetworkSchemas() {
       },
       {
         component: "rotation",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.5)
+        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
       },
       {
         component: "scale",
-        requiresNetworkUpdate: vectorRequiresUpdate(0.001)
+        requiresNetworkUpdate: vectorRequiresUpdate(0.01)
       },
       "player-info",
       "networked-avatar",
