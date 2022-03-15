@@ -102,7 +102,7 @@ AFRAME.registerComponent("pen-laser", {
 
     return function(prevData) {
       if (this.data.action == "true") {
-        //AirCanonClip.reset();
+        AirCanonClip.reset();
         AirCanonClip.play();
         setTimeout(() => {
           AirCanonClip.stop();
