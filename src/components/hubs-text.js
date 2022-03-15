@@ -99,7 +99,7 @@ AFRAME.registerComponent("text", {
     // `anchor` defaults to center to match geometries.
     anchor: { default: "center", oneOf: ["left", "right", "center", "align"] },
     baseline: { default: "center", oneOf: ["top", "center", "bottom"] },
-    color: { type: "color", default: "rgb(27, 190, 185)" },
+    color: { type: "color", default: "#ffffff" },
     font: { type: "string", default: "roboto" },
     // `height` has no default, will be populated at layout.
     height: { type: "number" },
@@ -137,6 +137,7 @@ AFRAME.registerComponent("text", {
     this.geometry = createTextGeometry();
     this.mesh = new THREE.Mesh(this.geometry, this.shaderObject.material);
     this.el.setObject3D(this.attrName, this.mesh);
+    this.color = document.documentElement.style.getPropertyValue("--team-color");
   },
 
   update: function(oldData) {

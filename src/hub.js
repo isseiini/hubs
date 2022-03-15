@@ -2077,10 +2077,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
                       Game_Result.style.display = "none";
-                      const nametagEl = document.querySelector(".nametag");
-                      nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)"});
-                      const AirCanonAction = document.querySelector(".aircanon");//document.getElementById("pen");
-                      AirCanonAction.setAttribute("pen", { penVisible: true });
+                      
                     } else {
                       team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
@@ -2089,8 +2086,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
                       Game_Result.style.display = "none";
-                      const nametagEl = document.querySelector(".nametag");
-                      nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)"});
+                      
                     }
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
