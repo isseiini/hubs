@@ -1898,7 +1898,7 @@
                     <a-entity class="camera" matrix-auto-update>
                       <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                       <a-box 
-                      position="0 -0.5 0"
+                      position="0 0 0"
                       rotation="0 0 0"
                       color="rgb(27, 190, 185)"
                       opacity="0.4"
@@ -2439,12 +2439,11 @@
                 >
                 
                     <a-entity
-                        id="pen"
-                        pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
-                        pen-laser
-                        position="0 -0.18 0"
-                        matrix-auto-update 
-                        
+                      id="pen"
+                      pen="camera: #avatar-pov-node; drawingManager: #drawing-manager"
+                      pen-laser
+                      position="0 -0.18 0"
+                      matrix-auto-update 
                     >
                     </a-entity>
                     
