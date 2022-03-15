@@ -1147,6 +1147,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     map_img3.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("go-to-game").style.display = "none";
+    const sceneEl = document.querySelector("a-scene");
+    sceneEl.addState("visible");
     /*if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
