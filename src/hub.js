@@ -170,10 +170,10 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
-const orientation_message = document.getElementById("orientationmessage");
-const orientation_scene = document.querySelector("a-scene");
 function orientationCheck(){
+  const orientation_message = document.getElementById("orientationmessage");
   const orientation = window.orientation;
+  const orientation_scene = document.querySelector("a-scene");
   if (orientation === 0) {
     orientation_message.style.display = "block";
     orientation_scene.pause();
@@ -184,7 +184,9 @@ function orientationCheck(){
 orientationCheck();
 
 window.addEventListener("orientationchange", function() {
+  const orientation_message = document.getElementById("orientationmessage");
   const orientation = window.orientation;
+  const orientation_scene = document.querySelector("a-scene");
   if (orientation === 0) {
     orientation_message.style.display = "block";
     orientation_scene.pause();
