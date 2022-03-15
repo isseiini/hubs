@@ -71,6 +71,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.loaderMixer && this.data.action == "true") {
       this.loaderMixer.update(dt / 1000);
     }
+    this.AirCanonMesh.matrixNeedsUpdate = true;
   }
 
 });
@@ -225,8 +226,8 @@ AFRAME.registerComponent("pen-laser", {
 
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
-    //this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
-    this.el.sceneEl.removeObject3D(AirCanonMine);
+    this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+    //this.el.sceneEl.removeObject3D(AirCanonMine);
     this.reticle.style.display = "none";
     this.rotate120 = 0;
   }
