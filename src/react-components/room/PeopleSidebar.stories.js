@@ -63,4 +63,4 @@ const people = [
   }
 ];
 
-export const Base = () => <RoomLayout sidebar={<PeopleSidebar people={people} />} />;
+export const Base = () => <RoomLayout sidebar={/*<PeopleSidebar people={people} />*/} />;
