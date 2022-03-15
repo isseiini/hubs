@@ -72,6 +72,6 @@ const menu = [
 
 export const Base = () => (
   <MoreMenuContextProvider initiallyVisible={true}>
-    <RoomLayout viewport={<CompactMoreMenuButton />} toolbarRight={<MoreMenuPopoverButton menu={menu} />} />
+    <RoomLayout viewport={/*<CompactMoreMenuButton />*/} toolbarRight={/*<MoreMenuPopoverButton menu={menu} />*/} />
   </MoreMenuContextProvider>
 );
