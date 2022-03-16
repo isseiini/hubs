@@ -1920,14 +1920,14 @@
                         style="display: none;"
                         matrix-auto-update
                         aircanon-animation
-                        follow-in-fov="target: #avatar-pov-node; offset: 0 -0.1 -0.3;">
+                        follow-in-fov="target: .hanabi_aircanon_pov; offset: 0 -0.1 -0.3;">
                       </a-entity>
                       
                       <a-entity 
                         class="sanshakudama"
                         matrix-auto-update
                         hanabi-animation
-                        follow-in-fov="target: #avatar-pov-node; offset: 0 -1 0.3;"
+                        follow-in-fov="target: .hanabi_aircanon_pov; offset: 0 -1 0.3;"
                         scale="0.4 0.4 0.4">
                       </a-entity>
                     </a-entity>
@@ -3023,7 +3023,7 @@
 
             <a-entity
                 id="avatar-pov-node"
-                class="camera"
+                class="camera hanabi_aircanon_pov"
                 personal-space-bubble="radius: 0.4;"
                 rotation
                 pitch-yaw-rotator
