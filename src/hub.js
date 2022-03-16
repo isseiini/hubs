@@ -1204,7 +1204,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     map_img2.style.display = "none"; 
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
-    /*if (cognito_mine != null){
+    if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
           location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
@@ -1216,7 +1216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       })
     } else {
       location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }*/
+    }
   } else if (room_name == "euphoric-rare-commons") {
     if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
