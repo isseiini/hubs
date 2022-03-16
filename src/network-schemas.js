@@ -338,16 +338,6 @@ function registerNetworkSchemas() {
         selector: "#pen",
         component: "pen",
         property: "penVisible"
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
-        property: "laserVisible"
-      },
-      {
-        selector: "#pen",
-        component: "pen-laser",
-        property: "laserOrigin"
       }
     ]
   });
