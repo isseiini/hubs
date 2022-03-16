@@ -35,7 +35,6 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.el.classList.add(window.hubjs.myname + "_aircanon");
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);

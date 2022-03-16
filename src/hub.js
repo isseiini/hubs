@@ -2093,8 +2093,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const aircanon_container = document.querySelector(".aircanon");
+                  aircanon_container.classList.add(meta.profile.displayName + "_aircanon");
                   const hanabi_container = document.querySelector(".sanshakudama");
-                  
+                  hanabi_container.classList.add(meta.profile.displayName + "_hanabi");
                   const hanabi_aircanon_pov = document.querySelector(".hanabi_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_hanabi_pov");
