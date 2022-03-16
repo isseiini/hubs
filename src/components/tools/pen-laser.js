@@ -38,6 +38,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.myname = document.getElementById("Player_name").innerText;
+    this.count = 1;
     if(aircanon_count == 0){
       this.count = aircanon_count;
       console.log(aircanon_count);
