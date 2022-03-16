@@ -37,9 +37,9 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.mymane = document.getElementById("Player_name").innerText;
+    this.myname = document.getElementById("Player_name").innerText;
     if(aircanon_count == 0){
-      this.el.classList.add(mymane + "_aircanon");
+      this.el.classList.add(this.myname + "_aircanon");
       aircanon_count += 1;
       console.log(aircanon_count)
     }
