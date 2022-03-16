@@ -2081,6 +2081,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
+                  document.getElementById("Player_name").innerText = meta.profile.displayName;
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
                   const Game_Result = document.getElementById("game-progress-origin");
