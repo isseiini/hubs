@@ -35,6 +35,11 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
+    const isMine = this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
+    if(isMine) {
+      const mymane = document.getElementById("Player_name").innerText;
+      this.el.classList.add(mymane + "_aircanon");
+    }
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);

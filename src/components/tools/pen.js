@@ -418,7 +418,8 @@ AFRAME.registerComponent("pen", {
           setTimeout(() => {
             isCharged = false;
           }, 2000);
-          const aircanon_index = "." + window.hubjs.myname + "_aircanon";
+          const myname = document.getElementById("Player_name").innerText;
+          const aircanon_index = "." + myname + "_aircanon";
           const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
           AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
           setTimeout(() => {
