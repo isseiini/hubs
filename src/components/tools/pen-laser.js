@@ -27,6 +27,8 @@ waitForDOMContentLoaded().then(() => {
     AirCanon = gltf;
     //AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
+  const myname = document.getElementById("Player_name").innerText;
+  document.querySelector(".aircanon").setAttribute("id", "aircanon-" + myname);
 });
 
 const AirCanonMine = Math.random().toString(36).slice(-8);
@@ -37,12 +39,11 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.myname = document.getElementById("Player_name").innerText;
-    if(aircanon_count == 0){
-      this.el.setAttribute("id", "aircanon-" + this.myname)
+    /*if(aircanon_count == 0){
+      this.el.setAttribute
       console.log(aircanon_count);
     }
-    aircanon_count += 1;
+    aircanon_count += 1;*/
     
     
     //this.Shoot = this.Shoot.bind(this);
@@ -66,7 +67,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "true" && this.el.hasAttribute("aircanon-" + this.myname)) {
+    if (this.data.action == "true" && this.el.hasAttribute("aircanon-" + document.getElementById("Player_name").innerText)) {
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
