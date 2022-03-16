@@ -1739,7 +1739,7 @@
         light="defaultLightsEnabled: false"
     >
       <div id="overlay">
-        <div id="Player-UI" data-augmented-ui="bl-clip-y br-clip tl-2-clip-x r-rect-y b-rect both" style="z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;">
+        <div id="Player-UI" data-augmented-ui="bl-clip-y br-clip tl-2-clip-x b-rect both" style="z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;">
           <div id="Player_UI_top" style="display: flex; flex-direction: row;justify-content:center;width: 100%;height: 200px;background-color: transparent;background: rgb(255,255,255);background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(152,152,168,0) 0%, var(--team-color-sub) 10%);">
             <p id="life-label">HP</p>
             <p id="Player_name">aaaaaaaaaaaa</p>
@@ -1785,8 +1785,13 @@
               </a>
           </div>
 
-          <div id="general_menu" style="background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--main-color);--aug-inlay-bg:var(--main-color);width: 6em;height: 6em;position: fixed;bottom: 100px;right: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
-            <img src="assets/images/iconmonstr-menu-1-240.png" alt="">
+          <div id="general_menu" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--main-color);--aug-inlay-bg:var(--main-color);width: 6em;height: 6em;position: fixed;bottom: 100px;right: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+            <img src="assets/images/iconmonstr-menu-1-240.png" alt="" style="display: block;">
+            <span class="menu-description">メニュー</span>
+          </div>
+
+          <div id="general_menu" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--main-color);--aug-inlay-bg:var(--main-color);width: 6em;height: 6em;position: fixed;bottom: 150px;right: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+            <img src="assets/images/iconmonstr-tablet-5-240.png" alt="" style="display: block;">
             <span class="menu-description">メニュー</span>
           </div>
 
