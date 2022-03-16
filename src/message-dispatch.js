@@ -252,8 +252,10 @@ export default class MessageDispatch extends EventTarget {
         Red_Progress.value = 0;
         return
       } else {
-        const Player_Respawn = document.getElementById("Player-Respawn");
-        Player_Respawn.style.display = "block";
+        if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+          const Player_Respawn = document.getElementById("Player-Respawn");
+          Player_Respawn.style.display = "block";
+        }
       }
       Red_Score.innerText = current_Red_Score;
       return
@@ -279,8 +281,10 @@ export default class MessageDispatch extends EventTarget {
         Blue_Progress.value = 0;
         return
       } else {
-        const Player_Respawn = document.getElementById("Player-Respawn");
-        Player_Respawn.style.display = "block";
+        if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+          const Player_Respawn = document.getElementById("Player-Respawn");
+          Player_Respawn.style.display = "block";
+        }
       }
       Blue_Score.innerText = current_Blue_Score;
       return

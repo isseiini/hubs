@@ -35,6 +35,8 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
+    const scene = document.querySelector("a-scene");
+    scene.emit("spawn_pen");
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
