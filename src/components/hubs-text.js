@@ -137,7 +137,7 @@ AFRAME.registerComponent("text", {
     this.geometry = createTextGeometry();
     this.mesh = new THREE.Mesh(this.geometry, this.shaderObject.material);
     this.el.setObject3D(this.attrName, this.mesh);
-    this.color = document.documentElement.style.getPropertyValue("--team-color");
+    //this.color = document.documentElement.style.getPropertyValue("--team-color");
   },
 
   update: function(oldData) {
