@@ -2100,7 +2100,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
                       Game_Result.style.display = "none";
-                      
+                      const scene = document.querySelector("a-scene");
+                      scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
                       document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
@@ -2109,7 +2110,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
                       Game_Result.style.display = "none";
-                      
+                      const scene = document.querySelector("a-scene");
+                      scene.emit("spawn_pen");
                     }
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
