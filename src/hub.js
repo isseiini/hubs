@@ -2061,7 +2061,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   Player_tips.style.display = "none";
                   const general_menu = document.getElementById("general_menu");
                   const general_guide = document.getElementById("general_guide");
-                  const Player_Guide = document.getElementById("Player_Guide");
+                  const Player_Guide = document.getElementById("Player-Guide");
                   general_menu.addEventListener("click", function(){
                     if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
                       toolbar_under.style.display = "flex";
