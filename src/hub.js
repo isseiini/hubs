@@ -2090,6 +2090,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
+                  const aircanon_container = document.querySelector(".aircanon");
+                  const hanabi_aircanon_pov = document.querySelector("hanabi_aircanon_pov");
+                  hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_aircanon_pov")
+                  const aircanon_index = "target: ." + meta.profile.displayName + "_aircanon_pov;offset: 0 -0.1 -0.3;";
+                  aircanon_container.setAttribute("follow-in-fov", aircanon_index)
                   
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
