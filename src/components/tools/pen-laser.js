@@ -30,6 +30,7 @@ waitForDOMContentLoaded().then(() => {
 });
 
 const AirCanonMine = Math.random().toString(36).slice(-8);
+const myname = document.getElementById("Player_name").innerText;
 
 AFRAME.registerComponent("aircanon-animation", {
   schema: {
@@ -37,7 +38,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.mymane = document.getElementById("Player_name").innerText;
+    this.mymane = myname
    
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
