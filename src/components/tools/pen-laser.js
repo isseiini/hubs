@@ -39,13 +39,12 @@ AFRAME.registerComponent("aircanon-animation", {
   init() {
     this.myname = document.getElementById("Player_name").innerText;
     if(aircanon_count == 0){
-      this.el.classList.add(this.myname + "_aircanon");
-      aircanon_count += 1;
-      console.log(aircanon_count)
+      this.count = aircanon_count;
+      console.log(aircanon_count);
     }
-    console.log("他人：" + aircanon_count)
+    aircanon_count += 1;
     
-    this.count = aircanon_count;
+    
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
@@ -67,7 +66,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "true" && aircanon_count == 0) {
+    if (this.data.action == "true" && this.count == 0) {
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
