@@ -20,7 +20,7 @@ var AirCanonClip;
 
 var ShootingSfx;
 
-var aircanon_count = 0;
+window.aircanon_count = 0;
 
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
@@ -38,9 +38,8 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.myname = document.getElementById("Player_name").innerText;
-    this.count = 1;
     if(aircanon_count == 0){
-      this.count = aircanon_count;
+      this.el.setAttribute("id", "aircanon-" + this.myname)
       console.log(aircanon_count);
     }
     aircanon_count += 1;
@@ -67,7 +66,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "true" && this.count == 0) {
+    if (this.data.action == "true" && this.el.hasAttribute("aircanon-" + this.myname)) {
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
