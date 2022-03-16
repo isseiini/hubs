@@ -52,16 +52,6 @@ function registerNetworkSchemas() {
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
       },
       {
-        selector: ".sanshakudama",
-        component: "hanabi-animation",
-        property: "action"
-      },
-      {
-        selector: ".aircanon",
-        component: "aircanon-animation",
-        property: "action"
-      },
-      {
         selector: ".left-controller",
         component: "position",
         requiresNetworkUpdate: vectorRequiresUpdate(0.001)
