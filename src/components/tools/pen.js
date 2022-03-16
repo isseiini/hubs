@@ -442,7 +442,6 @@ AFRAME.registerComponent("pen", {
         
       }
       if (userinput.get(paths.stopDrawing)) {
-        //AirCanonAction.setAttribute("pen-laser", {action: "false"});
         this._endDraw();    
         //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
