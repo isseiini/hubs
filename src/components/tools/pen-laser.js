@@ -48,8 +48,8 @@ AFRAME.registerComponent("aircanon-animation", {
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
-    this.AirCanonMesh.rotation.set(90, 0, 0);
-    this.el.setObject3D(AirCanonMine, this.AirCanonMesh);
+    
+    this.el.setObject3D(`aircanon-${this.AirCanonMesh.uuid}`, this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
@@ -88,6 +88,10 @@ AFRAME.registerComponent("aircanon-animation", {
       this.loaderMixer.update(dt / 1000);
     }
     this.AirCanonMesh.matrixNeedsUpdate = true;
+  },
+
+  remove() {
+    this.el.removeObject3D(`aircanon-${this.AirCanonMesh.uuid}`);
   }
 
 });
@@ -243,6 +247,7 @@ AFRAME.registerComponent("pen-laser", {
   remove() {
     this.el.sceneEl.removeObject3D(`pen-laser-${this.laser.uuid}`);
     this.el.sceneEl.removeObject3D(`pen-laser-tip-${this.laser.uuid}`);
+    this.el.sceneEl.removeObject3D();
     //this.el.sceneEl.removeObject3D(AirCanonMine);
     this.reticle.style.display = "none";
     this.rotate120 = 0;
