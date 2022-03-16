@@ -41,8 +41,9 @@ AFRAME.registerComponent("aircanon-animation", {
     if(aircanon_count == 0){
       this.el.classList.add(mymane + "_aircanon");
       aircanon_count += 1;
+      console.log(aircanon_count)
     }
-    
+    console.log("他人：" + aircanon_count)
     
    
     //this.Shoot = this.Shoot.bind(this);
