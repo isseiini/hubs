@@ -44,6 +44,9 @@ AFRAME.registerComponent("aircanon-animation", {
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
+    this.reticle = document.querySelector(".reticle");
+    this.rotate120 = 0;
+
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
     });
@@ -56,6 +59,8 @@ AFRAME.registerComponent("aircanon-animation", {
   update() {
     if (this.data.action == "true") {
       AirCanonClip.play();
+      this.rotate120 += 120;
+      this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
       setTimeout(() => {
         AirCanonClip.stop();
       }, 2000);
@@ -129,7 +134,7 @@ AFRAME.registerComponent("pen-laser", {
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
 
     this.camera = document.getElementById("viewing-camera").getObject3D("camera");
-    this.reticle = document.getElementById("reticle");
+    this.reticle = document.querySelector(".reticle");
     this.reticle.style.display = "block";
   },
 
