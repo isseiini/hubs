@@ -2093,9 +2093,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const aircanon_container = document.querySelector(".aircanon");
-                  aircanon_container.classList.add(meta.profile.displayName + "_aircanon");
                   const hanabi_container = document.querySelector(".sanshakudama");
-                  hanabi_container.classList.add(meta.profile.displayName + "_hanabi");
+                  
                   const hanabi_aircanon_pov = document.querySelector(".hanabi_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_hanabi_pov");
@@ -2435,7 +2434,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   Player_Respawn.addEventListener("click", function(){
     Player_Respawn.style.display = "none";
-    let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
+    let hanabi_index = "." + window.hubjs.myname + "_hanabi";
+    let HanabiAction = document.querySelector(hanabi_index);
+    //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", {action: "false"});
     console.log(HanabiAction)
     if(document.getElementById("score-display-top").innerText == "BlueTeam") {

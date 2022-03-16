@@ -92,6 +92,8 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   init() {
+    this.el.classList.add(window.hubjs.myname + "_hanabi");
+
     this.Fire = this.Fire.bind(this);
     this.HanabiMesh = cloneObject3D(Hanabi.scene);
 

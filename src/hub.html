@@ -1861,11 +1861,6 @@
             <a-asset-item id="drawing-pen" response-type="arraybuffer" src="./assets/models/DrawingPen.glb"></a-asset-item>
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
-            <!--<a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/Aircanon.glb"></a-asset-item>-->
-            <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/doutonbori_hanabi_dama.glb"></a-asset-item>-->
-            <!--<a-asset-item id="hanabi" crossorigin="anonymous" src="./assets/models/firework_with_bomb1.glb"></a-asset-item>-->
-            <!--<a-asset-item id="aircanon" crossorigin="anonymous" src="./assets/models/aircanon_with_gunfire.glb"></a-asset-item>-->
-
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
             </template>
@@ -1907,14 +1902,6 @@
                       class="collidable"
                       >
                       </a-box>
-                      <!--<a-entity 
-                        class="aircanon"
-                        gltf-model="#aircanon"
-                        animation-mixer
-                        position="0 0 -0.4" 
-                        rotation="0 90 -90" 
-                        scale="0.15 0.15 0.15">
-                      </a-entity>-->
                       <a-entity 
                         class="aircanon"
                         style="display: none;"
@@ -2862,16 +2849,6 @@
             id="right-cursor-controller"
             cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
         ></a-entity>
-
-        <!--<a-entity
-          cursor-controller="cursor: #right-cursor; camera: #avatar-pov-node;"
-          class="aircanon"
-          gltf-model="#aircanon"
-          aircanon-animation
-          position="0 0 -0.4" 
-          rotation="0 -90 90" 
-          scale="0.15 0.15 0.15"
-        ></a-entity>-->
           
         
 
