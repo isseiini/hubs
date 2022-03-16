@@ -622,7 +622,7 @@ class UIRoot extends Component {
 
     const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || true;
     this.props.store.update({
-      settings: { micMuted: true }
+      settings: { micMuted: false }
     });
     await this.props.enterScene(this.state.enterInVR, muteOnEntry);
 
