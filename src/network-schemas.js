@@ -56,11 +56,7 @@ function registerNetworkSchemas() {
         component: "hanabi-animation",
         property: "action"
       },
-      {
-        selector: ".aircanon",
-        component: "aircanon-animation",
-        property: "action"
-      },
+      
       {
         selector: ".left-controller",
         component: "position",
