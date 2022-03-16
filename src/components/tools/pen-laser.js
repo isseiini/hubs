@@ -37,14 +37,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    const mymane = document.getElementById("Player_name").innerText;
-    if(aircanon_count == 0){
-      this.el.classList.add(mymane + "_aircanon");
-      aircanon_count += 1;
-      console.log(aircanon_count)
-    }
-    console.log("他人：" + aircanon_count)
-    
+    this.mymane = document.getElementById("Player_name").innerText;
    
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
@@ -67,7 +60,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "true") {
+    if (this.data.action == this.mymane) {
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
@@ -76,7 +69,7 @@ AFRAME.registerComponent("aircanon-animation", {
       }, 2000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     } 
-    if(this.data.action == "false") {
+    if(this.data.action == this.mymane + "-false") {
       //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
       //current_animation.reset();
       //AirCanonClip.stop();
