@@ -867,20 +867,20 @@
 
     #life {
       content: "";
-      width: calc(var(--UI-width) * 0.5);
+      width: calc(var(--UI-width) * 0.3);
       height: calc(var(--UI-width) * 0.075);
       --aug-tl1: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-tl2: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-tl-extend2: calc(var(--UI-width) * 0.03);
       --aug-br1: calc(var(--UI-width) * 0.125 * 0.33);
       --aug-br2: calc(var(--UI-width) * 0.125 * 0.33);
-      --aug-br-extend2: calc(var(--UI-width) * 0.20);
+      --aug-br-extend2: calc(var(--UI-width) * 0.13);
       --aug-border-all:1px;
       color: var(--team-color);
       box-sizing: border-box;
       background-color: transparent;
       position: fixed;
-      top: 15px;
+      top: 55px;
       left: 15px;
       z-index: 3;
     }
@@ -896,42 +896,85 @@
       z-index: 2;
     }
 
+    #life-label {
+      position: absolute;
+      height: calc(var(--UI-width) * 0.035);
+      font-size: 2rem;
+      padding: 4px 8px;
+      background-color: transparent;
+      color: var(--team-color);
+      top: 40px;
+      left: calc(var(--UI-width) * 0.125 * 0.33);
+      content: "";
+      z-index: 2;
+      font-weight: lighter;
+      text-shadow:0 0 3px #ffffff;
+    }
+
+    #Player_name {
+      position: absolute;
+      height: calc(var(--UI-width) * 0.035);
+      font-size: 1.5rem;
+      padding: 4px 8px;
+      background-color: transparent;
+      color: var(--team-color);
+      top: calc(var(--UI-width) * 0.047 + 40px);
+      left: calc(var(--UI-width) * 0.4 * 0.33);
+      content: "";
+      z-index: 2;
+      font-weight: lighter;
+      text-shadow:0 0 2px #ffffff;
+      border-bottom: 1px solid var(--team-color);
+    }
+
     #score-display {
       background-color: transparent;
-      width: calc(var(--UI-width) * 0.26);
-      height: calc(var(--UI-width) * 0.15);
+      width: 100%;
+      height: 40px;
       display: flex;
       justify-content: center;
       --aug-border-all:1px;
       --aug-tl: calc(var(--UI-width) * 0.125 * 0.33);
+      --aug-inlay-bg: #ffffff;
       color: var(--team-color);
       box-sizing: border-box;
       position: fixed;
-      top: 15px;
-      left: calc(50% - var(--UI-width) * 0.03);
-      padding: 25px 0;
+      top: 0;
+      left: 0;
+      padding: 0;
+      border-bottom: 1px solid var(--team-color);
     }
 
     #score-display-top {
       position: absolute;
-      width: 100%;
-      height: 20px;
-      top: 0;
-      left: 0;
+      width: 30%;
+      font-size: 2rem;
+      padding: 4px 8px;
+      background-color: transparent;
+      color: var(--team-color);
+      top: 40px;
+      left: 35%;
+      content: "";
+      z-index: 2;
+      font-weight: lighter;
+      text-shadow:0 0 2px #ffffff;
       text-align: center;
-      font-size: 0.8rem;
-      margin-top: 2.5px;
     }
 
     #time {
       position: absolute;
-      width: 100%;
-      height: 20px;
-      bottom: 0;
-      left: 0;
+      font-size: 1.5rem;
+      width: 30%;
+      padding: 4px 8px;
+      background-color: transparent;
+      color: var(--team-color);
+      top: calc(var(--UI-width) * 0.047 + 40px);
+      left: 35%;
+      content: "";
+      z-index: 2;
+      font-weight: lighter;
+      text-shadow:0 0 2px #ffffff;
       text-align: center;
-      font-size: 0.8rem;
-      margin-top: 2.5px;
     }
 
     #score-display-bottom {
@@ -949,7 +992,9 @@
     }
 
     #red-score {
-      color: red;
+      color: rgb(186, 7, 5);
+      font-size: 2.5rem;
+      text-shadow:0 0 2px #ffffff;
     }
 
     #Red-Progress::-webkit-progress-value {
@@ -965,16 +1010,18 @@
     }
 
     #blue-score {
-      color: blue;
+      color: rgb(0, 243, 235);
+      font-size: 2.5rem;
+      text-shadow:0 0 2px #ffffff;
     }
 
     #Player_map_container {
-      width: calc(var(--UI-width) * 0.25);
+      width: calc(var(--UI-width) * 0.2);
       max-width: calc(var(--UI-width) * 0.25);
       border: 1px solid gray;
       outline: 1px solid var(--team-color);
       position: fixed;
-      top: 15px;
+      top: 55px;
       right: 15px;
     }
 
@@ -1694,24 +1741,26 @@
       <div id="overlay">
         <div id="Player-UI" data-augmented-ui="bl-clip-y br-clip tl-2-clip-x r-rect-y b-rect both" style="z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;">
           <div id="Player_UI_top" style="display: flex; flex-direction: row;justify-content:center;width: 100%;height: 200px;background-color: transparent;background: rgb(255,255,255);background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(152,152,168,0) 0%, var(--team-color-sub) 10%);">
+            <p id="life-label">HP</p>
+            <p id="Player_name">aaaaaaaaaaaa</p>
+            <p id="score-display-top">Blue Team</p>
+            <p id="time">残り時間 03:45</p>
             <div id="life" data-augmented-ui="tl-2-clip-x br-2-clip-x border inlay">
               <div id="life-background"></div>
             </div>
     
-            <div id="score-display" data-augmented-ui="tl-clip both" class="styleme">
-              <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 40%;height: 100%;">
-                <p id="red-score" style="text-align:center;">0</p>
-                <progress id="Red-Progress" value="0" max="25" style="width: 80%;margin: 0 auto;" dir="rtl"></progress>
+            <div id="score-display">
+              <div id="Red-Container" style="display: flex;flex-direction: row;justify-content:space-around;width: 40%;height: 100%;">
+                <p id="red-score" style="text-align:center;margin: auto 0 0 0;">0</p>
+                <progress id="Red-Progress" value="0" max="25" style="width: 80%;margin: auto 0 0 0;" dir="rtl"></progress>
               </div>
-              <div id="Partition-Container" style="display: flex;flex-direction: column;justify-content: center;width: 20%;height: 100%;">
-                <p id="score-partition" style="text-align: center;"> : </p>
+              <div id="Partition-Container" style="display: flex;flex-direction: column;justify-content: center;width: 15%;height: 100%;">
+                <p id="score-partition" style="text-align: center;font-size: 2rem;margin: auto 0 0 0;text-shadow:0 0 2px #ffffff;"> 25点先取 </p>
               </div>
-              <div id="Red-Container" style="display: flex;flex-direction: column;justify-content: center;width: 40%;height: 100%;">
-                <p id="blue-score" style="text-align: center;">0</p>
-                <progress id="Blue-Progress" value="0" max="25" style="width: 80%;margin: 0 auto;"></progress>
+              <div id="Blue-Container" style="display: flex;flex-direction: row;justify-content:space-around;width: 40%;height: 100%;">
+                <p id="blue-score" style="text-align: center;margin: auto 0 0 0;">0</p>
+                <progress id="Blue-Progress" value="0" max="25" style="width: 80%;margin: auto 0 0 0;"></progress>
               </div>
-              <p id="score-display-top"></p>
-              <p id="time"></p>
             </div>
     
             <div data-augmented-ui="both" class="styleme" id="Player_map_container">
