@@ -2060,7 +2060,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const Player_tips = document.getElementById("Player_tips");
                   Player_tips.style.display = "none";
                   const general_menu = document.getElementById("general_menu");
-                  
+                  const general_guide = document.getElementById("general_guide");
+                  const Player_Guide = document.getElementById("Player_Guide");
                   general_menu.addEventListener("click", function(){
                     if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
                       toolbar_under.style.display = "flex";
@@ -2069,7 +2070,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                       toolbar_under.style.display = "none";
                       Player_tips.style.display = "none";
                     }
-                    
+                  });
+                  general_guide.addEventListener("click", function(){
+                    if (Player_Guide.style.display == "none") {
+                      Player_Guide.style.display = "block";
+                    } else {
+                      Player_Guide.style.display = "none";
+                    }
+                  });
+                  Player_Guide.addEventListener("click", function(){
+                    if (Player_Guide.style.display = "block") {
+                      Player_Guide.style.display = "none";
+                    }
                   });
                   count_start();
                 }
