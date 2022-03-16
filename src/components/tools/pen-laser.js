@@ -20,6 +20,8 @@ var AirCanonClip;
 
 var ShootingSfx;
 
+var aircanon_count = 0;
+
 waitForDOMContentLoaded().then(() => {
   loadModel(AirCanonSrc).then(gltf => {
     AirCanon = gltf;
@@ -35,10 +37,13 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    if(this.el.parentEl.components.networked.isMine()){
-      const mymane = document.getElementById("Player_name").innerText;
+    const mymane = document.getElementById("Player_name").innerText;
+    if(aircanon_count == 0){
       this.el.classList.add(mymane + "_aircanon");
+      aircanon_count += 1;
     }
+    
+    
    
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
