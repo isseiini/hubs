@@ -311,6 +311,9 @@ AFRAME.registerComponent("pen", {
 
     this.penSystem = this.el.sceneEl.systems["pen-tools"];
     this.penSystem.register(this.el);
+
+    const AirCanonAction = document.querySelector(".aircanon");
+    AirCanonAction.style.display = "block";
   },
 
   play() {
@@ -679,5 +682,7 @@ AFRAME.registerComponent("pen", {
     AFRAME.scenes[0].removeEventListener("object3dset", this.setDirty);
     AFRAME.scenes[0].removeEventListener("object3dremove", this.setDirty);
     this.penSystem.deregister(this.el);
+    const AirCanonAction = document.querySelector(".aircanon");
+    AirCanonAction.style.display = "none"; 
   }
 });
