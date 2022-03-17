@@ -47,7 +47,7 @@ AFRAME.registerComponent("aircanon-animation", {
     aircanon_count += 1;
 
     console.log(this.el.parentElement)
-    console.log(this.el.parentElement.parentElement)
+    console.log(this.el.parentElement.parentElement.getAttribute("id"))
     
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
