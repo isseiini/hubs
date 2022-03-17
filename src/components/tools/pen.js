@@ -211,7 +211,7 @@ function almostEquals(epsilon, u, v) {
 let isCharged = false;
 
 
-
+const AirCanonAction = document.querySelector(".aircanon");
 
 AFRAME.registerComponent("pen", {
   schema: {
@@ -420,7 +420,8 @@ AFRAME.registerComponent("pen", {
           }, 2000);
           const myname = document.getElementById("Player_name").innerText;
           const aircanon_index = "." + myname + "_aircanon";
-          const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
+          //const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
+          
           AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
           setTimeout(() => {
             AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
