@@ -237,7 +237,7 @@ export default class MessageDispatch extends EventTarget {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.querySelector(".sanshakudama");
         let hanabi_index = "." + window.hubjs.myname + "_hanabi";
-        let HanabiAction = document.querySelector(hanabi_index);
+        let HanabiAction = document.querySelector("#avatar-rig .sanshakudama");
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       }
       const Red_Score = document.getElementById("red-score");
@@ -268,7 +268,7 @@ export default class MessageDispatch extends EventTarget {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.querySelector(".sanshakudama");
         let hanabi_index = "." + window.hubjs.myname + "_hanabi";
-        let HanabiAction = document.querySelector(hanabi_index);
+        let HanabiAction = document.querySelector("#avatar-rig .sanshakudama");
         HanabiAction.setAttribute("hanabi-animation", {action: "true"});
       }
       const Blue_Score = document.getElementById("blue-score");
