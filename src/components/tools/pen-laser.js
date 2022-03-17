@@ -41,7 +41,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if(aircanon_count == 0){
       console.log(aircanon_count);
       NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
-        this.networkedEl = networkedEl;
+        this.targetEl = networkedEl;
       });
     }
     aircanon_count += 1;
