@@ -417,10 +417,8 @@ AFRAME.registerComponent("pen", {
           }, 2000);
           const myname = document.getElementById("Player_name").innerText;
           const aircanon_index = "." + myname + "_aircanon";
-          //const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
-          let AirCanonAction = document.querySelectorAll(".aircanon");
-          console.log(NAF_position)
-          AirCanonAction = AirCanonAction[window.NAF_position - 1];
+          const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
+          //let AirCanonAction = document.querySelector(".aircanon");
           AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
           setTimeout(() => {
             AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
