@@ -1163,6 +1163,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img3 = document.getElementById("map_img3");
   const Player_map = document.getElementById("Player_map");
   function orientationCheck(){
+    if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
+      return
+    }
     const orientation_message = document.getElementById("orientationmessage");
     const orientation = window.orientation;
     const orientation_scene = document.querySelector("a-scene");
@@ -1176,6 +1179,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   orientationCheck();
   
   window.addEventListener("orientationchange", function() {
+    if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
+      return
+    }
     const orientation_message = document.getElementById("orientationmessage");
     const orientation = window.orientation;              
     const orientation_scene = document.querySelector("a-scene");
