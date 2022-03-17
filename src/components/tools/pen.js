@@ -210,9 +210,6 @@ function almostEquals(epsilon, u, v) {
 
 let isCharged = false;
 
-
-const AirCanonAction = document.querySelector(".aircanon");
-
 AFRAME.registerComponent("pen", {
   schema: {
     drawFrequency: { default: 5 }, //frequency of polling for drawing points 
@@ -421,7 +418,7 @@ AFRAME.registerComponent("pen", {
           const myname = document.getElementById("Player_name").innerText;
           const aircanon_index = "." + myname + "_aircanon";
           //const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
-          
+          const AirCanonAction = document.querySelector(".aircanon");
           AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
           setTimeout(() => {
             AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
