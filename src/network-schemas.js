@@ -60,7 +60,7 @@ function registerNetworkSchemas() {
         selector: ".aircanon",
         component: "aircanon-animation",
         property: "action"
-      }
+      },
       {
         selector: ".left-controller",
         component: "position",
