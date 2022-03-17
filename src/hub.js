@@ -2132,6 +2132,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
                   
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
+                  window.NAF_position = naf_tree.length;
                   
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const aircanon_container = document.querySelector(".aircanon");
