@@ -39,7 +39,6 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     if(aircanon_count == 0){
-      this.el.setAttribute("id","AIRCANON")
       console.log(aircanon_count);
       NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
         this.targetEl = networkedEl;
