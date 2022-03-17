@@ -137,7 +137,7 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, logoSrc, showSou
           <p>
             <FormattedMessage
               id="exited-room-screen.create-room"
-              defaultMessage="You can also <a>create a new room</a>."
+              defaultMessage=""
               values={{
                 // eslint-disable-next-line react/display-name
                 a: chunks => <a href="/">{chunks}</a>
@@ -147,7 +147,7 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, logoSrc, showSou
         )}
 
         <Button as="a" preset="accept" href={window.location.href}>
-          <FormattedMessage id="exited-room-screen.refresh-page-button" defaultMessage="Refresh Page" />
+          <FormattedMessage id="exited-room-screen.refresh-page-button" defaultMessage="ページを更新する" />
         </Button>
       </>
     );
