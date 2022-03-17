@@ -40,13 +40,14 @@ AFRAME.registerComponent("aircanon-animation", {
   init() {
     if(aircanon_count == 0){
       console.log(aircanon_count);
-      
+      NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+        this.networkedEl = networkedEl;
+      });
     }
     aircanon_count += 1;
-    
-    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
-      this.networkedEl = networkedEl;
-    });
+
+    console.log(this.el.parentElement)
+    console.log(this.el.parentElement.parentElement)
     
     //this.Shoot = this.Shoot.bind(this);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
