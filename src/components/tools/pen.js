@@ -419,9 +419,9 @@ AFRAME.registerComponent("pen", {
           const aircanon_index = "." + myname + "_aircanon";
           //const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
           let AirCanonAction = document.querySelector("#avatar-rig .aircanon");
-          AirCanonAction.setAttribute("aircanon-animation", {action: myname});
+          AirCanonAction.setAttribute("aircanon-animation", {action: "true"});
           setTimeout(() => {
-            AirCanonAction.setAttribute("aircanon-animation", {action: myname + "false"});
+            AirCanonAction.setAttribute("aircanon-animation", {action: "false"});
           }, 2000);
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
           if (targetbox[5][1].networked) {

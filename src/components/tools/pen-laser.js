@@ -38,48 +38,39 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    if(aircanon_count == 0){
-      console.log(aircanon_count);
-      NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
-        this.targetEl = networkedEl;
-      });
-      this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-      this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
-      
-      this.el.setObject3D(`aircanon-${this.AirCanonMesh.uuid}`, this.AirCanonMesh);
-      this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-      this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-
-      this.reticle = document.querySelector(".reticle");
-      this.rotate120 = 0;
-
-      
-      
-      AirCanonClip = this.loadingClip;
-      AirCanonClip.setLoop(THREE.LoopOnce);
-      ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-    }
-    aircanon_count += 1;
-
-    console.log(this.el.parentElement)
-    console.log(this.el.parentElement.parentElement.getAttribute("id"))
+    this.Shoot = this.Shoot.bind(this);
+    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+      this.targetEl = networkedEl;
+    });
+    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
+    this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
     
-    //this.Shoot = this.Shoot.bind(this);
+    this.el.setObject3D("mesh", this.AirCanonMesh);
+    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+
+    this.reticle = document.querySelector(".reticle");
+    this.rotate120 = 0;
+    
+    AirCanonClip = this.loadingClip;
+    AirCanonClip.setLoop(THREE.LoopOnce);
+    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     
   },
 
   update() {
     const myname = document.getElementById("Player_name").innerText;
-    if (this.data.action == myname){
-      AirCanonClip.play();
+    if (this.data.action == "true"){
+      /*AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
       setTimeout(() => {
         AirCanonClip.stop();
       }, 2000);
-      ShootingSfx.playSoundOneShot(SOUND_SHOOT);
+      ShootingSfx.playSoundOneShot(SOUND_SHOOT);*/
+      this.Shoot();
     } 
-    if(this.data.action == myname + "false") {
+    if(this.data.action == "false") {
       //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
       //current_animation.reset();
       //AirCanonClip.stop();
@@ -95,7 +86,17 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   remove() {
-    this.el.removeObject3D(`aircanon-${this.AirCanonMesh.uuid}`);
+    this.el.removeObject3D("mesh");
+  },
+
+  Shoot () {
+    AirCanonClip.play();
+    this.rotate120 += 120;
+    this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
+    setTimeout(() => {
+      AirCanonClip.stop();
+    }, 2000);
+    ShootingSfx.playSoundOneShot(SOUND_SHOOT);
   }
 
 });
