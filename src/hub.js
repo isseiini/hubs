@@ -1163,6 +1163,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img3 = document.getElementById("map_img3");
   const Player_map = document.getElementById("Player_map");
   function orientationCheck(){
+    const scene = document.querySelector("a-scene");
     if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
       return
     }
