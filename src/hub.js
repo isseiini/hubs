@@ -1137,6 +1137,24 @@ export function Get_Coupon(number){
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  var btn = document.querySelectorAll('.open_path_menu')
+    document.getElementById("main1-bottom").style.height = "150px";
+    document.getElementById("main2-bottom").style.height = "150px";
+    document.getElementById("hubs-bottom").style.height = "150px";
+    document.getElementById("VRChat-bottom").style.height = "150px";
+    btn.forEach(function(el, i) {
+      el.parentElement.addEventListener('click', function() {
+        if(el.parentElement.parentElement.style.height == "150px") {
+          el.parentElement.parentElement.style.height = "auto";
+          el.innerHTML = "クリックして閉じる";
+          el.parentElement.children[1].setAttribute("data-augmented-ui", "all-triangle-up");
+        } else {
+          el.parentElement.parentElement.style.height = "150px";
+          el.innerHTML = "クリックして開く";
+          el.parentElement.children[1].setAttribute("data-augmented-ui", "all-triangle-down");
+        }
+      })
+    })
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
@@ -1454,7 +1472,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (isMobileVR) {
       // Optimization, stop drawing UI if not visible
-      remountUI({ hide: true });
+      remountUI({ hide: false });
     }
 
     document.body.classList.add("vr-mode");
