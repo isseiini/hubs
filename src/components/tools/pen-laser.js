@@ -68,7 +68,8 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if (this.data.action == "true"){
+    const myname = document.getElementById("Player_name").innerText;
+    if (this.data.action == myname){
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
@@ -77,7 +78,7 @@ AFRAME.registerComponent("aircanon-animation", {
       }, 2000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);
     } 
-    if(this.data.action == "false") {
+    if(this.data.action == myname + "false") {
       //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
       //current_animation.reset();
       //AirCanonClip.stop();
