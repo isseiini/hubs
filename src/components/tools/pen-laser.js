@@ -41,6 +41,9 @@ AFRAME.registerComponent("aircanon-animation", {
     if(aircanon_count == 0){
       this.el.setAttribute("id","AIRCANON")
       console.log(aircanon_count);
+      NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+        this.targetEl = networkedEl;
+      });
     }
     aircanon_count += 1;
     
@@ -56,9 +59,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.reticle = document.querySelector(".reticle");
     this.rotate120 = 0;
 
-    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
-      this.targetEl = networkedEl;
-    });
+    
     
     AirCanonClip = this.loadingClip;
     AirCanonClip.setLoop(THREE.LoopOnce);
@@ -66,7 +67,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
-    if ((this.data.action == "true" && NAF.utils.takeOwnership(this.el)){
+    if ((this.data.action == "true"){
       AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
