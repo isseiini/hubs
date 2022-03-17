@@ -43,6 +43,21 @@ AFRAME.registerComponent("aircanon-animation", {
       NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
         this.targetEl = networkedEl;
       });
+      this.AirCanonMesh = cloneObject3D(AirCanon.scene);
+      this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
+      
+      this.el.setObject3D(`aircanon-${this.AirCanonMesh.uuid}`, this.AirCanonMesh);
+      this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
+      this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+
+      this.reticle = document.querySelector(".reticle");
+      this.rotate120 = 0;
+
+      
+      
+      AirCanonClip = this.loadingClip;
+      AirCanonClip.setLoop(THREE.LoopOnce);
+      ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
     }
     aircanon_count += 1;
 
@@ -50,21 +65,7 @@ AFRAME.registerComponent("aircanon-animation", {
     console.log(this.el.parentElement.parentElement.getAttribute("id"))
     
     //this.Shoot = this.Shoot.bind(this);
-    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
     
-    this.el.setObject3D(`aircanon-${this.AirCanonMesh.uuid}`, this.AirCanonMesh);
-    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-
-    this.reticle = document.querySelector(".reticle");
-    this.rotate120 = 0;
-
-    
-    
-    AirCanonClip = this.loadingClip;
-    AirCanonClip.setLoop(THREE.LoopOnce);
-    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
   },
 
   update() {
