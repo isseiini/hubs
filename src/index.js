@@ -450,7 +450,22 @@ document.addEventListener("DOMContentLoaded", async () => {
           alert("ログインしてください。");
           return;
         } else {
-          document.getElementById("hex-background").style.display = "none";
+          var matching_params = {
+            TableName: "Sightseeing-table"
+          };
+          docClient.scan(matching_params, function(err, data3) {
+            if (err) {
+              console.log(err);
+            } else {
+              data3.Items.sort((a, b) => b.Sum - a.Sum);
+              var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+              if (confirm("マッチしました。観光ワールドへ移動します。")) {
+                location.href = goal_url;
+              } else {
+                //alert("キャンセルしました。");
+              }
+            }
+          });
         }
       });
     }
