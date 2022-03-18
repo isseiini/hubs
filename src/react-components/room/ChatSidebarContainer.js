@@ -19,7 +19,7 @@ import { useIntl } from "react-intl";
 
 const ChatContext = createContext({ messageGroups: [], sendMessage: () => {} });
 
-var use_text_chat_count = 0;
+window.use_text_chat_count = 0;
 
 let uniqueMessageId = 0;
 
@@ -171,7 +171,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
         e.preventDefault();
         sendMessage(e.target.value);
         setMessage("");
-        use_text_chat_count += 1
+        use_text_chat_count += 1;
       }
     },
     [sendMessage, setMessage]
@@ -181,7 +181,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
     () => {
       sendMessage(message);
       setMessage("");
-      use_text_chat_count += 1
+      use_text_chat_count += 1;
     },
     [message, sendMessage, setMessage]
   );
@@ -268,7 +268,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       <ChatInput
         id="chat-input"
         onKeyDown={onKeyDown}
-        onChange={e => setMessage(e.target.value.replace(/</g, '').replace(/>/g, ''))}
+        onChange={e => setMessage(e.target.value.replace(/</g, "").replace(/>/g, ""))}
         placeholder={placeholder}
         value={message}
         afterInput={
@@ -290,8 +290,10 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
 }
 
 export var text_chat_data = {
-	count(){text_chat_data = use_text_chat_count},
-}
+  count() {
+    text_chat_data = use_text_chat_count;
+  }
+};
 ChatSidebarContainer.propTypes = {
   canSpawnMessages: PropTypes.bool,
   presences: PropTypes.object.isRequired,

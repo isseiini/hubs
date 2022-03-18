@@ -291,6 +291,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const age_signup = document.getElementById("age-signup").value;
     const sex_signup = document.getElementById("sex-signup").value;
     const location_signup = document.getElementById("location-signup").value;
+    const hobby_signup = document.getElementById("hobby-signup").value;
+    const game_signup = document.getElementById("game-signup").value;
+    const experience_signup = document.getElementById("experience-signup").value;
 
     if (!email_signup | !name_signup | !password_signup | !age_signup | !sex_signup | !location_signup) {
       alert("未入力項目があります。");

@@ -1,3 +1,4 @@
+import { width } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { waitForDOMContentLoaded } from "../utils/async-utils";
 const { Vector3, Quaternion, Matrix4, Euler } = THREE;
 
@@ -64,7 +65,6 @@ const angleOnXZPlaneBetweenMatrixRotations = (function() {
   };
 })();
 
-
 /**
  * Performs IK on a hip-rooted skeleton to align the hip, head and hands with camera and controller inputs.
  * @namespace avatar
@@ -116,6 +116,10 @@ AFRAME.registerComponent("ik-controller", {
     this.lastCameraTransform = new THREE.Matrix4();
     waitForDOMContentLoaded().then(() => {
       this.playerCamera = document.getElementById("viewing-camera").getObject3D("camera");
+      setInterval(() => {
+        window.Positionlist.push(this.playerCamera.position);
+        window.ViewPointlist.push(this.playerCamera.rotation);
+      }, 1500);
     });
 
     this.el.sceneEl.systems["frame-scheduler"].schedule(this._runScheduledWork, "ik");
@@ -165,7 +169,7 @@ AFRAME.registerComponent("ik-controller", {
 
     this.invHipsToHeadVector
       .addVectors(this.chest.position, this.neck.position)
-      
+
       .add(this.head.position)
       .negate();
   },
@@ -254,7 +258,7 @@ AFRAME.registerComponent("ik-controller", {
       } else {
         avatar.quaternion.copy(cameraYQuaternion);
       }
-      
+
       this.hasConvergedHips = quaternionAlmostEquals(0.0001, cameraYQuaternion, avatar.quaternion);
 
       // Take the head orientation computed from the hmd, remove the Y rotation already applied to it by the hips,
@@ -271,14 +275,14 @@ AFRAME.registerComponent("ik-controller", {
       head.matrixNeedsUpdate = true;
       chest.matrixNeedsUpdate = true;
 
-      document.addEventListener('keyup', event => {
-        if (event.code === 'KeyB') {
-          console.log(cameraYRotation)
+      document.addEventListener("keyup", event => {
+        if (event.code === "KeyB") {
+          console.log(cameraYRotation);
         }
       });
-      document.addEventListener('keyup', event => {
-        if (event.code === 'KeyN') {
-          console.log(avatar.position)
+      document.addEventListener("keyup", event => {
+        if (event.code === "KeyN") {
+          console.log(avatar.position);
         }
       });
 
@@ -298,8 +302,6 @@ AFRAME.registerComponent("ik-controller", {
       this.ikRoot.el.object3D.visible = true;
       this._hadFirstTick = true;
     }
-
-    
   },
 
   updateHand(handRotation, handObject3D, controllerObject3D, isLeft, isInView) {

@@ -2035,6 +2035,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 if (isSelf && currentMeta.presence !== meta.presence && meta.presence === "room") {
+                  window.PlayID = Math.random()
+                    .toString(36)
+                    .slice(-8);
+                  window.UserID_num = Math.random()
+                    .toString(36)
+                    .slice(-8);
+                  window.Positionlist = {};
+                  window.ViewPointlist = {};
+                  window.Communicationlist = {};
+
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
                   toolbar_under.style.display = "none";
