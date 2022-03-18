@@ -1150,20 +1150,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  document.getElementById("leave_confirmed").addEventListener("click", function() {
-    function f1() {
-      return new Promise(resolve => {
-        alert("f1 ==> f2");
-        resolve("f1 ==> f2");
-      });
-    }
-    f1().then(response => {
-      if (!alert(response)) {
-        location.href = "/";
-      }
-    });
-  });
-
   if (room_name == "kooky-passionate-safari") {
     map_img.style.display = "none";
     map_img3.style.display = "none";

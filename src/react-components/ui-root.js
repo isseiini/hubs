@@ -200,7 +200,7 @@ class UIRoot extends Component {
   };
 
   constructor(props) {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     super(props);
 
     props.mediaSearchStore.setHistory(props.history);
@@ -211,7 +211,7 @@ class UIRoot extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     const { hubChannel, showSignInDialog } = this.props;
     if (hubChannel) {
       const { signedIn } = hubChannel;
@@ -438,12 +438,12 @@ class UIRoot extends Component {
     if (this.props.onLoaded) {
       this.props.onLoaded();
     }
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
 
   onSceneLoaded = () => {
     this.setState({ sceneLoaded: true });
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
 
   onShareVideoEnabled = e => {
@@ -598,21 +598,21 @@ class UIRoot extends Component {
 
   onAudioReadyButton = async () => {
     // Chrome & Firefox v64以降
-    if( document.body.requestFullscreen ) {
+    if (document.body.requestFullscreen) {
       document.body.requestFullscreen();
-      
-    // Firefox v63以前
-    } else if( document.body.mozRequestFullScreen ) {
+
+      // Firefox v63以前
+    } else if (document.body.mozRequestFullScreen) {
       document.body.mozRequestFullScreen();
 
-    // Safari & Edge & Chrome v68以前
-    } else if( document.body.webkitRequestFullscreen ) {
+      // Safari & Edge & Chrome v68以前
+    } else if (document.body.webkitRequestFullscreen) {
       document.body.webkitRequestFullscreen();
-      
-    // IE11
-    } else if( document.body.msRequestFullscreen ) {
+
+      // IE11
+    } else if (document.body.msRequestFullscreen) {
       document.body.msRequestFullscreen();
-    }	
+    }
     if (!this.state.enterInVR) {
       await showFullScreenIfAvailable();
     }
@@ -803,7 +803,7 @@ class UIRoot extends Component {
   renderEntryStartPanel = () => {
     const { hasAcceptedProfile, hasChangedName } = this.props.store.state.activity;
     const promptForNameAndAvatarBeforeEntry = this.props.hubIsBound ? !hasAcceptedProfile : !hasChangedName;
-    
+
     // TODO: What does onEnteringCanceled do?
     return (
       <>
@@ -813,7 +813,6 @@ class UIRoot extends Component {
           roomName={this.props.hub.name}
           showJoinRoom={!this.state.waitingOnAudio && !this.props.entryDisallowed}
           onJoinRoom={() => {
-            
             if (promptForNameAndAvatarBeforeEntry || !this.props.forcedVREntryType) {
               this.setState({ entering: true });
               this.props.hubChannel.sendEnteringEvent();
@@ -850,8 +849,6 @@ class UIRoot extends Component {
         )}
       </>
     );
-
-    
   };
 
   renderDevicePanel = () => {
@@ -1601,6 +1598,19 @@ class UIRoot extends Component {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
                             destinationUrl: "/",
                             reason: LeaveReason.leaveRoom
+                          });
+                          document.getElementById("leave_confirmed").addEventListener("click", function() {
+                            function f1() {
+                              return new Promise(resolve => {
+                                alert("f1 ==> f2");
+                                resolve("f1 ==> f2");
+                              });
+                            }
+                            f1().then(response => {
+                              if (!alert(response)) {
+                                location.href = "/";
+                              }
+                            });
                           });
                         }}
                       />
