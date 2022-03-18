@@ -459,8 +459,31 @@ document.addEventListener("DOMContentLoaded", async () => {
             } else {
               data3.Items.sort((a, b) => b.Sum - a.Sum);
               var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
-              if (confirm("マッチしました。観光ワールドへ移動します。")) {
-                location.href = goal_url;
+              var match_sightseeing = {
+                TableName: "Sightseeing-table",
+                Key: {
+                  //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+                  URL: data3.Items[0].URL
+                },
+                ExpressionAttributeNames: {
+                  "#S": "Sum"
+                },
+                ExpressionAttributeValues: {
+                  ":add": 1
+                },
+                UpdateExpression: "SET #S = #S + :add"
+              };
+              if (confirm("マッチングしました。観光ワールドへ移動します。")) {
+                docClient.update(match_sightseeing, function(err, data2) {
+                  if (err) {
+                    console.log("error");
+                  } else {
+                    console.log("success");
+                  }
+                });
+                setTimeout(() => {
+                  location.href = goal_url;
+                }, 3000);
               } else {
                 //alert("キャンセルしました。");
               }
