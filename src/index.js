@@ -313,37 +313,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
     const dataAge = {
-      Name: "age",
+      Name: "custom:age",
       Value: age_signup
     };
     const attributeAge = new AmazonCognitoIdentity.CognitoUserAttribute(dataAge);
 
     const dataSex = {
-      Name: "sex",
+      Name: "custom:sex",
       Value: sex_signup
     };
     const attributeSex = new AmazonCognitoIdentity.CognitoUserAttribute(dataSex);
 
     const dataLocation = {
-      Name: "location",
+      Name: "custom:location",
       Value: location_signup
     };
     const attributeLocation = new AmazonCognitoIdentity.CognitoUserAttribute(dataLocation);
 
     const dataHobby = {
-      Name: "hobby",
+      Name: "custom:hobby",
       Value: hobby_signup
     };
     const attributeHobby = new AmazonCognitoIdentity.CognitoUserAttribute(dataHobby);
 
     const dataGame = {
-      Name: "game",
+      Name: "custom:game",
       Value: game_signup
     };
     const attributeGame = new AmazonCognitoIdentity.CognitoUserAttribute(dataGame);
 
     const dataExperience = {
-      Name: "experience",
+      Name: "custom:experience",
       Value: experience_signup
     };
     const attributeExperience = new AmazonCognitoIdentity.CognitoUserAttribute(dataExperience);
