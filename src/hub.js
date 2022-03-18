@@ -2041,9 +2041,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.UserID_num = Math.random()
                     .toString(36)
                     .slice(-8);
-                  window.Positionlist = {};
-                  window.ViewPointlist = {};
-                  window.Communicationlist = {};
+                  window.Communicationlist = [];
 
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");

@@ -85,6 +85,8 @@ AFRAME.registerComponent("ik-controller", {
   },
 
   init() {
+    window.Positionlist = [];
+    window.ViewPointlist = [];
     this._runScheduledWork = this._runScheduledWork.bind(this);
     this._updateIsInView = this._updateIsInView.bind(this);
 
