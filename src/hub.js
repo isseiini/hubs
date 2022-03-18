@@ -2507,7 +2507,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   
-  
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
       TableName: 'Matching-table',
