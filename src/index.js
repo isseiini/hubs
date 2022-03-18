@@ -312,8 +312,50 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     const attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
 
+    const dataAge = {
+      Name: "age",
+      Value: age_signup
+    };
+    const attributeAge = new AmazonCognitoIdentity.CognitoUserAttribute(dataAge);
+
+    const dataSex = {
+      Name: "sex",
+      Value: sex_signup
+    };
+    const attributeSex = new AmazonCognitoIdentity.CognitoUserAttribute(dataSex);
+
+    const dataLocation = {
+      Name: "location",
+      Value: location_signup
+    };
+    const attributeLocation = new AmazonCognitoIdentity.CognitoUserAttribute(dataLocation);
+
+    const dataHobby = {
+      Name: "hobby",
+      Value: hobby_signup
+    };
+    const attributeHobby = new AmazonCognitoIdentity.CognitoUserAttribute(dataHobby);
+
+    const dataGame = {
+      Name: "game",
+      Value: game_signup
+    };
+    const attributeGame = new AmazonCognitoIdentity.CognitoUserAttribute(dataGame);
+
+    const dataExperience = {
+      Name: "experience",
+      Value: experience_signup
+    };
+    const attributeExperience = new AmazonCognitoIdentity.CognitoUserAttribute(dataExperience);
+
     attributeList.push(attributeName);
     attributeList.push(attributeEmail);
+    attributeList.push(attributeAge);
+    attributeList.push(attributeSex);
+    attributeList.push(attributeLocation);
+    attributeList.push(attributeHobby);
+    attributeList.push(attributeGame);
+    attributeList.push(attributeExperience);
 
     userPool.signUp(name_signup, password_signup, attributeList, null, (err, data1) => {
       if (err) {
