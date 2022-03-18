@@ -52,7 +52,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
     >
       <Column padding center centerMd="both" grow>
         <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" id="leave_confirmed" rel="noopener noreferrer">
+        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick="leave_confirmed()">
           {intl.formatMessage(confirmationMessages[reason])}
         </Button>
       </Column>
