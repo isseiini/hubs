@@ -1137,7 +1137,6 @@ export function Get_Coupon(number){
 document.addEventListener("DOMContentLoaded", async () => {
   
   var Player_UI = document.getElementById("Player-UI");
-  Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
   const map_img = document.getElementById("map_img");
   const map_img2 = document.getElementById("map_img2");
