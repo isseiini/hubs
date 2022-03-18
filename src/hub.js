@@ -1028,6 +1028,15 @@ function get_current_Date() {
   return str;
 }
 
+function Alert(message) {
+  const Alert = document.getElementById("Player_Alert");
+  Alert.innerText = message;
+  Alert.style.display = "flex";
+  setTimeout(() => {
+    Alert.style.display = "none";
+  }, 2000);
+}
+
 export function Get_Coupon(number) {
   const current_Date = get_current_Date();
 
@@ -1081,28 +1090,27 @@ export function Get_Coupon(number) {
             currentUserData[result[i].getName()] = result[i].getValue();
           }
 
-          if (!alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。")) {
-            var coupon_params = {
-              TableName: "coupon",
-              Item: {
-                Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
-                coupon_number: number,
-                shop: shop_name,
-                content: shop_content,
-                User_ID: currentUserData["sub"],
-                available_or_used: "available",
-                get_Date: current_Date
-              }
-            };
+          Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
+          var coupon_params = {
+            TableName: "coupon",
+            Item: {
+              Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
+              coupon_number: number,
+              shop: shop_name,
+              content: shop_content,
+              User_ID: currentUserData["sub"],
+              available_or_used: "available",
+              get_Date: current_Date
+            }
+          };
 
-            docClient.put(coupon_params, function(err, data) {
-              if (err) {
-                console.log("error");
-              } else {
-                console.log("success");
-              }
-            });
-          }
+          docClient.put(coupon_params, function(err, data) {
+            if (err) {
+              console.log("error");
+            } else {
+              console.log("success");
+            }
+          });
         }
       });
     }
@@ -1112,7 +1120,6 @@ export function Get_Coupon(number) {
 export const leaveAction = function leave_confirmed() {
   function f1() {
     return new Promise(resolve => {
-      alert("f1 ==> f2");
       resolve("f1 ==> f2");
     });
   }
@@ -2506,7 +2513,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (confirm("マッチしました。対戦ワールドへ移動します。")) {
           location.href = goal_url;
         } else {
-          alert("キャンセルしました。");
+          //alert("キャンセルしました。");
         }
       }
     });

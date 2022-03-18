@@ -359,7 +359,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     userPool.signUp(name_signup, password_signup, attributeList, null, (err, data1) => {
       if (err) {
-        alert(err.message);
+        alert("失敗しました。");
       } else {
         alert("登録したメールアドレスへアクティベーション用のリンクを送付しました。");
       }

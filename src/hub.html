@@ -1473,6 +1473,17 @@
     #main_container::-webkit-scrollbar {  /* Chrome, Safari 対応 */
       display:none;
     }
+
+    #Player_Alert {
+      width: 60%;
+      height: 80%;
+      background-color: #ffffff;
+      border-radius: 8px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      margin: 0 auto;
+    }
 </style>
 
 
@@ -1671,6 +1682,8 @@
             <h1 style="text-align: center;width: 100%;margin: 40px auto;">勝利！！</h1>
             <input id="Game-Restart" style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="次のゲームを始める">
           </div>
+
+          <div id="Player_Alert" style="display: none;"></div>
         </div>
 
         <div id="game-progress-origin">
