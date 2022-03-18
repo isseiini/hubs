@@ -1597,7 +1597,20 @@ class UIRoot extends Component {
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
                             destinationUrl: "/",
-                            reason: LeaveReason.leaveRoom
+                            reason: LeaveReason.leaveRoom,
+                            onLeave: function() {
+                              function f1() {
+                                return new Promise(resolve => {
+                                  alert("f1 ==> f2");
+                                  resolve("f1 ==> f2");
+                                });
+                              }
+                              f1().then(response => {
+                                if (!alert(response)) {
+                                  location.href = "/";
+                                }
+                              });
+                            }
                           });
                         }}
                       />

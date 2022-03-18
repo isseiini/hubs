@@ -1150,7 +1150,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  function leave_confirmed() {
+  export function leave_confirmed() {
     function f1() {
       return new Promise(resolve => {
         alert("f1 ==> f2");

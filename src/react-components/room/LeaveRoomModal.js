@@ -42,7 +42,7 @@ const confirmationMessages = defineMessages({
   }
 });
 
-export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
+export function LeaveRoomModal({ reason, destinationUrl, onClose, onLeave }) {
   const intl = useIntl();
 
   return (
@@ -52,7 +52,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
     >
       <Column padding center centerMd="both" grow>
         <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick="leave_confirmed()">
+        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={onLeave}>
           {intl.formatMessage(confirmationMessages[reason])}
         </Button>
       </Column>
@@ -63,5 +63,6 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
 LeaveRoomModal.propTypes = {
   reason: PropTypes.string,
   destinationUrl: PropTypes.string,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  onLeave: PropTypes.func
 };
