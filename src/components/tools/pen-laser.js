@@ -1,9 +1,7 @@
 const InterpolationBuffer = require("buffered-interpolation");
 import { convertStandardMaterial } from "../../utils/material-utils";
 
-import {
-  SOUND_SHOOT
-} from "../../systems/sound-effects-system";
+import { SOUND_SHOOT } from "../../systems/sound-effects-system";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 import AirCanonSrc from "../../assets/models/aircanonwithanimation3.glb";
@@ -27,40 +25,40 @@ waitForDOMContentLoaded().then(() => {
     AirCanon = gltf;
     //AirCanon.rotation.set(Math.PI, -Math.PI/2, Math.PI/2);
   });
-  
 });
 
-const AirCanonMine = Math.random().toString(36).slice(-8);
+const AirCanonMine = Math.random()
+  .toString(36)
+  .slice(-8);
 
 AFRAME.registerComponent("aircanon-animation", {
   schema: {
-    action: {default: ""}
+    action: { default: "" }
   },
 
   init() {
     this.Shoot = this.Shoot.bind(this);
-    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+    /*NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
-    });
+    });*/
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
-    
+
     this.el.setObject3D("mesh", this.AirCanonMesh);
     this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
     this.reticle = document.querySelector(".reticle");
     this.rotate120 = 0;
-    
+
     AirCanonClip = this.loadingClip;
     AirCanonClip.setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-    
   },
 
   update() {
     const myname = document.getElementById("Player_name").innerText;
-    if (this.data.action == "true"){
+    if (this.data.action == "true") {
       /*AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
@@ -69,8 +67,8 @@ AFRAME.registerComponent("aircanon-animation", {
       }, 2000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);*/
       this.Shoot();
-    } 
-    if(this.data.action == "false") {
+    }
+    if (this.data.action == "false") {
       //var current_animation = this.loaderMixer.existingAction(this.AirCanonMesh.animations[0]);
       //current_animation.reset();
       //AirCanonClip.stop();
@@ -89,7 +87,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.el.removeObject3D("mesh");
   },
 
-  Shoot () {
+  Shoot() {
     AirCanonClip.play();
     this.rotate120 += 120;
     this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
@@ -98,7 +96,6 @@ AFRAME.registerComponent("aircanon-animation", {
     }, 2000);
     ShootingSfx.playSoundOneShot(SOUND_SHOOT);
   }
-
 });
 
 AFRAME.registerComponent("pen-laser", {
@@ -108,7 +105,7 @@ AFRAME.registerComponent("pen-laser", {
     laserInHand: { default: false },
     laserOrigin: { default: { x: 0, y: 0, z: 0 } },
     remoteLaserOrigin: { default: { x: 0, y: 0, z: 0 } },
-    laserTarget: { default: { x: 0, y: 0, z: 0 } },
+    laserTarget: { default: { x: 0, y: 0, z: 0 } }
   },
 
   init() {
@@ -161,7 +158,6 @@ AFRAME.registerComponent("pen-laser", {
     const targetBufferPosition = new THREE.Vector3();
 
     return function(prevData) {
-
       if (prevData.color != this.data.color) {
         this.laser.material.color.set(this.data.color);
         this.laserTip.material.color.set(this.data.color);
@@ -188,9 +184,8 @@ AFRAME.registerComponent("pen-laser", {
   tick: (() => {
     const origin = new THREE.Vector3();
     const target = new THREE.Vector3();
-   
-    return function(t, dt) {
 
+    return function(t, dt) {
       const isMine =
         this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
       let laserVisible = false;
@@ -232,7 +227,7 @@ AFRAME.registerComponent("pen-laser", {
         this.laserTip.matrixNeedsUpdate = true;
         let projection = target.project(this.camera);
         let sx = String((this.width / 2) * (+projection.x + 1.0) - 26) + "px";
-        let sy = String((this.height / 2) * (-projection.y + 1.0) -26) + "px";
+        let sy = String((this.height / 2) * (-projection.y + 1.0) - 26) + "px";
 
         this.reticle.style.top = sy;
         this.reticle.style.left = sx;

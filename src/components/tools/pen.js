@@ -16,14 +16,11 @@ import { App } from "../../App";
 
 import { waitForDOMContentLoaded } from "../../utils/async-utils";
 
-import HanabiSrc from "../../assets/models/firework_with_bomb1.glb"
+import HanabiSrc from "../../assets/models/firework_with_bomb1.glb";
 import { loadModel } from "../gltf-model-plus";
 import { cloneObject3D } from "../../utils/three-utils";
 import { func } from "prop-types";
 import { THREE } from "aframe";
-
-
-
 
 let AirCanon;
 let Hanabi;
@@ -35,11 +32,13 @@ var HanabiMixer;
 var HanabiClip;
 
 var ShootingSfx;
-var HanabiSfx; 
+var HanabiSfx;
 
 var duration = 0.065;
 
-const HanabiMine = Math.random().toString(36).slice(-8);
+const HanabiMine = Math.random()
+  .toString(36)
+  .slice(-8);
 
 waitForDOMContentLoaded().then(() => {
   /*loadModel(AirCanonSrc).then(gltf => {
@@ -88,7 +87,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
 AFRAME.registerComponent("hanabi-animation", {
   schema: {
-    action: { default : "" }
+    action: { default: "" }
   },
 
   init() {
@@ -96,7 +95,7 @@ AFRAME.registerComponent("hanabi-animation", {
     this.HanabiMesh = cloneObject3D(Hanabi.scene);
 
     this.el.setObject3D(HanabiMine, this.HanabiMesh);
-    
+
     this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
@@ -107,12 +106,9 @@ AFRAME.registerComponent("hanabi-animation", {
     this.characterController = this.el.sceneEl.systems["hubs-systems"].characterController;
     this.team = document.getElementById("score-display-top").innerText;
 
-    NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
+    /*NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
-    });
-
-    
-    
+    });*/
   },
 
   update() {
@@ -120,8 +116,8 @@ AFRAME.registerComponent("hanabi-animation", {
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       //HanabiClip.stop();
-    } 
-    if(this.data.action == "false") {
+    }
+    if (this.data.action == "false") {
       HanabiClip.stop();
       //this.characterController.teleportTo(this.respwan_point);
     }
@@ -134,7 +130,7 @@ AFRAME.registerComponent("hanabi-animation", {
     this.HanabiMesh.matrixNeedsUpdate = true;
   },
 
-  Fire () {
+  Fire() {
     this.HanabiMesh.position.set(0, 5.5, 1.5);
     HanabiClip.play();
     //HanabiClip.fadeOut(duration);
@@ -146,10 +142,8 @@ window.APP = new App();
 
 document.addEventListener("DOMContentLoaded", async () => {
   var hit_target_container = document.getElementById("hit_target_container");
-  console.log(hit_target_container)
+  console.log(hit_target_container);
 });
-
-
 
 const pathsMap = {
   "player-right-controller": {
@@ -206,15 +200,15 @@ const MAX_DISTANCE_BETWEEN_SURFACES = 1;
 
 function almostEquals(epsilon, u, v) {
   return Math.abs(u.x - v.x) < epsilon && Math.abs(u.y - v.y) < epsilon && Math.abs(u.z - v.z) < epsilon;
-};
+}
 
 let isCharged = false;
 
 AFRAME.registerComponent("pen", {
   schema: {
-    drawFrequency: { default: 5 }, //frequency of polling for drawing points 
+    drawFrequency: { default: 5 }, //frequency of polling for drawing points
 
-    minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point 
+    minDistanceBetweenPoints: { default: 0.01 }, //minimum distance to register new drawing point
     camera: { type: "selector" },
     drawingManager: { type: "string" },
     color: { type: "color", default: "transparent" }, //rgb(0, 243, 235)
@@ -278,7 +272,7 @@ AFRAME.registerComponent("pen", {
     let material = new THREE.MeshStandardMaterial();
     const quality = window.APP.store.materialQualitySetting;
     material = convertStandardMaterial(material, quality);
-   
+
     this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
     this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
     this.penTip.matrixNeedsUpdate = true;
@@ -376,7 +370,6 @@ AFRAME.registerComponent("pen", {
       this.el.setAttribute("pen", { penVisible: penVisible });
 
       this._doDraw(this.intersection, dt);
-      
 
       if (this.penLaserAttributesUpdated) {
         this.penLaserAttributesUpdated = false;
@@ -410,38 +403,37 @@ AFRAME.registerComponent("pen", {
       //const AirCanonAction = document.getElementById("pen");
       const paths = pathsMap[this.grabberId];
       if (userinput.get(paths.startDrawing)) {
-        if(this.intersection && isCharged == false){
+        if (this.intersection && isCharged == false) {
           isCharged = true;
           setTimeout(() => {
             isCharged = false;
           }, 2000);
           const myname = document.getElementById("Player_name").innerText;
           const aircanon_index = "." + myname + "_aircanon";
-          //const AirCanonAction = document.querySelector(aircanon_index);//document.getElementById("pen");
-          let AirCanonAction = document.querySelectorAll("#avatar-rig > .aircanon");
-          AirCanonAction[0].setAttribute("aircanon-animation", {action: "true"});
+          const AirCanonAction = document.querySelector(aircanon_index); //document.getElementById("pen");
+          //let AirCanonAction = document.querySelectorAll("#avatar-rig > .aircanon");
+          AirCanonAction.setAttribute("aircanon-animation", { action: "true" });
           setTimeout(() => {
-            AirCanonAction[0].setAttribute("aircanon-animation", {action: "false"});
+            AirCanonAction[0].setAttribute("aircanon-animation", { action: "false" });
           }, 2000);
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
           if (targetbox[5][1].networked) {
             this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
             document.getElementById("reticle").classList.add("extend");
             var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
-            const event = new Event('change');
+            const event = new Event("change");
             hit_target_container.value = hit_target;
             hit_target_container.dispatchEvent(event);
             setTimeout(() => {
               document.getElementById("reticle").classList.remove("extend");
             }, 300);
-          };
+          }
         }
         this._startDraw();
         //sfx.playSoundOneShot(SOUND_PEN_START_DRAW);
-        
       }
       if (userinput.get(paths.stopDrawing)) {
-        this._endDraw();    
+        this._endDraw();
         //sfx.playSoundOneShot(SOUND_PEN_STOP_DRAW);
       }
       const penScaleMod = userinput.get(paths.scalePenTip);
@@ -567,10 +559,8 @@ AFRAME.registerComponent("pen", {
     //Prevent drawings from "jumping" large distances
     if (
       this.currentDrawing &&
-      
-        (!intersection ||
-          Math.abs(intersection.distance - this.lastIntersectionDistance) > MAX_DISTANCE_BETWEEN_SURFACES))
-     {
+      (!intersection || Math.abs(intersection.distance - this.lastIntersectionDistance) > MAX_DISTANCE_BETWEEN_SURFACES)
+    ) {
       this.worldPosition.copy(this.lastPosition);
       this._endDraw();
     }
@@ -667,7 +657,7 @@ AFRAME.registerComponent("pen", {
   populateEntities(targets) {
     targets.length = 0;
     // TODO: Do not querySelectorAll on the entire scene every time anything changes!
-    const els = AFRAME.scenes[0].querySelectorAll(".collidable, .interactable, #environment-root"); 
+    const els = AFRAME.scenes[0].querySelectorAll(".collidable, .interactable, #environment-root");
     for (let i = 0; i < els.length; i++) {
       if (!els[i].classList.contains("pen") && els[i].object3D) {
         targets.push(els[i].object3D);
@@ -681,6 +671,6 @@ AFRAME.registerComponent("pen", {
     AFRAME.scenes[0].removeEventListener("object3dremove", this.setDirty);
     this.penSystem.deregister(this.el);
     //const AirCanonAction = document.querySelector(".aircanon");
-    //AirCanonAction.style.display = "none"; 
+    //AirCanonAction.style.display = "none";
   }
 });
