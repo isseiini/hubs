@@ -85,8 +85,6 @@ AFRAME.registerComponent("ik-controller", {
   },
 
   init() {
-    window.Positionlist = [];
-    window.ViewPointlist = [];
     this._runScheduledWork = this._runScheduledWork.bind(this);
     this._updateIsInView = this._updateIsInView.bind(this);
 
@@ -118,10 +116,6 @@ AFRAME.registerComponent("ik-controller", {
     this.lastCameraTransform = new THREE.Matrix4();
     waitForDOMContentLoaded().then(() => {
       this.playerCamera = document.getElementById("viewing-camera").getObject3D("camera");
-      setInterval(() => {
-        Positionlist.push(this.playerCamera.position);
-        ViewPointlist.push(this.playerCamera.rotation);
-      }, 1500);
     });
 
     this.el.sceneEl.systems["frame-scheduler"].schedule(this._runScheduledWork, "ik");

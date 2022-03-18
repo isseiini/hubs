@@ -767,6 +767,15 @@ async function updateEnvironmentForHub(hub, entryManager) {
             // We've already entered, so move to new spawn point once new environment is loaded
             if (sceneEl.is("entered")) {
               waypointSystem.moveToSpawnPoint();
+              window.Positionlist = [];
+              window.ViewPointlist = [];
+
+              const avatarRig = document.getElementById("avatar-rig");
+
+              setInterval(() => {
+                Positionlist.push(avatarRig.position);
+                ViewPointlist.push(avatarRig.rotation);
+              }, 1500);
             }
 
             const fader = document.getElementById("viewing-camera").components["fader"];

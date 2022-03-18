@@ -414,7 +414,7 @@ AFRAME.registerComponent("pen", {
           //let AirCanonAction = document.querySelectorAll("#avatar-rig > .aircanon");
           AirCanonAction.setAttribute("aircanon-animation", { action: "true" });
           setTimeout(() => {
-            AirCanonAction[0].setAttribute("aircanon-animation", { action: "false" });
+            AirCanonAction.setAttribute("aircanon-animation", { action: "false" });
           }, 2000);
           var targetbox = Object.entries(this.intersection.object.parent.parent.parent.el);
           if (targetbox[5][1].networked) {
