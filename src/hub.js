@@ -168,8 +168,6 @@ import { platformUnsupported } from "./support";
 
 import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
-
-
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
@@ -181,31 +179,31 @@ const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
 function count_start() {
-  if(isStart === false) {
+  if (isStart === false) {
     interval = setInterval(count_down, 1000);
     isStart = true;
   }
 }
 
-function count_down(){
-  if(timeCount === 1){
+function count_down() {
+  if (timeCount === 1) {
     const Red_Score = document.getElementById("red-score");
     const Blue_Score = document.getElementById("blue-score");
     var hit_target_container = document.getElementById("hit_target_container");
     var display = document.getElementById("time");
-    display.style.color = 'red';
+    display.style.color = "red";
     display.innerHTML = "TIME UP!";
     clearInterval(interval);
     if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Red";
-      var event2 = new Event('change');
-      
+      var event2 = new Event("change");
+
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
-    } else if(Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
+    } else if (Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Blue";
-      var event2 = new Event('change');
-      
+      var event2 = new Event("change");
+
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
     } else {
@@ -231,27 +229,27 @@ function count_down(){
     min = Math.floor(timeCount / 60);
     sec = timeCount % 60;
     var count_down = document.getElementById("time");
-    count_down.innerHTML = ("0"+min) +":" + ("0"+sec).slice(-2);
+    count_down.innerHTML = "0" + min + ":" + ("0" + sec).slice(-2);
   }
 }
 
-function count_reset(){
+function count_reset() {
   clearInterval(interval);
   timeCount = 420;
   isStart = false;
   var count_down = document.getElementById("time");
-  count_down.style.color = 'black';
+  count_down.style.color = "black";
   count_down.innerHTML = "07:00";
-}    
+}
 
-var current_url = (location.protocol + '//' + location.hostname + location.pathname).split("/");
+var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 
 var room_name = current_url[current_url.length - 1];
-console.log(room_name)
-document.addEventListener('keyup', event => {
-  if (event.code === 'KeyO') {
+console.log(room_name);
+document.addEventListener("keyup", event => {
+  if (event.code === "KeyO") {
     text_chat_data.count();
-    console.log(text_chat_data)
+    console.log(text_chat_data);
   }
 });
 
@@ -319,20 +317,19 @@ import AuthenticationHelper from "amazon-cognito-identity-js/src/AuthenticationH
 import DateHelper from "amazon-cognito-identity-js/src/DateHelper";
 import BigInteger from "amazon-cognito-identity-js/src/BigInteger";
 import CryptoJS from "crypto-js/core";
-import Base64 from 'crypto-js/enc-base64';
-import { Buffer } from 'buffer';
-import HmacSHA256 from 'crypto-js/hmac-sha256';
-import CognitoAccessToken from 'amazon-cognito-identity-js/src/CognitoAccessToken';
-import CognitoIdToken from 'amazon-cognito-identity-js/src/CognitoIdToken';
-import CognitoRefreshToken from 'amazon-cognito-identity-js/src/CognitoRefreshToken';
-import CognitoUserSession from 'amazon-cognito-identity-js/src/CognitoUserSession';
+import Base64 from "crypto-js/enc-base64";
+import { Buffer } from "buffer";
+import HmacSHA256 from "crypto-js/hmac-sha256";
+import CognitoAccessToken from "amazon-cognito-identity-js/src/CognitoAccessToken";
+import CognitoIdToken from "amazon-cognito-identity-js/src/CognitoIdToken";
+import CognitoRefreshToken from "amazon-cognito-identity-js/src/CognitoRefreshToken";
+import CognitoUserSession from "amazon-cognito-identity-js/src/CognitoUserSession";
 import Client from "amazon-cognito-identity-js/src/Client";
 
-import CognitoUserAttribute from 'amazon-cognito-identity-js/src/CognitoUserAttribute';
-import StorageHelper from 'amazon-cognito-identity-js/src/StorageHelper';
+import CognitoUserAttribute from "amazon-cognito-identity-js/src/CognitoUserAttribute";
+import StorageHelper from "amazon-cognito-identity-js/src/StorageHelper";
 import { func, string } from "prop-types";
 import { room } from "networked-aframe/src/NafIndex";
-
 
 const PHOENIX_RELIABLE_NAF = "phx-reliable";
 NAF.options.firstSyncSource = PHOENIX_RELIABLE_NAF;
@@ -345,14 +342,14 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });*/
 
-AWS.config.region = 'ap-northeast-1'; // リージョン
+AWS.config.region = "ap-northeast-1"; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae',
+  IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
 });
 
-const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
-var currentUserData = {}; 
+var currentUserData = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -366,112 +363,101 @@ const poolData = {
   ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
 };
 
-const isBrowser = typeof navigator !== 'undefined';
-const userAgent = isBrowser ? navigator.userAgent : 'nodejs';
+const isBrowser = typeof navigator !== "undefined";
+const userAgent = isBrowser ? navigator.userAgent : "nodejs";
 class myCognitouserclass extends CognitoUser {
   /**
-	 * Constructs a new CognitoUser object
-	 * @param {object} data Creation options
-	 * @param {string} data.Username The user's username.
-	 * @param {CognitoUserPool} data.Pool Pool containing the user.
-	 * @param {object} data.Storage Optional storage object.
-	 */
+   * Constructs a new CognitoUser object
+   * @param {object} data Creation options
+   * @param {string} data.Username The user's username.
+   * @param {CognitoUserPool} data.Pool Pool containing the user.
+   * @param {object} data.Storage Optional storage object.
+   */
   constructor(data) {
     super(data);
 
-		if (data == null || data.Username == null || data.Pool == null) {
-			throw new Error('Username and Pool information are required.');
-		}
+    if (data == null || data.Username == null || data.Pool == null) {
+      throw new Error("Username and Pool information are required.");
+    }
 
-		this.username = data.Username || '';
-		this.pool = data.Pool;
-		this.Session = null;
-		this.client = data.Pool.client;
+    this.username = data.Username || "";
+    this.pool = data.Pool;
+    this.Session = null;
+    this.client = data.Pool.client;
 
-		this.signInUserSession = null;
-		this.authenticationFlowType = 'USER_SRP_AUTH';
+    this.signInUserSession = null;
+    this.authenticationFlowType = "USER_SRP_AUTH";
 
-		this.storage = window.sessionStorage;
+    this.storage = window.sessionStorage;
 
-		this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
-		this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
-	}
+    this.keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}`;
+    this.userDataKey = `${this.keyPrefix}.${this.username}.userData`;
+  }
 
   /**
-	 * @typedef {Object} GetSessionOptions
-	 * @property {Record<string, string>} clientMetadata - clientMetadata for getSession
-	 */
+   * @typedef {Object} GetSessionOptions
+   * @property {Record<string, string>} clientMetadata - clientMetadata for getSession
+   */
 
-	/**
-	 * This is used to get a session, either from the session object
-	 * or from  the local storage, or by using a refresh token
-	 *
-	 * @param {nodeCallback<CognitoUserSession>} callback Called on success or error.
-	 * @param {GetSessionOptions} options
-	 * @returns {void}
-	 */
-	getSession(callback, options = {}) {
-		if (this.username == null) {
-			return callback(
-				new Error('Username is null. Cannot retrieve a new session'),
-				null
-			);
-		}
+  /**
+   * This is used to get a session, either from the session object
+   * or from  the local storage, or by using a refresh token
+   *
+   * @param {nodeCallback<CognitoUserSession>} callback Called on success or error.
+   * @param {GetSessionOptions} options
+   * @returns {void}
+   */
+  getSession(callback, options = {}) {
+    if (this.username == null) {
+      return callback(new Error("Username is null. Cannot retrieve a new session"), null);
+    }
 
-		if (this.signInUserSession != null && this.signInUserSession.isValid()) {
-			return callback(null, this.signInUserSession);
-		}
+    if (this.signInUserSession != null && this.signInUserSession.isValid()) {
+      return callback(null, this.signInUserSession);
+    }
 
-		const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${
-			this.username
-		}`;
-		const idTokenKey = `${keyPrefix}.idToken`;
-		const accessTokenKey = `${keyPrefix}.accessToken`;
-		const refreshTokenKey = `${keyPrefix}.refreshToken`;
-		const clockDriftKey = `${keyPrefix}.clockDrift`;
+    const keyPrefix = `CognitoIdentityServiceProvider.${this.pool.getClientId()}.${this.username}`;
+    const idTokenKey = `${keyPrefix}.idToken`;
+    const accessTokenKey = `${keyPrefix}.accessToken`;
+    const refreshTokenKey = `${keyPrefix}.refreshToken`;
+    const clockDriftKey = `${keyPrefix}.clockDrift`;
 
-		if (this.storage.getItem(idTokenKey)) {
-			const idToken = new CognitoIdToken({
-				IdToken: this.storage.getItem(idTokenKey),
-			});
-			const accessToken = new CognitoAccessToken({
-				AccessToken: this.storage.getItem(accessTokenKey),
-			});
-			const refreshToken = new CognitoRefreshToken({
-				RefreshToken: this.storage.getItem(refreshTokenKey),
-			});
-			const clockDrift = parseInt(this.storage.getItem(clockDriftKey), 0) || 0;
+    if (this.storage.getItem(idTokenKey)) {
+      const idToken = new CognitoIdToken({
+        IdToken: this.storage.getItem(idTokenKey)
+      });
+      const accessToken = new CognitoAccessToken({
+        AccessToken: this.storage.getItem(accessTokenKey)
+      });
+      const refreshToken = new CognitoRefreshToken({
+        RefreshToken: this.storage.getItem(refreshTokenKey)
+      });
+      const clockDrift = parseInt(this.storage.getItem(clockDriftKey), 0) || 0;
 
-			const sessionData = {
-				IdToken: idToken,
-				AccessToken: accessToken,
-				RefreshToken: refreshToken,
-				ClockDrift: clockDrift,
-			};
-			const cachedSession = new CognitoUserSession(sessionData);
+      const sessionData = {
+        IdToken: idToken,
+        AccessToken: accessToken,
+        RefreshToken: refreshToken,
+        ClockDrift: clockDrift
+      };
+      const cachedSession = new CognitoUserSession(sessionData);
 
-			if (cachedSession.isValid()) {
-				this.signInUserSession = cachedSession;
-				return callback(null, this.signInUserSession);
-			}
+      if (cachedSession.isValid()) {
+        this.signInUserSession = cachedSession;
+        return callback(null, this.signInUserSession);
+      }
 
-			if (!refreshToken.getToken()) {
-				return callback(
-					new Error('Cannot retrieve a new session. Please authenticate.'),
-					null
-				);
-			}
+      if (!refreshToken.getToken()) {
+        return callback(new Error("Cannot retrieve a new session. Please authenticate."), null);
+      }
 
-			this.refreshSession(refreshToken, callback, options.clientMetadata);
-		} else {
-			callback(
-				new Error('Local storage is missing an ID Token, Please authenticate'),
-				null
-			);
-		}
+      this.refreshSession(refreshToken, callback, options.clientMetadata);
+    } else {
+      callback(new Error("Local storage is missing an ID Token, Please authenticate"), null);
+    }
 
-		return undefined;
-	}
+    return undefined;
+  }
 }
 
 /**
@@ -480,123 +466,109 @@ class myCognitouserclass extends CognitoUser {
  * @returns {CognitoUser} the user retrieved from storage
  */
 class myCognitouserpoolclass extends CognitoUserPool {
-	constructor(data, wrapRefreshSessionCallback) {
+  constructor(data, wrapRefreshSessionCallback) {
     const USER_POOL_ID_MAX_LENGTH = 55;
 
     super(data, wrapRefreshSessionCallback);
 
-		const {
-			UserPoolId,
-			ClientId,
-			endpoint,
-			fetchOptions,
-			AdvancedSecurityDataCollectionFlag,
-		} = data || {};
-		if (!UserPoolId || !ClientId) {
-			throw new Error('Both UserPoolId and ClientId are required.');
-		}
-		if (UserPoolId.length > USER_POOL_ID_MAX_LENGTH || !/^[\w-]+_[0-9a-zA-Z]+$/.test(UserPoolId)) {
-			throw new Error('Invalid UserPoolId format.');
-		}
-		const region = UserPoolId.split('_')[0];
+    const { UserPoolId, ClientId, endpoint, fetchOptions, AdvancedSecurityDataCollectionFlag } = data || {};
+    if (!UserPoolId || !ClientId) {
+      throw new Error("Both UserPoolId and ClientId are required.");
+    }
+    if (UserPoolId.length > USER_POOL_ID_MAX_LENGTH || !/^[\w-]+_[0-9a-zA-Z]+$/.test(UserPoolId)) {
+      throw new Error("Invalid UserPoolId format.");
+    }
+    const region = UserPoolId.split("_")[0];
 
-		this.userPoolId = UserPoolId;
-		this.clientId = ClientId;
+    this.userPoolId = UserPoolId;
+    this.clientId = ClientId;
 
-		this.client = new Client(region, endpoint, fetchOptions);
+    this.client = new Client(region, endpoint, fetchOptions);
 
-		/**
-		 * By default, AdvancedSecurityDataCollectionFlag is set to true,
-		 * if no input value is provided.
-		 */
-		this.advancedSecurityDataCollectionFlag =
-			AdvancedSecurityDataCollectionFlag !== false;
+    /**
+     * By default, AdvancedSecurityDataCollectionFlag is set to true,
+     * if no input value is provided.
+     */
+    this.advancedSecurityDataCollectionFlag = AdvancedSecurityDataCollectionFlag !== false;
 
-		this.storage = window.sessionStorage;
+    this.storage = window.sessionStorage;
 
-		if (wrapRefreshSessionCallback) {
-			this.wrapRefreshSessionCallback = wrapRefreshSessionCallback;
-		}
-	}
+    if (wrapRefreshSessionCallback) {
+      this.wrapRefreshSessionCallback = wrapRefreshSessionCallback;
+    }
+  }
 
   /**
-	 * @typedef {object} SignUpResult
-	 * @property {CognitoUser} user New user.
-	 * @property {bool} userConfirmed If the user is already confirmed.
-	 */
-	/**
-	 * method for signing up a user
-	 * @param {string} username User's username.
-	 * @param {string} password Plain-text initial password entered by user.
-	 * @param {(AttributeArg[])=} userAttributes New user attributes.
-	 * @param {(AttributeArg[])=} validationData Application metadata.
-	 * @param {(AttributeArg[])=} clientMetadata Client metadata.
-	 * @param {nodeCallback<SignUpResult>} callback Called on error or with the new user.
-	 * @param {ClientMetadata} clientMetadata object which is passed from client to Cognito Lambda trigger
-	 * @returns {void}
-	 */
-	signUp(
-		username,
-		password,
-		userAttributes,
-		validationData,
-		callback,
-		clientMetadata
-	) {
-		const jsonReq = {
-			ClientId: this.clientId,
-			Username: username,
-			Password: password,
-			UserAttributes: userAttributes,
-			ValidationData: validationData,
-			ClientMetadata: clientMetadata,
-		};
-		if (this.getUserContextData(username)) {
-			jsonReq.UserContextData = this.getUserContextData(username);
-		}
-		this.client.request('SignUp', jsonReq, (err, data) => {
-			if (err) {
-				return callback(err, null);
-			}
+   * @typedef {object} SignUpResult
+   * @property {CognitoUser} user New user.
+   * @property {bool} userConfirmed If the user is already confirmed.
+   */
+  /**
+   * method for signing up a user
+   * @param {string} username User's username.
+   * @param {string} password Plain-text initial password entered by user.
+   * @param {(AttributeArg[])=} userAttributes New user attributes.
+   * @param {(AttributeArg[])=} validationData Application metadata.
+   * @param {(AttributeArg[])=} clientMetadata Client metadata.
+   * @param {nodeCallback<SignUpResult>} callback Called on error or with the new user.
+   * @param {ClientMetadata} clientMetadata object which is passed from client to Cognito Lambda trigger
+   * @returns {void}
+   */
+  signUp(username, password, userAttributes, validationData, callback, clientMetadata) {
+    const jsonReq = {
+      ClientId: this.clientId,
+      Username: username,
+      Password: password,
+      UserAttributes: userAttributes,
+      ValidationData: validationData,
+      ClientMetadata: clientMetadata
+    };
+    if (this.getUserContextData(username)) {
+      jsonReq.UserContextData = this.getUserContextData(username);
+    }
+    this.client.request("SignUp", jsonReq, (err, data) => {
+      if (err) {
+        return callback(err, null);
+      }
 
-			const cognitoUser = {
-				Username: username,
-				Pool: this,
-				Storage: this.storage,
-			};
+      const cognitoUser = {
+        Username: username,
+        Pool: this,
+        Storage: this.storage
+      };
 
-			const returnData = {
-				user: new myCognitouserclass(cognitoUser),
-				userConfirmed: data.UserConfirmed,
-				userSub: data.UserSub,
-				codeDeliveryDetails: data.CodeDeliveryDetails,
-			};
+      const returnData = {
+        user: new myCognitouserclass(cognitoUser),
+        userConfirmed: data.UserConfirmed,
+        userSub: data.UserSub,
+        codeDeliveryDetails: data.CodeDeliveryDetails
+      };
 
-			return callback(null, returnData);
-		});
-	}
+      return callback(null, returnData);
+    });
+  }
 
   /**
-	 * method for getting the current user of the application from the local storage
-	 *
-	 * @returns {myCognitouserclass} the user retrieved from storage
-	 */
-	getCurrentUser() {
-		const lastUserKey = `CognitoIdentityServiceProvider.${this.clientId}.LastAuthUser`;
+   * method for getting the current user of the application from the local storage
+   *
+   * @returns {myCognitouserclass} the user retrieved from storage
+   */
+  getCurrentUser() {
+    const lastUserKey = `CognitoIdentityServiceProvider.${this.clientId}.LastAuthUser`;
 
-		const lastAuthUser = this.storage.getItem(lastUserKey);
-		if (lastAuthUser) {
-			const cognitoUser = {
-				Username: lastAuthUser,
-				Pool: this,
-				Storage: this.storage,
-			};
+    const lastAuthUser = this.storage.getItem(lastUserKey);
+    if (lastAuthUser) {
+      const cognitoUser = {
+        Username: lastAuthUser,
+        Pool: this,
+        Storage: this.storage
+      };
 
-			return new myCognitouserclass(cognitoUser);
-		}
+      return new myCognitouserclass(cognitoUser);
+    }
 
-		return null;
-	}
+    return null;
+  }
 }
 
 const userPool = new myCognitouserpoolclass(poolData);
@@ -1046,70 +1018,73 @@ function checkForAccountRequired() {
 
 function get_current_Date() {
   var date = new Date();
-  var str = date.getFullYear()
-  + '年' + ('0' + (date.getMonth() + 1)).slice(-2)
-  + '月' + ('0' + date.getDate()).slice(-2)
-  + '日' ;
+  var str =
+    date.getFullYear() +
+    "年" +
+    ("0" + (date.getMonth() + 1)).slice(-2) +
+    "月" +
+    ("0" + date.getDate()).slice(-2) +
+    "日";
   return str;
 }
 
-export function Get_Coupon(number){
+export function Get_Coupon(number) {
   const current_Date = get_current_Date();
 
   let shop_name;
   let shop_content;
 
-  if(number == 1){
+  if (number == 1) {
     shop_name = "アンドリューのエッグタルト 道頓堀本店";
     shop_content = "5個お買い上げ毎にエッグタルトを1個サービス";
-  } else if(number == 2) {
+  } else if (number == 2) {
     shop_name = "お好み焼き 千房 道頓堀支店";
     shop_content = "ご飲食代金10%OFF（割引額上限2,000円まで）";
-  } else if(number == 3) {
+  } else if (number == 3) {
     shop_name = "串カツだるま 道頓堀店";
     shop_content = "串カツ（120円/本・税別）1本サービス";
-  } else if(number == 4) {
+  } else if (number == 4) {
     shop_name = "くれおーる 道頓堀店";
     shop_content = "たこ焼お買い上げのお客様に2個増量";
-  } else if(number == 5) {
+  } else if (number == 5) {
     shop_name = "道頓堀コナモンミュージアム";
     shop_content = "たこ焼10個お買い上げのお客様に2個増量";
-  } else if(number == 6) {
+  } else if (number == 6) {
     shop_name = "たこ八 道頓堀総本店";
     shop_content = "たこ焼き1個おまけ!+オンラインショップで使える10%OFFクーポンコード";
-  } else if(number == 7) {
+  } else if (number == 7) {
     shop_name = "なにわ名物 いちびり庵 道頓堀店";
     shop_content = "1,100円（税込）以上のお買い上げで10%割引き（一部商品を除く）";
   }
 
-  function getUniqueStr(myStrong){
+  function getUniqueStr(myStrong) {
     var strong = 1000;
     if (myStrong) strong = myStrong;
-    return current_Date + Math.floor(strong*Math.random()).toString(16)
+    return current_Date + Math.floor(strong * Math.random()).toString(16);
   }
 
   let Play_ID = getUniqueStr();
 
-  var cognitoUser_me2 = userPool.getCurrentUser(); 
+  var cognitoUser_me2 = userPool.getCurrentUser();
   cognitoUser_me2.getSession((err, session) => {
     if (err) {
-      console.log(err)
-      return
+      console.log(err);
+      return;
     } else {
-      cognitoUser_me2.getUserAttributes((err,result) => {
+      cognitoUser_me2.getUserAttributes((err, result) => {
         if (err) {
-          console.log(err)
-          return
+          console.log(err);
+          return;
         } else {
           var i;
           for (i = 0; i < result.length; i++) {
             currentUserData[result[i].getName()] = result[i].getValue();
-          };   
-          
+          }
+
           if (!alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。")) {
             var coupon_params = {
-              TableName: 'coupon',
-              Item:{
+              TableName: "coupon",
+              Item: {
                 Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
                 coupon_number: number,
                 shop: shop_name,
@@ -1119,23 +1094,22 @@ export function Get_Coupon(number){
                 get_Date: current_Date
               }
             };
-        
-            docClient.put(coupon_params, function(err, data){
-              if(err){
-                console.log('error');
-              }else{
-                console.log('success');
+
+            docClient.put(coupon_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
               }
             });
           }
-        };
+        }
       });
-    };
+    }
   });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
@@ -1143,10 +1117,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img2 = document.getElementById("map_img2");
   const map_img3 = document.getElementById("map_img3");
   const Player_map = document.getElementById("Player_map");
-  function orientationCheck(){
+  function orientationCheck() {
     const scene = document.querySelector("a-scene");
     if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
-      return
+      return;
     }
     const orientation_message = document.getElementById("orientationmessage");
     const orientation = window.orientation;
@@ -1155,17 +1129,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       orientation_message.style.display = "block";
       orientation_scene.pause();
     } else {
-      return
+      return;
     }
-  };
+  }
   orientationCheck();
-  
+
   window.addEventListener("orientationchange", function() {
     if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
-      return
+      return;
     }
     const orientation_message = document.getElementById("orientationmessage");
-    const orientation = window.orientation;              
+    const orientation = window.orientation;
     const orientation_scene = document.querySelector("a-scene");
     if (orientation === 0) {
       orientation_message.style.display = "block";
@@ -1176,15 +1150,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
   if (room_name == "kooky-passionate-safari") {
-    map_img.style.display = "none"; 
-    map_img3.style.display = "none"; 
+    map_img.style.display = "none";
+    map_img3.style.display = "none";
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("go-to-game").style.display = "none";
     document.getElementById("life-label").style.display = "block";
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
-    
+
     /*if (cognito_mine != null){
       cognito_mine.getSession((err, session) => {
         if (err) {
@@ -1200,61 +1174,60 @@ document.addEventListener("DOMContentLoaded", async () => {
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
     map_img2.style.display = "none";
-    map_img3.style.display = "none"; 
+    map_img3.style.display = "none";
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
-  } else if(room_name == "silky-quick-congregation") {
-    map_img.style.display = "none"; 
-    map_img2.style.display = "none"; 
+  } else if (room_name == "silky-quick-congregation") {
+    map_img.style.display = "none";
+    map_img2.style.display = "none";
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
-    if (cognito_mine != null){
+    if (cognito_mine != null) {
       cognito_mine.getSession((err, session) => {
         if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
         } else {
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
         }
-      })
+      });
     } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
     }
   } else if (room_name == "euphoric-rare-commons") {
-    if (cognito_mine != null){
+    if (cognito_mine != null) {
       cognito_mine.getSession((err, session) => {
         if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
         } else {
           map_img.setAttribute("src", "");
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
-        
+
           document.getElementById("go-to-game").style.display = "none";
           document.getElementById("Player_map").style.display = "none";
         }
-      })
+      });
     } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
     }
   } else {
     //location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-  };
-  
-  function get_cognito_data() {
+  }
 
-    AWS.config.region = 'ap-northeast-1'; 
+  function get_cognito_data() {
+    AWS.config.region = "ap-northeast-1";
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-      IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
+      IdentityPoolId: "ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda"
     });
 
-    const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+    const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
-    var currentUserData = {}; 
+    var currentUserData = {};
 
     var ddb = new AWS.DynamoDB({
-      apiVersion: '2012-08-10'
+      apiVersion: "2012-08-10"
     });
 
     var docClient = new AWS.DynamoDB.DocumentClient();
@@ -1268,26 +1241,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       UserPoolId: "ap-northeast-1_RWH9txS1J",
       ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
     };
-    
-    var cognitoUser_me2 = userPool.getCurrentUser(); 
+
+    var cognitoUser_me2 = userPool.getCurrentUser();
     cognitoUser_me2.getSession((err, session) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
-        cognitoUser_me2.getUserAttributes((err,result) => {
+        cognitoUser_me2.getUserAttributes((err, result) => {
           if (err) {
-            console.log(err)
+            console.log(err);
           } else {
             var i;
             for (i = 0; i < result.length; i++) {
               currentUserData[result[i].getName()] = result[i].getValue();
-            };   
+            }
             return currentUserData["sub"];
-          };
+          }
         });
-      };
+      }
     });
-    
   }
 
   if (isOAuthModal) {
@@ -1542,8 +1514,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   scene.addEventListener("leave_room_requested", () => {
-    entryManager.exitScene();
-    remountUI({ roomUnavailableReason: ExitReason.left });
+    function f1() {
+      return new Promise(resolve => {
+        alert("f1 ==> f2");
+        resolve("f1 ==> f2");
+      });
+    }
+    f1().then(() => {
+      entryManager.exitScene();
+      remountUI({ roomUnavailableReason: ExitReason.left });
+    });
   });
 
   scene.addEventListener("hub_closed", () => {
@@ -1672,41 +1652,39 @@ document.addEventListener("DOMContentLoaded", async () => {
       entryManager.exitScene();
       remountUI({ roomUnavailableReason: ExitReason.disconnected });
 
-      function exit_and_put(){
+      function exit_and_put() {
         return new Promise((resolve, reject) => {
           try {
             let params = {
-              TableName: 'Communication',
-              Item:{
+              TableName: "Communication",
+              Item: {
                 PlayID: "dsagfawg",
                 text_chat: 5 //text_chat_data
               }
             };
-            docClient.put(params, function(err, data){
-              if(err){
+            docClient.put(params, function(err, data) {
+              if (err) {
                 console.log("err");
-              }else{
+              } else {
                 console.log("success");
               }
             });
             resolve();
-          } catch(e) {
+          } catch (e) {
             console.log("err");
             reject();
           }
-        })
-      };
-  
-      exit_and_put().then(() => {
-        
-      }).catch(e => {
-        console.log("err")
-      });
+        });
+      }
+
+      exit_and_put()
+        .then(() => {})
+        .catch(e => {
+          console.log("err");
+        });
       //text_chat_data.count();
       //console.log(text_chat_data);
     }
-
-    
   });
 
   // Reticulum global channel
@@ -1854,7 +1832,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const presenceLogEntries = [];
 
-  
   const addToPresenceLog = entry => {
     entry.key = Date.now().toString();
 
@@ -1897,8 +1874,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   hubChannel.setPhoenixChannel(hubPhxChannel);
 
-  
-
   hubPhxChannel
     .join()
     .receive("ok", async data => {
@@ -1910,8 +1885,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       presenceSync.promise = new Promise(resolve => {
         presenceSync.resolve = resolve;
       });
-
-    
 
       if (isInitialJoin) {
         store.addEventListener("profilechanged", hubChannel.sendProfileUpdate.bind(hubChannel));
@@ -1972,23 +1945,21 @@ document.addEventListener("DOMContentLoaded", async () => {
           //console.log(naf_tree)
           //console.log(Object.getOwnPropertyNames(presence.state))
           //console.log(typeof Object.getOwnPropertyNames(presence.state))
-          
-          
+
           //let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
           //console.log(sessionStorage.getItem("naf-mine"))
 
           //if(sessionStorage.getItem("naf-mine") == null || sessionStorage.getItem("naf-mine") == undefined || sessionStorage.getItem("naf-mine") == "naf-undefined"){
-            //sessionStorage.setItem('naf-mine', my_NAF_ID)
+          //sessionStorage.setItem('naf-mine', my_NAF_ID)
           //}
-          
+
           //console.log(my_NAF_ID);
-          
 
           presence.onJoin((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync (o/w the user
             // will see join messages for every user.)
-            if (!hubChannel.presence.__hadInitialSync) return
+            if (!hubChannel.presence.__hadInitialSync) return;
 
             const meta = info.metas[info.metas.length - 1];
             const occupantCount = Object.entries(hubChannel.presence.state).length;
@@ -1997,8 +1968,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             //console.log(naf_tree)
             //console.log(Object.getOwnPropertyNames(presence.state))
             //console.log(typeof Object.getOwnPropertyNames(presence.state))
-            
-            
+
             //let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
             //console.log(sessionStorage.getItem(socket.params().session_id))
@@ -2008,11 +1978,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             //console.log(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id));
 
             //if(sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == null || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == undefined || sessionStorage.getItem(hubChannel.channel.joinPush.receivedResp.response.session_id) == "naf-undefined"){
-              //if(naf_tree.length >= occupantCount && meta.presence === "room"){
-                //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
-              //}
+            //if(naf_tree.length >= occupantCount && meta.presence === "room"){
+            //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
             //}
-            
+            //}
+
             //console.log(my_NAF_ID);
 
             if (occupantCount <= NOISY_OCCUPANT_COUNT) {
@@ -2042,12 +2012,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "kooky-passionate-safari"
                 ) {
-                  
                   const Red_Score = document.getElementById("red-score");
                   const Blue_Score = document.getElementById("blue-score");
-                  var event3 = new Event('change');
+                  var event3 = new Event("change");
                   var hit_target_container = document.getElementById("hit_target_container");
-                  hit_target_container.value = "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
+                  hit_target_container.value =
+                    "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
                   hit_target_container.dispatchEvent(event3);
                   if (document.getElementById("score-display-top").innerText != "") {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
@@ -2057,12 +2027,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   hit_target_container.dispatchEvent(event3);
                 }
 
-                if (
-                  isSelf&&
-                  currentMeta.presence !== meta.presence &&
-                  meta.presence === "room"
-                ) {
-                  Player_UI.style.display = "block"
+                if (isSelf && currentMeta.presence !== meta.presence && meta.presence === "room") {
+                  Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
                   toolbar_under.style.display = "none";
                   const Player_tips = document.getElementById("Player_tips");
@@ -2070,7 +2036,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const general_menu = document.getElementById("general_menu");
                   const general_guide = document.getElementById("general_guide");
                   const Player_Guide = document.getElementById("Player-Guide");
-                  general_menu.addEventListener("click", function(){
+                  general_menu.addEventListener("click", function() {
                     if (toolbar_under.style.display == "none" && Player_tips.style.display == "none") {
                       toolbar_under.style.display = "flex";
                       Player_tips.style.display = "block";
@@ -2079,15 +2045,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                       Player_tips.style.display = "none";
                     }
                   });
-                  general_guide.addEventListener("click", function(){
+                  general_guide.addEventListener("click", function() {
                     if (Player_Guide.style.display == "none") {
                       Player_Guide.style.display = "block";
                     } else {
                       Player_Guide.style.display = "none";
                     }
                   });
-                  Player_Guide.addEventListener("click", function(){
-                    if (Player_Guide.style.display = "block") {
+                  Player_Guide.addEventListener("click", function() {
+                    if ((Player_Guide.style.display = "block")) {
                       Player_Guide.style.display = "none";
                     }
                   });
@@ -2095,7 +2061,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 if (
-                  isSelf&&
+                  isSelf &&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
@@ -2105,14 +2071,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
                   const Game_Result = document.getElementById("game-progress-origin");
-                  Game_Result.style.display = "flex"; 
+                  Game_Result.style.display = "flex";
                   //alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\n25ポイントを先取したチームの勝利です。\n\n[操作方法]\n\n射撃モードに移行：Pキー\n\n射撃：射撃モードでクリック\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
-                  const naf_tree = Object.keys(NAF.connection.entities.entities)
+                  const naf_tree = Object.keys(NAF.connection.entities.entities);
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
-                  
+
                   window.NAF_ID_for_SHOOTING = my_NAF_ID;
                   window.NAF_position = naf_tree.length;
-                  
+
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const aircanon_container = document.querySelector(".aircanon");
                   aircanon_container.classList.add(meta.profile.displayName + "_aircanon");
@@ -2125,12 +2091,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.3;";
                   aircanon_container.setAttribute("follow-in-fov", aircanon_index);
                   hanabi_container.setAttribute("follow-in-fov", hanabi_index);
-                  
+
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
-                      document.documentElement.style.setProperty('--team-color', 'rgb(0, 243, 235)');
-                      document.documentElement.style.setProperty('--team-color-sub', 'rgba(0, 243, 235, 0.05)');
+                      document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
+                      document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
@@ -2139,8 +2105,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                       scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
-                      document.documentElement.style.setProperty('--team-color', 'rgb(186, 7, 5)');
-                      document.documentElement.style.setProperty('--team-color-sub', 'rgba(186, 7, 5, 0.05)');
+                      document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
+                      document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
@@ -2152,7 +2118,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
                   }, 2000);
-                  
+
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
                   cognitoUser_me.getSession((err, session) => {
@@ -2195,17 +2161,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                       console.log('success')
                     }
                   });*/
-                
                 }
 
                 if (
-                  isSelf&&
+                  isSelf &&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
                   room_name == "strong-elementary-meetup"
                 ) {
-                  alert("観光ワールドへようこそ!!\nこちらでは道頓堀の観光をお楽しみいただけます。\n\n[操作方法]\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
+                  alert(
+                    "観光ワールドへようこそ!!\nこちらでは道頓堀の観光をお楽しみいただけます。\n\n[操作方法]\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー"
+                  );
                 }
 
                 if (
@@ -2242,7 +2209,6 @@ document.addEventListener("DOMContentLoaded", async () => {
               recording: meta.recording
             });
           });
-      
 
           presence.onLeave((sessionId, current, info) => {
             // Ignore presence join/leaves if this Presence has not yet had its initial sync
@@ -2348,7 +2314,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   hubPhxChannel.on("message", ({ session_id, type, body, from }) => {
     function encode_text(text) {
-      return text.replace(/</g, '').replace(/>/g, '');
+      return text.replace(/</g, "").replace(/>/g, "");
     }
 
     body = encode_text(body);
@@ -2379,9 +2345,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (scene.is("vr-mode")) {
       createInWorldLogMessage(incomingMessage);
     }
-    
+
     messageDispatch.receive(incomingMessage);
-  
   });
 
   hubPhxChannel.on("hub_refresh", ({ session_id, hubs, stale_fields }) => {
@@ -2455,27 +2420,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   var Player_Respawn = document.getElementById("Player-Respawn");
 
-  Player_Respawn.addEventListener("click", function(){
+  Player_Respawn.addEventListener("click", function() {
     Player_Respawn.style.display = "none";
     let hanabi_index = "." + window.hubjs.myname + "_hanabi";
     let HanabiAction = document.querySelector(hanabi_index);
     //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
-    HanabiAction.setAttribute("hanabi-animation", {action: "false"});
-    console.log(HanabiAction)
-    if(document.getElementById("score-display-top").innerText == "BlueTeam") {
+    HanabiAction.setAttribute("hanabi-animation", { action: "false" });
+    console.log(HanabiAction);
+    if (document.getElementById("score-display-top").innerText == "BlueTeam") {
       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
     }
 
-    if(document.getElementById("score-display-top").innerText == "RedTeam") {
+    if (document.getElementById("score-display-top").innerText == "RedTeam") {
       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
     }
-  })
+  });
 
-  const lifeBar = document.getElementById('life-background')         // ライフバー     // ライフの光部分
-  let life = 100                                              // ライフ初期値
-  lifeBar.style.width = "100%"                                // ライフ初期幅
+  const lifeBar = document.getElementById("life-background"); // ライフバー     // ライフの光部分
+  let life = 100; // ライフ初期値
+  lifeBar.style.width = "100%"; // ライフ初期幅
 
   /*setInterval(() => {
   life = life + 10;
@@ -2487,15 +2452,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   var hit_target_container = document.getElementById("hit_target_container");
 
-  hit_target_container.addEventListener('change', event => {
+  hit_target_container.addEventListener("change", event => {
     var hit_target = hit_target_container.value;
 
     hubChannel.sendMessage(hit_target);
     hit_target_container.value = "";
   });
 
-  document.addEventListener('keydown', event => {
-    if (event.ctrlKey && event.code === 'Enter') {
+  document.addEventListener("keydown", event => {
+    if (event.ctrlKey && event.code === "Enter") {
       var hit_target = hit_target_container.value;
       console.log(hit_target);
 
@@ -2504,26 +2469,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  
   document.getElementById("go-to-game").addEventListener("click", function() {
     var matching_params = {
-      TableName: 'Matching-table',
-    };            
-    docClient.scan(matching_params, function(err, data3){
-      if(err){
+      TableName: "Matching-table"
+    };
+    docClient.scan(matching_params, function(err, data3) {
+      if (err) {
         console.log(err);
-      }else{
+      } else {
         data3.Items.sort((a, b) => b.Sum - a.Sum);
         var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
-        if (confirm('マッチしました。対戦ワールドへ移動します。')) {
+        if (confirm("マッチしました。対戦ワールドへ移動します。")) {
           location.href = goal_url;
         } else {
-          alert('キャンセルしました。')
+          alert("キャンセルしました。");
         }
-      
       }
     });
   });
-
-  
 });
