@@ -1137,6 +1137,7 @@ export function Get_Coupon(number){
 document.addEventListener("DOMContentLoaded", async () => {
   
   var Player_UI = document.getElementById("Player-UI");
+  Player_UI.style.display = "none";
   const cognito_mine = userPool.getCurrentUser();
   const map_img = document.getElementById("map_img");
   const map_img2 = document.getElementById("map_img2");
@@ -1238,7 +1239,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
     }
   } else {
-    location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+    //location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
   };
   
   function get_cognito_data() {
