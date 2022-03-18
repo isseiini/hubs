@@ -1211,7 +1211,7 @@ class UIRoot extends Component {
               icon: LeaveIcon,
               onClick: () => {
                 this.showNonHistoriedDialog(LeaveRoomModal, {
-                  destinationUrl: "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup",
+                  destinationUrl: "/",
                   reason: LeaveReason.leaveRoom
                 });
               }
@@ -1599,7 +1599,7 @@ class UIRoot extends Component {
                         preset="cancel"
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
-                            destinationUrl: "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup",
+                            destinationUrl: "/",
                             reason: LeaveReason.leaveRoom
                           });
                         }}
