@@ -767,15 +767,6 @@ async function updateEnvironmentForHub(hub, entryManager) {
             // We've already entered, so move to new spawn point once new environment is loaded
             if (sceneEl.is("entered")) {
               waypointSystem.moveToSpawnPoint();
-              window.Positionlist = [];
-              window.ViewPointlist = [];
-
-              const avatarRig = document.getElementById("avatar-rig");
-
-              setInterval(() => {
-                Positionlist.push(avatarRig.position);
-                ViewPointlist.push(avatarRig.rotation);
-              }, 1500);
             }
 
             const fader = document.getElementById("viewing-camera").components["fader"];
@@ -2051,6 +2042,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                     .toString(36)
                     .slice(-8);
                   window.Communicationlist = [];
+                  window.Positionlist = [];
+                  window.ViewPointlist = [];
+
+                  const avatarRig = document.getElementById("avatar-rig").object3D;
+
+                  setInterval(() => {
+                    Positionlist.push(avatarRig.position);
+                    ViewPointlist.push(avatarRig.rotation);
+                  }, 1500);
 
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
