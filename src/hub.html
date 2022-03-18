@@ -2272,6 +2272,14 @@
                       matrix-auto-update 
                     >
                     </a-entity>
+
+                    <a-entity 
+                      class="aircanon"
+                      matrix-auto-update
+                      aircanon-animation
+                      id="AIRCANON"
+                      >
+                    </a-entity>
                     
                     <a-entity class="ui delete-button pen-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_drawing" >
                         <a-entity mixin="rounded-button" is-remote-hover-target tags="singleActionButton: true" remove-networked-object-button position="0 0 0.001">
@@ -2848,13 +2856,7 @@
                 set-yxz-order
                 position="0 1.6 0"
             >
-            <a-entity 
-            class="aircanon"
-            matrix-auto-update
-            aircanon-animation
-            id="AIRCANON"
-            >
-          </a-entity>
+            
                 <a-entity class="inspect-pivot" inspect-pivot-offset-from-camera></a-entity>
                 <a-entity
                     id="gaze-teleport"
