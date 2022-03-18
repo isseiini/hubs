@@ -40,6 +40,23 @@ export default class SceneEntryManager {
     this._entered = false;
     this.performConditionalSignIn = () => {};
     this.history = history;
+    var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+    this.room_name = current_url[current_url.length - 1];
+    this.arr1 = [
+      "adorable-keen-zone",
+      "posh-courteous-plane",
+      "curly-wicked-conclave",
+      "clever-powerful-gala",
+      "kooky-passionate-safari"
+    ];
+    this.arr2 = [
+      "conscious-tricky-camp",
+      "impressive-easygoing-commons",
+      "fine-zigzag-exploration",
+      "wee-likable-commons",
+      "envious-shiny-vacation"
+    ];
   }
 
   init = () => {
@@ -77,7 +94,7 @@ export default class SceneEntryManager {
     }
 
     const waypointSystem = this.scene.systems["hubs-systems"].waypointSystem;
-    waypointSystem.moveToSpawnPoint(30,30);
+    waypointSystem.moveToSpawnPoint(30, 30);
 
     if (isMobile || forceEnableTouchscreen || qsTruthy("force_enable_touchscreen")) {
       this.avatarRig.setAttribute("virtual-gamepad-controls", {});
@@ -142,17 +159,46 @@ export default class SceneEntryManager {
   };
 
   exitScene = () => {
-    this.scene.exitVR();
-    if (APP.dialog && APP.dialog.localMediaStream) {
-      APP.dialog.localMediaStream.getTracks().forEach(t => t.stop());
+    if (this.arr1.indexof(this.room_name) !== -1) {
+      var table = "Matching-table";
+    } else if (this.arr2.indexof(this.room_name) !== -1) {
+      var table = "Sightseeing-table";
     }
-    if (this.hubChannel) {
-      this.hubChannel.disconnect();
-    }
-    if (this.scene.renderer) {
-      this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
-    }
-    this.scene.parentNode.removeChild(this.scene);
+
+    var match = {
+      TableName: table,
+      Key: {
+        //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+        URL: this.room_name
+      },
+      ExpressionAttributeNames: {
+        "#S": "Sum"
+      },
+      ExpressionAttributeValues: {
+        ":add": 1
+      },
+      UpdateExpression: "SET #S = #S - :add"
+    };
+    docClient.update(match, function(err, data2) {
+      if (err) {
+        console.log("error");
+      } else {
+        console.log("success");
+      }
+    });
+    setTimeout(() => {
+      this.scene.exitVR();
+      if (APP.dialog && APP.dialog.localMediaStream) {
+        APP.dialog.localMediaStream.getTracks().forEach(t => t.stop());
+      }
+      if (this.hubChannel) {
+        this.hubChannel.disconnect();
+      }
+      if (this.scene.renderer) {
+        this.scene.renderer.setAnimationLoop(null); // Stop animation loop, TODO A-Frame should do this
+      }
+      this.scene.parentNode.removeChild(this.scene);
+    }, 2500);
   };
 
   _setupPlayerRig = () => {
