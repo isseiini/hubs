@@ -117,8 +117,8 @@ AFRAME.registerComponent("ik-controller", {
     waitForDOMContentLoaded().then(() => {
       this.playerCamera = document.getElementById("viewing-camera").getObject3D("camera");
       setInterval(() => {
-        window.Positionlist.push(this.playerCamera.position);
-        window.ViewPointlist.push(this.playerCamera.rotation);
+        Positionlist.push(this.playerCamera.position);
+        ViewPointlist.push(this.playerCamera.rotation);
       }, 1500);
     });
 
