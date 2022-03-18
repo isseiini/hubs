@@ -1199,7 +1199,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }*/
     //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
   } else if (room_name == "strong-elementary-meetup") {
-    document.getElementById("hex-background").style.display = "flex";
     map_img2.style.display = "none";
     map_img3.style.display = "none"; 
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
@@ -1217,7 +1216,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         } else {
           document.getElementById("life").style.display = "none";
           document.getElementById("score-display").style.display = "none";
-          document.getElementById("hex-background").style.display = "none";
         }
       })
     } else {
