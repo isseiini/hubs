@@ -15,7 +15,7 @@ export const LeaveReason = {
 const reasonMessages = defineMessages({
   [LeaveReason.leaveRoom]: {
     id: "leave-room-modal.leave-room.message",
-    defaultMessage: "Are you sure you want to leave the room?"
+    defaultMessage: "本当に退出してもよろしいですか"
   },
   [LeaveReason.joinRoom]: {
     id: "leave-room-modal.join-room.message",
@@ -30,7 +30,7 @@ const reasonMessages = defineMessages({
 const confirmationMessages = defineMessages({
   [LeaveReason.leaveRoom]: {
     id: "leave-room-modal.leave-room.confirm",
-    defaultMessage: "Leave Room"
+    defaultMessage: "退出する"
   },
   [LeaveReason.joinRoom]: {
     id: "leave-room-modal.join-room.confirm",
@@ -52,7 +52,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
     >
       <Column padding center centerMd="both" grow>
         <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" href={destinationUrl} rel="noopener noreferrer">
+        <Button as="a" preset="cancel" id="leave_confirmed" rel="noopener noreferrer">
           {intl.formatMessage(confirmationMessages[reason])}
         </Button>
       </Column>
