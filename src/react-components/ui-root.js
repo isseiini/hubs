@@ -94,6 +94,8 @@ import { TipContainer, FullscreenTip } from "./room/TipContainer";
 import { SpectatingLabel } from "./room/SpectatingLabel";
 import { SignInMessages } from "./auth/SignInModal";
 
+import { leaveAction } from "../hub";
+
 const avatarEditorDebug = qsTruthy("avatarEditorDebug");
 
 const IN_ROOM_MODAL_ROUTER_PATHS = ["/media"];
@@ -1598,19 +1600,7 @@ class UIRoot extends Component {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
                             destinationUrl: "/",
                             reason: LeaveReason.leaveRoom,
-                            onLeave: function() {
-                              function f1() {
-                                return new Promise(resolve => {
-                                  alert("f1 ==> f2");
-                                  resolve("f1 ==> f2");
-                                });
-                              }
-                              f1().then(response => {
-                                if (!alert(response)) {
-                                  location.href = "/";
-                                }
-                              });
-                            }
+                            onLeave: leaveAction
                           });
                         }}
                       />
