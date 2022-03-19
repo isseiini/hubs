@@ -2507,7 +2507,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_Respawn.addEventListener("click", function() {
     Player_Respawn.style.display = "none";
     let hanabi_index = "." + window.hubjs.myname + "_hanabi";
-    let HanabiAction = document.querySelector(hanabi_index);
+    let HanabiAction = document.getElementById("HANABI"); //querySelector(hanabi_index);
     //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", { action: "false" });
     console.log(HanabiAction);

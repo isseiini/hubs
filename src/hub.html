@@ -1489,6 +1489,7 @@
       font-size: 2.5rem;
       border: 2px solid var(--team-color);
       border-radius: 5px 0 0 5px;
+      pointer-events: none;
     }
 </style>
 
@@ -1577,7 +1578,7 @@
           <input id="hit_target_container" style="display: none;"></input>
 
           <div class="btn-wrap">
-              <a id="go-to-game" class="btn btn-c" style="position: fixed;bottom: 100px;right: 10px;pointer-events:all;">
+              <a id="go-to-game" class="btn btn-c" style="position: fixed;top: 10px;left: 10px;pointer-events:all;">
                   <span>シューティングゲームをプレイ！</span>
                   <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
               
@@ -1772,7 +1773,7 @@
                       <a-entity 
                         class="sanshakudama"
                         matrix-auto-update
-                        
+                        id="HANABI"
                         scale="0.4 0.4 0.4">
                       </a-entity>
 
