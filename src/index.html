@@ -307,7 +307,7 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 10px 15px;
-        padding: 70px 0 100px 0;
+        padding: 70px 10px 100px 10px;
         overflow-y: scroll;
         box-sizing: border-box;
       }
@@ -388,14 +388,14 @@
         --aug-bl-extend2: calc(100% - 65px);
 
         width: 100%;
-        height: 200px;
+        height: 150px;
 
         position: relative;
       }
 
       #hubs-container-top {
         width: 100%;
-        height: 200px;
+        height: 150px;
         background-color: #00fff2;
 
         --aug-tr: 26px;
@@ -476,12 +476,12 @@
         --aug-br-extend1: calc(100% - 65px);
 
         width: 100%;
-        height: 200px;
+        height: 150px;
       }
 
       #VRChat-container-top {
         width: 100%;
-        height: 200px;
+        height: 150px;
         background-color: #00fff2;
 
         --aug-tl: 26px;
@@ -748,7 +748,6 @@
         background-color: rgb(255, 255, 255);
         --aug-border-bg: var(--main-color);
         --aug-inlay-bg: var(--main-color);
-        --aug-inlay-opacity: 0.65
         width: 20vw;
         height: 20vw;
         max-width: 100px;
@@ -1695,7 +1694,7 @@
 
   <div id="hex-background">
     <header style="width: 90%; max-width: 600px; margin: 5px auto">
-      <img src="assets/images/doutonbori_header_thin.png" alt="ヘッダー画像" />
+      <img src="images/doutonbori_header.png" alt="ヘッダー画像" />
     </header>
     <div id="path_container">
       <div style="width: 90%; max-width: 300px; flex-shrink: 0">
@@ -1841,7 +1840,7 @@
             <img
               src="assets/images/VRChat_1920x1080_2022-03-12_08-46-41.820.png"
               alt=""
-              style="position: absolute; z-index: -1"
+              style="z-index: -1"
             />
             <p
               data-augmented-ui=" bl-2-clip-x border"
@@ -2585,7 +2584,7 @@
       </p>
     </footer>
 
-    <div id="menu-button" data-augmented-ui="all-hex auth">
+    <div id="menu-button" data-augmented-ui="all-hex border">
       <img src="assets/images/iconmonstr-menu-1-240.png" alt="" />
       <span class="menu-description">メニュー</span>
     </div>
