@@ -210,6 +210,18 @@
         width: 100%;
         height: 100%;
         min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .canscroll-y {
+        overflow-y: scroll;
+        -ms-overflow-style: none; /* IE, Edge 対応 */
+        scrollbar-width: none; /* Firefox 対応 */
+      }
+
+      .canscroll-y::-webkit-scrollbar {
+        /* Chrome, Safari 対応 */
+        display: none;
       }
 
       :root {
@@ -295,7 +307,7 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 10px 15px;
-        padding: 150px 0;
+        padding: 70px 0 100px 0;
         overflow-y: scroll;
         box-sizing: border-box;
       }
@@ -733,14 +745,16 @@
       }
 
       #menu-button {
-        background-color: rgba(255, 255, 255, 0.445);
+        background-color: rgb(255, 255, 255);
         --aug-border-bg: var(--main-color);
         --aug-inlay-bg: var(--main-color);
-        width: 6em;
-        height: 6em;
+        width: 20vw;
+        height: 20vw;
+        max-width: 100px;
+        max-height: 100px;
         position: fixed;
         bottom: 100px;
-        right: 20px;
+        right: 30px;
         z-index: 3;
         display: flex;
         flex-direction: column;
@@ -1347,6 +1361,8 @@
         padding: 25px 15px 50px 15px;
         color: #ffffff;
         font-size: 1.5rem;
+        width: 100%;
+        height: 100%;
       }
 
       .topic-1 {
@@ -1628,9 +1644,14 @@
         margin-top: 30px;
       }
 
+      #path_container::-webkit-scrollbar {
+        /* Chrome, Safari 対応 */
+        display: none;
+      }
+
       #main_container {
         display: flex;
-        gap: 5px 15px;
+        gap: 10px 25px;
         width: 100%;
         justify-content: center;
         overflow-x: scroll;
@@ -1640,7 +1661,12 @@
         margin-top: 30px;
       }
 
-      @media (max-width: 800px) {
+      #main_container::-webkit-scrollbar {
+        /* Chrome, Safari 対応 */
+        display: none;
+      }
+
+      @media (max-width: 600px) {
         #path_container {
           justify-content: flex-start;
         }
@@ -1654,6 +1680,12 @@
         /* Chrome, Safari 対応 */
         display: none;
       }
+
+      .open_path_menu > {
+        color: #000000;
+        text-align: center;
+        cursor: pointer;
+      }
     </style>
 </head>
 
@@ -1661,9 +1693,11 @@
   <div id="support-root"></div>
 
   <div id="hex-background">
-    <header></header>
+    <header style="width: 90%; max-width: 600px; margin: 5px auto">
+      <img src="images/doutonbori_header_thin.png" alt="ヘッダー画像" />
+    </header>
     <div id="path_container">
-      <div style="width: 90%; max-width: 400px; flex-shrink: 0">
+      <div style="width: 90%; max-width: 300px; flex-shrink: 0">
         <div
           id="hubs-container-top"
           data-augmented-ui="tr-clip bl-clip br-clip"
@@ -1777,12 +1811,7 @@
                 left: 0;
               "
             >
-              <p
-                class="open_path_menu"
-                style="color: #000000; text-align: center"
-              >
-                クリックして開く
-              </p>
+              <p class="open_path_menu">クリックして開く</p>
               <div
                 data-augmented-ui="all-triangle-down"
                 style="
@@ -1796,7 +1825,7 @@
         </div>
       </div>
 
-      <div style="width: 90%; max-width: 400px; flex-shrink: 0">
+      <div style="width: 90%; max-width: 300px; flex-shrink: 0">
         <div
           id="VRChat-container-top"
           data-augmented-ui="tl-clip bl-clip br-clip"
@@ -1930,7 +1959,7 @@
     </div>
 
     <div id="main_container">
-      <div style="width: 90%; max-width: 400px; flex-shrink: 0">
+      <div style="width: 90%; max-width: 300px; flex-shrink: 0">
         <div
           id="main1-top"
           data-augmented-ui="b-clip-x border"
@@ -1984,6 +2013,9 @@
             [チャット]<br />
             画面左下のメニューボタンをクリックし、ポップアップメニューのチャットボタンをクリック
             <span>VR</span>
+          </div>
+          <div class="topic-3">
+            <span>準備中です</span>
           </div>
           <div class="topic-4">
             <p style="width: 100%; text-align: center">
@@ -2145,7 +2177,7 @@
         </div>
       </div>
 
-      <div style="width: 90%; max-width: 400px; flex-shrink: 0">
+      <div style="width: 90%; max-width: 300px; flex-shrink: 0">
         <div
           id="main2-top"
           data-augmented-ui="b-clip-x border"
@@ -2210,6 +2242,9 @@
             [空気砲を放つ]<br />
             狙った場所をクリック<br /><br />
             <span>VR</span>
+          </div>
+          <div class="topic-3">
+            <span>準備中です</span>
           </div>
           <div class="topic-4">
             第９条（本機能の変更・追加・廃止）<br />
@@ -2535,19 +2570,16 @@
     <footer
       style="
         width: 100%;
-        background-color: #ffffff;
-        padding: 15px 15px;
-        height: 100px;
+        background-color: transparent;
+        padding: 10px 10px;
+        height: 30px;
         position: absolute;
         bottom: 0;
         margin: 0;
         font-size: 1.4rem;
       "
     >
-      <p style="text-align: center; height: 100%">
-        運営主体<br />
-        株式会社NTTドコモ<br />
-        株式会社JTB <br /><br />
+      <p style="text-align: center; height: 100%; color: var(--main-color)">
         ©2022 NTT DOCOMO, INC. All Rights Reserved.
       </p>
     </footer>
