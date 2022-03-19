@@ -246,35 +246,6 @@ var current_url = (location.protocol + "//" + location.hostname + location.pathn
 
 var room_name = current_url[current_url.length - 1];
 
-const arr1 = [
-  "adorable-keen-zone",
-  "posh-courteous-plane",
-  "curly-wicked-conclave",
-  "clever-powerful-gala",
-  "kooky-passionate-safari"
-];
-const arr2 = [
-  "conscious-tricky-camp",
-  "impressive-easygoing-commons",
-  "fine-zigzag-exploration",
-  "wee-likable-commons",
-  "envious-shiny-vacation"
-];
-const arr3 = [
-  "devoted-healthy-gala",
-  "petty-handsome-plaza",
-  "real-qualified-spot",
-  "absolute-pertinent-convention",
-  "FqJioTK/neat-striking-spot"
-];
-const arr4 = [
-  "celebrated-calm-rendezvous",
-  "lasting-spiffy-camp",
-  "leafy-expert-dominion",
-  "melodic-courageous-picnic",
-  "plump-cheerful-plane"
-];
-
 let team;
 
 window.APP = new App();
@@ -1140,6 +1111,8 @@ export function Get_Coupon(number) {
                 console.log("success");
               }
             });
+          } else {
+            Alert(shop_name + "のクーポンをすでに取得していただきました。ありがとうございます。");
           }
         }
       });
@@ -1149,6 +1122,34 @@ export function Get_Coupon(number) {
 
 export const leaveAction = function leave_confirmed() {
   function f1() {
+    const arr1 = [
+      "adorable-keen-zone",
+      "posh-courteous-plane",
+      "curly-wicked-conclave",
+      "clever-powerful-gala",
+      "kooky-passionate-safari"
+    ];
+    const arr2 = [
+      "conscious-tricky-camp",
+      "impressive-easygoing-commons",
+      "fine-zigzag-exploration",
+      "wee-likable-commons",
+      "envious-shiny-vacation"
+    ];
+    const arr3 = [
+      "devoted-healthy-gala",
+      "petty-handsome-plaza",
+      "real-qualified-spot",
+      "absolute-pertinent-convention",
+      "FqJioTK/neat-striking-spot"
+    ];
+    const arr4 = [
+      "celebrated-calm-rendezvous",
+      "lasting-spiffy-camp",
+      "leafy-expert-dominion",
+      "melodic-courageous-picnic",
+      "plump-cheerful-plane"
+    ];
     return new Promise(resolve => {
       if (arr1.indexof(room_name) !== -1 || arr3.indexof(room_name) !== -1) {
         var table = "Matching-table";
