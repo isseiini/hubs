@@ -64,5 +64,5 @@ LeaveRoomModal.propTypes = {
   reason: PropTypes.string,
   destinationUrl: PropTypes.string,
   onClose: PropTypes.func,
-  onLeave: PropTypes.object
+  onLeave: PropTypes.func
 };
