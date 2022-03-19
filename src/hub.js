@@ -1142,7 +1142,7 @@ export const leaveAction = function leave_confirmed() {
         "petty-handsome-plaza",
         "real-qualified-spot",
         "absolute-pertinent-convention",
-        "FqJioTK/neat-striking-spot"
+        "neat-striking-spot"
       ];
       const arr4 = [
         "celebrated-calm-rendezvous",
@@ -1151,6 +1151,9 @@ export const leaveAction = function leave_confirmed() {
         "melodic-courageous-picnic",
         "plump-cheerful-plane"
       ];
+      var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+      var room_name = current_url[current_url.length - 1];
       if (arr1.indexof(room_name) !== -1 || arr3.indexof(room_name) !== -1) {
         var table = "Matching-table";
       } else if (arr2.indexof(room_name) !== -1 || arr4.indexof(room_name) !== -1) {
