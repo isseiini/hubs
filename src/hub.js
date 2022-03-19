@@ -1153,7 +1153,7 @@ export const leaveAction = function leave_confirmed() {
       ];
       var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 
-      var room_name = current_url[current_url.length - 1];
+      var room_name = string(current_url[current_url.length - 1]);
       if (arr1.indexof(room_name) !== -1 || arr3.indexof(room_name) !== -1) {
         var table = "Matching-table";
       } else if (arr2.indexof(room_name) !== -1 || arr4.indexof(room_name) !== -1) {
