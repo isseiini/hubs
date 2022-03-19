@@ -41,10 +41,10 @@ AFRAME.registerComponent("virtual-gamepad-controls", {
 
     this.enableLeft = window.APP.store.state.preferences.enableOnScreenJoystickLeft;
     this.enableRight = window.APP.store.state.preferences.enableOnScreenJoystickRight;
-    if (this.enableLeft || this.enableRight) {
-      // Add the joystick container after the canvas element but before the rest of the UI.
-      insertAfter(this.mockJoystickContainer, this.el.sceneEl.canvas);
-    }
+    //if (this.enableLeft || this.enableRight) {
+    // Add the joystick container after the canvas element but before the rest of the UI.
+    insertAfter(this.mockJoystickContainer, this.el.sceneEl.canvas);
+    //}
     if (this.enableLeft) {
       this.createLeftStick();
     } else {
