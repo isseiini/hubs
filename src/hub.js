@@ -1089,7 +1089,12 @@ export function Get_Coupon(number) {
             ExpressionAttributeValues: { ":val": currentUserData["sub"] },
             KeyConditionExpression: "#U = :val"
           };
-          if (coupon_params.length == 0) {
+          let shoplist = [];
+          for (let i = 0; i < coupon_params.length; i++) {
+            shoplist.push(coupon_params[i]);
+          }
+          console.log(shoplist);
+          if (shoplist.indexOf(shop_name) == -1) {
             Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
             var coupon_params = {
               TableName: "coupon",
