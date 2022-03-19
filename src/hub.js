@@ -1142,9 +1142,9 @@ export function Get_Coupon(number) {
 export const leaveAction = function leave_confirmed() {
   function f1() {
     return new Promise(resolve => {
-      if (arr1.indexof(this.room_name) !== -1 || arr3.indexof(this.room_name) !== -1) {
+      if (arr1.indexof(room_name) !== -1 || arr3.indexof(room_name) !== -1) {
         var table = "Matching-table";
-      } else if (arr2.indexof(this.room_name) !== -1 || arr4.indexof(this.room_name) !== -1) {
+      } else if (arr2.indexof(room_name) !== -1 || arr4.indexof(room_name) !== -1) {
         var table = "Sightseeing-table";
       }
       var match = {
