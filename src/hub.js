@@ -2252,9 +2252,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   room_name == "strong-elementary-meetup"
                 ) {
-                  alert(
+                  /*alert(
                     "観光ワールドへようこそ!!\nこちらでは道頓堀の観光をお楽しみいただけます。\n\n[操作方法]\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー"
-                  );
+                  );*/
                 }
 
                 if (
