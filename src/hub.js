@@ -2166,12 +2166,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                   aircanon_container.setAttribute("aircanon-animation");
                   aircanon_container.classList.add(meta.profile.displayName + "_aircanon");
                   const hanabi_container = document.querySelector(".sanshakudama");
+                  hanabi_container.setAttribute("hanabi-animation");
                   hanabi_container.classList.add(meta.profile.displayName + "_hanabi");
                   const hanabi_aircanon_pov = document.querySelector(".hanabi_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_hanabi_pov");
                   const aircanon_index = "target: ." + meta.profile.displayName + "_aircanon_pov;offset: 0 -0.1 -0.3;";
-                  const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.3;";
+                  const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.8;";
                   aircanon_container.setAttribute("follow-in-fov", aircanon_index);
                   hanabi_container.setAttribute("follow-in-fov", hanabi_index);
 
