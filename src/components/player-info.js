@@ -139,8 +139,8 @@ AFRAME.registerComponent("player-info", {
     const nametagEl = this.el.querySelector(".nametag");
     if (this.displayName && nametagEl) {
       nametagEl.setAttribute("text", { value: this.displayName });
-      let text_color = document.documentElement.style.getPropertyValue("--team-color");
-      nametagEl.setAttribute("text", { color: text_color})
+      //let text_color = document.documentElement.style.getPropertyValue("--team-color");
+      //nametagEl.setAttribute("text", { color: text_color})
       nametagEl.object3D.visible = !infoShouldBeHidden;
     }
     const identityNameEl = this.el.querySelector(".identityName");
