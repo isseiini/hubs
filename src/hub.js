@@ -245,13 +245,35 @@ function count_reset() {
 var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 
 var room_name = current_url[current_url.length - 1];
-console.log(room_name);
-document.addEventListener("keyup", event => {
-  if (event.code === "KeyO") {
-    text_chat_data.count();
-    console.log(text_chat_data);
-  }
-});
+
+const arr1 = [
+  "adorable-keen-zone",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+const arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+const arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "FqJioTK/neat-striking-spot"
+];
+const arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
 
 let team;
 
@@ -1120,13 +1142,36 @@ export function Get_Coupon(number) {
 export const leaveAction = function leave_confirmed() {
   function f1() {
     return new Promise(resolve => {
-      resolve("f1 ==> f2");
+      if (arr1.indexof(this.room_name) !== -1 || arr3.indexof(this.room_name) !== -1) {
+        var table = "Matching-table";
+      } else if (arr2.indexof(this.room_name) !== -1 || arr4.indexof(this.room_name) !== -1) {
+        var table = "Sightseeing-table";
+      }
+      var match = {
+        TableName: table,
+        Key: {
+          //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
+          URL: this.room_name
+        },
+        ExpressionAttributeNames: {
+          "#S": "Sum"
+        },
+        ExpressionAttributeValues: {
+          ":add": 1
+        },
+        UpdateExpression: "SET #S = #S - :add"
+      };
+      docClient.update(match, function(err, data2) {
+        if (err) {
+          console.log("error");
+        } else {
+          console.log("success");
+        }
+      });
     });
   }
   f1().then(response => {
-    if (!alert(response)) {
-      location.href = "/";
-    }
+    location.href = "/";
   });
 };
 
