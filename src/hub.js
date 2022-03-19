@@ -2181,7 +2181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "BlueTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
-                      document.querySelector(".nametag").setAttribute("text", { color: "rgb(0, 243, 235)" });
+                      document.querySelector(".identityName").setAttribute("text", { color: "rgb(0, 243, 235)" });
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
@@ -2192,7 +2192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "RedTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
-                      document.querySelector(".nametag").setAttribute("text", { color: "rgb(186, 7, 5)" });
+                      document.querySelector(".identityName").setAttribute("text", { color: "rgb(186, 7, 5)" });
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
                       characterController.teleportTo(respawn_point2);
