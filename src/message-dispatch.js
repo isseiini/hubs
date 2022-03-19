@@ -2,12 +2,12 @@ import "./utils/configs";
 import { getAbsoluteHref } from "./utils/media-url-utils";
 import { isValidSceneUrl } from "./utils/scene-url-utils";
 import { spawnChatMessage } from "./react-components/chat-message";
-import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK, SOUND_HIT} from "./systems/sound-effects-system";
+import { SOUND_CHAT_MESSAGE, SOUND_QUACK, SOUND_SPECIAL_QUACK, SOUND_HIT } from "./systems/sound-effects-system";
 import ducky from "./assets/models/DuckyMesh.glb";
 import { EventTarget } from "event-target-shim";
 import { ExitReason } from "./react-components/room/ExitedRoomScreen";
 import { LogMessageType } from "./react-components/room/ChatSidebar";
-import {waitForDOMContentLoaded} from "./utils/async-utils";
+import { waitForDOMContentLoaded } from "./utils/async-utils";
 import { width } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { WindowsMixedRealityControllerDevice } from "./systems/userinput/devices/windows-mixed-reality-controller";
 
@@ -16,14 +16,14 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'ap-northeast-1:1a5b9f55-2ccb-494f-964f-6fda4d7f9eda',
 });*/
 
-AWS.config.region = 'ap-northeast-1'; // リージョン
+AWS.config.region = "ap-northeast-1"; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae',
+  IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
 });
 
-const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
 
-const currentUserData2 = {}; 
+const currentUserData2 = {};
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
@@ -38,7 +38,7 @@ const poolData = {
 };
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
-var current_url_parts = (location.protocol + '//' + location.hostname + location.pathname).split("/");
+var current_url_parts = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 var current_room = current_url_parts[current_url_parts.length - 1];
 
 let uiRoot;
@@ -46,13 +46,24 @@ let uiRoot;
 window.BlueSum = 0;
 window.RedSum = 0;
 
-const playerMine = Math.random().toString(36).slice(-8);
+const playerMine = Math.random()
+  .toString(36)
+  .slice(-8);
 
 const Game_Result = document.getElementById("game-progress-origin");
 const Game_Result1 = document.getElementById("game-progress-main");
 const Game_Result2 = document.getElementById("game-progress-cover1");
 const Game_Result3 = document.getElementById("game-progress-cover2");
 const Game_Result_sub = document.getElementById("game-progress-sub");
+
+function Alert(message) {
+  const Alert = document.getElementById("Player_Alert");
+  Alert.innerText = message;
+  Alert.style.display = "flex";
+  setTimeout(() => {
+    Alert.style.display = "none";
+  }, 2000);
+}
 
 /*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
@@ -74,7 +85,6 @@ const Game_Result_sub = document.getElementById("game-progress-sub");
   });
 };*/
 
-
 let HanabiAction = document.querySelector(".sanshakudama");
 export default class MessageDispatch extends EventTarget {
   constructor(scene, entryManager, hubChannel, remountUI, mediaSearchStore) {
@@ -85,47 +95,43 @@ export default class MessageDispatch extends EventTarget {
     this.remountUI = remountUI;
     this.mediaSearchStore = mediaSearchStore;
     this.presenceLogEntries = [];
-
-    
   }
- 
-  damage() {  
-    
-    const lifeBar = document.getElementById('life-background')
-    var HP = Number(lifeBar.style.width.slice( 0, -1 )) ; 
+
+  damage() {
+    Alert("狙われています!!");
+    const lifeBar = document.getElementById("life-background");
+    var HP = Number(lifeBar.style.width.slice(0, -1));
     /*const Player_UI = document.getElementById("Player-Ui");
     Player_UI.classList.add("moveToRight");
     Player_UI.classList.remove("moveToRight");*/
-    if(HP > 0) {
+    if (HP > 0) {
       let team = document.getElementById("score-display-top").innerText;
       this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_HIT);
 
       var life = HP - 20;
 
-      
-      if ( life <= 0 ){
+      if (life <= 0) {
         const scene = document.querySelector("a-scene");
         //const waypointSystem = scene.systems["hubs-systems"].waypointSystem;
         //waypointSystem.moveToSpawnPoint();
 
-        if(team == "BlueTeam") {
+        if (team == "BlueTeam") {
           var hit_target2 = "_Red_+1#" + playerMine;
         }
 
-        if(team == "RedTeam") {
+        if (team == "RedTeam") {
           var hit_target2 = "_Blue_+1#" + playerMine;
         }
-        
-        var event3 = new Event('change');
+
+        var event3 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event3);
-  
+
         //const general_scene = document.querySelector("a-scene");
         //general_scene.pause();
-        life = 100  
+        life = 100;
 
-        
         //sanshakudama.setAttribute("animation-mixer")
         /*var down_count = {
           TableName: 'Matching-table',
@@ -170,14 +176,13 @@ export default class MessageDispatch extends EventTarget {
           }
         });*/
       } else {
-      // 算出の結果 100 を超過した場合
-      if ( life > 100 ) {
-          life = 100
-      }
-    
+        // 算出の結果 100 を超過した場合
+        if (life > 100) {
+          life = 100;
+        }
       }
 
-      lifeBar.style.width = life + "%"
+      lifeBar.style.width = life + "%";
     }
   }
 
@@ -202,43 +207,43 @@ export default class MessageDispatch extends EventTarget {
           }
       });
     }*/
-    
-    var naf_Mine = window.NAF_ID_for_SHOOTING; //sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id); 
+
+    var naf_Mine = window.NAF_ID_for_SHOOTING; //sessionStorage.getItem(this.hubChannel.channel.joinPush.receivedResp.response.session_id);
     /*if (naf_Mine == null || naf_Mine == undefined){
       my_NAF_data.count();
       naf_Mine = my_NAF_data;
     }*/
 
-    if (entry.type ==="chat" && entry.body.indexOf("_naf-") === 0){
-      console.log(naf_Mine)
+    if (entry.type === "chat" && entry.body.indexOf("_naf-") === 0) {
+      console.log(naf_Mine);
       if ("_" + naf_Mine == entry.body) {
         this.damage();
-      };
-      return
-    };
+      }
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_RedTeam") === 0){
+    if (entry.type === "chat" && entry.body.indexOf("_RedTeam") === 0) {
       window.RedSum += 1;
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_BlueTeam") === 0){
+    if (entry.type === "chat" && entry.body.indexOf("_BlueTeam") === 0) {
       window.BlueSum += 1;
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && isNaN(entry.body) == false){
+    if (entry.type === "chat" && isNaN(entry.body) == false) {
       window.timeCount = entry.body;
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Red_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+    if (entry.type === "chat" && entry.body.indexOf("_Red_+1") === 0) {
+      if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.querySelector(".sanshakudama");
         let hanabi_index = "." + window.hubjs.myname + "_hanabi";
         let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
-        HanabiAction[0].setAttribute("hanabi-animation", {action: "true"});
+        HanabiAction[0].setAttribute("hanabi-animation", { action: "true" });
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
@@ -246,30 +251,30 @@ export default class MessageDispatch extends EventTarget {
       let current_Red_Score = Number(Red_Score.innerText) + 1;
       if (current_Red_Score >= 25) {
         var hit_target2 = "_Win_Red";
-        var event2 = new Event('change');
+        var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event2);
         Red_Score.innerText = "0";
         Red_Progress.value = 0;
-        return
+        return;
       } else {
-        if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+        if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
           const Player_Respawn = document.getElementById("Player-Respawn");
           Player_Respawn.style.display = "block";
         }
       }
       Red_Score.innerText = current_Red_Score;
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Blue_+1") === 0){
-      if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+    if (entry.type === "chat" && entry.body.indexOf("_Blue_+1") === 0) {
+      if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.querySelector(".sanshakudama");
         let hanabi_index = "." + window.hubjs.myname + "_hanabi";
         let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
-        HanabiAction[0].setAttribute("hanabi-animation", {action: "true"});
+        HanabiAction[0].setAttribute("hanabi-animation", { action: "true" });
       }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
@@ -277,41 +282,41 @@ export default class MessageDispatch extends EventTarget {
       let current_Blue_Score = Number(Blue_Score.innerText) + 1;
       if (current_Blue_Score >= 25) {
         var hit_target2 = "_Win_Blue";
-        var event2 = new Event('change');
+        var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event2);
         Blue_Score.innerText = "0";
         Blue_Progress.value = 0;
-        return
+        return;
       } else {
-        if(entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
+        if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
           const Player_Respawn = document.getElementById("Player-Respawn");
           Player_Respawn.style.display = "block";
         }
       }
       Blue_Score.innerText = current_Blue_Score;
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Red:") === 0){
-      console.log(entry.body)
+    if (entry.type === "chat" && entry.body.indexOf("_Red:") === 0) {
+      console.log(entry.body);
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
       const Red_Progress = document.getElementById("Red-Progress");
       const Blue_Progress = document.getElementById("Blue-Progress");
-      var entered_red = entry.body.substring(0, entry.body.indexOf('_Blue:'));
-      entered_red = entered_red.substr(entered_red.indexOf(':') + 1);
+      var entered_red = entry.body.substring(0, entry.body.indexOf("_Blue:"));
+      entered_red = entered_red.substr(entered_red.indexOf(":") + 1);
       //entered_red = entered_red.slice(-1);
-      var entered_blue = entry.body.substr(entry.body.indexOf('_Blue:') + 1);
-      entered_blue = entered_blue.substr(entered_blue.indexOf(':') + 1);
+      var entered_blue = entry.body.substr(entry.body.indexOf("_Blue:") + 1);
+      entered_blue = entered_blue.substr(entered_blue.indexOf(":") + 1);
       //entered_blue = entered_blue.slice(-1);
       if (Number(Red_Score.innerText) <= Number(entered_red) && Number(Blue_Score.innerText) <= Number(entered_blue)) {
         Red_Score.innerText = entered_red;
         Blue_Score.innerText = entered_blue;
         if (Number(entered_red) >= 25) {
           var hit_target2 = "_Win_Red";
-          var event2 = new Event('change');
+          var event2 = new Event("change");
           var hit_target_container = document.getElementById("hit_target_container");
           hit_target_container.value = hit_target2;
           hit_target_container.dispatchEvent(event2);
@@ -319,11 +324,11 @@ export default class MessageDispatch extends EventTarget {
           Blue_Score.innerText = "0";
           Red_Progress.value = 0;
           Blue_Progress.value = 0;
-          return
+          return;
         }
         if (Number(entered_blue) >= 25) {
           var hit_target2 = "_Win_Blue";
-          var event2 = new Event('change');
+          var event2 = new Event("change");
           var hit_target_container = document.getElementById("hit_target_container");
           hit_target_container.value = hit_target2;
           hit_target_container.dispatchEvent(event2);
@@ -331,15 +336,15 @@ export default class MessageDispatch extends EventTarget {
           Blue_Score.innerText = "0";
           Red_Progress.value = 0;
           Blue_Progress.value = 0;
-          return
+          return;
         }
       }
       Red_Progress.value = Number(entered_red);
       Blue_Progress.value = Number(entered_blue);
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Win_Red") === 0){
+    if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -356,10 +361,10 @@ export default class MessageDispatch extends EventTarget {
         Game_Result.style.display = "none";
         scene.play();
       }, 30000);
-      return
-    };
+      return;
+    }
 
-    if (entry.type ==="chat" && entry.body.indexOf("_Win_Blue") === 0){
+    if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -376,8 +381,8 @@ export default class MessageDispatch extends EventTarget {
         Game_Result.style.display = "none";
         scene.play();
       }, 30000);
-      return
-    };
+      return;
+    }
 
     this.presenceLogEntries.push(entry);
     this.remountUI({ presenceLogEntries: this.presenceLogEntries });
