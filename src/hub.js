@@ -1120,7 +1120,7 @@ export function Get_Coupon(number) {
   });
 }
 
-export const leaveAction = function leave_confirmed() {
+export function leave_confirmed() {
   const arr1 = [
     "adorable-keen-zone",
     "posh-courteous-plane",
@@ -1179,7 +1179,7 @@ export const leaveAction = function leave_confirmed() {
       location.href = "/";
     }
   });
-};
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   var Player_UI = document.getElementById("Player-UI");
