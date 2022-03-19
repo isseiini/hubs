@@ -1111,28 +1111,36 @@ export function Get_Coupon(number) {
           for (i = 0; i < result.length; i++) {
             currentUserData[result[i].getName()] = result[i].getValue();
           }
-
-          Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
           var coupon_params = {
             TableName: "coupon",
-            Item: {
-              Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
-              coupon_number: number,
-              shop: shop_name,
-              content: shop_content,
-              User_ID: currentUserData["sub"],
-              available_or_used: "available",
-              get_Date: current_Date
-            }
+            IndexName: "User_ID-index",
+            ExpressionAttributeNames: { "#U": "User_ID" },
+            ExpressionAttributeValues: { ":val": currentUserData["sub"] },
+            KeyConditionExpression: "#U = :val"
           };
+          if (coupon_params.length == 0) {
+            Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
+            var coupon_params = {
+              TableName: "coupon",
+              Item: {
+                Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
+                coupon_number: number,
+                shop: shop_name,
+                content: shop_content,
+                User_ID: currentUserData["sub"],
+                available_or_used: "available",
+                get_Date: current_Date
+              }
+            };
 
-          docClient.put(coupon_params, function(err, data) {
-            if (err) {
-              console.log("error");
-            } else {
-              console.log("success");
-            }
-          });
+            docClient.put(coupon_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
+              }
+            });
+          }
         }
       });
     }
