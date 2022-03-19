@@ -26,6 +26,7 @@ import Client from "amazon-cognito-identity-js/src/Client";
 
 import CognitoUserAttribute from "amazon-cognito-identity-js/src/CognitoUserAttribute";
 import StorageHelper from "amazon-cognito-identity-js/src/StorageHelper";
+import { func } from "prop-types";
 
 AWS.config.region = "ap-northeast-1"; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -276,6 +277,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         el.parentElement.children[1].setAttribute("data-augmented-ui", "all-triangle-down");
       }
     });
+  });
+
+  var confirm_terms = document.getElementById("confirm-terms-button");
+  confirm_terms.addEventListener("click", function() {
+    document.getElementById("terms-container").style.display = "none";
   });
 
   const main_contents1 = document.getElementById("main-contents1");
