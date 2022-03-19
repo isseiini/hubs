@@ -52,7 +52,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose, onLeave }) {
     >
       <Column padding center centerMd="both" grow>
         <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={onLeave}>
+        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick="leave_confirmed">
           {intl.formatMessage(confirmationMessages[reason])}
         </Button>
       </Column>
@@ -63,6 +63,5 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose, onLeave }) {
 LeaveRoomModal.propTypes = {
   reason: PropTypes.string,
   destinationUrl: PropTypes.string,
-  onClose: PropTypes.func,
-  onLeave: PropTypes.any.isRequired
+  onClose: PropTypes.func
 };
