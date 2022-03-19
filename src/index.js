@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   btn.forEach(function(el, i) {
     el.parentElement.addEventListener("click", function() {
       if (el.parentElement.parentElement.style.height == "30vh") {
-        el.parentElement.parentElement.style.height = "auto";
+        el.parentElement.parentElement.style.height = "70vh";
         el.innerHTML = "クリックして閉じる";
         el.parentElement.children[1].setAttribute("data-augmented-ui", "all-triangle-up");
       } else {
