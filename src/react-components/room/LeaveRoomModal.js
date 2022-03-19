@@ -64,5 +64,5 @@ LeaveRoomModal.propTypes = {
   reason: PropTypes.string,
   destinationUrl: PropTypes.string,
   onClose: PropTypes.func,
-  onLeave: PropTypes.checkPropTypes
+  onLeave: PropTypes.any.isRequired
 };
