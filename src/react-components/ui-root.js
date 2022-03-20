@@ -1211,8 +1211,7 @@ class UIRoot extends Component {
               onClick: () => {
                 this.showNonHistoriedDialog(LeaveRoomModal, {
                   destinationUrl: "/",
-                  reason: LeaveReason.leaveRoom,
-                  onLeave: leave_confirmed()
+                  reason: LeaveReason.leaveRoom
                 });
               }
             },
@@ -1600,8 +1599,7 @@ class UIRoot extends Component {
                         onClick={() => {
                           this.showNonHistoriedDialog(LeaveRoomModal, {
                             destinationUrl: "/",
-                            reason: LeaveReason.leaveRoom,
-                            onLeave: leave_confirmed()
+                            reason: LeaveReason.leaveRoom
                           });
                         }}
                       />
