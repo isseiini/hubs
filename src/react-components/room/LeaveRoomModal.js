@@ -45,7 +45,21 @@ const confirmationMessages = defineMessages({
 export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
   const intl = useIntl();
 
-  function leave_function() {
+  render (
+    <Modal
+      title={<FormattedMessage id="leave-room-modal.title" defaultMessage="トップページに戻ります" />}
+      beforeTitle={<CloseButton onClick={onClose} />}
+    >
+      <Column padding center centerMd="both" grow>
+        <p>{intl.formatMessage(reasonMessages[reason])}</p>
+        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={this.leave_function}>
+          {intl.formatMessage(confirmationMessages[reason])}
+        </Button>
+      </Column>
+    </Modal>
+  );
+
+  leave_function(){
     const arr1 = [
       "adorable-keen-zone",
       "posh-courteous-plane",
@@ -81,7 +95,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
       var table = "Matching-table";
     } else if (arr2.indexof(room_name) !== -1 || arr4.indexof(room_name) !== -1) {
       var table = "Sightseeing-table";
-    }
+    };
     var match = {
       TableName: table,
       Key: {
@@ -104,21 +118,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
         location.href = "/";
       }
     });
-  }
-
-  return (
-    <Modal
-      title={<FormattedMessage id="leave-room-modal.title" defaultMessage="トップページに戻ります" />}
-      beforeTitle={<CloseButton onClick={onClose} />}
-    >
-      <Column padding center centerMd="both" grow>
-        <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={this.leave_function.bind(this)}>
-          {intl.formatMessage(confirmationMessages[reason])}
-        </Button>
-      </Column>
-    </Modal>
-  );
+  };
 }
 // onClick="leave_confirmed"
 LeaveRoomModal.propTypes = {
