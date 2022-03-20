@@ -1089,36 +1089,38 @@ export function Get_Coupon(number) {
             ExpressionAttributeValues: { ":val": currentUserData["sub"] },
             KeyConditionExpression: "#U = :val"
           };
-          let shoplist = [];
-          for (let i = 0; i < coupon_params.length; i++) {
-            shoplist.push(coupon_params[i].data.shop);
-          }
-          console.log(shoplist);
-          if (shoplist.indexOf(shop_name) == -1) {
-            Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
-            var coupon_params = {
-              TableName: "coupon",
-              Item: {
-                Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
-                coupon_number: number,
-                shop: shop_name,
-                content: shop_content,
-                User_ID: currentUserData["sub"],
-                available_or_used: "available",
-                get_Date: current_Date
-              }
-            };
+          docClient.query(coupon_params, function(err, coupon_data) {
+            if (err) {
+              console.log(err);
+            } else {
+              let shop_list = coupon_data.Items.filter(x => x.shop === shop_name);
+              if (shop_list.length == 0) {
+                Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
+                var coupon_params = {
+                  TableName: "coupon",
+                  Item: {
+                    Play_ID: currentUserData["sub"] + ":" + current_Date + ":" + shop_name,
+                    coupon_number: number,
+                    shop: shop_name,
+                    content: shop_content,
+                    User_ID: currentUserData["sub"],
+                    available_or_used: "available",
+                    get_Date: current_Date
+                  }
+                };
 
-            docClient.put(coupon_params, function(err, data) {
-              if (err) {
-                console.log("error");
+                docClient.put(coupon_params, function(err, data) {
+                  if (err) {
+                    console.log("error");
+                  } else {
+                    console.log("success");
+                  }
+                });
               } else {
-                console.log("success");
+                Alert(shop_name + "のクーポンをすでに取得していただきました。ありがとうございます。");
               }
-            });
-          } else {
-            Alert(shop_name + "のクーポンをすでに取得していただきました。ありがとうございます。");
-          }
+            }
+          });
         }
       });
     }
