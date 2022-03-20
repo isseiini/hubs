@@ -14,8 +14,6 @@ function almostEquals(epsilon, u, v) {
 let AirCanonEnvMap;
 let AirCanon;
 
-const myname = document.getElementById("Player_name").innerText;
-
 var AirCanonClip = {};
 
 var ShootingSfx;
@@ -39,6 +37,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
+    const myname = document.getElementById("Player_name").innerText;
     this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
     console.log(this.el);
     console.log(this.el.parentElement);
