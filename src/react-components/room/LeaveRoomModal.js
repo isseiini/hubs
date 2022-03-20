@@ -5,6 +5,7 @@ import { Modal } from "../modal/Modal";
 import { CloseButton } from "../input/CloseButton";
 import { Button } from "../input/Button";
 import { Column } from "../layout/Column";
+import { render } from "react-dom";
 
 export const LeaveReason = {
   leaveRoom: "leaveRoom",
@@ -44,20 +45,6 @@ const confirmationMessages = defineMessages({
 
 export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
   const intl = useIntl();
-
-  render (
-    <Modal
-      title={<FormattedMessage id="leave-room-modal.title" defaultMessage="トップページに戻ります" />}
-      beforeTitle={<CloseButton onClick={onClose} />}
-    >
-      <Column padding center centerMd="both" grow>
-        <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={this.leave_function}>
-          {intl.formatMessage(confirmationMessages[reason])}
-        </Button>
-      </Column>
-    </Modal>
-  );
 
   leave_function(){
     const arr1 = [
@@ -118,7 +105,26 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
         location.href = "/";
       }
     });
+  }
+  
+  render () {
+    return (
+      <Modal
+        title={<FormattedMessage id="leave-room-modal.title" defaultMessage="トップページに戻ります" />}
+        beforeTitle={<CloseButton onClick={onClose} />}
+      >
+        <Column padding center centerMd="both" grow>
+          <p>{intl.formatMessage(reasonMessages[reason])}</p>
+          <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={this.leave_function}>
+            {intl.formatMessage(confirmationMessages[reason])}
+          </Button>
+        </Column>
+      </Modal>
+    );
   };
+    
+
+  
 }
 // onClick="leave_confirmed"
 LeaveRoomModal.propTypes = {
