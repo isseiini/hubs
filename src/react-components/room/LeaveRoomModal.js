@@ -7,6 +7,13 @@ import { Button } from "../input/Button";
 import { Column } from "../layout/Column";
 import { render } from "react-dom";
 
+AWS.config.region = "ap-northeast-1"; // リージョン
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
 export const LeaveReason = {
   leaveRoom: "leaveRoom",
   joinRoom: "joinRoom",
