@@ -44,7 +44,6 @@ AFRAME.registerComponent("aircanon-animation", {
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
 
-    this.Shoot = this.Shoot.bind(this);
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
     });
@@ -60,14 +59,15 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.isLocalPlayer) {
       this.reticle = document.querySelector(".reticle");
       this.rotate120 = 0;
+      this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.rotation.set(180, 0, 0);
+      this.AirCanonMesh.rotation.set(180, 180, 0);
     }
   },
 
   update() {
     const myname = document.getElementById("Player_name").innerText;
-    if (this.data.action == "true" && this.isLocalPlayer) {
+    if (this.data.action == "true" && !this.isLocalPlayer) {
       /*AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
