@@ -15,6 +15,8 @@ let AirCanonEnvMap;
 let AirCanon;
 
 var AirCanonClip = {};
+var loaderMixer = {};
+var loadingClip = {};
 
 var ShootingSfx;
 
@@ -49,10 +51,10 @@ AFRAME.registerComponent("aircanon-animation", {
       this.targetEl = networkedEl;
     });
 
-    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+    //this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
+    //this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
-    AirCanonClip[this.myname] = this.loadingClip;
+    AirCanonClip[this.myname] = new THREE.AnimationMixer(this.AirCanonMesh).clipAction(this.AirCanonMesh.animations[0]); //this.loadingClip;
     AirCanonClip[this.myname].setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
