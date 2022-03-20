@@ -17,6 +17,7 @@ let AirCanon;
 var AirCanonClip = {};
 var loaderMixer = {};
 var loadingClip = {};
+var AirCanonMesh = {};
 
 var ShootingSfx;
 
@@ -44,8 +45,8 @@ AFRAME.registerComponent("aircanon-animation", {
     console.log(this.el);
     console.log(this.el.parentElement);
     console.log(this.el.parentElement.parentElement);
-    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-    this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
+    AirCanonMesh[this.name] = cloneObject3D(AirCanon.scene);
+    AirCanonMesh[this.name].scale.set(0.15, 0.15, 0.15);
 
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
@@ -53,20 +54,20 @@ AFRAME.registerComponent("aircanon-animation", {
 
     //this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     //this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
-    loaderMixer[this.name] = new THREE.AnimationMixer(this.AirCanonMesh);
-    loadingClip[this.name] = loaderMixer[this.name].clipAction(this.AirCanonMesh.animations[0]);
+    loaderMixer[this.name] = new THREE.AnimationMixer(AirCanonMesh[this.name]);
+    loadingClip[this.name] = loaderMixer[this.name].clipAction(AirCanonMesh[this.name].animations[0]);
 
     AirCanonClip[this.myname] = loadingClip[this.name];
     AirCanonClip[this.myname].setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
-    this.el.setObject3D("mesh", this.AirCanonMesh);
+    this.el.setObject3D("mesh", AirCanonMesh[this.name]);
     if (this.isLocalPlayer) {
       this.reticle = document.querySelector(".reticle");
       this.rotate120 = 0;
       this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.rotation.set(180, 0, 90);
+      AirCanonMesh[this.name].rotation.set(0, -90, 90);
     }
   },
 
@@ -93,7 +94,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if (loaderMixer[this.name]) {
       loaderMixer[this.name].update(dt / 1000);
     }
-    this.AirCanonMesh.matrixNeedsUpdate = true;
+    AirCanonMesh[this.name].matrixNeedsUpdate = true;
   },
 
   remove() {
