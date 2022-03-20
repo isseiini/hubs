@@ -47,12 +47,12 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose, onLeave }) {
 
   return (
     <Modal
-      title={<FormattedMessage id="leave-room-modal.title" defaultMessage="Leave Room" />}
+      title={<FormattedMessage id="leave-room-modal.title" defaultMessage="トップページに戻ります" />}
       beforeTitle={<CloseButton onClick={onClose} />}
     >
       <Column padding center centerMd="both" grow>
         <p>{intl.formatMessage(reasonMessages[reason])}</p>
-        <Button as="a" preset="cancel" rel="noopener noreferrer">
+        <Button as="a" preset="cancel" rel="noopener noreferrer" onClick={onLeave}>
           {intl.formatMessage(confirmationMessages[reason])}
         </Button>
       </Column>
@@ -63,5 +63,6 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose, onLeave }) {
 LeaveRoomModal.propTypes = {
   reason: PropTypes.string,
   destinationUrl: PropTypes.string,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  onLeave: PropTypes.func
 };
