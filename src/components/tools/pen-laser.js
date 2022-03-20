@@ -37,7 +37,7 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   init() {
-    this.isLocalPlayer = this.el.id === "avatar-rig";
+    this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
     console.log(this.el);
     console.log(this.el.parentElement);
     console.log(this.el.parentElement.parentElement);
