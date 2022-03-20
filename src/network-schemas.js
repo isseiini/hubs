@@ -50,12 +50,12 @@ function registerNetworkSchemas() {
         selector: ".camera",
         component: "rotation",
         requiresNetworkUpdate: vectorRequiresUpdate(0.5)
-      } /*
+      },
       {
         selector: ".sanshakudama",
         component: "hanabi-animation",
         property: "action"
-      }*/,
+      },
       {
         selector: ".aircanon",
         component: "aircanon-animation",

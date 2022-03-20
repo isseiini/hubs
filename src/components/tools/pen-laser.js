@@ -38,9 +38,6 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
-    console.log(this.el);
-    console.log(this.el.parentElement);
-    console.log(this.el.parentElement.parentElement);
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
 

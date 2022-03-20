@@ -91,6 +91,7 @@ AFRAME.registerComponent("hanabi-animation", {
   },
 
   init() {
+    this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
     this.Fire = this.Fire.bind(this);
     this.HanabiMesh = cloneObject3D(Hanabi.scene);
 
@@ -113,6 +114,11 @@ AFRAME.registerComponent("hanabi-animation", {
 
   update() {
     if (this.data.action == "true") {
+      this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
+      this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
+      HanabiMixer = this.loaderMixer;
+      HanabiClip = this.loadingClip;
+      HanabiClip.setLoop(THREE.LoopOnce);
       this.Fire();
       HanabiSfx.playSoundOneShot(SOUND_HANABI);
       //HanabiClip.stop();
