@@ -56,7 +56,7 @@ AFRAME.registerComponent("aircanon-animation", {
       this.rotate120 = 0;
       //this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.rotation.set(90, -90, 180);
+      this.AirCanonMesh.rotation.set(90, -90, 0);
     }
   },
 
@@ -99,12 +99,14 @@ AFRAME.registerComponent("aircanon-animation", {
 
   Shoot() {
     AirCanonClip.play();
-    this.rotate120 += 120;
-    this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
     setTimeout(() => {
       AirCanonClip.stop();
     }, 2000);
     ShootingSfx.playSoundOneShot(SOUND_SHOOT);
+    if (this.isLocalPlayer) {
+      this.rotate120 += 120;
+      this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
+    }
   }
 });
 
