@@ -53,8 +53,10 @@ AFRAME.registerComponent("aircanon-animation", {
 
     //this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
     //this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+    loaderMixer[this.name] = new THREE.AnimationMixer(this.AirCanonMesh);
+    loadingClip[this.name] = loaderMixer[this.name].clipAction(this.AirCanonMesh.animations[0]);
 
-    AirCanonClip[this.myname] = new THREE.AnimationMixer(this.AirCanonMesh).clipAction(this.AirCanonMesh.animations[0]); //this.loadingClip;
+    AirCanonClip[this.myname] = loadingClip[this.name];
     AirCanonClip[this.myname].setLoop(THREE.LoopOnce);
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
@@ -88,14 +90,14 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   tick(t, dt) {
-    if (this.loaderMixer) {
-      this.loaderMixer.update(dt / 1000);
+    if (loaderMixer[this.name]) {
+      loaderMixer[this.name].update(dt / 1000);
     }
     this.AirCanonMesh.matrixNeedsUpdate = true;
   },
 
   remove() {
-    if (this.loaderMixer) {
+    if (loaderMixer[this.name]) {
       this.el.removeObject3D("mesh");
     }
   },
