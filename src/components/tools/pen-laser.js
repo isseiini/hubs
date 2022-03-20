@@ -38,6 +38,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
   init() {
     this.isLocalPlayer = this.el.id === "avatar-rig";
+    console.log(this.el);
     console.log(this.el.parentElement);
     console.log(this.el.parentElement.parentElement);
     this.Shoot = this.Shoot.bind(this);
@@ -61,7 +62,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
   update() {
     const myname = document.getElementById("Player_name").innerText;
-    if (this.data.action == "true" /*&& this.isLocalPlayer*/) {
+    if (this.data.action == "true" && this.isLocalPlayer) {
       /*AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
