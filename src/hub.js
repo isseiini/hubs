@@ -2149,7 +2149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log("myteam:" + team);
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
-                  }, 2000);
+                  }, 1000);
 
                   //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
                   /*let cognitoUser_me = userPool.getCurrentUser(); 
@@ -2455,7 +2455,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   Player_Respawn.addEventListener("click", function() {
     Player_Respawn.style.display = "none";
     let hanabi_index = "." + window.hubjs.myname + "_hanabi";
-    let HanabiAction = querySelector(hanabi_index); //document.getElementById("HANABI");
+    let HanabiAction = document.querySelector(hanabi_index); //document.getElementById("HANABI");
     //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", { action: "false" });
     if (document.getElementById("score-display-top").innerText == "BlueTeam") {
