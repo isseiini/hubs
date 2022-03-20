@@ -67,7 +67,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
   update() {
     const myname = document.getElementById("Player_name").innerText;
-    if (this.data.action == "true" && !this.isLocalPlayer) {
+    if (this.data.action == "true" && this.isLocalPlayer) {
       /*AirCanonClip.play();
       this.rotate120 += 120;
       this.reticle.style.transform = "rotateZ(" + this.rotate120 + "deg)";
