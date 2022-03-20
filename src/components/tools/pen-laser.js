@@ -41,15 +41,16 @@ AFRAME.registerComponent("aircanon-animation", {
     console.log(this.el);
     console.log(this.el.parentElement);
     console.log(this.el.parentElement.parentElement);
+    this.AirCanonMesh = cloneObject3D(AirCanon.scene);
+    this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
+
+    this.el.setObject3D("mesh", this.AirCanonMesh);
     if (this.isLocalPlayer) {
       this.Shoot = this.Shoot.bind(this);
       NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
         this.targetEl = networkedEl;
       });
-      this.AirCanonMesh = cloneObject3D(AirCanon.scene);
-      this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
 
-      this.el.setObject3D("mesh", this.AirCanonMesh);
       this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
       this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
@@ -90,7 +91,9 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   remove() {
-    this.el.removeObject3D("mesh");
+    if (this.loaderMixer) {
+      this.el.removeObject3D("mesh");
+    }
   },
 
   Shoot() {
