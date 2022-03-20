@@ -58,28 +58,28 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
           preset="cancel"
           rel="noopener noreferrer"
           onClick={() => {
-            const arr1 = [
-              "adorable-keen-zone",
+            let arr1 = [
+              "fresh-candid-barbecue",
               "posh-courteous-plane",
               "curly-wicked-conclave",
               "clever-powerful-gala",
               "kooky-passionate-safari"
             ];
-            const arr2 = [
+            let arr2 = [
               "conscious-tricky-camp",
               "impressive-easygoing-commons",
               "fine-zigzag-exploration",
               "wee-likable-commons",
               "envious-shiny-vacation"
             ];
-            const arr3 = [
+            let arr3 = [
               "devoted-healthy-gala",
               "petty-handsome-plaza",
               "real-qualified-spot",
               "absolute-pertinent-convention",
               "neat-striking-spot"
             ];
-            const arr4 = [
+            let arr4 = [
               "celebrated-calm-rendezvous",
               "lasting-spiffy-camp",
               "leafy-expert-dominion",
