@@ -1091,7 +1091,7 @@ export function Get_Coupon(number) {
           };
           let shoplist = [];
           for (let i = 0; i < coupon_params.length; i++) {
-            shoplist.push(coupon_params[i]);
+            shoplist.push(coupon_params[i].data.shop);
           }
           console.log(shoplist);
           if (shoplist.indexOf(shop_name) == -1) {
