@@ -98,7 +98,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               TableName: table,
               Key: {
                 //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                URL: this.room_name
+                URL: room_name
               },
               ExpressionAttributeNames: {
                 "#S": "Sum"
