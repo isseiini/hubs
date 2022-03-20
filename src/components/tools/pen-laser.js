@@ -54,14 +54,13 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.isLocalPlayer) {
       this.reticle = document.querySelector(".reticle");
       this.rotate120 = 0;
-      this.Shoot = this.Shoot.bind(this);
+      //this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.rotation.set(90, -90, 90);
+      this.AirCanonMesh.rotation.set(90, -90, 180);
     }
   },
 
   update() {
-    const myname = document.getElementById("Player_name").innerText;
     if (this.data.action == "true" && this.isLocalPlayer) {
       /*AirCanonClip.play();
       this.rotate120 += 120;
