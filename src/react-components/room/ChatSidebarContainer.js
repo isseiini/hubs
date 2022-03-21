@@ -226,7 +226,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       placeholder = intl.formatMessage(
         {
           id: "chat-sidebar-container.input-placeholder.empty-room-bot",
-          defaultMessage: "Send message to {discordChannels}"
+          defaultMessage: "チャットを送信しましょう（'<','>','_'の記号は使用できません。）" //"Send message to {discordChannels}"
         },
         { discordChannels: discordSnippet }
       );
@@ -236,8 +236,8 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       placeholder = intl.formatMessage(
         {
           id: "chat-sidebar-container.input-placeholder.occupants",
-          defaultMessage:
-            "{occupantCount, plural, one {Send message to one other...} other {Send message to {occupantCount} others...} }"
+          defaultMessage: "チャットを送信しましょう（'<','>','_'の記号は使用できません。）"
+          //"{occupantCount, plural, one {Send message to one other...} other {Send message to {occupantCount} others...} }"
         },
         { discordChannels: discordSnippet, occupantCount: occupantCount - 1 }
       );
@@ -245,8 +245,8 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       placeholder = intl.formatMessage(
         {
           id: "chat-sidebar-container.input-placeholder.occupants-and-bot",
-          defaultMessage:
-            "{occupantCount, plural, one {Send message to one other and {discordChannels}...} other {Send message to {occupantCount} others and {discordChannels}...} }"
+          defaultMessage: "チャットを送信しましょう（'<','>','_'の記号は使用できません。）"
+          //"{occupantCount, plural, one {Send message to one other and {discordChannels}...} other {Send message to {occupantCount} others and {discordChannels}...} }"
         },
         { discordChannels: discordSnippet, occupantCount: occupantCount - 1 }
       );
