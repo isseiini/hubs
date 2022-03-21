@@ -624,9 +624,9 @@ class UIRoot extends Component {
     console.log(this.props.store.state.preferences["muteMicOnEntry"]);
 
     const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || false;
-    /*this.props.store.update({
-      settings: { micMuted: false }
-    });*/
+    this.props.store.update({
+      settings: { micMuted: muteOnEntry }
+    });
     await this.props.enterScene(this.state.enterInVR, muteOnEntry);
 
     this.setState({ entered: true, entering: false, showShareDialog: false });
