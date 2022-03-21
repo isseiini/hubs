@@ -621,6 +621,7 @@ class UIRoot extends Component {
 
     // Push the new history state before going into VR, otherwise menu button will take us back
     clearHistoryState(this.props.history);
+    console.log(this.props.store.state.preferences["muteMicOnEntry"]);
 
     const muteOnEntry = this.props.store.state.preferences["muteMicOnEntry"] || false;
     /*this.props.store.update({
