@@ -179,33 +179,6 @@ export default class SceneEntryManager {
   };
 
   exitScene = () => {
-    if (this.arr1.indexOf(this.room_name) !== -1) {
-      var table = "Matching-table";
-    } else if (this.arr2.indexOf(this.room_name) !== -1) {
-      var table = "Sightseeing-table";
-    }
-
-    var match = {
-      TableName: table,
-      Key: {
-        //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-        URL: this.room_name
-      },
-      ExpressionAttributeNames: {
-        "#S": "Sum"
-      },
-      ExpressionAttributeValues: {
-        ":add": 1
-      },
-      UpdateExpression: "SET #S = #S - :add"
-    };
-    docClient.update(match, function(err, data2) {
-      if (err) {
-        console.log("error");
-      } else {
-        console.log("success");
-      }
-    });
     setTimeout(() => {
       this.scene.exitVR();
       if (APP.dialog && APP.dialog.localMediaStream) {

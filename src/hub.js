@@ -2083,6 +2083,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     TableName: table,
                     Item: {
                       URL: room_name,
+                      hubId: current_url[current_url.length - 2],
                       Sum: document.querySelectorAll("[networked-avatar]").length
                     }
                   };
