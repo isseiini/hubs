@@ -59,6 +59,11 @@ AFRAME.registerComponent("aircanon-animation", {
   },
 
   update() {
+    this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
+    this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
+
+    AirCanonClip = this.loadingClip;
+    AirCanonClip.setLoop(THREE.LoopOnce);
     if (this.data.action == "true" /*&& this.isLocalPlayer*/) {
       /*AirCanonClip.play();
       this.rotate120 += 120;
@@ -67,11 +72,7 @@ AFRAME.registerComponent("aircanon-animation", {
         AirCanonClip.stop();
       }, 2000);
       ShootingSfx.playSoundOneShot(SOUND_SHOOT);*/
-      this.loaderMixer = new THREE.AnimationMixer(this.AirCanonMesh);
-      this.loadingClip = this.loaderMixer.clipAction(this.AirCanonMesh.animations[0]);
 
-      AirCanonClip = this.loadingClip;
-      AirCanonClip.setLoop(THREE.LoopOnce);
       this.Shoot();
     }
     if (this.data.action == "false") {
