@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("VRChat-middle").addEventListener("click", function() {
-    location.href = "https://vrch.at/wrld_4432ea9b-729c-46e3-8eaf-846aa0a37fdd";
+    location.href = "https://vrchat.com/home/launch?worldId=wrld_92c7be04-c230-4a8e-a057-82e488d78676&instanceId=0";
   });
 
   document.getElementById("menu-button").addEventListener("click", function() {
