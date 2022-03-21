@@ -137,7 +137,7 @@ export function ExitedRoomScreen({ reason, showTerms, termsUrl, logoSrc, showSou
           <p>
             <FormattedMessage
               id="exited-room-screen.create-room"
-              defaultMessage=""
+              defaultMessage="ご訪問いただきありがとうございました。"
               values={{
                 // eslint-disable-next-line react/display-name
                 a: chunks => <a href="/">{chunks}</a>

@@ -115,7 +115,7 @@ export class CharacterControllerSystem {
       if (arr3.indexOf(room_name) !== -1 || arr4.indexOf(room_name) !== -1) {
         setInterval(() => {
           this.avatarRig.object3D.getWorldPosition(avatar_position);
-          minimap_player_pos.setAttribute("cx", Number(avatar_position.x + 44));
+          minimap_player_pos.setAttribute("cx", Number(avatar_position.x + 46));
           minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
         }, 500);
       }

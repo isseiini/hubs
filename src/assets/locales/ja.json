@@ -32,7 +32,7 @@
   "exited-room-screen.reason.denied":
     "この部屋への参加は許可されていません。部屋の作成者に許可をリクエストしてください。",
   "exited-room-screen.reason.disconnected": "接続が切断されました。ページを更新して,再接続してください。",
-  "exited-room-screen.reason.exited": "セッションが終了しました。ブラウザを更新して,新しいブラウザを開始してください。",
+  "exited-room-screen.reason.exited": "セッションが終了しました。ブラウザを更新して,新しいセッションを開始してください。",
   "exited-room-screen.reason.full": "この部屋は満員です。しばらくしてからもう一度お試しください。",
   "exited-room-screen.reason.left": "退室しました。",
   "exited-room-screen.reason.scene-error": "シーンの読み込みに失敗しました。",
