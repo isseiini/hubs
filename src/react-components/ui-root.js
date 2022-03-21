@@ -1295,7 +1295,7 @@ class UIRoot extends Component {
       }*/
     ];
 
-    /*return (
+    return (
       <MoreMenuContextProvider>
         <ReactAudioContext.Provider value={this.state.audioContext}>
           <div className={classNames(rootStyles)}>
@@ -1369,8 +1369,8 @@ class UIRoot extends Component {
                 viewport={
                   <>
                     {!this.state.dialog && renderEntryFlow ? entryDialog : undefined}
-                    {this.props.selectedObject && <CompactMoreMenuButton />}
-                    {(!this.props.selectedObject ||
+                    {/*!this.props.selectedObject && <CompactMoreMenuButton />*/}
+                    {/*(!this.props.selectedObject ||
                       (this.props.breakpoint !== "sm" && this.props.breakpoint !== "md")) && (
                       <ContentMenu>
                         {showObjectList && (
@@ -1385,7 +1385,7 @@ class UIRoot extends Component {
                           presenceCount={this.state.presenceCount}
                         />
                       </ContentMenu>
-                    )}
+                    )*/}
                     {!entered && !streaming && !isMobile && streamerName && <SpectatingLabel name={streamerName} />}
                     {this.props.activeObject && (
                       <ObjectMenuContainer
@@ -1519,7 +1519,7 @@ class UIRoot extends Component {
                           onClose={() => this.setSidebar(null)}
                           onChangeScene={this.onChangeScene}
                         />
-                      )}
+                      )*/}
                     </>
                   ) : (
                     undefined
@@ -1616,7 +1616,7 @@ class UIRoot extends Component {
           </div>
         </ReactAudioContext.Provider>
       </MoreMenuContextProvider>
-    );*/
+    );
   }
 }
 
