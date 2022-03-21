@@ -198,14 +198,17 @@ function count_down() {
       var hit_target2 = "_Win_Red";
       var event2 = new Event("change");
 
+      hit_target_container.readOnly = false;
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
+      hit_target_container.readOnly = true;
     } else if (Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Blue";
       var event2 = new Event("change");
-
+      hit_target_container.readOnly = false;
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
+      hit_target_container.readOnly = true;
     } else {
       const scene = document.querySelector("a-scene");
       scene.pause();
@@ -2027,15 +2030,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const Blue_Score = document.getElementById("blue-score");
                   var event3 = new Event("change");
                   var hit_target_container = document.getElementById("hit_target_container");
+                  hit_target_container.readOnly = false;
                   hit_target_container.value =
                     "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
                   hit_target_container.dispatchEvent(event3);
+                  hit_target_container.readOnly = true;
                   if (document.getElementById("score-display-top").innerText != "") {
+                    hit_target_container.readOnly = false;
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
+                    hit_target_container.readOnly = true;
                   }
+                  hit_target_container.readOnly = false;
                   hit_target_container.value = window.timeCount;
                   hit_target_container.dispatchEvent(event3);
+                  hit_target_container.readOnly = true;
                 }
 
                 if (isSelf && currentMeta.presence !== meta.presence && meta.presence === "room") {
@@ -2491,16 +2500,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     hubChannel.sendMessage(hit_target);
     hit_target_container.value = "";
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.ctrlKey && event.code === "Enter") {
-      var hit_target = hit_target_container.value;
-      console.log(hit_target);
-
-      hubChannel.sendMessage(hit_target);
-      hit_target_container.value = "";
-    }
   });
 
   document.getElementById("go-to-game").addEventListener("click", function() {

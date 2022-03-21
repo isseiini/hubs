@@ -429,8 +429,10 @@ AFRAME.registerComponent("pen", {
             document.getElementById("reticle").classList.add("extend");
             var hit_target = "_naf-" + targetbox[5][1].networked.attrValue.networkId;
             const event = new Event("change");
+            hit_target_container.readOnly = false;
             hit_target_container.value = hit_target;
             hit_target_container.dispatchEvent(event);
+            hit_target_container.readOnly = true;
             setTimeout(() => {
               document.getElementById("reticle").classList.remove("extend");
             }, 300);

@@ -125,9 +125,10 @@ export default class MessageDispatch extends EventTarget {
 
         var event3 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.readOnly = false;
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event3);
-
+        hit_target_container.readOnly = true;
         //const general_scene = document.querySelector("a-scene");
         //general_scene.pause();
         life = 100;
@@ -254,8 +255,10 @@ export default class MessageDispatch extends EventTarget {
         var hit_target2 = "_Win_Red";
         var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.readOnly = false;
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event2);
+        hit_target_container.readOnly = true;
         Red_Score.innerText = "0";
         Red_Progress.value = 0;
         return;
@@ -286,8 +289,10 @@ export default class MessageDispatch extends EventTarget {
         var hit_target2 = "_Win_Blue";
         var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
+        hit_target_container.readOnly = false;
         hit_target_container.value = hit_target2;
         hit_target_container.dispatchEvent(event2);
+        hit_target_container.readOnly = true;
         Blue_Score.innerText = "0";
         Blue_Progress.value = 0;
         return;
@@ -320,8 +325,10 @@ export default class MessageDispatch extends EventTarget {
           var hit_target2 = "_Win_Red";
           var event2 = new Event("change");
           var hit_target_container = document.getElementById("hit_target_container");
+          hit_target_container.readOnly = false;
           hit_target_container.value = hit_target2;
           hit_target_container.dispatchEvent(event2);
+          hit_target_container.readOnly = true;
           Red_Score.innerText = "0";
           Blue_Score.innerText = "0";
           Red_Progress.value = 0;
@@ -332,8 +339,10 @@ export default class MessageDispatch extends EventTarget {
           var hit_target2 = "_Win_Blue";
           var event2 = new Event("change");
           var hit_target_container = document.getElementById("hit_target_container");
+          hit_target_container.readOnly = false;
           hit_target_container.value = hit_target2;
           hit_target_container.dispatchEvent(event2);
+          hit_target_container.readOnly = true;
           Red_Score.innerText = "0";
           Blue_Score.innerText = "0";
           Red_Progress.value = 0;
