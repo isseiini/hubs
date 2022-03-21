@@ -415,9 +415,7 @@ export default class MessageDispatch extends EventTarget {
 
   receive(message) {
     this.addToPresenceLog(message);
-    if (message.indexOf("<") == -1 && message.indexOf(">") == -1 && message.indexOf("_") == -1) {
-      this.dispatchEvent(new CustomEvent("message", { detail: message }));
-    }
+    this.dispatchEvent(new CustomEvent("message", { detail: message.replace(/_/g, "") }));
   }
 
   log = (messageType, props) => {
