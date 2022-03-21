@@ -26,7 +26,26 @@ import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 
 //const isIOS = detectIOS();
 const isIOS = AFRAME.utils.device.isIOS();
+AWS.config.region = "ap-northeast-1"; // リージョン
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+  IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
+});
 
+const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
+
+var currentUserData = {};
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+/*const poolData = {
+  UserPoolId: "ap-northeast-1_OBc87MXYg",
+  ClientId: "2a0a73brf9cnv2u7pbn3aa3e5r"
+};*/
+
+const poolData = {
+  UserPoolId: "ap-northeast-1_RWH9txS1J",
+  ClientId: "4h2qfcv13p4c6246q37bb4v9dk"
+};
 export default class SceneEntryManager {
   constructor(hubChannel, authChannel, history) {
     this.hubChannel = hubChannel;
@@ -204,7 +223,7 @@ export default class SceneEntryManager {
 
   _setupPlayerRig = () => {
     this._setPlayerInfoFromProfile();
-
+    g;
     // Explict user action changed avatar or updated existing avatar.
     this.scene.addEventListener("avatar_updated", () => this._setPlayerInfoFromProfile(true));
 
