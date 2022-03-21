@@ -964,7 +964,7 @@ class PreferencesScreen extends Component {
             key: "globalMediaVolume",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
             min: 600,
-            max: 1000,
+            max: 2000,
             step: 5,
             digits: 0,
             defaultNumber: 600
