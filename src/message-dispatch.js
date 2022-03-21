@@ -214,28 +214,6 @@ export default class MessageDispatch extends EventTarget {
       my_NAF_data.count();
       naf_Mine = my_NAF_data;
     }*/
-
-    if (entry.type === "chat" && entry.body.indexOf("_naf-") === 0) {
-      const Player_Respawn = document.getElementById("Player-Respawn");
-      if ("_" + naf_Mine == entry.body) {
-        if (Player_Respawn.style.display == "none") {
-          this.damage();
-        }
-      }
-      return;
-    }
-    if (entry.type === "chat" && entry.body.indexOf("_RedTeam") === 0) {
-      window.RedSum += 1;
-      return;
-    }
-    if (entry.type === "chat" && entry.body.indexOf("_BlueTeam") === 0) {
-      window.BlueSum += 1;
-      return;
-    }
-    if (entry.type === "chat" && isNaN(entry.body) == false) {
-      window.timeCount = entry.body;
-      return;
-    }
     if (entry.type === "chat" && entry.body.indexOf("_Red_+1") === 0) {
       if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")
@@ -310,6 +288,29 @@ export default class MessageDispatch extends EventTarget {
       Blue_Score.innerText = current_Blue_Score;
       return;
     }
+
+    if (entry.type === "chat" && entry.body.indexOf("_naf-") === 0) {
+      const Player_Respawn = document.getElementById("Player-Respawn");
+      if ("_" + naf_Mine == entry.body) {
+        if (Player_Respawn.style.display == "none") {
+          this.damage();
+        }
+      }
+      return;
+    }
+    if (entry.type === "chat" && entry.body.indexOf("_RedTeam") === 0) {
+      window.RedSum += 1;
+      return;
+    }
+    if (entry.type === "chat" && entry.body.indexOf("_BlueTeam") === 0) {
+      window.BlueSum += 1;
+      return;
+    }
+    if (entry.type === "chat" && isNaN(entry.body) == false) {
+      window.timeCount = entry.body;
+      return;
+    }
+
     if (entry.type === "chat" && entry.body.indexOf("_Red:") === 0) {
       console.log(entry.body);
       const Red_Score = document.getElementById("red-score");
