@@ -246,6 +246,10 @@ export default class MessageDispatch extends EventTarget {
         let HanabiAction = document.querySelector(hanabi_index);
         //let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
         HanabiAction.setAttribute("hanabi-animation", { action: "true" });
+        setTimeout(() => {
+          let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+        }, 1500);
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
@@ -280,6 +284,10 @@ export default class MessageDispatch extends EventTarget {
         //let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
         let HanabiAction = document.querySelector(hanabi_index); //getElementById("HANABI");
         HanabiAction.setAttribute("hanabi-animation", { action: "true" });
+        setTimeout(() => {
+          let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+        }, 1500);
       }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
@@ -415,7 +423,7 @@ export default class MessageDispatch extends EventTarget {
 
   receive(message) {
     this.addToPresenceLog(message);
-    console.log(String(message));
+    console.log(message);
     if (String(message).charAt(1) == "_") {
       return;
     } else {

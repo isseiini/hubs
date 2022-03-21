@@ -2470,7 +2470,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let HanabiAction = document.querySelector(hanabi_index); //document.getElementById("HANABI");
     //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", { action: "false" });
-    if (document.getElementById("score-display-top").innerText == "BlueTeam") {
+    /*if (document.getElementById("score-display-top").innerText == "BlueTeam") {
       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
     }
@@ -2478,7 +2478,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (document.getElementById("score-display-top").innerText == "RedTeam") {
       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
       AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-    }
+    }*/
   });
 
   const lifeBar = document.getElementById("life-background"); // ライフバー     // ライフの光部分
