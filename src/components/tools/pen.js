@@ -92,7 +92,9 @@ AFRAME.registerComponent("hanabi-animation", {
     if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
       this.el.setObject3D(HanabiMine, this.HanabiMesh);
     }
-
+    if (!this.isLocalPlayer) {
+      this.HanabiMesh.position.set(0, 1, 1.5);
+    }
     this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
     HanabiMixer = this.loaderMixer;
