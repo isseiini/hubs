@@ -118,9 +118,9 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                window.open(this.src, "_blank", "noreferrer");
               }
             });
+            window.open(this.src);
           }
         } else {
           var nowTime = new Date();
@@ -143,9 +143,9 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              window.open(this.src, "_blank", "noreferrer");
             }
           });
+          window.open(this.src);
         }
       } else if (await isLocalHubsAvatarUrl(this.src)) {
         const avatarId = new URL(this.src).pathname.split("/").pop();
@@ -201,9 +201,9 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                window.open(this.src, "_blank", "noreferrer");
               }
             });
+            window.open(this.src);
           }
         } else {
           var nowTime = new Date();
@@ -226,9 +226,9 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              window.open(this.src, "_blank", "noreferrer");
             }
           });
+          window.open(this.src);
         }
       }
     };
