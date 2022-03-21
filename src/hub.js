@@ -361,6 +361,36 @@ const poolData = {
 
 const isBrowser = typeof navigator !== "undefined";
 const userAgent = isBrowser ? navigator.userAgent : "nodejs";
+
+let arr1 = [
+  "fresh-candid-barbecue",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+let arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+let arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "neat-striking-spot"
+];
+let arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
+
 class myCognitouserclass extends CognitoUser {
   /**
    * Constructs a new CognitoUser object
@@ -1171,7 +1201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  if (room_name == "kooky-passionate-safari") {
+  if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
     map_img.style.display = "none";
     map_img3.style.display = "none";
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
@@ -2024,7 +2054,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
-                  room_name == "kooky-passionate-safari"
+                  (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
                   const Red_Score = document.getElementById("red-score");
                   const Blue_Score = document.getElementById("blue-score");
@@ -2100,7 +2130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
-                  room_name == "kooky-passionate-safari"
+                  (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
                   window.hubjs = {};
