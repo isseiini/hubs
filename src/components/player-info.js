@@ -66,9 +66,11 @@ AFRAME.registerComponent("player-info", {
         }
       });
     } else {
-      const nametagEl = this.el.querySelector(".nametag");
-      let text_color = document.documentElement.style.getPropertyValue("--team-color");
-      nametagEl.setAttribute("text", { color: text_color });
+      NAF.utils.getNetworkedEntity(this.el).then(networkedEntity => {
+        const nametagEl = this.el.querySelector(".nametag");
+        let text_color = document.documentElement.style.getPropertyValue("--team-color");
+        nametagEl.setAttribute("text", { color: text_color });
+      });
     }
     registerComponentInstance(this, "player-info");
   },
