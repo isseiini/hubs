@@ -632,6 +632,7 @@ class UIRoot extends Component {
     this.setState({ entered: true, entering: false, showShareDialog: false });
 
     if (this.mediaDevicesManager.isMicShared) {
+      this.mediaDevicesManager.stopMicShare();
       this.mediaDevicesManager.startMicShare(this.mediaDevicesManager.selectedMicDeviceId);
       console.log(`Using microphone: ${this.mediaDevicesManager.selectedMicLabel}`);
     }
