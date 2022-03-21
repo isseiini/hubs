@@ -2546,4 +2546,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   });
+
+  document.addEventListener("keydown", event => {
+    if (event.ctrlKey && event.code === "KeyM") {
+      scene.emit("action_mute");
+    }
+  });
 });
