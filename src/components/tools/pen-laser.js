@@ -80,6 +80,7 @@ AFRAME.registerComponent("aircanon-animation", {
 
     if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
       this.el.setObject3D("mesh", this.AirCanonMesh);
+      this.AirCanonMesh.position.set(180, -90, 90);
     }
 
     if (this.isLocalPlayer) {
