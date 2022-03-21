@@ -2234,7 +2234,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
 
                       document.getElementById("score-display-top").innerText = team;
-                      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+                      let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
                       characterController.teleportTo(respawn_point1);
                       Game_Result.style.display = "none";
                       const scene = document.querySelector("a-scene");
@@ -2245,7 +2245,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
                       document.getElementById("score-display-top").innerText = team;
-                      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+                      let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
                       characterController.teleportTo(respawn_point2);
                       Game_Result.style.display = "none";
                       const scene = document.querySelector("a-scene");
@@ -2521,17 +2521,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_Respawn.style.display = "none";
     let hanabi_index = "." + window.hubjs.myname + "_hanabi";
     let HanabiAction = document.querySelector(hanabi_index); //document.getElementById("HANABI");
-    //let HanabiAction = document.querySelector(".sanshakudama");//document.getElementById("HanabiContainer")
     HanabiAction.setAttribute("hanabi-animation", { action: "false" });
-    /*if (document.getElementById("score-display-top").innerText == "BlueTeam") {
-      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
-      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
-    }
-
-    if (document.getElementById("score-display-top").innerText == "RedTeam") {
-      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
-      AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-    }*/
   });
 
   const lifeBar = document.getElementById("life-background"); // ライフバー     // ライフの光部分

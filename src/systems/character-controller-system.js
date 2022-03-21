@@ -101,7 +101,6 @@ export class CharacterControllerSystem {
       this.avatarRig = document.getElementById("avatar-rig");
 
       let avatar_position = new THREE.Vector3();
-      console.log(avatar_position);
 
       const minimap_player_pos = document.getElementById("Player_pos");
 
@@ -116,9 +115,8 @@ export class CharacterControllerSystem {
       if (arr3.indexOf(room_name) !== -1 || arr4.indexOf(room_name) !== -1) {
         setInterval(() => {
           this.avatarRig.object3D.getWorldPosition(avatar_position);
-          minimap_player_pos.setAttribute("cx", Number(avatar_position.x + 40));
+          minimap_player_pos.setAttribute("cx", Number(avatar_position.x + 44));
           minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
-          //minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
         }, 500);
       }
     });
