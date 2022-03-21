@@ -1161,20 +1161,34 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  /*
+  var nowTime = new Date();
+  var nowHour = nowTime.getHours();
+  var nowMin = nowTime.getMinutes();
+  var nowSec = nowTime.getSeconds();
+  window.startDate = nowHour + ":" + nowMin + ":" + nowSec;
   const cognito_mine = userPool.getCurrentUser();
-  if (cognito_mine != null){
-      cognito_mine.getSession((err, session) => {
-        if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-        } else {
-          document.getElementById("hex-background").style.display = "none";
-          document.getElementById("go-to-game").style.display = "none";
-        }
-      })
-    } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }*/
+  if (cognito_mine != null) {
+    cognito_mine.getSession((err, session) => {
+      if (err) {
+        //location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+      } else {
+        cognito_mine.getUserAttributes((err, result) => {
+          if (err) {
+            return;
+          } else {
+            var i;
+            for (i = 0; i < result.length; i++) {
+              currentUserData[result[i].getName()] = result[i].getValue();
+            }
+
+            window.UserData = currentUserData["sub"];
+          }
+        });
+      }
+    });
+  } else {
+    //location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+  }
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
 
@@ -1667,22 +1681,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const socket = await connectToReticulum(isDebug);
 
   socket.onClose(e => {
-    /*text_chat_data.count();
-    console.log(text_chat_data);
-    var params = {
-      TableName: 'Communication',
-      Item:{
-        PlayID: "dsagfawg",
-        text_chat: text_chat_data
-      }
-    };
-    docClient.put(params, function(err, data){
-      if(err){
-        console.log(err);
-      }else{
-        console.log(success);
-      }
-    });*/
     // We don't currently have an easy way to distinguish between being kicked (server closes socket)
     // and a variety of other network issues that seem to produce the 1000 closure code, but the
     // latter are probably more common. Either way, we just tell the user they got disconnected.
@@ -1691,39 +1689,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (e.code === NORMAL_CLOSURE && !isReloading) {
       entryManager.exitScene();
       remountUI({ roomUnavailableReason: ExitReason.disconnected });
-
-      function exit_and_put() {
-        return new Promise((resolve, reject) => {
-          try {
-            let params = {
-              TableName: "Communication",
-              Item: {
-                PlayID: "dsagfawg",
-                text_chat: 5 //text_chat_data
-              }
-            };
-            docClient.put(params, function(err, data) {
-              if (err) {
-                console.log("err");
-              } else {
-                console.log("success");
-              }
-            });
-            resolve();
-          } catch (e) {
-            console.log("err");
-            reject();
-          }
-        });
-      }
-
-      exit_and_put()
-        .then(() => {})
-        .catch(e => {
-          console.log("err");
-        });
-      //text_chat_data.count();
-      //console.log(text_chat_data);
     }
   });
 
@@ -2052,17 +2017,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.UserID_num = Math.random()
                     .toString(36)
                     .slice(-8);
-                  window.Communicationlist = [];
+                  window.TextCommunicationlist = [];
+                  window.VoiceCommunicationlist = [];
+                  window.talk_position = [];
                   window.Positionlist = [];
                   window.ViewPointlist = [];
 
-                  const avatarRig = document.getElementById("avatar-rig").object3D;
+                  //const avatarRig = document.getElementById("avatar-rig").object3D;
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
 
-                  setInterval(() => {
+                  /*setInterval(() => {
                     Positionlist.push(avatarRig.position);
                     ViewPointlist.push(avatarRig.rotation);
-                  }, 1500);
+                  }, 1500);*/
 
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");

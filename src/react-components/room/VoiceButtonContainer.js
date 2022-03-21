@@ -24,6 +24,7 @@ export function VoiceButtonContainer({ scene, microphoneEnabled }) {
         rect.setAttribute("height", 0);
         if (is_talk == true) {
           talk_count += 1;
+          talk_position.push(document.getElementById("avatar-rig").object3D.position);
           is_talk = false;
         }
       } else if (volume < 0.3) {

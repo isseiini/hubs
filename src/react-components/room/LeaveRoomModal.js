@@ -96,31 +96,27 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
             var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 
             var room_name = String(current_url[current_url.length - 1]);
-            if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
-              var table = "Matching-table";
-            } else if (arr2.indexOf(room_name) !== -1 || arr4.indexOf(room_name) !== -1) {
-              var table = "Sightseeing-table";
-            }
-            var match = {
-              TableName: table,
-              Key: {
-                //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                URL: room_name
-              },
-              ExpressionAttributeNames: {
-                "#S": "Sum"
-              },
-              ExpressionAttributeValues: {
-                ":add": 1
-              },
-              UpdateExpression: "SET #S = #S - :add"
+
+            var endDate = new Date();
+
+            var coupon_params = {
+              TableName: "Communication",
+              Item: {
+                Play_ID: PlayID,
+                URL: room_name,
+                text_chat_count: use_text_chat_count,
+                voice_chat_count: talk_count,
+                voice_chat_time: talk_time,
+                User: UserData,
+                talk_position: talk_position
+              }
             };
-            docClient.update(match, function(err, data2) {
+
+            docClient.put(Communication_params, function(err, data) {
               if (err) {
                 console.log("error");
               } else {
                 console.log("success");
-                location.href = "/";
               }
             });
           }}
