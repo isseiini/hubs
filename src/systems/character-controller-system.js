@@ -102,6 +102,14 @@ export class CharacterControllerSystem {
 
       let avatar_position = new THREE.Vector3();
 
+      window.Positionlist = [];
+      window.ViewPointlist = [];
+
+      setInterval(() => {
+        Positionlist.push(this.avatarRig.object3D.position);
+        ViewPointlist.push(this.avatarPOV.object3D.rotation);
+      }, 1500);
+
       const minimap_player_pos = document.getElementById("Player_pos");
 
       if (arr1.indexOf(room_name) !== -1 || arr2.indexOf(room_name) !== -1) {

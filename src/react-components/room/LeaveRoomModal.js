@@ -98,7 +98,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
             var room_name = String(current_url[current_url.length - 1]);
 
             var endDate = new Date();
-
+            document.getElementById("avatar-pov-node").object3D.rotation;
             var Communication_params = {
               TableName: "Communication",
               Item: {
@@ -108,11 +108,45 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
                 voice_chat_count: talk_count,
                 voice_chat_time: talk_time,
                 User: UserData,
-                talk_position: talk_position
+                talk_position: talk_position,
+                start_Date: startDate
               }
             };
-
             docClient.put(Communication_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
+              }
+            });
+            var Position_params = {
+              TableName: "Position",
+              Item: {
+                PlayID: PlayID,
+                URL: room_name,
+                User: UserData,
+                start_Date: startDate,
+                Position: Positionlist
+              }
+            };
+            docClient.put(Position_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
+              }
+            });
+            var ViewPoint_params = {
+              TableName: "Communication",
+              Item: {
+                PlayID: PlayID,
+                URL: room_name,
+                User: UserData,
+                start_Date: startDate,
+                ViewPoint: ViewPointlist
+              }
+            };
+            docClient.put(ViewPoint_params, function(err, data) {
               if (err) {
                 console.log("error");
               } else {

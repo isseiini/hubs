@@ -2031,8 +2031,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.TextCommunicationlist = [];
                   window.VoiceCommunicationlist = [];
                   window.talk_position = [];
-                  window.Positionlist = [];
-                  window.ViewPointlist = [];
 
                   //const avatarRig = document.getElementById("avatar-rig").object3D;
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
