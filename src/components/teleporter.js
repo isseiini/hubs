@@ -198,7 +198,7 @@ AFRAME.registerComponent("teleporter", {
       !this.characterController.isTeleportingDisabled &&
       !window.APP.store.state.preferences.disableTeleporter
     ) {
-      this.isTeleporting = true;
+      this.isTeleporting = false; //change points
       this.timeTeleporting = 0;
       this.hit = false;
       this.rayCurve.mesh.visible = true;

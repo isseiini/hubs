@@ -3,7 +3,6 @@ import { guessContentType } from "../utils/media-url-utils";
 import { handleExitTo2DInterstitial } from "../utils/vr-interstitial";
 import { Get_Coupon } from "../hub";
 
-
 AFRAME.registerComponent("open-media-button", {
   schema: {
     onlyOpenLink: { type: "boolean" }
@@ -38,8 +37,8 @@ AFRAME.registerComponent("open-media-button", {
           }
         }
         this.label.setAttribute("text", "value", label);
-        if(url.hash) {
-          if(url.hash == "#1"||"#2"||"#3"||"#4"||"#5"||"#6"||"#7") {
+        if (url.hash) {
+          if (url.hash == "#1" || "#2" || "#3" || "#4" || "#5" || "#6" || "#7") {
             label = "Get Coupon";
             this.label.setAttribute("text", "value", label);
           } else {
@@ -58,26 +57,72 @@ AFRAME.registerComponent("open-media-button", {
       let hubId;
       if (this.data.onlyOpenLink) {
         await exitImmersive();
-        if(url.hash != undefined) {
-          if(url.hash == "#1") {
+        if (url.hash != undefined) {
+          if (url.hash == "#1") {
             Get_Coupon(1);
-          } else if(url.hash == "#2") {
+          } else if (url.hash == "#2") {
             Get_Coupon(2);
-          } else if(url.hash == "#3") {
+          } else if (url.hash == "#3") {
             Get_Coupon(3);
-          } else if(url.hash == "#4") {
+          } else if (url.hash == "#4") {
             Get_Coupon(4);
-          } else if(url.hash == "#5") {
+          } else if (url.hash == "#5") {
             Get_Coupon(5);
-          } else if(url.hash == "#6") {
+          } else if (url.hash == "#6") {
             Get_Coupon(6);
-          } else if(url.hash == "#7") {
+          } else if (url.hash == "#7") {
             Get_Coupon(7);
           } else {
             window.open(this.src);
+            var nowTime = new Date();
+            var nowHour = nowTime.getHours();
+            var nowMin = nowTime.getMinutes();
+            var nowSec = nowTime.getSeconds();
+            var Link_params = {
+              TableName: "ClickLink",
+              Item: {
+                PlayID: PlayID,
+                URL: room_name,
+                User: UserData,
+                start_Date: startDate,
+                UserID: UserData + UserID_num,
+                Link_name: this.src,
+                Link_Date: nowHour + ":" + nowMin + ":" + nowSec
+              }
+            };
+            docClient.put(Link_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
+              }
+            });
           }
         } else {
           window.open(this.src);
+          var nowTime = new Date();
+          var nowHour = nowTime.getHours();
+          var nowMin = nowTime.getMinutes();
+          var nowSec = nowTime.getSeconds();
+          var Link_params = {
+            TableName: "ClickLink",
+            Item: {
+              PlayID: PlayID,
+              URL: room_name,
+              User: UserData,
+              start_Date: startDate,
+              UserID: UserData + UserID_num,
+              Link_name: this.src,
+              Link_Date: nowHour + ":" + nowMin + ":" + nowSec
+            }
+          };
+          docClient.put(Link_params, function(err, data) {
+            if (err) {
+              console.log("error");
+            } else {
+              console.log("success");
+            }
+          });
         }
       } else if (await isLocalHubsAvatarUrl(this.src)) {
         const avatarId = new URL(this.src).pathname.split("/").pop();
@@ -96,27 +141,73 @@ AFRAME.registerComponent("open-media-button", {
         }
       } else {
         await exitImmersive();
-        console.log(this.src)
-        if(url.hash != undefined) {
-          if(url.hash == "#1") {
+        console.log(this.src);
+        if (url.hash != undefined) {
+          if (url.hash == "#1") {
             Get_Coupon(1);
-          } else if(url.hash == "#2") {
+          } else if (url.hash == "#2") {
             Get_Coupon(2);
-          } else if(url.hash == "#3") {
+          } else if (url.hash == "#3") {
             Get_Coupon(3);
-          } else if(url.hash == "#4") {
+          } else if (url.hash == "#4") {
             Get_Coupon(4);
-          } else if(url.hash == "#5") {
+          } else if (url.hash == "#5") {
             Get_Coupon(5);
-          } else if(url.hash == "#6") {
+          } else if (url.hash == "#6") {
             Get_Coupon(6);
-          } else if(url.hash == "#7") {
+          } else if (url.hash == "#7") {
             Get_Coupon(7);
           } else {
             window.open(this.src);
+            var nowTime = new Date();
+            var nowHour = nowTime.getHours();
+            var nowMin = nowTime.getMinutes();
+            var nowSec = nowTime.getSeconds();
+            var Link_params = {
+              TableName: "ClickLink",
+              Item: {
+                PlayID: PlayID,
+                URL: room_name,
+                User: UserData,
+                start_Date: startDate,
+                UserID: UserData + UserID_num,
+                Link_name: this.src,
+                Link_Date: nowHour + ":" + nowMin + ":" + nowSec
+              }
+            };
+            docClient.put(Link_params, function(err, data) {
+              if (err) {
+                console.log("error");
+              } else {
+                console.log("success");
+              }
+            });
           }
         } else {
           window.open(this.src);
+          var nowTime = new Date();
+          var nowHour = nowTime.getHours();
+          var nowMin = nowTime.getMinutes();
+          var nowSec = nowTime.getSeconds();
+          var Link_params = {
+            TableName: "ClickLink",
+            Item: {
+              PlayID: PlayID,
+              URL: room_name,
+              User: UserData,
+              start_Date: startDate,
+              UserID: UserData + UserID_num,
+              Link_name: this.src,
+              Link_Date: nowHour + ":" + nowMin + ":" + nowSec
+            }
+          };
+          docClient.put(Link_params, function(err, data) {
+            if (err) {
+              console.log("error");
+            } else {
+              console.log("success");
+            }
+          });
         }
       }
     };
