@@ -2031,7 +2031,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const isSelf = sessionId === socket.params().session_id;
                 const currentMeta = current.metas[0];
 
-                //入場全体
+                //他人の入場全体
                 if (
                   !isSelf &&
                   currentMeta.presence !== meta.presence &&
@@ -2057,6 +2057,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.ViewPointlist = [];
 
                   const avatarRig = document.getElementById("avatar-rig").object3D;
+                  document.getElementById("Player_name").innerText = meta.profile.displayName;
 
                   setInterval(() => {
                     Positionlist.push(avatarRig.position);
