@@ -1,4 +1,4 @@
-/*import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import MovingAverage from "moving-average";
 
 export function useMicrophone(scene, updateRate = 50) {
@@ -55,9 +55,9 @@ export function useMicrophone(scene, updateRate = 50) {
   );
 
   return { isMuted, volume, toggleMute };
-}*/
+}
 
-import { useState, useEffect, useCallback } from "react";
+/*import { useState, useEffect, useCallback } from "react";
 import { MediaDevices, MediaDevicesEvents } from "../../utils/media-devices-utils";
 
 export function useMicrophone(scene) {
@@ -119,4 +119,4 @@ export function useMicrophone(scene) {
     selectedMicDeviceId,
     micDevices
   };
-}
+}*/
