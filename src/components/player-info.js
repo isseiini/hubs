@@ -41,6 +41,12 @@ AFRAME.registerComponent("player-info", {
     isSharingAvatarCamera: { default: false }
   },
   init() {
+    this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
+    if (this.isLocalPlayer) {
+      var nametagEl = this.el.querySelector(".nametag");
+      let text_color = document.documentElement.style.getPropertyValue("--team-color");
+      nametagEl.setAttribute("text", { color: text_color });
+    }
     this.displayName = null;
     this.identityName = null;
     this.isOwner = false;
