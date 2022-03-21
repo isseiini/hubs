@@ -592,9 +592,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function generate_table() {
     var cognitoUser_me2 = userPool.getCurrentUser();
+    if (!cognitoUser_me2) {
+      alert("ログインが必要です。");
+      return;
+    }
     cognitoUser_me2.getSession((err, session) => {
       if (err) {
-        alert("ログインが必要です。");
       } else {
         cognitoUser_me2.getUserAttributes((err, result) => {
           if (err) {
