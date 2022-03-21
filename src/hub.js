@@ -390,6 +390,7 @@ let arr4 = [
   "melodic-courageous-picnic",
   "plump-cheerful-plane"
 ];
+let arr5 = ["mature-unique-domain", "mindless-perfect-camp", "colorful-vicious-vacation"];
 
 class myCognitouserclass extends CognitoUser {
   /**
@@ -1286,7 +1287,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("score-display").style.display = "none";
   } else {
     //不正なURL
-    location.href = "https://virtual-dotonbori.com/";
+    //location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
