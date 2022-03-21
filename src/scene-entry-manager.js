@@ -160,9 +160,9 @@ export default class SceneEntryManager {
   };
 
   exitScene = () => {
-    if (this.arr1.indexof(this.room_name) !== -1) {
+    if (this.arr1.indexOf(this.room_name) !== -1) {
       var table = "Matching-table";
-    } else if (this.arr2.indexof(this.room_name) !== -1) {
+    } else if (this.arr2.indexOf(this.room_name) !== -1) {
       var table = "Sightseeing-table";
     }
 
