@@ -415,7 +415,7 @@ export default class MessageDispatch extends EventTarget {
 
   receive(message) {
     this.addToPresenceLog(message);
-    console.log(String(message).charAt(1));
+    console.log(String(message));
     if (String(message).charAt(1) == "_") {
       return;
     } else {
