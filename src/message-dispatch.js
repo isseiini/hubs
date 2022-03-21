@@ -65,8 +65,6 @@ function Alert(message) {
   }, 2000);
 }
 
-const Player_Respawn = document.getElementById("Player-Respawn");
-
 /*if (current_room == "kooky--passionate-safari") {
   let cognitoUser_me = userPool.getCurrentUser(); 
   cognitoUser_me.getSession((err, session) => {
@@ -218,7 +216,7 @@ export default class MessageDispatch extends EventTarget {
     }*/
 
     if (entry.type === "chat" && entry.body.indexOf("_naf-") === 0) {
-      console.log(naf_Mine);
+      const Player_Respawn = document.getElementById("Player-Respawn");
       if ("_" + naf_Mine == entry.body) {
         if (Player_Respawn.style.display == "none") {
           this.damage();
