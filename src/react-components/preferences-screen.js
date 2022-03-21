@@ -958,7 +958,7 @@ class PreferencesScreen extends Component {
             max: 200,
             step: 5,
             digits: 0,
-            defaultNumber: 100
+            defaultNumber: 150
           },
           {
             key: "globalMediaVolume",
@@ -967,7 +967,7 @@ class PreferencesScreen extends Component {
             max: 200,
             step: 5,
             digits: 0,
-            defaultNumber: 100
+            defaultNumber: 150
           },
           { key: "disableSoundEffects", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
           {

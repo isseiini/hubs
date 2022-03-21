@@ -633,7 +633,6 @@ class UIRoot extends Component {
 
     if (this.mediaDevicesManager.isMicShared) {
       this.mediaDevicesManager.startMicShare(this.mediaDevicesManager.selectedMicDeviceId);
-      NAF.connection.adapter.enableMicrophone(true);
       console.log(`Using microphone: ${this.mediaDevicesManager.selectedMicLabel}`);
     }
 
