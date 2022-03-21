@@ -43,6 +43,38 @@ var current_room = current_url_parts[current_url_parts.length - 1];
 
 let uiRoot;
 
+let arr1 = [
+  "fresh-candid-barbecue",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+let arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+let arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "neat-striking-spot"
+];
+let arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
+
+var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+var room_name = current_url[current_url.length - 1];
+
 window.BlueSum = 0;
 window.RedSum = 0;
 
@@ -222,10 +254,17 @@ export default class MessageDispatch extends EventTarget {
         let HanabiAction = document.querySelector(hanabi_index);
         //let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
         HanabiAction.setAttribute("hanabi-animation", { action: "true" });
-        setTimeout(() => {
+        if (arr1.indexOf(room_name) !== -1) {
           let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
-          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
-        }, 1500);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        }
       }
       const Red_Score = document.getElementById("red-score");
       const Red_Progress = document.getElementById("Red-Progress");
@@ -259,8 +298,18 @@ export default class MessageDispatch extends EventTarget {
         //let HanabiAction = document.querySelectorAll("#avatar-rig > .sanshakudama");
         let HanabiAction = document.querySelector(hanabi_index); //getElementById("HANABI");
         HanabiAction.setAttribute("hanabi-animation", { action: "true" });
-        setTimeout(() => {
+        if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        }
+        setTimeout(() => {
           AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
         }, 1500);
       }
