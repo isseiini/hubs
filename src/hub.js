@@ -1161,13 +1161,29 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  /*
+  const cognito_mine = userPool.getCurrentUser();
+  if (cognito_mine != null){
+      cognito_mine.getSession((err, session) => {
+        if (err) {
+          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+        } else {
+          document.getElementById("hex-background").style.display = "none";
+          document.getElementById("go-to-game").style.display = "none";
+        }
+      })
+    } else {
+      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+    }*/
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
-  const cognito_mine = userPool.getCurrentUser();
+
   const map_img = document.getElementById("map_img");
   const map_img2 = document.getElementById("map_img2");
   const map_img3 = document.getElementById("map_img3");
+  const map_img4 = document.getElementById("map_img4");
   const Player_map = document.getElementById("Player_map");
+
   function orientationCheck() {
     const scene = document.querySelector("a-scene");
     if (scene.is("vr-mode") || scene.is("vr-entered") || isMobileVR) {
@@ -1201,71 +1217,51 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+  if (arr1.indexOf(room_name) !== -1) {
+    //ゲームワールド1
     map_img.style.display = "none";
     map_img3.style.display = "none";
+    map_img4.style.display = "none";
+
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("go-to-game").style.display = "none";
     document.getElementById("life-label").style.display = "block";
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
-
-    /*if (cognito_mine != null){
-      cognito_mine.getSession((err, session) => {
-        if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-        } else {
-          document.getElementById("hex-background").style.display = "none";
-          document.getElementById("go-to-game").style.display = "none";
-        }
-      })
-    } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
-    }*/
-    //document.getElementById("tool_buttons").setAttribute("icon-button", "active", this.el.sceneEl.is("pen"));
-  } else if (room_name == "strong-elementary-meetup") {
+  } else if (arr2.indexOf(room_name) !== -1) {
+    //観光ワールド1
     map_img2.style.display = "none";
     map_img3.style.display = "none";
+    map_img4.style.display = "none";
+
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
-  } else if (room_name == "silky-quick-congregation") {
+  } else if (arr3.indexOf(room_name) !== -1) {
+    //ゲームワールド2
+    map_img.style.display = "none";
+    map_img3.style.display = "none";
+    map_img2.style.display = "none";
+
+    Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
+    document.getElementById("go-to-game").style.display = "none";
+    document.getElementById("life-label").style.display = "block";
+    document.getElementById("Player_name").style.display = "block";
+    document.getElementById("score-display-top").style.display = "block";
+    document.getElementById("time").style.display = "block";
+  } else if (arr4.indexOf(room_name) !== -1) {
+    //観光ワールド2
     map_img.style.display = "none";
     map_img2.style.display = "none";
+    map_img4.style.display = "none";
+
+    Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
-    if (cognito_mine != null) {
-      cognito_mine.getSession((err, session) => {
-        if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
-        } else {
-          document.getElementById("life").style.display = "none";
-          document.getElementById("score-display").style.display = "none";
-        }
-      });
-    } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
-    }
-  } else if (room_name == "euphoric-rare-commons") {
-    if (cognito_mine != null) {
-      cognito_mine.getSession((err, session) => {
-        if (err) {
-          location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
-        } else {
-          map_img.setAttribute("src", "");
-          document.getElementById("life").style.display = "none";
-          document.getElementById("score-display").style.display = "none";
-
-          document.getElementById("go-to-game").style.display = "none";
-          document.getElementById("Player_map").style.display = "none";
-        }
-      });
-    } else {
-      location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup";
-    }
   } else {
-    //location.href = "https://virtual-dotonbori.com/9d9PQL3/strong-elementary-meetup"
+    //不正なURL
+    location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
@@ -2035,7 +2031,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const isSelf = sessionId === socket.params().session_id;
                 const currentMeta = current.metas[0];
 
-                //↓roomに入場する際の処理
+                //入場全体
                 if (
                   !isSelf &&
                   currentMeta.presence !== meta.presence &&
@@ -2048,33 +2044,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     name: meta.profile.displayName
                   });
                 }
-
-                if (
-                  !isSelf &&
-                  currentMeta.presence !== meta.presence &&
-                  meta.presence === "room" &&
-                  meta.profile.displayName &&
-                  (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
-                ) {
-                  const Red_Score = document.getElementById("red-score");
-                  const Blue_Score = document.getElementById("blue-score");
-                  var event3 = new Event("change");
-                  var hit_target_container = document.getElementById("hit_target_container");
-                  hit_target_container.readOnly = false;
-                  hit_target_container.value =
-                    "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
-                  hit_target_container.dispatchEvent(event3);
-
-                  if (document.getElementById("score-display-top").innerText != "") {
-                    hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
-                    hit_target_container.dispatchEvent(event3);
-                  }
-
-                  hit_target_container.value = window.timeCount;
-                  hit_target_container.dispatchEvent(event3);
-                  hit_target_container.readOnly = true;
-                }
-
+                //自分の入場全体
                 if (isSelf && currentMeta.presence !== meta.presence && meta.presence === "room") {
                   window.PlayID = Math.random()
                     .toString(36)
@@ -2124,20 +2094,36 @@ document.addEventListener("DOMContentLoaded", async () => {
                   });
                   count_start();
                 }
-
+                //↓ゲームワールド全体
                 if (
-                  isSelf &&
+                  !isSelf &&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
                   (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
+                  const Red_Score = document.getElementById("red-score");
+                  const Blue_Score = document.getElementById("blue-score");
+                  var event3 = new Event("change");
+                  var hit_target_container = document.getElementById("hit_target_container");
+                  hit_target_container.readOnly = false;
+                  hit_target_container.value =
+                    "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
+                  hit_target_container.dispatchEvent(event3);
+
+                  if (document.getElementById("score-display-top").innerText != "") {
+                    hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
+                    hit_target_container.dispatchEvent(event3);
+                  }
+
+                  hit_target_container.value = window.timeCount;
+                  hit_target_container.dispatchEvent(event3);
+                  hit_target_container.readOnly = true;
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
                   const Game_Result = document.getElementById("game-progress-origin");
                   Game_Result.style.display = "flex";
-                  //alert("ゲームワールドへようこそ!!\nこちらではシューティングゲームをお楽しみいただけます。\n25ポイントを先取したチームの勝利です。\n\n[操作方法]\n\n射撃モードに移行：Pキー\n\n射撃：射撃モードでクリック\n\n前に移動：Wキー\n後ろに移動：Sキー\n右に移動：Dキー\n左に移動：Aキー\n素早く移動：各移動キーとShiftキーを同時押し\n\n右を向く：Eキー\n左を向く：Qキー")
                   const naf_tree = Object.keys(NAF.connection.entities.entities);
                   let my_NAF_ID = "naf-" + naf_tree[naf_tree.length - 1];
 
@@ -2146,10 +2132,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const aircanon_container = document.querySelector(".aircanon");
-                  //aircanon_container.setAttribute("aircanon-animation");
+
                   aircanon_container.classList.add(meta.profile.displayName + "_aircanon");
                   const hanabi_container = document.querySelector(".sanshakudama");
-                  //hanabi_container.setAttribute("hanabi-animation");
+
                   hanabi_container.classList.add(meta.profile.displayName + "_hanabi");
                   const hanabi_aircanon_pov = document.querySelector(".hanabi_aircanon_pov");
                   hanabi_aircanon_pov.classList.add(meta.profile.displayName + "_aircanon_pov");
@@ -2158,7 +2144,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.8;";
                   aircanon_container.setAttribute("follow-in-fov", aircanon_index);
                   hanabi_container.setAttribute("follow-in-fov", hanabi_index);
-
+                }
+                //ゲームワールド１
+                if (
+                  isSelf &&
+                  currentMeta.presence !== meta.presence &&
+                  meta.presence === "room" &&
+                  meta.profile.displayName &&
+                  arr1.indexOf(room_name) !== -1
+                ) {
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
@@ -2187,49 +2181,43 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log("Red:" + window.RedSum);
                     console.log("Blue:" + window.BlueSum);
                   }, 1000);
+                }
+                //ゲームワールド2
+                if (
+                  isSelf &&
+                  currentMeta.presence !== meta.presence &&
+                  meta.presence === "room" &&
+                  meta.profile.displayName &&
+                  arr3.indexOf(room_name) !== -1
+                ) {
+                  setTimeout(() => {
+                    if (window.RedSum >= window.BlueSum) {
+                      team = "BlueTeam";
+                      document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
+                      document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
 
-                  //sessionStorage.setItem(hubChannel.channel.joinPush.receivedResp.response.session_id, my_NAF_ID)
-                  /*let cognitoUser_me = userPool.getCurrentUser(); 
-                  cognitoUser_me.getSession((err, session) => {
-                    if (err) {
-                      console.log(err)
+                      document.getElementById("score-display-top").innerText = team;
+                      let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+                      characterController.teleportTo(respawn_point1);
+                      Game_Result.style.display = "none";
+                      const scene = document.querySelector("a-scene");
+                      scene.emit("spawn_pen");
                     } else {
-                      cognitoUser_me.getUserAttributes((err,result) => {
-                        if (err) {
-                          console.log(err)
-                        } else {
-                          let i;
-                          for (i = 0; i < result.length; i++) {
-                            currentUserData[result[i].getName()] = result[i].getValue();
-                          };   
-                        };
-                      });
-                    };
-                  });
+                      team = "RedTeam";
+                      document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
+                      document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
-                  var params = {
-                    TableName: 'Matching-table',
-                    Key:{//更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-                      URL: "kooky-passionate-safari"
-                    },
-                    ExpressionAttributeNames: {
-                      '#P': 'player',
-                      '#id': "id",
-                      '#NAF': 'NAF'
-                    },
-                    ExpressionAttributeValues: {
-                      ':myID':currentUserData['sub'],
-                      ':newNAF': my_NAF_ID
-                    },
-                    UpdateExpression: 'SET #p = {myID:newNAF}'
-                  };
-                  docClient.update(params, function(err, data2){
-                    if(err){
-                      console.log('error')
-                    }else{
-                      console.log('success')
+                      document.getElementById("score-display-top").innerText = team;
+                      let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+                      characterController.teleportTo(respawn_point2);
+                      Game_Result.style.display = "none";
+                      const scene = document.querySelector("a-scene");
+                      scene.emit("spawn_pen");
                     }
-                  });*/
+                    console.log("myteam:" + team);
+                    console.log("Red:" + window.RedSum);
+                    console.log("Blue:" + window.BlueSum);
+                  }, 1000);
                 }
 
                 if (

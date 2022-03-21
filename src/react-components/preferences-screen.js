@@ -964,10 +964,10 @@ class PreferencesScreen extends Component {
             key: "globalMediaVolume",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
             min: 600,
-            max: 2000,
+            max: 3000,
             step: 5,
             digits: 0,
-            defaultNumber: 600
+            defaultNumber: 3000
           },
           { key: "disableSoundEffects", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
           {
