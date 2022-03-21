@@ -99,7 +99,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
 
             var endDate = new Date();
 
-            var coupon_params = {
+            var Communication_params = {
               TableName: "Communication",
               Item: {
                 Play_ID: PlayID,
