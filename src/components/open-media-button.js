@@ -118,7 +118,7 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                window.open(this.src);
+                window.open(this.src, "_blank", "noreferrer");
               }
             });
           }
@@ -143,7 +143,7 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              window.open(this.src);
+              window.open(this.src, "_blank", "noreferrer");
             }
           });
         }
@@ -201,7 +201,7 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                window.open(this.src);
+                window.open(this.src, "_blank", "noreferrer");
               }
             });
           }
@@ -226,7 +226,7 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              window.open(this.src);
+              window.open(this.src, "_blank", "noreferrer");
             }
           });
         }

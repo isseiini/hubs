@@ -63,11 +63,10 @@ export function RoomEntryModal({
             <Button preset="accent2" onClick={onSpectate}>
               <ShowIcon />
               <span>
-                <FormattedMessage id="room-entry-modal.spectate-button" defaultMessage="観覧する" />
+                <FormattedMessage id="room-entry-modal.spectate-button" defaultMessage="ワールドを見渡す" />
               </span>
             </Button>
           )}
-          
         </Column>
       </Column>
     </Modal>
