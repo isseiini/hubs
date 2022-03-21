@@ -93,4 +93,4 @@ AFRAME.registerComponent("mute-mic", {
       }
     }
   }
-});*/
+});
