@@ -1139,7 +1139,7 @@ export function Get_Coupon(number) {
             } else {
               let shop_list = coupon_data.Items.filter(x => x.shop === shop_name);
               if (shop_list.length == 0) {
-                Alert(shop_name + "のクーポンを獲得しました!!マイページで確認しましょう。");
+                Alert(shop_name + "のクーポンを獲得しました!!トップページのクーポン画面で確認しましょう");
                 var coupon_params = {
                   TableName: "coupon",
                   Item: {

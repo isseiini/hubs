@@ -772,6 +772,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 tbl2.setAttribute("border", "1");
 
                 var trigger = document.querySelectorAll(".use_Coupon");
+                function get_current_Date() {
+                  var date = new Date();
+                  var str =
+                    date.getFullYear() +
+                    "年" +
+                    ("0" + (date.getMonth() + 1)).slice(-2) +
+                    "月" +
+                    ("0" + date.getDate()).slice(-2) +
+                    "日";
+                  return str;
+                }
 
                 trigger.forEach(function(target) {
                   target.addEventListener("click", function(event) {
