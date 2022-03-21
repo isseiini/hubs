@@ -2153,6 +2153,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   arr1.indexOf(room_name) !== -1
                 ) {
+                  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
+                  const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
@@ -2190,6 +2192,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   arr3.indexOf(room_name) !== -1
                 ) {
+                  const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
+                  const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";

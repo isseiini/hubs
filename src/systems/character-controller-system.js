@@ -78,6 +78,9 @@ const SNAP_ROTATION_RADIAN = THREE.Math.DEG2RAD * 45;
 const BASE_SPEED = 3.2; //TODO: in what units?
 export class CharacterControllerSystem {
   constructor(scene) {
+    var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+    var room_name = current_url[current_url.length - 1];
     this.scene = scene;
     this.fly = false;
     this.shouldLandWhenPossible = false;
