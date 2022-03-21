@@ -415,7 +415,11 @@ export default class MessageDispatch extends EventTarget {
 
   receive(message) {
     this.addToPresenceLog(message);
-    this.dispatchEvent(new CustomEvent("message", { detail: message.replace(/_/g, "") }));
+    if (message.charAt(0) == "_") {
+      return;
+    } else {
+      this.dispatchEvent(new CustomEvent("message", { detail: message }));
+    }
   }
 
   log = (messageType, props) => {
