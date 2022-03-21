@@ -3,6 +3,10 @@ import { guessContentType } from "../utils/media-url-utils";
 import { handleExitTo2DInterstitial } from "../utils/vr-interstitial";
 import { Get_Coupon } from "../hub";
 
+var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+var room_name = current_url[current_url.length - 1];
+
 AFRAME.registerComponent("open-media-button", {
   schema: {
     onlyOpenLink: { type: "boolean" }
@@ -73,7 +77,6 @@ AFRAME.registerComponent("open-media-button", {
           } else if (url.hash == "#7") {
             Get_Coupon(7);
           } else {
-            window.open(this.src);
             var nowTime = new Date();
             var nowHour = nowTime.getHours();
             var nowMin = nowTime.getMinutes();
@@ -94,12 +97,11 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                console.log("success");
+                window.open(this.src);
               }
             });
           }
         } else {
-          window.open(this.src);
           var nowTime = new Date();
           var nowHour = nowTime.getHours();
           var nowMin = nowTime.getMinutes();
@@ -120,7 +122,7 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              console.log("success");
+              window.open(this.src);
             }
           });
         }
@@ -158,7 +160,6 @@ AFRAME.registerComponent("open-media-button", {
           } else if (url.hash == "#7") {
             Get_Coupon(7);
           } else {
-            window.open(this.src);
             var nowTime = new Date();
             var nowHour = nowTime.getHours();
             var nowMin = nowTime.getMinutes();
@@ -179,12 +180,11 @@ AFRAME.registerComponent("open-media-button", {
               if (err) {
                 console.log("error");
               } else {
-                console.log("success");
+                window.open(this.src);
               }
             });
           }
         } else {
-          window.open(this.src);
           var nowTime = new Date();
           var nowHour = nowTime.getHours();
           var nowMin = nowTime.getMinutes();
@@ -205,7 +205,7 @@ AFRAME.registerComponent("open-media-button", {
             if (err) {
               console.log("error");
             } else {
-              console.log("success");
+              window.open(this.src);
             }
           });
         }

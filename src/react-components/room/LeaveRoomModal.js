@@ -97,7 +97,6 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
 
             var room_name = String(current_url[current_url.length - 1]);
 
-            var endDate = new Date();
             document.getElementById("avatar-pov-node").object3D.rotation;
             var Communication_params = {
               TableName: "Communication",
@@ -150,7 +149,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               if (err) {
                 console.log("error");
               } else {
-                console.log("success");
+                location.href = "/";
               }
             });
           }}
