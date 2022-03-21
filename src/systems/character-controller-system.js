@@ -20,6 +20,35 @@ const isMobile = AFRAME.utils.device.isMobile();
 //change points
 var plus_speed = 0;
 
+let arr1 = [
+  "fresh-candid-barbecue",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+let arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+let arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "neat-striking-spot"
+];
+let arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
+
 const calculateDisplacementToDesiredPOV = (function() {
   const translationCoordinateSpace = new THREE.Matrix4();
   const translated = new THREE.Matrix4();
@@ -67,17 +96,27 @@ export class CharacterControllerSystem {
     waitForDOMContentLoaded().then(() => {
       this.avatarPOV = document.getElementById("avatar-pov-node");
       this.avatarRig = document.getElementById("avatar-rig");
-      
+
       let avatar_position = new THREE.Vector3();
-      console.log(avatar_position)
-     
+      console.log(avatar_position);
+
       const minimap_player_pos = document.getElementById("Player_pos");
 
-      setInterval(() => {
-        this.avatarRig.object3D.getWorldPosition(avatar_position);
-        minimap_player_pos.setAttribute("cx", Number(avatar_position.x - 0.4));
-        minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
-      }, 500);
+      if (arr1.indexOf(room_name) !== -1 || arr2.indexOf(room_name) !== -1) {
+        setInterval(() => {
+          this.avatarRig.object3D.getWorldPosition(avatar_position);
+          minimap_player_pos.setAttribute("cx", Number(avatar_position.x - 0.4));
+          minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
+        }, 500);
+      }
+
+      if (arr3.indexOf(room_name) !== -1 || arr4.indexOf(room_name) !== -1) {
+        setInterval(() => {
+          this.avatarRig.object3D.getWorldPosition(avatar_position);
+          minimap_player_pos.setAttribute("cx", Number(avatar_position.x + 40));
+          //minimap_player_pos.setAttribute("cy", Number(avatar_position.z + 56.7));
+        }, 500);
+      }
     });
   }
   // Use this API for waypoint travel so that your matrix doesn't end up in the pool
@@ -315,7 +354,7 @@ export class CharacterControllerSystem {
 
         if (triedToMove) {
           let speedModifier = preferences.movementSpeedModifier || 1;
-          speedModifier += plus_speed
+          speedModifier += plus_speed;
           calculateDisplacementToDesiredPOV(
             snapRotatedPOV,
             this.fly || !navMeshExists,
