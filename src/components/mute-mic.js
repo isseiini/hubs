@@ -82,7 +82,7 @@ AFRAME.registerComponent("mute-mic", {
     const micMuted = this.store.state.settings["micMuted"];
     const isMicShared = window.APP.mediaDevicesManager?.isMicShared;
     if (micMuted !== undefined) {
-      if (isMicShared) {
+      /*if (isMicShared) {
         if (micMuted) {
           this.el.addState("muted");
         } else {
@@ -90,6 +90,12 @@ AFRAME.registerComponent("mute-mic", {
         }
       } else {
         this.el.addState("muted");
+      }*/
+
+      if (micMuted) {
+        this.el.addState("muted");
+      } else {
+        this.el.removeState("muted");
       }
     }
   }
