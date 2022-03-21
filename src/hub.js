@@ -2034,14 +2034,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                   hit_target_container.value =
                     "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
                   hit_target_container.dispatchEvent(event3);
-                  hit_target_container.readOnly = true;
+
                   if (document.getElementById("score-display-top").innerText != "") {
-                    hit_target_container.readOnly = false;
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
-                    hit_target_container.readOnly = true;
                   }
-                  hit_target_container.readOnly = false;
+
                   hit_target_container.value = window.timeCount;
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
