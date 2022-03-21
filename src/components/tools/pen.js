@@ -36,6 +36,37 @@ var HanabiSfx;
 
 var duration = 0.065;
 
+var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+var room_name = current_url[current_url.length - 1];
+let arr1 = [
+  "fresh-candid-barbecue",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+let arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+let arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "neat-striking-spot"
+];
+let arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
+
 const HanabiMine = Math.random()
   .toString(36)
   .slice(-8);
@@ -48,42 +79,6 @@ waitForDOMContentLoaded().then(() => {
     Hanabi = gltf;
   });
 });
-/*
-AFRAME.registerComponent("aircanon-animation", {
-  schema: {
-    action: { default : "false" }
-  },
-
-  init() {
-    this.Shoot = this.Shoot.bind(this);
-    var AirCanonMesh = cloneObject3D(AirCanon.scene)
-    this.el.setObject3D("mesh", AirCanonMesh);
-    this.loaderMixer = new THREE.AnimationMixer(AirCanonMesh);
-    this.loadingClip = this.loaderMixer.clipAction(AirCanonMesh.animations[0]);
-    AirCanonMixer = this.loaderMixer;
-    AirCanonClip = this.loadingClip;
-    ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
-  },
-
-  update() {
-    if (this.data.action == "true") {
-      this.Shoot();
-    } else {
-      AirCanonClip.reset();
-    }
-  },
-
-  tick(t, dt) {
-    if (this.loaderMixer && this.data.action == "true") {
-      this.loaderMixer.update(dt / 1000);
-      ShootingSfx.playSoundOneShot(SOUND_SHOOT);
-    }
-  },
-
-  Shoot () {
-    AirCanonClip.play();
-  }
-});*/
 
 AFRAME.registerComponent("hanabi-animation", {
   schema: {
@@ -94,8 +89,9 @@ AFRAME.registerComponent("hanabi-animation", {
     this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
     this.Fire = this.Fire.bind(this);
     this.HanabiMesh = cloneObject3D(Hanabi.scene);
-
-    this.el.setObject3D(HanabiMine, this.HanabiMesh);
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      this.el.setObject3D(HanabiMine, this.HanabiMesh);
+    }
 
     this.loaderMixer = new THREE.AnimationMixer(this.HanabiMesh);
     this.loadingClip = this.loaderMixer.clipAction(this.HanabiMesh.animations[0]);
@@ -248,138 +244,148 @@ AFRAME.registerComponent("pen", {
   },
 
   init() {
-    this.timeSinceLastDraw = 0;
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      this.timeSinceLastDraw = 0;
 
-    this.lastPosition = new THREE.Vector3();
-    this.lastPosition.copy(this.el.object3D.position);
+      this.lastPosition = new THREE.Vector3();
+      this.lastPosition.copy(this.el.object3D.position);
 
-    this.direction = new THREE.Vector3(1, 0, 0);
+      this.direction = new THREE.Vector3(1, 0, 0);
 
-    this.currentDrawing = null;
+      this.currentDrawing = null;
 
-    this.normal = new THREE.Vector3();
+      this.normal = new THREE.Vector3();
 
-    this.worldPosition = new THREE.Vector3();
+      this.worldPosition = new THREE.Vector3();
 
-    this.colorIndex = 0;
+      this.colorIndex = 0;
 
-    this.grabbed = false;
+      this.grabbed = false;
 
-    this.raycaster = new THREE.Raycaster();
-    this.raycaster.firstHitOnly = true; // flag specific to three-mesh-bvh
+      this.raycaster = new THREE.Raycaster();
+      this.raycaster.firstHitOnly = true; // flag specific to three-mesh-bvh
 
-    this.originalPosition = this.el.object3D.position.clone();
-    this.lastIntersectionDistance = 0;
+      this.originalPosition = this.el.object3D.position.clone();
+      this.lastIntersectionDistance = 0;
 
-    this.targets = [];
-    this.setDirty = this.setDirty.bind(this);
-    this.dirty = true;
+      this.targets = [];
+      this.setDirty = this.setDirty.bind(this);
+      this.dirty = true;
 
-    let material = new THREE.MeshStandardMaterial();
-    const quality = window.APP.store.materialQualitySetting;
-    material = convertStandardMaterial(material, quality);
+      let material = new THREE.MeshStandardMaterial();
+      const quality = window.APP.store.materialQualitySetting;
+      material = convertStandardMaterial(material, quality);
 
-    this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
-    this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
-    this.penTip.matrixNeedsUpdate = true;
+      this.penTip = new THREE.Mesh(new THREE.SphereBufferGeometry(1, 16, 12), material);
+      this.penTip.scale.setScalar(this.data.radius / this.el.parentEl.object3D.scale.x);
+      this.penTip.matrixNeedsUpdate = true;
 
-    this.el.setObject3D("mesh", this.penTip);
+      this.el.setObject3D("mesh", this.penTip);
 
-    this.penLaserAttributesUpdated = false;
-    this.penLaserAttributes = {
-      color: "transparent",
-      laserVisible: false,
-      laserInHand: false,
-      laserOrigin: { x: 0, y: 0, z: 0 },
-      remoteLaserOrigin: { x: 0, y: 0, z: 0 },
-      laserTarget: { x: 0, y: 0, z: 0 }
-    };
+      this.penLaserAttributesUpdated = false;
+      this.penLaserAttributes = {
+        color: "transparent",
+        laserVisible: false,
+        laserInHand: false,
+        laserOrigin: { x: 0, y: 0, z: 0 },
+        remoteLaserOrigin: { x: 0, y: 0, z: 0 },
+        laserTarget: { x: 0, y: 0, z: 0 }
+      };
 
-    // TODO: Use the MutationRecords passed into the callback function to determine added/removed nodes!
-    this.observer = new MutationObserver(this.setDirty);
+      // TODO: Use the MutationRecords passed into the callback function to determine added/removed nodes!
+      this.observer = new MutationObserver(this.setDirty);
 
-    waitForDOMContentLoaded().then(() => {
-      const scene = document.querySelector("a-scene");
-      this.observer.observe(scene, { childList: true, attributes: true, subtree: true });
-      scene.addEventListener("object3dset", this.setDirty);
-      scene.addEventListener("object3dremove", this.setDirty);
-    });
+      waitForDOMContentLoaded().then(() => {
+        const scene = document.querySelector("a-scene");
+        this.observer.observe(scene, { childList: true, attributes: true, subtree: true });
+        scene.addEventListener("object3dset", this.setDirty);
+        scene.addEventListener("object3dremove", this.setDirty);
+      });
 
-    this.penSystem = this.el.sceneEl.systems["pen-tools"];
-    this.penSystem.register(this.el);
+      this.penSystem = this.el.sceneEl.systems["pen-tools"];
+      this.penSystem.register(this.el);
+    }
   },
 
   play() {
-    this.drawingManager = document.querySelector(this.data.drawingManager).components["drawing-manager"];
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      this.drawingManager = document.querySelector(this.data.drawingManager).components["drawing-manager"];
+    }
   },
 
   update(prevData) {
-    if (prevData.color != this.data.color) {
-      this.penTip.material.color.set(this.data.color);
-      this.penLaserAttributes.color = this.data.color;
-      this.el.setAttribute("pen-laser", { color: this.data.color });
-    }
-    if (prevData.radius != this.data.radius) {
-      this.el.setAttribute("radius", this.data.radius);
-    }
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      if (prevData.color != this.data.color) {
+        this.penTip.material.color.set(this.data.color);
+        this.penLaserAttributes.color = this.data.color;
+        this.el.setAttribute("pen-laser", { color: this.data.color });
+      }
+      if (prevData.radius != this.data.radius) {
+        this.el.setAttribute("radius", this.data.radius);
+      }
 
-    if (this.data.penVisible == true) {
-      this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_AIRCANON_SET);
-    }
+      if (this.data.penVisible == true) {
+        this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_AIRCANON_SET);
+      }
 
-    this.raycaster.far = this.data.far;
-    this.raycaster.near = this.data.near;
+      this.raycaster.far = this.data.far;
+      this.raycaster.near = this.data.near;
+    }
   },
 
   tick(t, dt) {
-    const isMine = this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      const isMine =
+        this.el.parentEl.components.networked.initialized && this.el.parentEl.components.networked.isMine();
 
-    if (this.penTip.material.visible !== isMine) {
-      this.penTip.material.visible = isMine;
-    }
-
-    if (isMine) {
-      this._handleInput();
-
-      const cursorPose =
-        this.data.drawMode === DRAW_MODE.PROJECTION &&
-        (this.grabberId === "right-cursor" || this.grabberId === "left-cursor")
-          ? AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose)
-          : null;
-
-      this.intersection = this._getIntersection(cursorPose);
-
-      this._updatePenTip(this.intersection);
-
-      const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!this.intersection;
-      const laserInHand = this.el.sceneEl.is("vr-mode") && laserVisible;
-
-      if (this.penLaserAttributes.laserVisible !== laserVisible) {
-        this.penLaserAttributes.laserVisible = laserVisible;
-        this.penLaserAttributesUpdated = true;
+      if (this.penTip.material.visible !== isMine) {
+        this.penTip.material.visible = isMine;
       }
 
-      if (this.penLaserAttributes.laserInHand !== laserInHand) {
-        this.penLaserAttributes.laserInHand = laserInHand;
-        this.penLaserAttributesUpdated = true;
+      if (isMine) {
+        this._handleInput();
+
+        const cursorPose =
+          this.data.drawMode === DRAW_MODE.PROJECTION &&
+          (this.grabberId === "right-cursor" || this.grabberId === "left-cursor")
+            ? AFRAME.scenes[0].systems.userinput.get(pathsMap[this.grabberId].pose)
+            : null;
+
+        this.intersection = this._getIntersection(cursorPose);
+
+        this._updatePenTip(this.intersection);
+
+        const laserVisible = this.data.drawMode === DRAW_MODE.PROJECTION && !!this.intersection;
+        const laserInHand = this.el.sceneEl.is("vr-mode") && laserVisible;
+
+        if (this.penLaserAttributes.laserVisible !== laserVisible) {
+          this.penLaserAttributes.laserVisible = laserVisible;
+          this.penLaserAttributesUpdated = true;
+        }
+
+        if (this.penLaserAttributes.laserInHand !== laserInHand) {
+          this.penLaserAttributes.laserInHand = laserInHand;
+          this.penLaserAttributesUpdated = true;
+        }
+
+        if (laserVisible) {
+          this._updateLaser(cursorPose, this.intersection);
+        }
+
+        const penVisible =
+          (this.grabberId !== "left-cursor" && this.grabberId !== "right-cursor") || !this.intersection;
+        this._setPenVisible(penVisible);
+        this.el.setAttribute("pen", { penVisible: penVisible });
+
+        this._doDraw(this.intersection, dt);
+
+        if (this.penLaserAttributesUpdated) {
+          this.penLaserAttributesUpdated = false;
+          this.el.setAttribute("pen-laser", this.penLaserAttributes, true);
+        }
+      } else {
+        this._setPenVisible(this.data.penVisible);
       }
-
-      if (laserVisible) {
-        this._updateLaser(cursorPose, this.intersection);
-      }
-
-      const penVisible = (this.grabberId !== "left-cursor" && this.grabberId !== "right-cursor") || !this.intersection;
-      this._setPenVisible(penVisible);
-      this.el.setAttribute("pen", { penVisible: penVisible });
-
-      this._doDraw(this.intersection, dt);
-
-      if (this.penLaserAttributesUpdated) {
-        this.penLaserAttributesUpdated = false;
-        this.el.setAttribute("pen-laser", this.penLaserAttributes, true);
-      }
-    } else {
-      this._setPenVisible(this.data.penVisible);
     }
   },
 

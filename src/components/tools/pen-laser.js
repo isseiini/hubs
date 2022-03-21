@@ -18,6 +18,37 @@ var AirCanonClip;
 
 var ShootingSfx;
 
+var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+var room_name = current_url[current_url.length - 1];
+let arr1 = [
+  "fresh-candid-barbecue",
+  "posh-courteous-plane",
+  "curly-wicked-conclave",
+  "clever-powerful-gala",
+  "kooky-passionate-safari"
+];
+let arr2 = [
+  "conscious-tricky-camp",
+  "impressive-easygoing-commons",
+  "fine-zigzag-exploration",
+  "wee-likable-commons",
+  "envious-shiny-vacation"
+];
+let arr3 = [
+  "devoted-healthy-gala",
+  "petty-handsome-plaza",
+  "real-qualified-spot",
+  "absolute-pertinent-convention",
+  "neat-striking-spot"
+];
+let arr4 = [
+  "celebrated-calm-rendezvous",
+  "lasting-spiffy-camp",
+  "leafy-expert-dominion",
+  "melodic-courageous-picnic",
+  "plump-cheerful-plane"
+];
+
 window.aircanon_count = 0;
 
 waitForDOMContentLoaded().then(() => {
@@ -47,7 +78,10 @@ AFRAME.registerComponent("aircanon-animation", {
 
     ShootingSfx = this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem;
 
-    this.el.setObject3D("mesh", this.AirCanonMesh);
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      this.el.setObject3D("mesh", this.AirCanonMesh);
+    }
+
     if (this.isLocalPlayer) {
       this.reticle = document.querySelector(".reticle");
       this.rotate120 = 0;
