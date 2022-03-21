@@ -2093,7 +2093,31 @@ document.addEventListener("DOMContentLoaded", async () => {
                       Player_Guide.style.display = "none";
                     }
                   });
-                  count_start();
+                  if (document.querySelectorAll("[networked-avatar]").length != 1) {
+                    count_start();
+                  }
+
+                  if (arr1.indexof(this.room_name) !== -1 || arr3.indexof(this.room_name) !== -1) {
+                    var table = "Matching-table";
+                  } else if (arr2.indexof(this.room_name) !== -1 || arr4.indexof(this.room_name) !== -1) {
+                    var table = "Sightseeing-table";
+                  }
+
+                  var match = {
+                    TableName: table,
+                    Item: {
+                      URL: room_name,
+                      Sum: document.querySelectorAll("[networked-avatar]").length
+                    }
+                  };
+
+                  docClient.put(match, function(err, data2) {
+                    if (err) {
+                      console.log("error");
+                    } else {
+                      console.log("success");
+                    }
+                  });
                 }
                 //↓ゲームワールド全体
                 if (
@@ -2532,44 +2556,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log(err);
       } else {
         data3.Items.sort((a, b) => b.Sum - a.Sum);
+        console.log(data3.Items);
         var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
 
-        var match = {
-          TableName: "Matching-table",
-          Key: {
-            //更新したい項目をプライマリキー(及びソートキー)によって１つ指定
-            URL: data3.Items[0].URL
-          },
-          ExpressionAttributeNames: {
-            "#S": "Sum"
-          },
-          ExpressionAttributeValues: {
-            ":add": 1
-          },
-          UpdateExpression: "SET #S = #S + :add"
-        };
-
         if (confirm("マッチングしました。対戦ワールドへ移動します。")) {
-          docClient.update(match, function(err, data2) {
-            if (err) {
-              console.log("error");
-            } else {
-              console.log("success");
-            }
-          });
           setTimeout(() => {
             location.href = goal_url;
-          }, 3000);
+          }, 1000);
         } else {
-          //alert("キャンセルしました。");
+          Alert("キャンセルしました。");
         }
       }
     });
-  });
-
-  document.addEventListener("keydown", event => {
-    if (event.ctrlKey && event.code === "KeyM") {
-      scene.emit("action_mute");
-    }
   });
 });
