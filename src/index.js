@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const email_signup = document.getElementById("email-signup").value;
     const name_signup = document.getElementById("name-signup").value;
     const password_signup = document.getElementById("password-signup").value;
+    const password_signup2 = document.getElementById("password-signup2").value;
     const age_signup = document.getElementById("age-signup").value;
     const sex_signup = document.getElementById("sex-signup").value;
     const location_signup = document.getElementById("location-signup").value;
@@ -303,6 +304,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!email_signup | !name_signup | !password_signup | !age_signup | !sex_signup | !location_signup) {
       alert("未入力項目があります。");
+      return false;
+    }
+
+    if (password_signup != password_signup2) {
+      alert("確認用パスワードが一致しません。");
       return false;
     }
 
