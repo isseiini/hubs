@@ -59,22 +59,26 @@ AFRAME.registerComponent("mute-mic", {
 
     this.el.sceneEl.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_TOGGLE_MIC);
     if (this.el.is("muted")) {
-      NAF.connection.adapter.enableMicrophone(true);
+      //NAF.connection.adapter.enableMicrophone(true);
+      window.APP.mediaDevicesManager.micEnabled = true;
     } else {
-      NAF.connection.adapter.enableMicrophone(false);
+      //NAF.connection.adapter.enableMicrophone(false);
+      window.APP.mediaDevicesManager.micEnabled = false;
     }
   },
 
   onMute: function() {
     if (!NAF.connection.adapter) return;
     if (!this.el.is("muted")) {
-      NAF.connection.adapter.enableMicrophone(false);
+      //NAF.connection.adapter.enableMicrophone(false);
+      window.APP.mediaDevicesManager.micEnabled = false;
     }
   },
 
   onUnmute: function() {
     if (this.el.is("muted")) {
-      NAF.connection.adapter.enableMicrophone(true);
+      //NAF.connection.adapter.enableMicrophone(true);
+      wondow.APP.mediaDevicesManager.micEnabled = true;
     }
   },
 
