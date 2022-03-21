@@ -221,24 +221,16 @@ export default class MessageDispatch extends EventTarget {
         this.damage();
       }
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_RedTeam") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_RedTeam") === 0) {
       window.RedSum += 1;
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_BlueTeam") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_BlueTeam") === 0) {
       window.BlueSum += 1;
       return;
-    }
-
-    if (entry.type === "chat" && isNaN(entry.body) == false) {
+    } else if (entry.type === "chat" && isNaN(entry.body) == false) {
       window.timeCount = entry.body;
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_Red_+1") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_Red_+1") === 0) {
       if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.getElementById("HANABI"); //querySelector(".sanshakudama");
@@ -274,9 +266,7 @@ export default class MessageDispatch extends EventTarget {
       }
       Red_Score.innerText = current_Red_Score;
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_Blue_+1") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_Blue_+1") === 0) {
       if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")
         //let HanabiAction = document.querySelector(".sanshakudama");
@@ -312,9 +302,7 @@ export default class MessageDispatch extends EventTarget {
       }
       Blue_Score.innerText = current_Blue_Score;
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_Red:") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_Red:") === 0) {
       console.log(entry.body);
       const Red_Score = document.getElementById("red-score");
       const Blue_Score = document.getElementById("blue-score");
@@ -361,9 +349,7 @@ export default class MessageDispatch extends EventTarget {
       Red_Progress.value = Number(entered_red);
       Blue_Progress.value = Number(entered_blue);
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -381,9 +367,7 @@ export default class MessageDispatch extends EventTarget {
         scene.play();
       }, 30000);
       return;
-    }
-
-    if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
+    } else if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -401,29 +385,28 @@ export default class MessageDispatch extends EventTarget {
         scene.play();
       }, 30000);
       return;
-    }
-
-    this.presenceLogEntries.push(entry);
-    this.remountUI({ presenceLogEntries: this.presenceLogEntries });
-    if (entry.type === "chat" && this.scene.is("loaded")) {
-      this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_CHAT_MESSAGE);
-    }
-
-    // Fade out and then remove
-    setTimeout(() => {
-      entry.expired = true;
+    } else {
+      this.presenceLogEntries.push(entry);
       this.remountUI({ presenceLogEntries: this.presenceLogEntries });
+      if (entry.type === "chat" && this.scene.is("loaded")) {
+        this.scene.systems["hubs-systems"].soundEffectsSystem.playSoundOneShot(SOUND_CHAT_MESSAGE);
+      }
 
+      // Fade out and then remove
       setTimeout(() => {
-        this.presenceLogEntries.splice(this.presenceLogEntries.indexOf(entry), 1);
+        entry.expired = true;
         this.remountUI({ presenceLogEntries: this.presenceLogEntries });
-      }, 5000);
-    }, 20000);
+
+        setTimeout(() => {
+          this.presenceLogEntries.splice(this.presenceLogEntries.indexOf(entry), 1);
+          this.remountUI({ presenceLogEntries: this.presenceLogEntries });
+        }, 5000);
+      }, 20000);
+    }
   }
 
   receive(message) {
     this.addToPresenceLog(message);
-    console.log(message);
     if (message.body.charAt(0) == "_") {
       return;
     } else {
