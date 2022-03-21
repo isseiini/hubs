@@ -2119,31 +2119,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                   });
                 }
-                //↓ゲームワールド全体
+                //自分入場時のゲームワールド全体
                 if (
-                  !isSelf &&
+                  isSelf &&
                   currentMeta.presence !== meta.presence &&
                   meta.presence === "room" &&
                   meta.profile.displayName &&
                   (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
-                  const Red_Score = document.getElementById("red-score");
-                  const Blue_Score = document.getElementById("blue-score");
-                  var event3 = new Event("change");
-                  var hit_target_container = document.getElementById("hit_target_container");
-                  hit_target_container.readOnly = false;
-                  hit_target_container.value =
-                    "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
-                  hit_target_container.dispatchEvent(event3);
-
-                  if (document.getElementById("score-display-top").innerText != "") {
-                    hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
-                    hit_target_container.dispatchEvent(event3);
-                  }
-
-                  hit_target_container.value = window.timeCount;
-                  hit_target_container.dispatchEvent(event3);
-                  hit_target_container.readOnly = true;
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
@@ -2169,6 +2152,31 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.8;";
                   aircanon_container.setAttribute("follow-in-fov", aircanon_index);
                   hanabi_container.setAttribute("follow-in-fov", hanabi_index);
+                }
+                //↓他人入場時のゲームワールド全体
+                if (
+                  !isSelf &&
+                  currentMeta.presence !== meta.presence &&
+                  meta.presence === "room" &&
+                  meta.profile.displayName &&
+                  (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
+                ) {
+                  const Red_Score = document.getElementById("red-score");
+                  const Blue_Score = document.getElementById("blue-score");
+                  var event3 = new Event("change");
+                  var hit_target_container = document.getElementById("hit_target_container");
+                  hit_target_container.readOnly = false;
+                  hit_target_container.value =
+                    "_Red:" + Number(Red_Score.innerText) + "_Blue:" + Number(Blue_Score.innerText);
+                  hit_target_container.dispatchEvent(event3);
+
+                  if (document.getElementById("score-display-top").innerText != "") {
+                    hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
+                    hit_target_container.dispatchEvent(event3);
+                  }
+                  hit_target_container.value = window.timeCount;
+                  hit_target_container.dispatchEvent(event3);
+                  hit_target_container.readOnly = true;
                 }
                 //ゲームワールド１
                 if (
