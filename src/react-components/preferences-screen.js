@@ -875,7 +875,7 @@ class PreferencesScreen extends Component {
     this.props.store.removeEventListener("statechanged", this.storeUpdated);
     this.props.scene.removeEventListener("devicechange", this.onMediaDevicesUpdated);
   }
-  
+
   createSections() {
     const intl = this.props.intl;
 
@@ -908,8 +908,6 @@ class PreferencesScreen extends Component {
         text: name
       });
     }
-
-    
 
     const DEFINITIONS = new Map([
       [
@@ -952,7 +950,7 @@ class PreferencesScreen extends Component {
         CATEGORY_AUDIO,
         [
           this.state.preferredMic,
-          { key: "muteMicOnEntry", prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX, defaultBool: false },
+          { key: "muteMicOnEntry", /*prefType: PREFERENCE_LIST_ITEM_TYPE.CHECK_BOX,*/ defaultBool: false },
           {
             key: "globalVoiceVolume",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
