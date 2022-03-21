@@ -102,7 +102,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
             var Communication_params = {
               TableName: "Communication",
               Item: {
-                Play_ID: PlayID,
+                PlayID: PlayID,
                 URL: room_name,
                 text_chat_count: use_text_chat_count,
                 voice_chat_count: talk_count,
