@@ -223,7 +223,7 @@ export default class SceneEntryManager {
 
   _setupPlayerRig = () => {
     this._setPlayerInfoFromProfile();
-    g;
+
     // Explict user action changed avatar or updated existing avatar.
     this.scene.addEventListener("avatar_updated", () => this._setPlayerInfoFromProfile(true));
 
