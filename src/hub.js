@@ -2076,7 +2076,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.talk_position = [];
 
                   //const avatarRig = document.getElementById("avatar-rig").object3D;
-                  document.getElementById("Player_name").innerText = meta.profile.displayName;
 
                   /*setInterval(() => {
                     Positionlist.push(avatarRig.position);
@@ -2147,8 +2146,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
-                  document.getElementById("Player_name").innerText = meta.profile.displayName;
-
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
                   const Game_Result = document.getElementById("game-progress-origin");
@@ -2230,6 +2227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
+                      document.getElementById("Player_name").innerText = "Blue:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2249,6 +2247,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
+                      document.getElementById("Player_name").innerText = "Red:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
@@ -2285,6 +2284,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
+                      document.getElementById("Player_name").innerText = "Blue:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2304,6 +2304,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
+                      document.getElementById("Player_name").innerText = "Red:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 

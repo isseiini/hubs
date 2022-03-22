@@ -63,7 +63,12 @@ AFRAME.registerComponent("player-info", {
         const playerPresence = window.APP.hubChannel.presence.state[this.playerSessionId];
         if (playerPresence) {
           this.updateFromPresenceMeta(playerPresence.metas[0]);
-          this.el.classList.add(playerPresence.metas[0].profile.displayName + "_info");
+          if (playerPresence.metas[0].profile.displayName.indexOf("Blue:") == 0) {
+            this.el.querySelector(".nametag").setAttribute("text", { color: "rgb(0, 243, 235)" });
+          }
+          if (playerPresence.metas[0].profile.displayName.indexOf("Red:") == 0) {
+            this.el.querySelector(".nametag").setAttribute("text", { color: "rgb(186, 7, 5)" });
+          }
         }
       });
     } /*else {
