@@ -2194,6 +2194,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                   if (document.getElementById("score-display-top").innerText != "") {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
+                    if (document.getElementById("score-display-top").innerText == "BlueTeam") {
+                      var hit_target2 = "_Blue=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
+                    } else if (document.getElementById("score-display-top").innerText == "RedTeam") {
+                      var hit_target2 = "_Red=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
+                    }
                   }
                   hit_target_container.value = window.timeCount;
                   hit_target_container.dispatchEvent(event3);
