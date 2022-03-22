@@ -248,13 +248,13 @@ export default class MessageDispatch extends EventTarget {
     }*/
     if (entry.type === "chat" && entry.body.indexOf("_Blue=>") === 0) {
       let BluePlayerName = entry.body.substring(entry.body.indexOf(">") + 1);
-      const isInfo = document.querySelector("." + BluePlayerName);
+      const isInfo = document.querySelector("." + BluePlayerName + "_info");
       console.log("BluePlayerName." + isInfo);
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Red=>") === 0) {
       let RedPlayerName = entry.body.substring(entry.body.indexOf(">") + 1);
-      const isInfo = document.querySelector("." + RedPlayerName);
+      const isInfo = document.querySelector("." + RedPlayerName + "_info");
       console.log("RedPlayerName." + isInfo);
 
       return;
