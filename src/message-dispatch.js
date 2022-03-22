@@ -246,6 +246,22 @@ export default class MessageDispatch extends EventTarget {
       my_NAF_data.count();
       naf_Mine = my_NAF_data;
     }*/
+    if (entry.type === "chat" && entry.body.indexOf("_Blue=>") === 0) {
+      const Player_Respawn = document.getElementById("Player-Respawn");
+      if ("_" + naf_Mine == entry.body) {
+        if (Player_Respawn.style.display == "none") {
+          this.damage();
+        }
+      }
+      return;
+    }
+    if (entry.type === "chat" && entry.body.indexOf("_Red=>") === 0) {
+      let RedPlayerName = entry.body.substring(entry.body.indexOf(">") + 1);
+      const isInfo = document.querySelector("." + RedPlayerName);
+      console.log("RedPlayerName." + isInfo);
+
+      return;
+    }
     if (entry.type === "chat" && entry.body.indexOf("_Red_+1") === 0) {
       if (entry.body.substring(entry.body.indexOf("#") + 1) === playerMine) {
         //document.getElementById("HanabiContainer")

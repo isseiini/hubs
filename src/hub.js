@@ -2148,6 +2148,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1)
                 ) {
                   document.getElementById("Player_name").innerText = meta.profile.displayName;
+
                   window.hubjs = {};
                   window.hubjs.myname = meta.profile.displayName;
                   const Game_Result = document.getElementById("game-progress-origin");
@@ -2214,6 +2215,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
 
+                      var hit_target2 = "_Blue=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
+
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
                       characterController.teleportTo(respawn_point1);
@@ -2224,6 +2233,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "RedTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
+
+                      var hit_target2 = "_Red=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
 
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
@@ -2253,6 +2270,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
 
+                      var hit_target2 = "_Blue=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
+
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
                       characterController.teleportTo(respawn_point1);
@@ -2263,6 +2288,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "RedTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
+
+                      var hit_target2 = "_Red=>" + meta.profile.displayName;
+                      var event2 = new Event("change");
+                      var hit_target_container = document.getElementById("hit_target_container");
+                      hit_target_container.readOnly = false;
+                      hit_target_container.value = hit_target2;
+                      hit_target_container.dispatchEvent(event2);
+                      hit_target_container.readOnly = true;
 
                       document.getElementById("score-display-top").innerText = team;
                       let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);

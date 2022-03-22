@@ -63,6 +63,7 @@ AFRAME.registerComponent("player-info", {
         const playerPresence = window.APP.hubChannel.presence.state[this.playerSessionId];
         if (playerPresence) {
           this.updateFromPresenceMeta(playerPresence.metas[0]);
+          this.el.classList.add(playerPresence.metas[0].profile.displayName + "_info");
         }
       });
     } /*else {
