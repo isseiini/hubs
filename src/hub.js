@@ -1327,7 +1327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
-  } else if (arr4.indexOf(room_name) !== -1) {
+  } else if (arr5.indexOf(room_name) !== -1) {
     //とんぼりベース
     map_img.style.display = "none";
     map_img2.style.display = "none";
