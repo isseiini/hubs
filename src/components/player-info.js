@@ -148,9 +148,9 @@ AFRAME.registerComponent("player-info", {
       nametagEl.object3D.visible = !infoShouldBeHidden;
       //this.text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: this.text_color });
-      if (document.querySelectorAll("[networked-avatar]").length % 2 === 0) {
+      if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
         nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
-      } else if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
+      } else if (document.querySelectorAll("[networked-avatar]").length % 2 === 0) {
         nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
       }
     }
