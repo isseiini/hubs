@@ -2195,6 +2195,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
                     if (document.getElementById("score-display-top").innerText == "BlueTeam") {
+                      console.log("blueishere");
                       var hit_target2 = "_Blue=>" + meta.profile.displayName;
                       var event2 = new Event("change");
                       var hit_target_container = document.getElementById("hit_target_container");
@@ -2231,7 +2232,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "BlueTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
-
+                      console.log("blueishere");
                       var hit_target2 = "_Blue=>" + meta.profile.displayName;
                       var event2 = new Event("change");
                       var hit_target_container = document.getElementById("hit_target_container");
@@ -2286,7 +2287,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       team = "BlueTeam";
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
-
+                      console.log("blueishere");
                       var hit_target2 = "_Blue=>" + meta.profile.displayName;
                       var event2 = new Event("change");
                       var hit_target_container = document.getElementById("hit_target_container");
