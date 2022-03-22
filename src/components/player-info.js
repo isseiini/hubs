@@ -64,9 +64,11 @@ AFRAME.registerComponent("player-info", {
         if (playerPresence) {
           this.updateFromPresenceMeta(playerPresence.metas[0]);
           if (document.querySelectorAll("[networked-avatar]").length % 2 === 0) {
-            this.el.querySelector(".nametag").setAttribute("text", { color: "rgb(186, 7, 5)" });
+            const nametagEl = this.el.querySelector(".nametag");
+            nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
           } else {
-            this.el.querySelector(".nametag").setAttribute("text", { color: "rgb(0, 243, 235)" });
+            const nametagEl = this.el.querySelector(".nametag");
+            nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
           }
         }
       });

@@ -1251,6 +1251,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const map_img3 = document.getElementById("map_img3");
   const map_img4 = document.getElementById("map_img4");
   const Player_map = document.getElementById("Player_map");
+  const aircanon_button = document.getElementById("aircanon_button");
 
   function orientationCheck() {
     const scene = document.querySelector("a-scene");
@@ -1306,6 +1307,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_map.setAttribute("viewBox", "0 0 123.5 74.1");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
+    aircanon_button.style.display = "none";
   } else if (arr3.indexOf(room_name) !== -1) {
     //ゲームワールド2
     map_img.style.display = "none";
@@ -1327,9 +1329,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     Player_map.setAttribute("viewBox", "0 0 172.3 76.3");
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
+    aircanon_button.style.display = "none";
+  } else if (arr4.indexOf(room_name) !== -1) {
+    //とんぼりベース
+    map_img.style.display = "none";
+    map_img2.style.display = "none";
+    map_img3.style.display = "none";
+    map_img4.style.display = "none";
+    Player_map.style.display = "none";
+    document.getElementById("life").style.display = "none";
+    document.getElementById("score-display").style.display = "none";
+    aircanon_button.style.display = "none";
   } else {
     //不正なURL
-    //location.href = "https://virtual-dotonbori.com/";
+    location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
