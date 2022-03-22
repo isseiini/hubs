@@ -88,8 +88,6 @@ const Game_Result2 = document.getElementById("game-progress-cover1");
 const Game_Result3 = document.getElementById("game-progress-cover2");
 const Game_Result_sub = document.getElementById("game-progress-sub");
 
-let team = document.getElementById("score-display-top").innerText;
-
 function Alert(message) {
   const Alert = document.getElementById("Player_Alert");
   Alert.innerText = message;
@@ -431,6 +429,7 @@ export default class MessageDispatch extends EventTarget {
       Blue_Score.innerText = "0";
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
+      let team = document.getElementById("score-display-top").innerText;
       if (team == "BlueTeam") {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
@@ -486,6 +485,7 @@ export default class MessageDispatch extends EventTarget {
       Blue_Score.innerText = "0";
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
+      let team = document.getElementById("score-display-top").innerText;
       if (team == "BlueTeam") {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
