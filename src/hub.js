@@ -2227,7 +2227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
-                      document.getElementById("Player_name").innerText = "Blue_" + meta.profile.displayName;
+                      document.getElementById("Player_name").innerText = meta.profile.displayName;
                       meta.profile.displayName = "Blue_" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
@@ -2248,7 +2248,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
-                      document.getElementById("Player_name").innerText = "Red_" + meta.profile.displayName;
+                      document.getElementById("Player_name").innerText = meta.profile.displayName;
                       meta.profile.displayName = "Red_" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
@@ -2286,7 +2286,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   setTimeout(() => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
-                      document.getElementById("Player_name").innerText = "Blue_" + meta.profile.displayName;
+                      document.getElementById("Player_name").innerText = meta.profile.displayName;
                       meta.profile.displayName = "Blue_" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
@@ -2307,7 +2307,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                       scene.emit("spawn_pen");
                     } else {
                       team = "RedTeam";
-                      document.getElementById("Player_name").innerText = "Red_" + meta.profile.displayName;
+                      document.getElementById("Player_name").innerText = meta.profile.displayName;
                       meta.profile.displayName = "Red_" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
