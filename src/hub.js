@@ -242,9 +242,6 @@ function count_down() {
             AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
           }, 1500);
         }
-        setTimeout(() => {
-          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-        }, 1500);
       } else {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
