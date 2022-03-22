@@ -65,11 +65,11 @@ AFRAME.registerComponent("player-info", {
           this.updateFromPresenceMeta(playerPresence.metas[0]);
         }
       });
-    } else {
+    } /*else {
       const nametagEl = this.el.querySelector(".nametag");
       let text_color = document.documentElement.style.getPropertyValue("--team-color");
       nametagEl.setAttribute("text", { color: text_color });
-    }
+    }*/
     registerComponentInstance(this, "player-info");
   },
   remove() {
