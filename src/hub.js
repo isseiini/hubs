@@ -2043,6 +2043,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             //}
 
             //console.log(my_NAF_ID);
+            window.player_color = {};
 
             if (occupantCount <= NOISY_OCCUPANT_COUNT) {
               if (current) {
@@ -2191,24 +2192,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   if (document.getElementById("score-display-top").innerText != "") {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
-                    if (document.getElementById("score-display-top").innerText == "BlueTeam") {
-                      console.log("blueishere");
-                      var hit_target2 = "_Blue=>" + meta.profile.displayName;
-                      var event2 = new Event("change");
-                      var hit_target_container = document.getElementById("hit_target_container");
-                      hit_target_container.readOnly = false;
-                      hit_target_container.value = hit_target2;
-                      hit_target_container.dispatchEvent(event2);
-                      hit_target_container.readOnly = true;
-                    } else if (document.getElementById("score-display-top").innerText == "RedTeam") {
-                      var hit_target2 = "_Red=>" + meta.profile.displayName;
-                      var event2 = new Event("change");
-                      var hit_target_container = document.getElementById("hit_target_container");
-                      hit_target_container.readOnly = false;
-                      hit_target_container.value = hit_target2;
-                      hit_target_container.dispatchEvent(event2);
-                      hit_target_container.readOnly = true;
-                    }
                   }
                   hit_target_container.value = window.timeCount;
                   hit_target_container.dispatchEvent(event3);
@@ -2228,7 +2211,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
-                      meta.profile.displayName = "Blue_" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2249,7 +2231,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       team = "RedTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
-                      meta.profile.displayName = "Red_" + meta.profile.displayName;
+
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
@@ -2287,7 +2269,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
-                      meta.profile.displayName = "Blue_" + meta.profile.displayName;
+
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2308,7 +2290,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       team = "RedTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
-                      meta.profile.displayName = "Red_" + meta.profile.displayName;
+
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
