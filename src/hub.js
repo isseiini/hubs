@@ -288,7 +288,7 @@ var current_url = (location.protocol + "//" + location.hostname + location.pathn
 
 var room_name = current_url[current_url.length - 1];
 
-let team;
+window.team;
 
 window.APP = new App();
 window.APP.RENDER_ORDER = {

@@ -88,8 +88,8 @@ AFRAME.registerComponent("aircanon-animation", {
       this.rotate120 = 0;
       //this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.position.set(0, -0.2, 0);
-      this.AirCanonMesh.rotation.set(-180, -90, 0);
+      this.AirCanonMesh.position.set(0, -0.4, -0.3);
+      this.AirCanonMesh.rotation.set(0, -90, 0);
     }
   },
 
