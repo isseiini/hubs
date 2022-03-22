@@ -206,7 +206,7 @@ AFRAME.registerComponent("teleporter", {
       this.rayCurve.mesh.material.opacity = MISS_OPACITY;
       this.rayCurve.mesh.material.color.set(MISS_COLOR);
       this.rayCurve.mesh.material.needsUpdate = true;
-      this.teleportingSound = sfx.playSoundLoopedWithGain(SOUND_TELEPORT_START);
+      //this.teleportingSound = sfx.playSoundLoopedWithGain(SOUND_TELEPORT_START);
       if (this.teleportingSound) {
         this.teleportingSound.gain.gain.value = 0.005;
       }
@@ -234,7 +234,7 @@ AFRAME.registerComponent("teleporter", {
 
       this.characterController.teleportTo(this.hitPoint);
 
-      sfx.playSoundOneShot(SOUND_TELEPORT_END);
+      //sfx.playSoundOneShot(SOUND_TELEPORT_END);
       return;
     }
 
