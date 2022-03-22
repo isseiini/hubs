@@ -86,6 +86,7 @@ AFRAME.registerComponent("aircanon-animation", {
     if (this.isLocalPlayer) {
       this.reticle = document.querySelector(".reticle");
       this.rotate120 = 0;
+      this.AirCanonMesh.rotation.set(45, -45, 0);
       //this.Shoot = this.Shoot.bind(this);
     } else {
       this.AirCanonMesh.position.set(0, -0.4, -0.3);
