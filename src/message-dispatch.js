@@ -247,12 +247,9 @@ export default class MessageDispatch extends EventTarget {
       naf_Mine = my_NAF_data;
     }*/
     if (entry.type === "chat" && entry.body.indexOf("_Blue=>") === 0) {
-      const Player_Respawn = document.getElementById("Player-Respawn");
-      if ("_" + naf_Mine == entry.body) {
-        if (Player_Respawn.style.display == "none") {
-          this.damage();
-        }
-      }
+      let BluePlayerName = entry.body.substring(entry.body.indexOf(">") + 1);
+      const isInfo = document.querySelector("." + BluePlayerName);
+      console.log("BluePlayerName." + isInfo);
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Red=>") === 0) {
