@@ -2228,6 +2228,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = "Blue:" + meta.profile.displayName;
+                      meta.profile.displayName = "Blue:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2248,6 +2249,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       team = "RedTeam";
                       document.getElementById("Player_name").innerText = "Red:" + meta.profile.displayName;
+                      meta.profile.displayName = "Red:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
@@ -2285,6 +2287,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (window.RedSum >= window.BlueSum) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = "Blue:" + meta.profile.displayName;
+                      meta.profile.displayName = "Blue:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(0, 243, 235, 0.05)");
                       console.log("blueishere");
@@ -2305,6 +2308,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       team = "RedTeam";
                       document.getElementById("Player_name").innerText = "Red:" + meta.profile.displayName;
+                      meta.profile.displayName = "Red:" + meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(186, 7, 5)");
                       document.documentElement.style.setProperty("--team-color-sub", "rgba(186, 7, 5, 0.05)");
 
