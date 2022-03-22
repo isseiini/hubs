@@ -453,13 +453,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("hubs-middle").addEventListener("click", function() {
     const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine == null) {
-      alert("ログインしてください。");
+      alert("メニューから「ログイン/新規登録」を選択し、ログインをして下さい");
       return;
     }
     if (cognito_mine != null) {
       cognito_mine.getSession((err, session) => {
         if (err) {
-          alert("ログインしてください。");
+          alert("メニューから「ログイン/新規登録」を選択し、ログインをして下さい");
           return;
         } else {
           var matching_params = {
@@ -538,7 +538,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.documentElement.style.setProperty("--display6", "none");
   });
 
-  document.getElementById("grid-ml").addEventListener("click", function() {
+  document.getElementById("grid-mr").addEventListener("click", function() {
     document.documentElement.style.setProperty("--main-color", "rgb(255, 253, 108)");
     document.documentElement.style.setProperty("--sub-color", "rgb(255, 253, 108, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -561,7 +561,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("grid-br").style.display = "none";
   });
 
-  document.getElementById("grid-mr").addEventListener("click", function() {
+  document.getElementById("grid-ml").addEventListener("click", function() {
     document.documentElement.style.setProperty("--main-color", "rgb(93, 255, 128)");
     document.documentElement.style.setProperty("--sub-color", "rgb(93, 255, 128, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -593,7 +593,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function generate_table() {
     var cognitoUser_me2 = userPool.getCurrentUser();
     if (!cognitoUser_me2) {
-      alert("ログインが必要です。");
+      alert("メニューから「ログイン/新規登録」を選択し、ログインをして下さい");
       return;
     }
     cognitoUser_me2.getSession((err, session) => {
