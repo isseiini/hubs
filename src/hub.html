@@ -1629,19 +1629,23 @@
     
           <input id="hit_target_container" style="display: none;" readonly></input>
 
-          <div class="btn-wrap">
+          <!--<div class="btn-wrap">
               <a id="go-to-game" class="btn btn-c" style="position: fixed;top: 10px;left: 10px;pointer-events:all;">
                   <span>シューティングゲームをプレイ！</span>
                   <br>ゲームワールドへ移動する<i class="fas fa-angle-double-right"></i>
               
               </a>
+          </div>-->
+
+          <div id="go_to_game" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);padding: 10px 15px;position: fixed;bottom: 10px;left: 60%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;border: 2px solid var(--team-color);border-radius: 3px;">
+            <span class="menu-description">シューティングゲームをプレイ！！</span>
           </div>
 
-          <div id="exit_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 40%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="exit_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 20%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             
             <span class="menu-description">退出</span>
           </div>
-          <div id="aircanon_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 60%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="aircanon_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 40%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             
             <span class="menu-description">空気砲</span>
           </div>
