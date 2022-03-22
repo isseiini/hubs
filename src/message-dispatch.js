@@ -88,6 +88,8 @@ const Game_Result2 = document.getElementById("game-progress-cover1");
 const Game_Result3 = document.getElementById("game-progress-cover2");
 const Game_Result_sub = document.getElementById("game-progress-sub");
 
+let team = document.getElementById("score-display-top").innerText;
+
 function Alert(message) {
   const Alert = document.getElementById("Player_Alert");
   Alert.innerText = message;
@@ -421,6 +423,42 @@ export default class MessageDispatch extends EventTarget {
       Game_Result3.innerText = "Game Finish";
       Game_Result_sub.innerText = "レッドチームの勝ちです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
+      const Red_Score = document.getElementById("red-score");
+      const Blue_Score = document.getElementById("blue-score");
+      const Red_Progress = document.getElementById("Red-Progress");
+      const Blue_Progress = document.getElementById("Blue-Progress");
+      Red_Score.innerText = "0";
+      Blue_Score.innerText = "0";
+      Red_Progress.value = 0;
+      Blue_Progress.value = 0;
+      if (team == "BlueTeam") {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        }
+        setTimeout(() => {
+          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+        }, 1500);
+      } else {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        }
+      }
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
@@ -440,6 +478,42 @@ export default class MessageDispatch extends EventTarget {
       Game_Result3.innerText = "Game Finish";
       Game_Result_sub.innerText = "ブルーチームの勝ちです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
+      const Red_Score = document.getElementById("red-score");
+      const Blue_Score = document.getElementById("blue-score");
+      const Red_Progress = document.getElementById("Red-Progress");
+      const Blue_Progress = document.getElementById("Blue-Progress");
+      Red_Score.innerText = "0";
+      Blue_Score.innerText = "0";
+      Red_Progress.value = 0;
+      Blue_Progress.value = 0;
+      if (team == "BlueTeam") {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        }
+        setTimeout(() => {
+          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+        }, 1500);
+      } else {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        }
+      }
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();

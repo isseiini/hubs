@@ -222,9 +222,51 @@ function count_down() {
       Game_Result3.innerText = "Game Finish";
       Game_Result_sub.innerText = "引き分けです 30秒後に次のゲームが始まります";
       Game_Result.style.display = "flex";
+      const Red_Score = document.getElementById("red-score");
+      const Blue_Score = document.getElementById("blue-score");
+      const Red_Progress = document.getElementById("Red-Progress");
+      const Blue_Progress = document.getElementById("Blue-Progress");
+      Red_Score.innerText = "0";
+      Blue_Score.innerText = "0";
+      Red_Progress.value = 0;
+      Blue_Progress.value = 0;
+      if (team == "BlueTeam") {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+          }, 1500);
+        }
+        setTimeout(() => {
+          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
+        }, 1500);
+      } else {
+        if (arr1.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        } else if (arr3.indexOf(room_name) !== -1) {
+          let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
+          setTimeout(() => {
+            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
+          }, 1500);
+        }
+      }
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
+        if (document.querySelectorAll("[networked-avatar]").length != 1) {
+          timeCount = 420;
+
+          interval = setInterval(count_down, 1000);
+          isStart = true;
+        }
       }, 30000);
     }
   } else {
