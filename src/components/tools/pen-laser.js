@@ -71,6 +71,7 @@ AFRAME.registerComponent("aircanon-animation", {
     this.isLocalPlayer = this.el.parentElement.parentElement.id === "avatar-rig";
     this.AirCanonMesh = cloneObject3D(AirCanon.scene);
     this.AirCanonMesh.scale.set(0.15, 0.15, 0.15);
+    this.AirCanonMesh.position.set(0, 0, 0);
 
     NAF.utils.getNetworkedEntity(this.el).then(networkedEl => {
       this.targetEl = networkedEl;
@@ -80,8 +81,6 @@ AFRAME.registerComponent("aircanon-animation", {
 
     if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
       this.el.setObject3D("mesh", this.AirCanonMesh);
-      this.AirCanonMesh.position.set(0, 0.5, -0.8);
-      this.AirCanonMesh.rotation.set(180, -90, 90);
     }
 
     if (this.isLocalPlayer) {
@@ -89,7 +88,7 @@ AFRAME.registerComponent("aircanon-animation", {
       this.rotate120 = 0;
       //this.Shoot = this.Shoot.bind(this);
     } else {
-      this.AirCanonMesh.rotation.set(90, -90, 0);
+      this.AirCanonMesh.rotation.set(-180, 0, 0);
     }
   },
 

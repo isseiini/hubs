@@ -38,7 +38,8 @@ AFRAME.registerComponent("player-info", {
     avatarSrc: { type: "string" },
     avatarType: { type: "string", default: AVATAR_TYPES.SKINNABLE },
     muted: { default: false },
-    isSharingAvatarCamera: { default: false }
+    isSharingAvatarCamera: { default: false },
+    color: { default: "#fff" }
   },
   init() {
     this.displayName = null;
@@ -57,6 +58,8 @@ AFRAME.registerComponent("player-info", {
     this.isLocalPlayerInfo = this.el.id === "avatar-rig";
     this.playerSessionId = null;
 
+    this.nametagEl = this.el.querySelector(".nametag");
+
     if (!this.isLocalPlayerInfo) {
       NAF.utils.getNetworkedEntity(this.el).then(networkedEntity => {
         this.playerSessionId = NAF.utils.getCreator(networkedEntity);
@@ -66,11 +69,8 @@ AFRAME.registerComponent("player-info", {
         }
       });
     } else {
-      NAF.utils.getNetworkedEntity(this.el).then(networkedEntity => {
-        const nametagEl = this.el.querySelector(".nametag");
-        let text_color = document.documentElement.style.getPropertyValue("--team-color");
-        nametagEl.setAttribute("text", { color: text_color });
-      });
+      let text_color = document.documentElement.style.getPropertyValue("--team-color");
+      this.nametagEl.setAttribute("text", { color: this.data.color });
     }
     registerComponentInstance(this, "player-info");
   },
@@ -114,6 +114,9 @@ AFRAME.registerComponent("player-info", {
   },
 
   update() {
+    if (this.isLocalPlayerInfo) {
+      this.nametagEl.setAttribute("text", { color: this.data.color });
+    }
     this.applyProperties();
   },
   updateDisplayName(e) {

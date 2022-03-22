@@ -216,7 +216,11 @@ export default class SceneEntryManager {
     this._lastFetchedAvatarId = avatarId;
     const avatarSrc = await getAvatarSrc(avatarId);
 
-    this.avatarRig.setAttribute("player-info", { avatarSrc, avatarType: getAvatarType(avatarId) });
+    this.avatarRig.setAttribute("player-info", {
+      avatarSrc,
+      avatarType: getAvatarType(avatarId),
+      color: document.getElementById("score-display-top").innerText
+    });
   };
 
   _setupKicking = () => {
