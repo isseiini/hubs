@@ -2215,6 +2215,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   arr1.indexOf(room_name) !== -1
                 ) {
+                  if (window.RedSum >= window.BlueSum) {
+                    window.APP.store.update({
+                      profile: { displayName: "Blue_" + meta.profile.displayName }
+                    });
+                  } else {
+                    window.APP.store.update({
+                      profile: { displayName: "Red_" + meta.profile.displayName }
+                    });
+                  }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
@@ -2273,6 +2282,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                   meta.profile.displayName &&
                   arr3.indexOf(room_name) !== -1
                 ) {
+                  if (window.RedSum >= window.BlueSum) {
+                    window.APP.store.update({
+                      profile: { displayName: "Blue_" + meta.profile.displayName }
+                    });
+                  } else {
+                    window.APP.store.update({
+                      profile: { displayName: "Red_" + meta.profile.displayName }
+                    });
+                  }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
