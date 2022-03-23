@@ -1213,10 +1213,11 @@ export function Get_Coupon(number) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   var nowTime = new Date();
+  var nowYear = nowTime.getFullYear();
   var nowHour = nowTime.getHours();
   var nowMin = nowTime.getMinutes();
   var nowSec = nowTime.getSeconds();
-  window.startDate = nowHour + ":" + nowMin + ":" + nowSec;
+  window.startDate = nowYear + ":" + nowHour + ":" + nowMin + ":" + nowSec;
   const cognito_mine = userPool.getCurrentUser();
   if (cognito_mine != null) {
     cognito_mine.getSession((err, session) => {
