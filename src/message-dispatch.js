@@ -431,7 +431,7 @@ export default class MessageDispatch extends EventTarget {
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
       let team = document.getElementById("score-display-top").innerText;
-      if (team == "BlueTeam") {
+      if (team == "RedTeam") {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
           setTimeout(() => {
@@ -487,7 +487,7 @@ export default class MessageDispatch extends EventTarget {
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
       let team = document.getElementById("score-display-top").innerText;
-      if (team == "BlueTeam") {
+      if (team == "RedTeam") {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
           setTimeout(() => {

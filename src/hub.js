@@ -230,7 +230,7 @@ function count_down() {
       Blue_Score.innerText = "0";
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
-      if (team == "BlueTeam") {
+      if (team == "RedTeam") {
         if (arr1.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
           setTimeout(() => {
