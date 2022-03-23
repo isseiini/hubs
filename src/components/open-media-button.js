@@ -100,6 +100,8 @@ AFRAME.registerComponent("open-media-button", {
           } else {
             var nowTime = new Date();
             var nowYear = nowTime.getFullYear();
+            var nowMonth = nowTime.getMonth() + 1;
+            var nowDay = nowTime.getDate();
             var nowHour = nowTime.getHours();
             var nowMin = nowTime.getMinutes();
             var nowSec = nowTime.getSeconds();
@@ -112,7 +114,7 @@ AFRAME.registerComponent("open-media-button", {
                 start_Date: startDate,
                 UserID: UserData + UserID_num,
                 Link_name: this.src,
-                Link_Date: nowYear + ":" + nowHour + ":" + nowMin + ":" + nowSec
+                Link_Date: nowYear + "/" + nowMonth + "/" + nowDay + "-" + nowHour + ":" + nowMin + ":" + nowSec
               }
             };
             docClient.put(Link_params, function(err, data) {
@@ -126,6 +128,8 @@ AFRAME.registerComponent("open-media-button", {
         } else {
           var nowTime = new Date();
           var nowYear = nowTime.getFullYear();
+          var nowMonth = nowTime.getMonth() + 1;
+          var nowDay = nowTime.getDate();
           var nowHour = nowTime.getHours();
           var nowMin = nowTime.getMinutes();
           var nowSec = nowTime.getSeconds();
@@ -138,7 +142,7 @@ AFRAME.registerComponent("open-media-button", {
               start_Date: startDate,
               UserID: UserData + UserID_num,
               Link_name: this.src,
-              Link_Date: nowYear + ":" + nowHour + ":" + nowMin + ":" + nowSec
+              Link_Date: nowYear + "/" + nowMonth + "/" + nowDay + "-" + nowHour + ":" + nowMin + ":" + nowSec
             }
           };
           docClient.put(Link_params, function(err, data) {
@@ -185,6 +189,8 @@ AFRAME.registerComponent("open-media-button", {
           } else {
             var nowTime = new Date();
             var nowYear = nowTime.getFullYear();
+            var nowMonth = nowTime.getMonth() + 1;
+            var nowDay = nowTime.getDate();
             var nowHour = nowTime.getHours();
             var nowMin = nowTime.getMinutes();
             var nowSec = nowTime.getSeconds();
@@ -197,7 +203,7 @@ AFRAME.registerComponent("open-media-button", {
                 start_Date: startDate,
                 UserID: UserData + UserID_num,
                 Link_name: this.src,
-                Link_Date: nowYer + ":" + nowHour + ":" + nowMin + ":" + nowSec
+                Link_Date: nowYear + "/" + nowMonth + "/" + nowDay + "-" + nowHour + ":" + nowMin + ":" + nowSec
               }
             };
             docClient.put(Link_params, function(err, data) {
@@ -211,6 +217,8 @@ AFRAME.registerComponent("open-media-button", {
         } else {
           var nowTime = new Date();
           var nowYear = nowTime.getFullYear();
+          var nowMonth = nowTime.getMonth() + 1;
+          var nowDay = nowTime.getDate();
           var nowHour = nowTime.getHours();
           var nowMin = nowTime.getMinutes();
           var nowSec = nowTime.getSeconds();
@@ -223,7 +231,7 @@ AFRAME.registerComponent("open-media-button", {
               start_Date: startDate,
               UserID: UserData + UserID_num,
               Link_name: this.src,
-              Link_Date: nowYear + ":" + nowHour + ":" + nowMin + ":" + nowSec
+              Link_Date: nowYear + "/" + nowMonth + "/" + nowDay + "-" + nowHour + ":" + nowMin + ":" + nowSec
             }
           };
           docClient.put(Link_params, function(err, data) {
