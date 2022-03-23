@@ -136,7 +136,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               }
             });
             var ViewPoint_params = {
-              TableName: "Communication",
+              TableName: "ViewPoint",
               Item: {
                 PlayID: PlayID,
                 URL: room_name,

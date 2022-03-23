@@ -2714,7 +2714,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
     var ViewPoint_params = {
-      TableName: "Communication",
+      TableName: "ViewPoint",
       Item: {
         PlayID: PlayID,
         URL: room_name,
