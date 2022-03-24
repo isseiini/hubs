@@ -1225,7 +1225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (cognito_mine != null) {
     cognito_mine.getSession((err, session) => {
       if (err) {
-        location.href = "https://virtual-dotonbori.com/";
+        //location.href = "https://virtual-dotonbori.com/";
       } else {
         cognito_mine.getUserAttributes((err, result) => {
           if (err) {
@@ -1242,7 +1242,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } else {
-    location.href = "https://virtual-dotonbori.com/";
+    //location.href = "https://virtual-dotonbori.com/";
   }
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
@@ -1343,7 +1343,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     aircanon_button.style.display = "none";
   } else {
     //不正なURL
-    location.href = "https://virtual-dotonbori.com/";
+    //location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
@@ -2629,7 +2629,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         data3.Items.sort((a, b) => b.Sum - a.Sum);
         console.log(data3.Items);
-        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+        //var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
 
         if (confirm("マッチングしました。対戦ワールドへ移動します。")) {
           setTimeout(() => {
