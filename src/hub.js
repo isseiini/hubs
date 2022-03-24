@@ -1212,6 +1212,7 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  console.log("dev");
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
   var nowMonth = nowTime.getMonth() + 1;
