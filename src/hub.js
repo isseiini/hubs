@@ -1212,7 +1212,13 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("dev");
+  window.addEventListener("beforeunload", () => {
+    const message = "入力内容が保存されない可能性があります。ページを離れますか？";
+    e.preventDefault();
+    e.returnValue = message;
+    return message;
+  });
+
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
   var nowMonth = nowTime.getMonth() + 1;
