@@ -1213,6 +1213,9 @@ export function Get_Coupon(number) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   window.addEventListener("beforeunload", function(event) {
+    if (close_flag !== true) {
+      return null;
+    }
     event.preventDefault();
     var ViewPoint_params = {
       TableName: "ViewPoint",
@@ -2106,6 +2109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.TextCommunicationlist = [];
                   window.VoiceCommunicationlist = [];
                   window.talk_position = [];
+                  window.close_flag = true;
 
                   //const avatarRig = document.getElementById("avatar-rig").object3D;
 
