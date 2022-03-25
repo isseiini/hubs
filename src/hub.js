@@ -1225,7 +1225,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (err) {
         console.log("error");
       } else {
-        location.href = "/";
       }
     });
     event.returnValue = "";
