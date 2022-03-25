@@ -1212,11 +1212,10 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  window.addEventListener("beforeunload", () => {
-    const message = "入力内容が保存されない可能性があります。ページを離れますか？";
-    e.preventDefault();
-    e.returnValue = message;
-    return message;
+  window.addEventListener("beforeunload", function(event) {
+    event.preventDefault();
+    console.log("aihih");
+    event.returnValue = "";
   });
 
   var nowTime = new Date();
