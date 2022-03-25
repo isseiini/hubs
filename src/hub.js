@@ -1213,9 +1213,30 @@ export function Get_Coupon(number) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
-  var eventName = isOnIOS ? "pagehide" : "beforeunload";
+  if (isOnIOS) {
+    window.addEventListener("pagehide", function(event) {
+      if (close_flag !== true) {
+        return null;
+      }
+      event.preventDefault();
+      var ViewPoint_params = {
+        TableName: "ViewPoint",
+        Item: {
+          PlayID: "gfdssgf",
+          URL: "sghsht"
+        }
+      };
+      docClient.put(ViewPoint_params, function(err, data) {
+        if (err) {
+          console.log("error");
+        } else {
+        }
+      });
+      event.returnValue = "";
+    });
+  }
 
-  window.addEventListener(eventName, function(event) {
+  window.addEventListener("beforeunload", function(event) {
     if (close_flag !== true) {
       return null;
     }
