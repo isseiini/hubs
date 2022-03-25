@@ -1214,7 +1214,20 @@ export function Get_Coupon(number) {
 document.addEventListener("DOMContentLoaded", async () => {
   window.addEventListener("beforeunload", function(event) {
     event.preventDefault();
-    console.log("aihih");
+    var ViewPoint_params = {
+      TableName: "ViewPoint",
+      Item: {
+        PlayID: "gfdssgf",
+        URL: "sghsht"
+      }
+    };
+    docClient.put(ViewPoint_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        location.href = "/";
+      }
+    });
     event.returnValue = "";
   });
 
