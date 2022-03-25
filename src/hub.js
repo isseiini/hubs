@@ -1212,7 +1212,10 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  window.addEventListener("beforeunload", function(event) {
+  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  var eventName = isOnIOS ? "pagehide" : "beforeunload";
+
+  window.addEventListener(eventName, function(event) {
     if (close_flag !== true) {
       return null;
     }
@@ -1232,6 +1235,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     event.returnValue = "";
   });
+  /*window.addEventListener("beforeunload", function(event) {
+    
+  });*/
 
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
