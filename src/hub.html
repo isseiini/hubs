@@ -238,6 +238,7 @@
     }
 
     #terms-container {
+      position: -webkit-fixed;
       position: fixed;
       background-color: #aaaaaa;
       top: 0;
@@ -640,6 +641,7 @@
       --aug-inlay-bg:var(--main-color);
       width: 6em;
       height: 6em;
+      position: -webkit-fixed;
       position: fixed;
       bottom: 100px;
       right: 20px;
@@ -665,6 +667,7 @@
       max-width: 600px;
       height: 60vw;
       max-height: 600px;
+      position: -webkit-fixed;
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -800,6 +803,7 @@
       pointer-events: none;
       transition: opacity 0.5s linear;
       opacity: 1;
+      position: -webkit-fixed;
       position: fixed;
       left: 0;
       right: 0;
@@ -894,6 +898,7 @@
       color: var(--team-color);
       box-sizing: border-box;
       background-color: transparent;
+      position: -webkit-fixed;
       position: fixed;
       top: 55px;
       left: 15px;
@@ -953,6 +958,7 @@
       --aug-inlay-bg: #ffffff;
       color: var(--team-color);
       box-sizing: border-box;
+      position: -webkit-fixed;
       position: fixed;
       top: 0;
       left: 0;
@@ -1035,6 +1041,7 @@
       max-width: calc(var(--UI-width) * 0.25);
       border: 1px solid gray;
       outline: 1px solid var(--team-color);
+      position: -webkit-fixed;
       position: fixed;
       top: 55px;
       right: 15px;
@@ -1200,6 +1207,7 @@
     }
     
     .modal {
+      position: -webkit-fixed;
       position: fixed;
       width: 600px;
       max-width: 90%;
@@ -1307,6 +1315,7 @@
     
     pointer-events:none;
     --aug-border-all: 2px;
+    position: -webkit-fixed;
     position: fixed;
     top: 0;
     left: 0;
@@ -1486,6 +1495,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      position: -webkit-fixed;
       position: fixed;
       bottom: 50%;
       right: 0;
@@ -1542,7 +1552,7 @@
         light="defaultLightsEnabled: false"
     >
       <div id="overlay">
-        <div id="Player-Guide" style="pointer-events:all;width:100%;height: 100%; z-index: 1003;pointer-events: all;position: fixed;top: 0;left: 0;background-color: transparent;display: none;">
+        <div id="Player-Guide" style="pointer-events:all;width:100%;height: 100%; z-index: 1003;pointer-events: all;position: -webkit-fixed;position: fixed;top: 0;left: 0;background-color: transparent;display: none;">
           <div class="guide-parts" style="top: 0;left: 0;width: 100%;height: 40px;">ゲームの進行度</div>
           <div class="guide-parts" style="top: 40px;left: 0;width: 33%;height: 20%;">残りHPとプレイヤー名</div>
           <div class="guide-parts" style="top: 40px;left: 33%;width: 33%;height: 20%;">所属チームと残り時間</div>
@@ -1590,7 +1600,7 @@
           </div>
           <div class="guide-parts" style="top: calc(20% + 40px);left: 0%;width: 66%;height: 10%;color: #ffffff;font-size: 2rem;">画面をタップすると元のワールドに戻ります</div>
         </div>
-        <div id="Player-UI" data-augmented-ui="bl-clip-y br-clip b-rect both" style="z-index: 1000;pointer-events: none;position: fixed;top: 0;left: 0;">
+        <div id="Player-UI" data-augmented-ui="bl-clip-y br-clip b-rect both" style="z-index: 1000;pointer-events: none;position: -webkit-fixed;position: fixed;top: 0;left: 0;">
           <div id="Player_UI_top" style="display: flex; flex-direction: row;justify-content:center;width: 100%;height: 200px;background-color: transparent;background: rgb(255,255,255);background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(152,152,168,0) 0%, var(--team-color-sub) 10%);">
             <p id="life-label" style="display:none">HP</p>
             <p id="Player_name" style="display: none;"></p>
@@ -1637,25 +1647,25 @@
               </a>
           </div>-->
 
-          <div id="go-to-game" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);padding: 15px 25px;font-size: 2.5rem;position: fixed;top: 10px;left: 15px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;border: 2px solid var(--team-color);border-radius: 3px;">
+          <div id="go-to-game" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);padding: 15px 25px;font-size: 2.5rem;position: -webkit-fixed;position: fixed;top: 10px;left: 15px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;border: 2px solid var(--team-color);border-radius: 3px;">
             <span class="menu-description">シューティングゲームをプレイ！！</span>
           </div>
 
-          <div id="exit_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 20%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="exit_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: -webkit-fixed;position: fixed;bottom: 10px;left: 20%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             
             <span class="menu-description">退出</span>
           </div>
-          <div id="aircanon_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 40%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="aircanon_button" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: -webkit-fixed;position: fixed;bottom: 10px;left: 40%;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             
             <span class="menu-description">空気砲</span>
           </div>
 
-          <div id="general_menu" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 90px;left: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="general_menu" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: -webkit-fixed;position: fixed;bottom: 90px;left: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             <img src="assets/images/iconmonstr-menu-1-240.png" alt="" style="display: block;margin: 0 auto;width: 40%;">
             <span class="menu-description">メニュー</span>
           </div>
 
-          <div id="general_guide" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: fixed;bottom: 10px;left: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
+          <div id="general_guide" style="pointer-events:all;background-color: rgba(255, 255, 255, 0.445);--aug-border-bg:var(--team-color);--aug-inlay-bg:var(--team-color);width: 6em;height: 6em;position: -webkit-fixed;position: fixed;bottom: 10px;left: 20px;z-index: 1001;display: flex;flex-direction: column;justify-content: center;flex-wrap:wrap;" data-augmented-ui="all-hex border">
             <img src="assets/images/iconmonstr-tablet-5-240.png" alt="" style="display: block;margin: 0 auto;width: 40%;">
             <span class="menu-description">操作ガイド</span>
           </div>
@@ -1667,7 +1677,7 @@
             </a>
           </div>-->
 
-          <div id="Player_tips" style="position: fixed;top: 0;left: 0;width: 100vw;height: calc(100% - 120px);background-color: transparent;z-index: 1001;pointer-events: none;">
+          <div id="Player_tips" style="position: -webkit-fixed;position: fixed;top: 0;left: 0;width: 100vw;height: calc(100% - 120px);background-color: transparent;z-index: 1001;pointer-events: none;">
             <!--<div id="Player_tips_container">
               <h1>スコア</h1>
               <table border="1" id="RedTable">
@@ -1746,11 +1756,11 @@
             
           </div>
 
-          <div id="Player-Respawn" style="pointer-events: all; width: 100vw; height: 100vh; z-index: 1003;background-color: #ffffff96;position: fixed;top: 0;left: 0;display: none;cursor: pointer;">
+          <div id="Player-Respawn" style="pointer-events: all; width: 100vw; height: 100vh; z-index: 1003;background-color: #ffffff96;position: -webkit-fixed;position: fixed;top: 0;left: 0;display: none;cursor: pointer;">
             <input style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="リスポーンする">
           </div>
 
-          <div id="Game-Result" style="pointer-events: all; width: 100vw; height: 100vh; z-index: 1004;background-color: #ffffff96;position: fixed;top: 0;left: 0;display: none;">
+          <div id="Game-Result" style="pointer-events: all; width: 100vw; height: 100vh; z-index: 1004;background-color: #ffffff96;position: -webkit-fixed;position: fixed;top: 0;left: 0;display: none;">
             <h1 style="text-align: center;width: 100%;margin: 40px auto;">勝利！！</h1>
             <input id="Game-Restart" style="padding: 0.25rem 2rem 1.5rem 3.5rem;font-size: 2.2rem;cursor: pointer;border-radius: 0.5rem;color: #fff;background: #00e1ffc7;-webkit-box-shadow: 0 5px 0 #03a7bd63;box-shadow: 0 5px 0 #03a7bd63;position: absolute;top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 5px 10px; border: 2px solid #00e1ff63;" type="button" value="次のゲームを始める">
           </div>
