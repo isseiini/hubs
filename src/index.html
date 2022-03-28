@@ -613,7 +613,10 @@
         right: 20px;
         transform-style: preserve-3d;
         z-index: 2;
-        transform: perspective(2000px) rotateX(30deg) rotateY(-20deg);
+        -webkit-perspective: 2000px;
+        perspective: 2000px;
+        -webkit-transform: rotateX(30deg) rotateY(-20deg);
+        transform: rotateX(30deg) rotateY(-20deg);
       }
 
       #grid-tl,
