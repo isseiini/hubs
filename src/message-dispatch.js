@@ -98,6 +98,7 @@ function count_down() {
         scene.play();
         var count_down = document.getElementById("time");
         count_down.innerHTML = "07:00";
+        count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length != 1) {
           timeCount = 420;
           isStart = false;
@@ -570,6 +571,7 @@ export default class MessageDispatch extends EventTarget {
         scene.play();
         var count_down = document.getElementById("time");
         count_down.innerHTML = "07:00";
+        count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
@@ -634,6 +636,7 @@ export default class MessageDispatch extends EventTarget {
         scene.play();
         var count_down = document.getElementById("time");
         count_down.innerHTML = "07:00";
+        count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
