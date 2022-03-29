@@ -150,7 +150,7 @@ AFRAME.registerComponent("player-info", {
       }
       //let text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: text_color})
-      nametagEl.object3D.visible = !infoShouldBeHidden;
+      nametagEl.object3D.visible = true; //!infoShouldBeHidden; //change points
       //this.text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: this.text_color });
     }
