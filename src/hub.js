@@ -1218,7 +1218,7 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
       if (close_flag !== true) {
@@ -1307,7 +1307,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
     event.returnValue = "";
-  });
+  });*/
 
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
@@ -1321,7 +1321,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (cognito_mine != null) {
     cognito_mine.getSession((err, session) => {
       if (err) {
-        location.href = "https://virtual-dotonbori.com/";
+        //location.href = "https://virtual-dotonbori.com/";
       } else {
         cognito_mine.getUserAttributes((err, result) => {
           if (err) {
@@ -1338,7 +1338,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } else {
-    location.href = "https://virtual-dotonbori.com/";
+    //location.href = "https://virtual-dotonbori.com/";
   }
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
@@ -1439,7 +1439,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     aircanon_button.style.display = "none";
   } else {
     //不正なURL
-    location.href = "https://virtual-dotonbori.com/";
+    //location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
