@@ -178,6 +178,9 @@ const Red_Score = document.getElementById("red-score");
 const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
+var count_down = document.getElementById("time");
+count_down.innerHTML = "07:00";
+
 function count_start() {
   if (isStart === false) {
     interval = setInterval(count_down, 1000);
