@@ -2708,8 +2708,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {
-    if (!alert("トップページに戻ります。")) {
-      /*let arr1 = [
+    /*let arr1 = [
         "fresh-candid-barbecue",
         "posh-courteous-plane",
         "curly-wicked-conclave",
@@ -2799,8 +2798,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           window.close_flag = false;
         }
       });*/
-      window.close_flag = false;
-      location.href = window.location.hostname;
-    }
+    window.close_flag = false;
+    location.href = "https://vleap-workspace.com/";
   });
 });
