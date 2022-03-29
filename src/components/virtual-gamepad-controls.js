@@ -161,8 +161,8 @@ AFRAME.registerComponent("virtual-gamepad-controls", {
   onMoveJoystickChanged(event, joystick) {
     if (window.APP.preferenceScreenIsVisible) return;
     const angle = joystick.angle.radian;
-    const force = joystick.force < 1 ? joystick.force : 1;
-    this.displacement.set(Math.cos(angle), 0, Math.sin(angle)).multiplyScalar(joystick.force * 1.85); //change points
+    const force = joystick.force < 2 ? joystick.force : 2;
+    this.displacement.set(Math.cos(angle), 0, Math.sin(angle)).multiplyScalar(force * 1.85); //change points
     this.moving = true;
   },
 
