@@ -266,6 +266,7 @@ function count_down() {
           isStart = false;
           count_start();
           isStart = true;
+          document.getElementById("life-background").style.width = "100%";
         }
       }, 30000);
     }
