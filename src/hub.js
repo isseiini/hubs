@@ -178,9 +178,6 @@ const Red_Score = document.getElementById("red-score");
 const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
-var count_down = document.getElementById("time");
-count_down.innerHTML = "07:00";
-
 function count_start() {
   if (isStart === false) {
     interval = setInterval(count_down, 1000);
@@ -2238,6 +2235,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const hanabi_index = "target: ." + meta.profile.displayName + "_hanabi_pov;offset: 0 -1 0.8;";
                   aircanon_container.setAttribute("follow-in-fov", aircanon_index);
                   hanabi_container.setAttribute("follow-in-fov", hanabi_index);
+
+                  var count_down = document.getElementById("time");
+                  count_down.innerHTML = "07:00";
                 }
                 //↓他人入場時のゲームワールド全体
                 if (

@@ -83,8 +83,6 @@ AFRAME.registerComponent("aircanon-animation", {
 
     if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
       this.el.setObject3D("mesh", this.AirCanonMesh);
-    } else {
-      document.querySelector(".reticle").style.display = "none";
     }
 
     if (this.isLocalPlayer) {
@@ -199,8 +197,10 @@ AFRAME.registerComponent("pen-laser", {
     this.targetBuffer = new InterpolationBuffer(InterpolationBuffer.MODE_LERP, 0.1);
 
     this.camera = document.getElementById("viewing-camera").getObject3D("camera");
-    this.reticle = document.querySelector(".reticle");
-    this.reticle.style.display = "block";
+    if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
+      this.reticle = document.querySelector(".reticle");
+      this.reticle.style.display = "block";
+    }
   },
 
   update: (() => {
