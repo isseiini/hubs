@@ -1214,7 +1214,7 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
       if (close_flag !== true) {
@@ -1258,7 +1258,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     event.returnValue = "";
   });
-  /*window.addEventListener("beforeunload", function(event) {
+  window.addEventListener("beforeunload", function(event) {
     
   });*/
 
