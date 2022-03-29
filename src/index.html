@@ -41,6 +41,10 @@
         overflow-x: hidden;
       }
 
+      _:lang(x)+_:-webkit-full-screen-document, body {
+        min-height: -webkit-fill-available;
+      }
+
       .canscroll-y {
         overflow-y: scroll;
         -ms-overflow-style: none; /* IE, Edge 対応 */
