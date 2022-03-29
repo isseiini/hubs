@@ -2178,9 +2178,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                       Player_Guide.style.display = "none";
                     }
                   });
-                  if (document.querySelectorAll("[networked-avatar]").length != 1) {
-                    count_start();
-                  }
 
                   if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
                     var table = "Matching-table";
@@ -2241,6 +2238,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                   var count_down = document.getElementById("time");
                   count_down.innerHTML = "07:00";
                   count_down.style.color = "black";
+                  if (document.querySelectorAll("[networked-avatar]").length != 1) {
+                    count_start();
+                  }
                 }
                 //↓他人入場時のゲームワールド全体
                 if (
@@ -2266,6 +2266,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                   hit_target_container.value = window.timeCount;
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
+                  if ((timeCount = 420)) {
+                    isStart = false;
+                    count_start();
+                    isStart = true;
+                  }
                 }
                 //ゲームワールド１
                 if (
