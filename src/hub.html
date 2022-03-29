@@ -1523,7 +1523,7 @@
     <div id="support-root"></div>
 
     <a-scene
-        
+        webxr="optionalFeatures: dom-overlay; overlayElement:#overlay;"
         disable-resize
         embedded
         vr-mode-ui="enabled: false"
@@ -1551,8 +1551,7 @@
         environment-map
         light="defaultLightsEnabled: false"
     >
-    <canvas id="overlay" data-aframe-canvas="true" data-engine="three.js r137" >
-      
+      <div id="overlay">
         <div id="Player-Guide" style="pointer-events:all;width:100%;height: 100%; z-index: 1003;pointer-events: all;position: -webkit-fixed;position: fixed;top: 0;left: 0;background-color: transparent;display: none;">
           <div class="guide-parts" style="top: 0;left: 0;width: 100%;height: 40px;">ゲームの進行度</div>
           <div class="guide-parts" style="top: 40px;left: 0;width: 33%;height: 20%;">残りHPとプレイヤー名</div>
@@ -1788,7 +1787,7 @@
             <p style="text-align: center;padding: 10px 0;background-color: yellow;">端末を横向きにしてお使いください。</p>
           </div>
         </div>
-      </canvas>
+      </div>
         
         <a-assets>
             <img id="presence-count" crossorigin="anonymous" src="./assets/hud/presence-count.png">
