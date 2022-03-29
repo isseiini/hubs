@@ -83,6 +83,8 @@ AFRAME.registerComponent("aircanon-animation", {
 
     if (arr1.indexOf(room_name) !== -1 || arr3.indexOf(room_name) !== -1) {
       this.el.setObject3D("mesh", this.AirCanonMesh);
+    } else {
+      document.querySelector(".reticle").style.display = "none";
     }
 
     if (this.isLocalPlayer) {
