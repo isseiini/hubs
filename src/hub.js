@@ -260,7 +260,7 @@ function count_down() {
         scene.play();
         var count_down = document.getElementById("time");
         count_down.innerHTML = "07:00";
-        if (document.querySelectorAll("[networked-avatar]").length != 1) {
+        if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
           count_start();
