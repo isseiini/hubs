@@ -258,10 +258,12 @@ function count_down() {
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
+        var count_down = document.getElementById("time");
+        count_down.innerHTML = "07:00";
         if (document.querySelectorAll("[networked-avatar]").length != 1) {
           timeCount = 420;
-
-          interval = setInterval(count_down, 1000);
+          isStart = false;
+          count_start();
           isStart = true;
         }
       }, 30000);
