@@ -67,14 +67,16 @@ export default class SceneEntryManager {
       "posh-courteous-plane",
       "curly-wicked-conclave",
       "clever-powerful-gala",
-      "kooky-passionate-safari"
+      "kooky-passionate-safari",
+      "peru-plush-park"
     ];
     this.arr2 = [
       "conscious-tricky-camp",
       "impressive-easygoing-commons",
       "fine-zigzag-exploration",
       "wee-likable-commons",
-      "envious-shiny-vacation"
+      "envious-shiny-vacation",
+      "luxurious-worthwhile-volume"
     ];
   }
 

@@ -70,14 +70,16 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               "posh-courteous-plane",
               "curly-wicked-conclave",
               "clever-powerful-gala",
-              "kooky-passionate-safari"
+              "kooky-passionate-safari",
+              "peru-plush-park"
             ];
             let arr2 = [
               "conscious-tricky-camp",
               "impressive-easygoing-commons",
               "fine-zigzag-exploration",
               "wee-likable-commons",
-              "envious-shiny-vacation"
+              "envious-shiny-vacation",
+              "luxurious-worthwhile-volume"
             ];
             let arr3 = [
               "devoted-healthy-gala",
