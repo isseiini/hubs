@@ -1668,6 +1668,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.body.classList.add("vr-mode-stretch");
       }
     });
+
+    const options = {
+      optionalFeatures: ["dom-overlay"],
+      domOverlay: { root: document.getElementById("overlay") }
+    };
+
+    navigator.xr.requestSession("immersive-vr", options).then(session => {
+      session.isImmersive = true;
+      this.createSession(session);
+    });
   });
 
   handleEarlyVRMode();
