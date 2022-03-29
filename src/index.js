@@ -474,6 +474,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               if (confirm("マッチングしました。観光ワールドへ移動します。")) {
                 setTimeout(() => {
+                  window.close_flag = false;
                   location.href = goal_url;
                 }, 1000);
               } else {
