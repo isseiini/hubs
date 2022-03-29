@@ -470,7 +470,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.log(err);
             } else {
               data3.Items.sort((a, b) => b.Sum - a.Sum);
-              //var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+              var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
 
               if (confirm("マッチングしました。観光ワールドへ移動します。")) {
                 setTimeout(() => {

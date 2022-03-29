@@ -1247,22 +1247,67 @@ document.addEventListener("DOMContentLoaded", async () => {
       return null;
     }
     event.preventDefault();
+    var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+    var room_name = String(current_url[current_url.length - 1]);
+
+    var Communication_params = {
+      TableName: "Communication",
+      Item: {
+        PlayID: PlayID,
+        URL: room_name,
+        text_chat_count: use_text_chat_count,
+        voice_chat_count: talk_count,
+        voice_chat_time: talk_time,
+        User: UserData,
+        talk_position: talk_position,
+        start_Date: startDate
+      }
+    };
+    docClient.put(Communication_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        console.log("success");
+      }
+    });
+    var Position_params = {
+      TableName: "Position",
+      Item: {
+        PlayID: PlayID,
+        URL: room_name,
+        User: UserData,
+        start_Date: startDate,
+        Position: Positionlist
+      }
+    };
+    docClient.put(Position_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        console.log("success");
+      }
+    });
     var ViewPoint_params = {
       TableName: "ViewPoint",
       Item: {
-        PlayID: "gfdssgf",
-        URL: "sghsht"
+        PlayID: PlayID,
+        URL: room_name,
+        User: UserData,
+        start_Date: startDate,
+        ViewPoint: ViewPointlist
       }
     };
     docClient.put(ViewPoint_params, function(err, data) {
       if (err) {
         console.log("error");
       } else {
+        window.close_flag = false;
+        location.href = "https://virtual-dotonbori.com";
       }
     });
     event.returnValue = "";
   });
-  window.addEventListener("beforeunload", function(event) {});
 
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
@@ -1276,7 +1321,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (cognito_mine != null) {
     cognito_mine.getSession((err, session) => {
       if (err) {
-        //location.href = "https://virtual-dotonbori.com/";
+        location.href = "https://virtual-dotonbori.com/";
       } else {
         cognito_mine.getUserAttributes((err, result) => {
           if (err) {
@@ -1293,7 +1338,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } else {
-    //location.href = "https://virtual-dotonbori.com/";
+    location.href = "https://virtual-dotonbori.com/";
   }
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
@@ -1394,7 +1439,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     aircanon_button.style.display = "none";
   } else {
     //不正なURL
-    //location.href = "https://virtual-dotonbori.com/";
+    location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
@@ -2690,7 +2735,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       } else {
         data3.Items.sort((a, b) => b.Sum - a.Sum);
         console.log(data3.Items);
-        //var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
+        var goal_url = "https://virtual-dotonbori.com/" + data3.Items[0].hubId + "/" + data3.Items[0].URL;
 
         if (confirm("マッチングしました。対戦ワールドへ移動します。")) {
           setTimeout(() => {
@@ -2708,97 +2753,94 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {
-    /*let arr1 = [
-        "fresh-candid-barbecue",
-        "posh-courteous-plane",
-        "curly-wicked-conclave",
-        "clever-powerful-gala",
-        "kooky-passionate-safari",
-        "peru-plush-park"
-      ];
-      let arr2 = [
-        "conscious-tricky-camp",
-        "impressive-easygoing-commons",
-        "fine-zigzag-exploration",
-        "wee-likable-commons",
-        "envious-shiny-vacation",
-        "luxurious-worthwhile-volume"
-      ];
-      let arr3 = [
-        "devoted-healthy-gala",
-        "petty-handsome-plaza",
-        "real-qualified-spot",
-        "absolute-pertinent-convention",
-        "neat-striking-spot"
-      ];
-      let arr4 = [
-        "celebrated-calm-rendezvous",
-        "lasting-spiffy-camp",
-        "leafy-expert-dominion",
-        "melodic-courageous-picnic",
-        "plump-cheerful-plane"
-      ];
-      var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
-  
-      var room_name = String(current_url[current_url.length - 1]);
-  
-      document.getElementById("avatar-pov-node").object3D.rotation;
-      var Communication_params = {
-        TableName: "Communication",
-        Item: {
-          PlayID: PlayID,
-          URL: room_name,
-          text_chat_count: use_text_chat_count,
-          voice_chat_count: talk_count,
-          voice_chat_time: talk_time,
-          User: UserData,
-          talk_position: talk_position,
-          start_Date: startDate
-        }
-      };
-      docClient.put(Communication_params, function(err, data) {
-        if (err) {
-          console.log("error");
-        } else {
-          console.log("success");
-        }
-      });
-      var Position_params = {
-        TableName: "Position",
-        Item: {
-          PlayID: PlayID,
-          URL: room_name,
-          User: UserData,
-          start_Date: startDate,
-          Position: Positionlist
-        }
-      };
-      docClient.put(Position_params, function(err, data) {
-        if (err) {
-          console.log("error");
-        } else {
-          console.log("success");
-        }
-      });
-      var ViewPoint_params = {
-        TableName: "ViewPoint",
-        Item: {
-          PlayID: PlayID,
-          URL: room_name,
-          User: UserData,
-          start_Date: startDate,
-          ViewPoint: ViewPointlist
-        }
-      };
-      docClient.put(ViewPoint_params, function(err, data) {
-        if (err) {
-          console.log("error");
-        } else {
-          window.close_flag = false;
-          location.href = "https://virtual-dotonbori.com";
-        }
-      });*/
-    window.close_flag = false;
-    location.href = "https://vleap-workspace.com/";
+    let arr1 = [
+      "fresh-candid-barbecue",
+      "posh-courteous-plane",
+      "curly-wicked-conclave",
+      "clever-powerful-gala",
+      "kooky-passionate-safari",
+      "peru-plush-park"
+    ];
+    let arr2 = [
+      "conscious-tricky-camp",
+      "impressive-easygoing-commons",
+      "fine-zigzag-exploration",
+      "wee-likable-commons",
+      "envious-shiny-vacation",
+      "luxurious-worthwhile-volume"
+    ];
+    let arr3 = [
+      "devoted-healthy-gala",
+      "petty-handsome-plaza",
+      "real-qualified-spot",
+      "absolute-pertinent-convention",
+      "neat-striking-spot"
+    ];
+    let arr4 = [
+      "celebrated-calm-rendezvous",
+      "lasting-spiffy-camp",
+      "leafy-expert-dominion",
+      "melodic-courageous-picnic",
+      "plump-cheerful-plane"
+    ];
+    var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
+
+    var room_name = String(current_url[current_url.length - 1]);
+
+    var Communication_params = {
+      TableName: "Communication",
+      Item: {
+        PlayID: PlayID,
+        URL: room_name,
+        text_chat_count: use_text_chat_count,
+        voice_chat_count: talk_count,
+        voice_chat_time: talk_time,
+        User: UserData,
+        talk_position: talk_position,
+        start_Date: startDate
+      }
+    };
+    docClient.put(Communication_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        console.log("success");
+      }
+    });
+    var Position_params = {
+      TableName: "Position",
+      Item: {
+        PlayID: PlayID,
+        URL: room_name,
+        User: UserData,
+        start_Date: startDate,
+        Position: Positionlist
+      }
+    };
+    docClient.put(Position_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        console.log("success");
+      }
+    });
+    var ViewPoint_params = {
+      TableName: "ViewPoint",
+      Item: {
+        PlayID: PlayID,
+        URL: room_name,
+        User: UserData,
+        start_Date: startDate,
+        ViewPoint: ViewPointlist
+      }
+    };
+    docClient.put(ViewPoint_params, function(err, data) {
+      if (err) {
+        console.log("error");
+      } else {
+        window.close_flag = false;
+        location.href = "https://virtual-dotonbori.com";
+      }
+    });
   });
 });
