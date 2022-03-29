@@ -95,6 +95,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               "melodic-courageous-picnic",
               "plump-cheerful-plane"
             ];
+
             var current_url = (location.protocol + "//" + location.hostname + location.pathname).split("/");
 
             var room_name = String(current_url[current_url.length - 1]);
@@ -151,6 +152,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
               if (err) {
                 console.log("error");
               } else {
+                window.close_flag = false;
                 location.href = "/";
               }
             });
