@@ -102,6 +102,7 @@ function count_down() {
         if (document.querySelectorAll("[networked-avatar]").length != 1) {
           timeCount = 420;
           isStart = false;
+          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
@@ -464,8 +465,8 @@ export default class MessageDispatch extends EventTarget {
       window.BlueSum += 1;
       return;
     }
-    if (entry.type === "chat" && isNaN(entry.body) == false) {
-      window.timeCount = entry.body;
+    if (entry.type === "chat" && entry.body.indexOf("_time:") === 0) {
+      window.timeCount = Number(entry.body.substring(entry.body.indexOf(":") + 1));
       return;
     }
 
@@ -576,6 +577,7 @@ export default class MessageDispatch extends EventTarget {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
+          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
@@ -642,6 +644,7 @@ export default class MessageDispatch extends EventTarget {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
+          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";

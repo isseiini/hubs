@@ -264,6 +264,7 @@ function count_down() {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
+          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
@@ -2308,11 +2309,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
                   }
-                  hit_target_container.value = window.timeCount;
+                  hit_target_container.value = "_time:" + window.timeCount;
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
                   if ((timeCount = 420)) {
                     isStart = false;
+                    clearInterval(interval);
                     count_start();
                     isStart = true;
                   }
