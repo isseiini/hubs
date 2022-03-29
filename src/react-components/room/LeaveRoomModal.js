@@ -65,7 +65,7 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
           preset="cancel"
           rel="noopener noreferrer"
           onClick={() => {
-            let arr1 = [
+            /*let arr1 = [
               "fresh-candid-barbecue",
               "posh-courteous-plane",
               "curly-wicked-conclave",
@@ -155,7 +155,9 @@ export function LeaveRoomModal({ reason, destinationUrl, onClose }) {
                 window.close_flag = false;
                 location.href = "/";
               }
-            });
+            });*/
+            window.close_flag = false;
+            location.href = "/";
           }}
         >
           {intl.formatMessage(confirmationMessages[reason])}
