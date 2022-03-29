@@ -27,15 +27,3 @@ This should only take effect in older version of Oculus Browser that still have 
 if (isOculusBrowser && hasWebVRapi) {
   navigator.getVRDisplays();
 }
-
-if (navigator.xr) {
-  const options = {
-    optionalFeatures: ["dom-overlay"],
-    domOverlay: { root: document.getElementById("overlay") }
-  };
-
-  navigator.xr.requestSession("immersive-vr", options).then(session => {
-    session.isImmersive = true;
-    this.createSession(session);
-  });
-}
