@@ -220,7 +220,7 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
     if (discordBridges.length === 0) {
       placeholder = intl.formatMessage({
         id: "chat-sidebar-container.input-placeholder.empty-room",
-        defaultMessage: "Nobody is here yet..."
+        defaultMessage: "他のプレイヤーがいません"
       });
     } else {
       placeholder = intl.formatMessage(
@@ -268,7 +268,14 @@ export function ChatSidebarContainer({ scene, canSpawnMessages, presences, occup
       <ChatInput
         id="chat-input"
         onKeyDown={onKeyDown}
-        onChange={e => setMessage(e.target.value.replace(/</g, "").replace(/>/g, "").replace(/_/g, ""))}
+        onChange={e =>
+          setMessage(
+            e.target.value
+              .replace(/</g, "")
+              .replace(/>/g, "")
+              .replace(/_/g, "")
+          )
+        }
         placeholder={placeholder}
         value={message}
         afterInput={
