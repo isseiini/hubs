@@ -1396,6 +1396,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
+    document.getElementById("explain1").style.display = "none";
   } else if (arr2.indexOf(room_name) !== -1) {
     //観光ワールド1
     map_img2.style.display = "none";
@@ -1406,6 +1407,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
   } else if (arr3.indexOf(room_name) !== -1) {
     //ゲームワールド2
     map_img.style.display = "none";
@@ -1418,6 +1420,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
+    document.getElementById("explain1").style.display = "none";
   } else if (arr4.indexOf(room_name) !== -1) {
     //観光ワールド2
     map_img.style.display = "none";
@@ -1428,6 +1431,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
   } else if (arr5.indexOf(room_name) !== -1) {
     //とんぼりベース
     map_img.style.display = "none";
@@ -1438,6 +1442,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
   } else {
     //不正なURL
     //location.href = "https://virtual-dotonbori.com/";
