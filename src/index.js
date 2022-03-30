@@ -28,6 +28,8 @@ import CognitoUserAttribute from "amazon-cognito-identity-js/src/CognitoUserAttr
 import StorageHelper from "amazon-cognito-identity-js/src/StorageHelper";
 import { func } from "prop-types";
 
+console.log("dev-index");
+
 AWS.config.region = "ap-northeast-1"; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
