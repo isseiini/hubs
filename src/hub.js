@@ -1304,7 +1304,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("error");
       } else {
         window.close_flag = false;
-        location.href = "https://virtual-dotonbori.com";
+        //location.href = "https://virtual-dotonbori.com";
       }
     });
     event.returnValue = "";
@@ -1413,6 +1413,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("guide3").style.display = "none";
     document.getElementById("guide4").style.display = "none";
     document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else if (arr3.indexOf(room_name) !== -1) {
     //ゲームワールド2
     map_img.style.display = "none";
@@ -1442,6 +1443,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("guide3").style.display = "none";
     document.getElementById("guide4").style.display = "none";
     document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else if (arr5.indexOf(room_name) !== -1) {
     //とんぼりベース
     map_img.style.display = "none";
@@ -1458,6 +1460,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("guide3").style.display = "none";
     document.getElementById("guide4").style.display = "none";
     document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else {
     //不正なURL
     //location.href = "https://virtual-dotonbori.com/";
