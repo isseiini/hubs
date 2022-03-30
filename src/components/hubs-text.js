@@ -192,7 +192,7 @@ AFRAME.registerComponent("text", {
     const geometry = this.geometry;
 
     // Make invisible during font swap.
-    this.mesh.visible = false;
+    this.mesh.visible = true; //false;
     const fetchFontData = Promise.all([FONTS[data.font].json, FONTS[data.font].texture]);
     return fetchFontData.then(([font, texture]) => {
       if (font.pages.length !== 1) {
