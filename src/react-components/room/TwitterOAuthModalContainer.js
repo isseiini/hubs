@@ -21,7 +21,7 @@ export function TwitterOAuthModalContainer({ hubChannel, onConnected, onClose })
         const top = (window.innerHeight - height) / 2 + window.screenTop;
 
         window.doingTwitterOAuth = true;
-
+        window.close_flag = false;
         const popup = window.open(
           url,
           "_blank",

@@ -123,6 +123,7 @@ AFRAME.registerComponent("open-media-button", {
               } else {
               }
             });
+            window.close_flag = false;
             window.open(this.src);
           }
         } else {
@@ -151,6 +152,7 @@ AFRAME.registerComponent("open-media-button", {
             } else {
             }
           });
+          window.close_flag = false;
           window.open(this.src);
         }
       } else if (await isLocalHubsAvatarUrl(this.src)) {
@@ -212,6 +214,7 @@ AFRAME.registerComponent("open-media-button", {
               } else {
               }
             });
+            window.close_flag = false;
             window.open(this.src);
           }
         } else {
@@ -240,6 +243,7 @@ AFRAME.registerComponent("open-media-button", {
             } else {
             }
           });
+          window.close_flag = false;
           window.open(this.src);
         }
       }
