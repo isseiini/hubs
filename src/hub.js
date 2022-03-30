@@ -1408,6 +1408,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
     document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
   } else if (arr3.indexOf(room_name) !== -1) {
     //ゲームワールド2
     map_img.style.display = "none";
@@ -1432,6 +1437,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
     document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
   } else if (arr5.indexOf(room_name) !== -1) {
     //とんぼりベース
     map_img.style.display = "none";
@@ -1443,6 +1453,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
     document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
   } else {
     //不正なURL
     //location.href = "https://virtual-dotonbori.com/";

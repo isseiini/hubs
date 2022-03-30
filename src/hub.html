@@ -1553,12 +1553,12 @@
     >
       <div id="overlay">
         <div id="Player-Guide" style="pointer-events:all;width:100%;height: 100%; z-index: 1003;pointer-events: all;position: -webkit-fixed;position: fixed;top: 0;left: 0;background-color: transparent;display: none;">
-          <div class="guide-parts" style="top: 0;left: 0;width: 100%;height: 40px;">ゲームの進行度</div>
-          <div class="guide-parts" style="top: 40px;left: 0;width: 33%;height: 20%;">残りHPとプレイヤー名</div>
-          <div class="guide-parts" style="top: 40px;left: 33%;width: 33%;height: 20%;">所属チームと残り時間</div>
-          <div class="guide-parts" style="top: 40px;left: 66%;width: 34%;height: 30%;">ワールドマップ</div>
-          <div id="explain1" class="guide-parts" style="bottom: 0;left: 0%;width: 100%;height: calc(70% - 40px);color: #ffffff;font-size: 2rem;overflow-y: scroll;  justify-content: flex-start;">
-            操作説明<br /><br />
+          <div id="guide1" class="guide-parts" style="top: 0;left: 0;width: 100%;height: 40px;">ゲームの進行度</div>
+          <div id="guide2" class="guide-parts" style="top: 40px;left: 0;width: 33%;height: 20%;">残りHPとプレイヤー名</div>
+          <div id="guide3" class="guide-parts" style="top: 40px;left: 33%;width: 33%;height: 20%;">所属チームと残り時間</div>
+          <div id="guide4" class="guide-parts" style="top: 40px;left: 66%;width: 34%;height: 30%;">ワールドマップ</div>
+          <div id="explain1" class="guide-parts" style="bottom: 0;left: 0%;width: 100%;height: 90%;color: #ffffff;font-size: 2rem;overflow-y: scroll;  justify-content: flex-start;">
+            <br />操作説明<br /><br />
 
             <span>スマホ</span>
             [移動]<br />
@@ -1585,7 +1585,7 @@
             画面左下のメニューボタンをクリックし、ポップアップメニューのチャットボタンをクリック
           </div>
           <div id="explain2" class="guide-parts" style="bottom: 0;left: 0%;width: 100%;height: calc(70% - 40px);color: #ffffff;font-size: 2rem;overflow-y: scroll;  justify-content: flex-start;">
-            操作説明<br /><br />
+            <br />操作説明<br /><br />
 
             <span>スマホ</span>
             [移動]<br />
@@ -1625,7 +1625,7 @@
             [空気砲を放つ]<br />
             狙った場所をクリック<br /><br />
           </div>
-          <div class="guide-parts" style="top: calc(20% + 40px);left: 0%;width: 66%;height: 10%;color: #ffffff;font-size: 2rem;">画面をタップすると元のワールドに戻ります</div>
+          <div id="guide5" class="guide-parts" style="top: calc(20% + 40px);left: 0%;width: 66%;height: 10%;color: #ffffff;font-size: 2rem;">画面をタップすると元のワールドに戻ります</div>
         </div>
         <div id="Player-UI" style="z-index: 1000;pointer-events: none;position: -webkit-fixed;position: fixed;top: 0;left: 0;">
           <div id="Player_UI_top" style="display: flex; flex-direction: row;justify-content:center;width: 100%;height: 200px;background-color: transparent;background: rgb(255,255,255);background: rgb(255,255,255);background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(152,152,168,0) 0%, var(--team-color-sub) 10%);">
