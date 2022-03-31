@@ -72,7 +72,7 @@ import "./components/stats-plus";
 import "./components/networked-avatar";
 import "./components/media-views";
 import "./components/avatar-volume-controls";
-//import "./components/pinch-to-move";
+import "./components/pinch-to-move";
 import "./components/pitch-yaw-rotator";
 import "./components/position-at-border";
 import "./components/pinnable";
@@ -2353,11 +2353,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
                     window.APP.store.update({
-                      profile: { displayName: "Blue-" + meta.profile.displayName }
+                      profile: { displayName: "Blue_" + meta.profile.displayName }
                     });
                   } else {
                     window.APP.store.update({
-                      profile: { displayName: "Red-" + meta.profile.displayName }
+                      profile: { displayName: "Red_" + meta.profile.displayName }
                     });
                   }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
@@ -2407,11 +2407,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
                     window.APP.store.update({
-                      profile: { displayName: "Blue-" + meta.profile.displayName }
+                      profile: { displayName: "Blue_" + meta.profile.displayName }
                     });
                   } else {
                     window.APP.store.update({
-                      profile: { displayName: "Red-" + meta.profile.displayName }
+                      profile: { displayName: "Red_" + meta.profile.displayName }
                     });
                   }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
