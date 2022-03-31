@@ -214,6 +214,8 @@ export function count_down() {
     } else {
       const scene = document.querySelector("a-scene");
       scene.pause();
+      count_reset();
+      document.getElementById("life-background").style.width = "100%";
       const Game_Result = document.getElementById("game-progress-origin");
       const Game_Result1 = document.getElementById("game-progress-main");
       const Game_Result2 = document.getElementById("game-progress-cover1");
@@ -260,16 +262,9 @@ export function count_down() {
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = "07:00";
-        count_down.style.color = "black";
+
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          timeCount = 420;
-          isStart = false;
-          clearInterval(window.interval);
           count_start();
-          isStart = true;
-          document.getElementById("life-background").style.width = "100%";
         }
       }, 30000);
     }
