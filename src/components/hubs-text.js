@@ -86,10 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://font-hubs-virtual-dotonbori.s3.ap-northeast-1.amazonaws.com/noto-sans-cjk-jp-msdf.json"),
-    texture: loadTexture(
-      "https://font-hubs-virtual-dotonbori.s3.ap-northeast-1.amazonaws.com/noto-sans-cjk-jp-msdf.png"
-    )
+    json: loadFont("https://hubs-font.s3.ap-northeast-1.amazonaws.com/fonts/noto-sans-cjk-jp-msdf.json"),
+    texture: loadTexture("https://hubs-font.s3.ap-northeast-1.amazonaws.com/fonts/noto-sans-cjk-jp-msdf.png")
   }
 };
 
