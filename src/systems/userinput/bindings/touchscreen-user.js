@@ -153,7 +153,7 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.rising,
       priority: 3
     }
-  ],
+  ] /*,
 
   [sets.inspecting]: [
     {
@@ -162,5 +162,5 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.scale(0.025),
       priority: 1
     }
-  ]
+  ]*/
 });
