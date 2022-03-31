@@ -148,9 +148,9 @@ AFRAME.registerComponent("text", {
     this.shaderObject.material.side = shaderData.side;
 
     // New font. `updateFont` will later change data and layout.
-    /*if (oldData.font !== data.font) {
+    if (oldData.font !== data.font) {
       this.updateFont().catch(err => console.error(err));
-    }*/
+    }
 
     // Not a new font, but we need to accomodate other changes with the existing font.
     if (this.currentFont != null) {
