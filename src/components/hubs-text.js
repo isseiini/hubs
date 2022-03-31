@@ -86,8 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://cdn.aframe.io/fonts/Roboto-msdf.json"),
-    texture: loadTexture("https://cdn.aframe.io/fonts/Roboto-msdf.png")
+    json: loadFont("../noto-sans-cjk-jp-msdf.json"),
+    texture: loadTexture("../noto-sans-cjk-jp-msdf.png")
   }
 };
 
