@@ -411,7 +411,6 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
-      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -432,6 +431,7 @@ export default class MessageDispatch extends EventTarget {
       Blue_Score.innerText = "0";
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
+      document.getElementById("life-background").style.width = "100%";
       let team = document.getElementById("score-display-top").innerText;
       if (team == "RedTeam") {
         if (arr1.indexOf(room_name) !== -1) {
@@ -465,17 +465,13 @@ export default class MessageDispatch extends EventTarget {
         count_down.innerHTML = "07:00";
         count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          timeCount = 420;
-          isStart = false;
+          count_reset();
           count_start();
-          isStart = true;
-          document.getElementById("life-background").style.width = "100%";
         }
       }, 30000);
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
-      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -496,6 +492,7 @@ export default class MessageDispatch extends EventTarget {
       Blue_Score.innerText = "0";
       Red_Progress.value = 0;
       Blue_Progress.value = 0;
+      document.getElementById("life-background").style.width = "100%";
       let team = document.getElementById("score-display-top").innerText;
       if (team == "RedTeam") {
         if (arr1.indexOf(room_name) !== -1) {
@@ -525,15 +522,9 @@ export default class MessageDispatch extends EventTarget {
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = "07:00";
-        count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          timeCount = 420;
-          isStart = false;
+          count_reset();
           count_start();
-          isStart = true;
-          document.getElementById("life-background").style.width = "100%";
         }
       }, 30000);
       return;

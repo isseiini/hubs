@@ -193,7 +193,7 @@ export function count_down() {
     var display = document.getElementById("time");
     display.style.color = "red";
     display.innerHTML = "TIME UP!";
-    clearInterval(window.interval);
+    count_reset();
     if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Red";
       var event2 = new Event("change");
@@ -202,7 +202,6 @@ export function count_down() {
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
       hit_target_container.readOnly = true;
-      count_reset();
     } else if (Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Blue";
       var event2 = new Event("change");
@@ -210,11 +209,9 @@ export function count_down() {
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
       hit_target_container.readOnly = true;
-      count_reset();
     } else {
       const scene = document.querySelector("a-scene");
       scene.pause();
-      count_reset();
       document.getElementById("life-background").style.width = "100%";
       const Game_Result = document.getElementById("game-progress-origin");
       const Game_Result1 = document.getElementById("game-progress-main");
@@ -2343,7 +2340,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
                   if ((timeCount = 420)) {
-                    count_reset();
                     count_start();
                   }
                 }
