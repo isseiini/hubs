@@ -144,9 +144,9 @@ AFRAME.registerComponent("player-info", {
     if (this.displayName && nametagEl) {
       nametagEl.setAttribute("text", { value: this.displayName });
       if (this.displayName.indexOf("Blue_") === 0) {
-        nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
+        nametagEl.setAttribute("text", { color: rgb(0, 243, 235) });
       } else if (this.displayName.indexOf("Red_") === 0) {
-        nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
+        nametagEl.setAttribute("text", { color: rgb(186, 7, 5) });
       }
       //let text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: text_color})
