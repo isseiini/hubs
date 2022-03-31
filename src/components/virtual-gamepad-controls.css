@@ -1,12 +1,12 @@
 :local(.touchZone) {
   position: absolute;
-  height: 100vh;
+  height: 20vh;
   bottom: 0px;
-  background-color: #ffffff93;
+  /*background-color: #ffffff93;*/
 
   /* Orientation selector fails here when keyboard pops up on shorter screens */
   @media(min-aspect-ratio: 15/9) {
-    height: 100vh;
+    height: 30vh;
   }
 }
 
@@ -22,11 +22,11 @@
 
 :local(.mockJoystickContainer) {
   position: absolute;
-  height: 100vh;
+  height: 0;
   left: 0;
   right: 0;
-  bottom: 0px;
-  padding: 0px;
+  bottom: 146px;
+  padding: 16px;
   align-items: center;
   justify-content: space-between;
   display: none;
