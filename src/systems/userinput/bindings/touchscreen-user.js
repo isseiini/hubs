@@ -22,12 +22,12 @@ export const touchscreenUserBindings = addSetsToBindings({
       src: {},
       dest: { value: paths.actions.cursor.right.hideLine },
       xform: xforms.always(true)
-    },
+    } /*
     {
       src: { value: paths.device.touchscreen.pinch.delta },
       dest: { value: forward },
       xform: xforms.scale(0.25)
-    },
+    },*/,
     {
       src: { value: paths.device.touchscreen.tap2 },
       dest: { value: paths.actions.toggleFreeze },
