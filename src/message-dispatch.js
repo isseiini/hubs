@@ -307,12 +307,12 @@ export default class MessageDispatch extends EventTarget {
           let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
           setTimeout(() => {
             AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-          }, 1500);
+          }, 2500);
         } else if (arr3.indexOf(room_name) !== -1) {
           let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
           setTimeout(() => {
             AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-          }, 1500);
+          }, 2500);
         }
       }
       const Blue_Score = document.getElementById("blue-score");
