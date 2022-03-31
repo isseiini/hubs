@@ -100,7 +100,7 @@ AFRAME.registerComponent("text", {
     anchor: { default: "center", oneOf: ["left", "right", "center", "align"] },
     baseline: { default: "center", oneOf: ["top", "center", "bottom"] },
     color: { type: "color", default: "#ffffff" },
-    font: { type: "string", default: "sans-serif" },
+    font: { type: "string", default: "roboto" },
     // `height` has no default, will be populated at layout.
     height: { type: "number" },
     letterSpacing: { type: "number", default: 0 },
