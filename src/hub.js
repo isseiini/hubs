@@ -2258,7 +2258,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     var table = "Sightseeing-table";
                   }
 
-                  var match = {
+                  /*var match = {
                     TableName: table,
                     Item: {
                       URL: room_name,
@@ -2273,7 +2273,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       console.log("success");
                     }
-                  });
+                  });*/
                 }
                 //自分入場時のゲームワールド全体
                 if (
