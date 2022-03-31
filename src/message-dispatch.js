@@ -411,6 +411,7 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
+      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -465,13 +466,13 @@ export default class MessageDispatch extends EventTarget {
         count_down.innerHTML = "07:00";
         count_down.style.color = "black";
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          count_reset();
           count_start();
         }
       }, 30000);
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
+      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -523,7 +524,6 @@ export default class MessageDispatch extends EventTarget {
         Game_Result.style.display = "none";
         scene.play();
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          count_reset();
           count_start();
         }
       }, 30000);
