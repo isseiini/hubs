@@ -132,7 +132,7 @@ export const touchscreenUserBindings = addSetsToBindings({
     {
       src: { value: paths.device.touchscreen.isTouchingGrabbable },
       dest: { value: paths.actions.cursor.right.startDrawing },
-      xform: xforms.risingWithFrameDelay(5),
+      xform: xforms.risingWithFrameDelay(0.5),
       priority: 2
     },
     {
