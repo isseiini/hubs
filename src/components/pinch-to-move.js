@@ -12,7 +12,7 @@ AFRAME.registerComponent("pinch-to-move", {
     const pinch = userinput.get(paths.device.touchscreen.pinchDelta);
     if (pinch) {
       this.axis[1] = pinch * this.data.speed;
-      //this.el.emit("move", { axis: this.axis });
+      this.el.emit("move", { axis: this.axis });
     }
   }
 });
