@@ -86,8 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://dat-vr.com/images/noto-sans-cjk-jp-msdf.json"),
-    texture: loadTexture("https://dat-vr.com/images/noto-sans-cjk-jp-msdf.png")
+    json: loadFont("https://dat-vr.com/images/mplus-msdf.json"),
+    texture: loadTexture("https://dat-vr.com/images/mplus-msdf.png")
   }
 };
 
