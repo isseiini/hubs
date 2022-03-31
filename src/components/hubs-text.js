@@ -86,8 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://beta-hubs.belivvr.com/assets/fonts/SpoqaHanSansNeo-Regular.json"),
-    texture: loadTexture("https://beta-hubs.belivvr.com/assets/fonts/SpoqaHanSansNeo-Regular.png")
+    json: loadFont("https://dat-vr.com/images/noto-sans-cjk-jp-msdf.json"),
+    texture: loadTexture("https://dat-vr.com/images/noto-sans-cjk-jp-msdf.png")
   }
 };
 
