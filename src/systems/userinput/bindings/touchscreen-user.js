@@ -22,12 +22,12 @@ export const touchscreenUserBindings = addSetsToBindings({
       src: {},
       dest: { value: paths.actions.cursor.right.hideLine },
       xform: xforms.always(true)
-    },/*
+    },
     {
       src: { value: paths.device.touchscreen.pinch.delta },
       dest: { value: forward },
       xform: xforms.scale(0.25)
-    },*/
+    },
     {
       src: { value: paths.device.touchscreen.tap2 },
       dest: { value: paths.actions.toggleFreeze },
@@ -153,7 +153,7 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.rising,
       priority: 3
     }
-  ]/*,
+  ],
 
   [sets.inspecting]: [
     {
@@ -162,5 +162,5 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.scale(0.025),
       priority: 1
     }
-  ]*/
+  ]
 });
