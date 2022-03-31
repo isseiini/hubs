@@ -22,11 +22,11 @@
 
 :local(.mockJoystickContainer) {
   position: absolute;
-  height: 0;
+  height: 100vh;
   left: 0;
   right: 0;
-  bottom: 146px;
-  padding: 16px;
+  bottom: 0px;
+  padding: 0px;
   align-items: center;
   justify-content: space-between;
   display: none;
