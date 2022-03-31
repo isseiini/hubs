@@ -2353,11 +2353,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
                     window.APP.store.update({
-                      profile: { displayName: "Blue_" + meta.profile.displayName }
+                      profile: { displayName: "Blue-" + meta.profile.displayName }
                     });
                   } else {
                     window.APP.store.update({
-                      profile: { displayName: "Red_" + meta.profile.displayName }
+                      profile: { displayName: "Red-" + meta.profile.displayName }
                     });
                   }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
@@ -2407,11 +2407,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ) {
                   if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
                     window.APP.store.update({
-                      profile: { displayName: "Blue_" + meta.profile.displayName }
+                      profile: { displayName: "Blue-" + meta.profile.displayName }
                     });
                   } else {
                     window.APP.store.update({
-                      profile: { displayName: "Red_" + meta.profile.displayName }
+                      profile: { displayName: "Red-" + meta.profile.displayName }
                     });
                   }
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
