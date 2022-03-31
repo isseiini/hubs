@@ -6,7 +6,7 @@
 
   /* Orientation selector fails here when keyboard pops up on shorter screens */
   @media(min-aspect-ratio: 15/9) {
-    height: 30vh;
+    height: 100vh;
   }
 }
 
