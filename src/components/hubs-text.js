@@ -86,8 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://vleap-workspace.com/hubs/src/noto-sans-cjk-jp-msdf.json"),
-    texture: loadTexture("https://vleap-workspace.com/hubs/src/noto-sans-cjk-jp-msdf.png")
+    json: loadFont("hubs/src/noto-sans-cjk-jp-msdf.json"),
+    texture: loadTexture("hubs/src/noto-sans-cjk-jp-msdf.png")
   }
 };
 
