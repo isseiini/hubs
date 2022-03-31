@@ -11,111 +11,7 @@ import { waitForDOMContentLoaded } from "./utils/async-utils";
 import { width } from "@fortawesome/free-solid-svg-icons/faTimes";
 import { WindowsMixedRealityControllerDevice } from "./systems/userinput/devices/windows-mixed-reality-controller";
 
-let min = 0;
-let sec = 0;
-let isStart = false;
-
-function count_start() {
-  if (isStart === false) {
-    interval = setInterval(count_down, 1000);
-    isStart = true;
-  }
-}
-
-function count_down() {
-  if (timeCount === 1) {
-    const Red_Score = document.getElementById("red-score");
-    const Blue_Score = document.getElementById("blue-score");
-    var hit_target_container = document.getElementById("hit_target_container");
-    var display = document.getElementById("time");
-    display.style.color = "red";
-    display.innerHTML = "TIME UP!";
-    clearInterval(interval);
-    if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
-      var hit_target2 = "_Win_Red";
-      var event2 = new Event("change");
-
-      hit_target_container.readOnly = false;
-      hit_target_container.value = hit_target2;
-      hit_target_container.dispatchEvent(event2);
-      hit_target_container.readOnly = true;
-    } else if (Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
-      var hit_target2 = "_Win_Blue";
-      var event2 = new Event("change");
-      hit_target_container.readOnly = false;
-      hit_target_container.value = hit_target2;
-      hit_target_container.dispatchEvent(event2);
-      hit_target_container.readOnly = true;
-    } else {
-      const scene = document.querySelector("a-scene");
-      scene.pause();
-      const Game_Result = document.getElementById("game-progress-origin");
-      const Game_Result1 = document.getElementById("game-progress-main");
-      const Game_Result2 = document.getElementById("game-progress-cover1");
-      const Game_Result3 = document.getElementById("game-progress-cover2");
-      const Game_Result_sub = document.getElementById("game-progress-sub");
-      Game_Result1.innerText = "Game Finish";
-      Game_Result2.innerText = "Game Finish";
-      Game_Result3.innerText = "Game Finish";
-      Game_Result_sub.innerText = "引き分けです 30秒後に次のゲームが始まります";
-      Game_Result.style.display = "flex";
-      const Red_Score = document.getElementById("red-score");
-      const Blue_Score = document.getElementById("blue-score");
-      const Red_Progress = document.getElementById("Red-Progress");
-      const Blue_Progress = document.getElementById("Blue-Progress");
-      Red_Score.innerText = "0";
-      Blue_Score.innerText = "0";
-      Red_Progress.value = 0;
-      Blue_Progress.value = 0;
-      if (team == "RedTeam") {
-        if (arr1.indexOf(room_name) !== -1) {
-          let respawn_point2 = new THREE.Vector3(116.5, 1, -8);
-          setTimeout(() => {
-            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-          }, 1500);
-        } else if (arr3.indexOf(room_name) !== -1) {
-          let respawn_point2 = new THREE.Vector3(-6, 4, -5.5);
-          setTimeout(() => {
-            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-          }, 1500);
-        }
-      } else {
-        if (arr1.indexOf(room_name) !== -1) {
-          let respawn_point1 = new THREE.Vector3(10.5, 4.5, -31);
-          setTimeout(() => {
-            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
-          }, 1500);
-        } else if (arr3.indexOf(room_name) !== -1) {
-          let respawn_point1 = new THREE.Vector3(86.5, 4.5, -44);
-          setTimeout(() => {
-            AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point1);
-          }, 1500);
-        }
-      }
-      setTimeout(() => {
-        Game_Result.style.display = "none";
-        scene.play();
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = "07:00";
-        count_down.style.color = "black";
-        if (document.querySelectorAll("[networked-avatar]").length != 1) {
-          timeCount = 420;
-          isStart = false;
-          clearInterval(interval);
-          count_start();
-          isStart = true;
-          document.getElementById("life-background").style.width = "100%";
-        }
-      }, 30000);
-    }
-  } else {
-    timeCount--;
-    min = Math.floor(timeCount / 60);
-    sec = timeCount % 60;
-    var count_down = document.getElementById("time");
-    count_down.innerHTML = "0" + min + ":" + ("0" + sec).slice(-2);
-  }
-}
+import { count_down, count_reset, count_start } from "./hub";
 
 /*AWS.config.region = 'ap-northeast-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -518,7 +414,7 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
-      clearInterval(interval);
+      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -582,7 +478,7 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
-      clearInterval(interval);
+      count_reset();
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");

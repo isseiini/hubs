@@ -172,20 +172,20 @@ window.timeCount = 420;
 let min = 0;
 let sec = 0;
 window.interval;
-let isStart = false;
+window.isStart = false;
 
 const Red_Score = document.getElementById("red-score");
 const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
-function count_start() {
+export function count_start() {
   if (isStart === false) {
     interval = setInterval(count_down, 1000);
     isStart = true;
   }
 }
 
-function count_down() {
+export function count_down() {
   if (timeCount === 1) {
     const Red_Score = document.getElementById("red-score");
     const Blue_Score = document.getElementById("blue-score");
@@ -202,6 +202,7 @@ function count_down() {
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
       hit_target_container.readOnly = true;
+      count_reset();
     } else if (Number(Red_Score.innerText) < Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Blue";
       var event2 = new Event("change");
@@ -209,6 +210,7 @@ function count_down() {
       hit_target_container.value = hit_target2;
       hit_target_container.dispatchEvent(event2);
       hit_target_container.readOnly = true;
+      count_reset();
     } else {
       const scene = document.querySelector("a-scene");
       scene.pause();
@@ -280,7 +282,7 @@ function count_down() {
   }
 }
 
-function count_reset() {
+export function count_reset() {
   clearInterval(interval);
   timeCount = 420;
   isStart = false;
