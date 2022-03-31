@@ -142,7 +142,6 @@ AFRAME.registerComponent("player-info", {
 
     const nametagEl = this.el.querySelector(".nametag");
     if (this.displayName && nametagEl) {
-      nametagEl.setAttribute("text", { font: mozillavr });
       nametagEl.setAttribute("text", { value: this.displayName });
 
       if (this.displayName.indexOf("Blue_") === 0) {
