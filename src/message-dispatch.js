@@ -275,7 +275,7 @@ export default class MessageDispatch extends EventTarget {
       const Red_Progress = document.getElementById("Red-Progress");
       Red_Progress.value = Red_Progress.value + 1;
       let current_Red_Score = Number(Red_Score.innerText) + 1;
-      if (current_Red_Score >= 2) {
+      if (current_Red_Score >= 25) {
         var hit_target2 = "_Win_Red";
         var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");
@@ -319,7 +319,7 @@ export default class MessageDispatch extends EventTarget {
       const Blue_Progress = document.getElementById("Blue-Progress");
       Blue_Progress.value = Blue_Progress.value + 1;
       let current_Blue_Score = Number(Blue_Score.innerText) + 1;
-      if (current_Blue_Score >= 2) {
+      if (current_Blue_Score >= 25) {
         var hit_target2 = "_Win_Blue";
         var event2 = new Event("change");
         var hit_target_container = document.getElementById("hit_target_container");

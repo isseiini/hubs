@@ -142,6 +142,7 @@ AFRAME.registerComponent("player-info", {
 
     const nametagEl = this.el.querySelector(".nametag");
     if (this.displayName && nametagEl) {
+      alert("名前を認識しました。");
       nametagEl.setAttribute("text", { value: this.displayName });
       if (this.displayName.indexOf("Blue_") === 0) {
         nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
