@@ -2363,7 +2363,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
-                    if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
+                    if (
+                      window.RedSum >=
+                      window.BlueSum /*document.querySelectorAll("[networked-avatar]").length % 2 !== 0*/
+                    ) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
