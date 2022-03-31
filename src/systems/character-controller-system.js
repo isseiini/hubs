@@ -338,7 +338,7 @@ export class CharacterControllerSystem {
       const characterAcceleration = userinput.get(paths.actions.characterAcceleration);
       if (characterAcceleration) {
         const zCharacterAcceleration = -1 * characterAcceleration[1];
-        this.relativeMotion.set(
+        /*this.relativeMotion.set(
           this.relativeMotion.x +
             (preferences.disableMovement || preferences.disableStrafing ? 0 : characterAcceleration[0]),
           this.relativeMotion.y,
@@ -348,7 +348,7 @@ export class CharacterControllerSystem {
               : preferences.disableBackwardsMovement
                 ? Math.min(0, zCharacterAcceleration)
                 : zCharacterAcceleration)
-        );
+        );*/
       }
       const lerpC = vrMode ? 0 : 0.85; // TODO: To support drifting ("ice skating"), motion needs to keep initial direction
       this.nextRelativeMotion.copy(this.relativeMotion).multiplyScalar(lerpC);
