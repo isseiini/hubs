@@ -171,7 +171,7 @@ import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
-window.interval;
+
 window.isStart = false;
 
 const Red_Score = document.getElementById("red-score");
@@ -180,7 +180,7 @@ var hit_target_container = document.getElementById("hit_target_container");
 
 export function count_start() {
   if (isStart === false) {
-    interval = setInterval(count_down, 1000);
+    window.interval = setInterval(count_down, 1000);
     isStart = true;
   }
 }
@@ -193,7 +193,7 @@ export function count_down() {
     var display = document.getElementById("time");
     display.style.color = "red";
     display.innerHTML = "TIME UP!";
-    clearInterval(interval);
+    clearInterval(window.interval);
     if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Red";
       var event2 = new Event("change");
@@ -266,7 +266,7 @@ export function count_down() {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
-          clearInterval(interval);
+          clearInterval(window.interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
@@ -283,7 +283,7 @@ export function count_down() {
 }
 
 export function count_reset() {
-  clearInterval(interval);
+  clearInterval(window.interval);
   timeCount = 420;
   isStart = false;
   var count_down = document.getElementById("time");
@@ -2348,10 +2348,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
                   if ((timeCount = 420)) {
-                    isStart = false;
-                    clearInterval(interval);
+                    count_reset();
                     count_start();
-                    isStart = true;
                   }
                 }
                 //ゲームワールド１
