@@ -171,7 +171,7 @@ import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
-let interval;
+window.interval;
 let isStart = false;
 
 const Red_Score = document.getElementById("red-score");

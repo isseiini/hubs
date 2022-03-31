@@ -13,7 +13,6 @@ import { WindowsMixedRealityControllerDevice } from "./systems/userinput/devices
 
 let min = 0;
 let sec = 0;
-let interval;
 let isStart = false;
 
 function count_start() {
@@ -519,6 +518,7 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Red") === 0) {
+      clearInterval(interval);
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -574,7 +574,6 @@ export default class MessageDispatch extends EventTarget {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
-          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
@@ -583,6 +582,7 @@ export default class MessageDispatch extends EventTarget {
       return;
     }
     if (entry.type === "chat" && entry.body.indexOf("_Win_Blue") === 0) {
+      clearInterval(interval);
       const scene = document.querySelector("a-scene");
       scene.pause();
       const Game_Result = document.getElementById("game-progress-origin");
@@ -638,7 +638,6 @@ export default class MessageDispatch extends EventTarget {
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
           timeCount = 420;
           isStart = false;
-          clearInterval(interval);
           count_start();
           isStart = true;
           document.getElementById("life-background").style.width = "100%";
