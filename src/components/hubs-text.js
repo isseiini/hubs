@@ -86,8 +86,8 @@ function loadTexture(src) {
 
 const FONTS = {
   roboto: {
-    json: loadFont("https://cdn.aframe.io/fonts/mozillavr.fnt"),
-    texture: loadTexture("https://cdn.aframe.io/fonts/mozillavr.png")
+    json: loadFont("https://cdn.aframe.io/fonts/Roboto-msdf.json"),
+    texture: loadTexture("https://cdn.aframe.io/fonts/Roboto-msdf.png")
   }
 };
 
@@ -193,7 +193,7 @@ AFRAME.registerComponent("text", {
 
     // Make invisible during font swap.
     this.mesh.visible = true; //false;
-    const fetchFontData = Promise.all([FONTS[data.font].fnt, FONTS[data.font].texture]);
+    const fetchFontData = Promise.all([FONTS[data.font].json, FONTS[data.font].texture]);
     return fetchFontData.then(([font, texture]) => {
       if (font.pages.length !== 1) {
         throw new Error("Currently only single-page bitmap fonts are supported.");
