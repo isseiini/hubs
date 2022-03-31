@@ -314,9 +314,6 @@ export default class MessageDispatch extends EventTarget {
             AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
           }, 1500);
         }
-        setTimeout(() => {
-          AFRAME.scenes[0].systems["hubs-systems"].characterController.teleportTo(respawn_point2);
-        }, 1500);
       }
       const Blue_Score = document.getElementById("blue-score");
       const Blue_Progress = document.getElementById("Blue-Progress");
