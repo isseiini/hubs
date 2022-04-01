@@ -687,7 +687,7 @@ AFRAME.registerComponent("pen", {
     AFRAME.scenes[0].removeEventListener("object3dset", this.setDirty);
     AFRAME.scenes[0].removeEventListener("object3dremove", this.setDirty);
     this.penSystem.deregister(this.el);
-    const AirCanonAction = document.getElementById("avatar-rig").getElementsByClassName(".aircanon");
+    const AirCanonAction = document.getElementById("avatar-rig").getElementsByClassName(".aircanon")[0];
     AirCanonAction.style.display = "none";
   }
 });
