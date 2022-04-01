@@ -1297,12 +1297,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (err) {
         console.log("error");
       } else {
-<<<<<<< HEAD
-        //window.close_flag = false;
-        //location.href = "https://virtual-dotonbori.com";
-=======
         window.close_flag = false;
->>>>>>> ce8c97c2bbed24ccdf49040cbbaf12b90cf140cb
       }
     });
     event.returnValue = "";
