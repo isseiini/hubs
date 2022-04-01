@@ -113,7 +113,7 @@ export function PlacePopoverContainer({ scene, mediaSearchStore, showNonHistorie
     [hubChannel, mediaSearchStore, showNonHistoriedDialog, scene]
   );
 
-  return <PlacePopoverButton items={items} />;
+  return null; //<PlacePopoverButton items={items} />;
 }
 
 PlacePopoverContainer.propTypes = {
