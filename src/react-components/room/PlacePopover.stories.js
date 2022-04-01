@@ -30,4 +30,4 @@ const items = [
   { id: "upload", icon: UploadIcon, color: "accent3", label: "Upload" }
 ];
 
-export const Base = () => <RoomLayout toolbarCenter={} />;
+export const Base = () => <RoomLayout toolbarCenter={<PlacePopoverButton items={items} />} />;
