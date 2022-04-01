@@ -152,10 +152,10 @@ AFRAME.registerComponent("virtual-gamepad-controls", {
   },
 
   onFirstInteraction() {
-    if (this.leftStick) this.leftStick.off("start", this.onFirstInteraction);
+    /*if (this.leftStick) this.leftStick.off("start", this.onFirstInteraction);
     if (this.rightStick) this.rightStick.off("start", this.onFirstInteraction);
     this.mockJoystickContainer.parentNode &&
-      this.mockJoystickContainer.parentNode.removeChild(this.mockJoystickContainer);
+      this.mockJoystickContainer.parentNode.removeChild(this.mockJoystickContainer);*/
   },
 
   onMoveJoystickChanged(event, joystick) {
