@@ -143,7 +143,7 @@ AFRAME.registerComponent("player-info", {
       } else if (this.displayName.indexOf("Red_") === 0) {
         var displayNameColor = "rgb(186, 7, 5)"; //nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
       }
-      nametagEl.setAttribute("text", { value: this.displayName, color: displayNameColor });
+      nametagEl.setAttribute("text", { "value": this.displayName, "color": displayNameColor });
       //let text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: text_color})
       nametagEl.object3D.visible = true; //!infoShouldBeHidden; //change points
