@@ -65,11 +65,7 @@ AFRAME.registerComponent("player-info", {
           this.updateFromPresenceMeta(playerPresence.metas[0]);
         }
       });
-    } /*else {
-      const nametagEl = this.el.querySelector(".nametag");
-      let text_color = document.documentElement.style.getPropertyValue("--team-color");
-      nametagEl.setAttribute("text", { color: text_color });
-    }*/
+    }
     registerComponentInstance(this, "player-info");
   },
   remove() {
@@ -142,13 +138,12 @@ AFRAME.registerComponent("player-info", {
 
     const nametagEl = this.el.querySelector(".nametag");
     if (this.displayName && nametagEl) {
-      nametagEl.setAttribute("text", { value: this.displayName });
-      console.log(this.displayName);
       if (this.displayName.indexOf("Blue_") === 0) {
-        nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
+        var displayNameColor = "rgb(0, 243, 235)"; //nametagEl.setAttribute("text", { color: "rgb(0, 243, 235)" });
       } else if (this.displayName.indexOf("Red_") === 0) {
-        nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
+        var displayNameColor = "rgb(186, 7, 5)"; //nametagEl.setAttribute("text", { color: "rgb(186, 7, 5)" });
       }
+      nametagEl.setAttribute("text", { value: this.displayName, color: displayNameColor });
       //let text_color = document.documentElement.style.getPropertyValue("--team-color");
       //nametagEl.setAttribute("text", { color: text_color})
       nametagEl.object3D.visible = true; //!infoShouldBeHidden; //change points

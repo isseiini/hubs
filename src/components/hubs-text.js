@@ -111,7 +111,7 @@ AFRAME.registerComponent("text", {
     opacity: { type: "number", default: 1.0 },
     side: { default: "front", oneOf: ["front", "back", "double"] },
     tabSize: { default: 4 },
-    transparent: { default: false },
+    transparent: { default: true },
     value: { type: "string" },
     whiteSpace: { default: "normal", oneOf: ["normal", "pre", "nowrap"] },
     // `width` defaults to geometry width if present, else `DEFAULT_WIDTH`.
@@ -132,7 +132,7 @@ AFRAME.registerComponent("text", {
     this.shaderObject.el = this.el;
     this.shaderObject.init(shaderData);
     this.shaderObject.update(shaderData);
-    this.shaderObject.material.transparent = false; //shaderData.transparent; // Apparently, was not set on `init` nor `update`.
+    this.shaderObject.material.transparent = shaderData.transparent; // Apparently, was not set on `init` nor `update`.
     this.shaderObject.material.side = shaderData.side;
     this.geometry = createTextGeometry();
     this.mesh = new THREE.Mesh(this.geometry, this.shaderObject.material);
@@ -144,7 +144,7 @@ AFRAME.registerComponent("text", {
     const data = this.data;
     const shaderData = this.getShaderData(this.data);
     this.shaderObject.update(shaderData);
-    this.shaderObject.material.transparent = false; //shaderData.transparent; // Apparently, was not set on `init` nor `update`.
+    this.shaderObject.material.transparent = shaderData.transparent; // Apparently, was not set on `init` nor `update`.
     this.shaderObject.material.side = shaderData.side;
 
     // New font. `updateFont` will later change data and layout.
@@ -178,7 +178,7 @@ AFRAME.registerComponent("text", {
       shaderData.color = data.color;
       shaderData.opacity = data.opacity;
       shaderData.side = parseSide(data.side);
-      shaderData.transparent = false; //data.transparent;
+      shaderData.transparent = data.transparent;
       shaderData.negate = data.negate;
       return shaderData;
     };
