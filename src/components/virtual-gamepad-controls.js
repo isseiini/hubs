@@ -163,7 +163,7 @@ AFRAME.registerComponent("virtual-gamepad-controls", {
     const angle = joystick.angle.radian;
     const force = joystick.force < 1.5 ? joystick.force : 1.5;
 
-    this.displacement.set(Math.cos(angle), 0, -Math.sin(angle)).multiplyScalar(force * 1.85); //change points
+    this.displacement.set(Math.cos(angle), 0, Math.sin(angle)).multiplyScalar(force * 1.85); //change points
     this.moving = true;
   },
 
