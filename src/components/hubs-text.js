@@ -111,7 +111,7 @@ AFRAME.registerComponent("text", {
     opacity: { type: "number", default: 1.0 },
     side: { default: "front", oneOf: ["front", "back", "double"] },
     tabSize: { default: 4 },
-    transparent: { default: true },
+    transparent: { default: false },
     value: { type: "string" },
     whiteSpace: { default: "normal", oneOf: ["normal", "pre", "nowrap"] },
     // `width` defaults to geometry width if present, else `DEFAULT_WIDTH`.
