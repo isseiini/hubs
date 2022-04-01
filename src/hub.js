@@ -2779,7 +2779,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("aircanon_button").addEventListener("click", function() {
-    scene.emit("spawn_pen");
+    //scene.emit("spawn_pen");
+    scene.emit("penButtonPressed");
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {
