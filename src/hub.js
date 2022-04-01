@@ -2784,7 +2784,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {
-    let arr1 = [
+    /*let arr1 = [
       "fresh-candid-barbecue",
       "posh-courteous-plane",
       "curly-wicked-conclave",
@@ -2872,6 +2872,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.close_flag = false;
         location.href = "https://virtual-dotonbori.com";
       }
-    });
+    });*/
+    location.href = "https://vleap-workspace.com";
   });
 });
