@@ -56,7 +56,7 @@ function loadFont(src) {
       // Fix negative Y offsets for Roboto MSDF font from tool. Experimentally determined.
       if (src.indexOf("/Roboto-msdf.json") >= 0) {
         for (const ch of font.chars) {
-          ch.yoffset += 30;
+          ch.yoffset += 0;
         }
       }
       font.widthFactor = computeFontWidthFactor(font);
