@@ -1,8 +1,8 @@
 :local(.touchZone) {
   position: absolute;
   height: 20vh;
-  bottom: 10px;
-  background-color: #ffffff93;
+  bottom: 0px;
+  /*background-color: #ffffff93;*/
 
   /* Orientation selector fails here when keyboard pops up on shorter screens */
   @media(min-aspect-ratio: 15/9) {

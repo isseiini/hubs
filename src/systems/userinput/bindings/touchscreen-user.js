@@ -22,12 +22,12 @@ export const touchscreenUserBindings = addSetsToBindings({
       src: {},
       dest: { value: paths.actions.cursor.right.hideLine },
       xform: xforms.always(true)
-    },
+    } /*
     {
       src: { value: paths.device.touchscreen.pinch.delta },
       dest: { value: forward },
       xform: xforms.scale(0.25)
-    },
+    },*/,
     {
       src: { value: paths.device.touchscreen.tap2 },
       dest: { value: paths.actions.toggleFreeze },
@@ -37,12 +37,12 @@ export const touchscreenUserBindings = addSetsToBindings({
       src: {},
       dest: { value: zero },
       xform: xforms.always(0)
-    },
+    } /*
     {
       src: { x: zero, y: forward },
       dest: { value: paths.actions.characterAcceleration },
       xform: xforms.compose_vec2
-    },
+    },*/,
     {
       src: { value: paths.device.touchscreen.cursorPose },
       dest: { value: paths.actions.cursor.right.pose },
@@ -132,7 +132,7 @@ export const touchscreenUserBindings = addSetsToBindings({
     {
       src: { value: paths.device.touchscreen.isTouchingGrabbable },
       dest: { value: paths.actions.cursor.right.startDrawing },
-      xform: xforms.risingWithFrameDelay(5),
+      xform: xforms.risingWithFrameDelay(1),
       priority: 2
     },
     {
@@ -153,7 +153,7 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.rising,
       priority: 3
     }
-  ],
+  ] /*,
 
   [sets.inspecting]: [
     {
@@ -162,5 +162,5 @@ export const touchscreenUserBindings = addSetsToBindings({
       xform: xforms.scale(0.025),
       priority: 1
     }
-  ]
+  ]*/
 });

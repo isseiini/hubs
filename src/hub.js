@@ -171,21 +171,21 @@ import { text_chat_data } from "./react-components/room/ChatSidebarContainer";
 window.timeCount = 420;
 let min = 0;
 let sec = 0;
-let interval;
-let isStart = false;
+
+window.isStart = false;
 
 const Red_Score = document.getElementById("red-score");
 const Blue_Score = document.getElementById("blue-score");
 var hit_target_container = document.getElementById("hit_target_container");
 
-function count_start() {
+export function count_start() {
   if (isStart === false) {
-    interval = setInterval(count_down, 1000);
+    window.interval = setInterval(count_down, 1000);
     isStart = true;
   }
 }
 
-function count_down() {
+export function count_down() {
   if (timeCount === 1) {
     const Red_Score = document.getElementById("red-score");
     const Blue_Score = document.getElementById("blue-score");
@@ -193,7 +193,7 @@ function count_down() {
     var display = document.getElementById("time");
     display.style.color = "red";
     display.innerHTML = "TIME UP!";
-    clearInterval(interval);
+    count_reset();
     if (Number(Red_Score.innerText) > Number(Blue_Score.innerText)) {
       var hit_target2 = "_Win_Red";
       var event2 = new Event("change");
@@ -212,6 +212,7 @@ function count_down() {
     } else {
       const scene = document.querySelector("a-scene");
       scene.pause();
+      document.getElementById("life-background").style.width = "100%";
       const Game_Result = document.getElementById("game-progress-origin");
       const Game_Result1 = document.getElementById("game-progress-main");
       const Game_Result2 = document.getElementById("game-progress-cover1");
@@ -258,15 +259,9 @@ function count_down() {
       setTimeout(() => {
         Game_Result.style.display = "none";
         scene.play();
-        var count_down = document.getElementById("time");
-        count_down.innerHTML = "07:00";
-        count_down.style.color = "black";
+
         if (document.querySelectorAll("[networked-avatar]").length !== 1) {
-          timeCount = 420;
-          isStart = false;
           count_start();
-          isStart = true;
-          document.getElementById("life-background").style.width = "100%";
         }
       }, 30000);
     }
@@ -279,8 +274,8 @@ function count_down() {
   }
 }
 
-function count_reset() {
-  clearInterval(interval);
+export function count_reset() {
+  clearInterval(window.interval);
   timeCount = 420;
   isStart = false;
   var count_down = document.getElementById("time");
@@ -1218,7 +1213,7 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
       if (close_flag !== true) {
@@ -1240,7 +1235,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       event.returnValue = "";
     });
-  }
+  }*/
 
   window.addEventListener("beforeunload", function(event) {
     if (close_flag !== true) {
@@ -1302,8 +1297,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (err) {
         console.log("error");
       } else {
+<<<<<<< HEAD
         //window.close_flag = false;
         //location.href = "https://virtual-dotonbori.com";
+=======
+        window.close_flag = false;
+>>>>>>> ce8c97c2bbed24ccdf49040cbbaf12b90cf140cb
       }
     });
     event.returnValue = "";
@@ -1395,6 +1394,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
+    document.getElementById("explain1").style.display = "none";
   } else if (arr2.indexOf(room_name) !== -1) {
     //観光ワールド1
     map_img2.style.display = "none";
@@ -1405,6 +1405,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else if (arr3.indexOf(room_name) !== -1) {
     //ゲームワールド2
     map_img.style.display = "none";
@@ -1417,6 +1424,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("Player_name").style.display = "block";
     document.getElementById("score-display-top").style.display = "block";
     document.getElementById("time").style.display = "block";
+    document.getElementById("explain1").style.display = "none";
   } else if (arr4.indexOf(room_name) !== -1) {
     //観光ワールド2
     map_img.style.display = "none";
@@ -1427,6 +1435,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else if (arr5.indexOf(room_name) !== -1) {
     //とんぼりベース
     map_img.style.display = "none";
@@ -1437,6 +1452,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("life").style.display = "none";
     document.getElementById("score-display").style.display = "none";
     aircanon_button.style.display = "none";
+    document.getElementById("explain2").style.display = "none";
+    document.getElementById("guide1").style.display = "none";
+    document.getElementById("guide2").style.display = "none";
+    document.getElementById("guide3").style.display = "none";
+    document.getElementById("guide4").style.display = "none";
+    document.getElementById("guide5").style.width = "100%";
+    document.getElementById("guide5").style.top = "0";
   } else {
     //不正なURL
     location.href = "https://virtual-dotonbori.com/";
@@ -1666,6 +1688,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       if ((!isMobile && !isMobileVR) || availableVREntryTypes.cardboard !== VR_DEVICE_AVAILABILITY.yes) {
         document.body.classList.add("vr-mode-stretch");
       }
+    });
+
+    const options = {
+      optionalFeatures: ["dom-overlay"],
+      domOverlay: { root: document.getElementById("overlay") }
+    };
+
+    navigator.xr.requestSession("immersive-vr", options).then(session => {
+      session.isImmersive = true;
+      this.createSession(session);
     });
   });
 
@@ -2187,13 +2219,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.talk_position = [];
                   window.close_flag = true;
 
-                  //const avatarRig = document.getElementById("avatar-rig").object3D;
-
-                  /*setInterval(() => {
-                    Positionlist.push(avatarRig.position);
-                    ViewPointlist.push(avatarRig.rotation);
-                  }, 1500);*/
-
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
                   toolbar_under.style.display = "none";
@@ -2308,13 +2333,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     hit_target_container.value = "_" + document.getElementById("score-display-top").innerText;
                     hit_target_container.dispatchEvent(event3);
                   }
-                  hit_target_container.value = window.timeCount;
+                  hit_target_container.value = "_time:" + window.timeCount;
                   hit_target_container.dispatchEvent(event3);
                   hit_target_container.readOnly = true;
                   if ((timeCount = 420)) {
-                    isStart = false;
                     count_start();
-                    isStart = true;
                   }
                 }
                 //ゲームワールド１
@@ -2337,7 +2360,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                   const characterController = AFRAME.scenes[0].systems["hubs-systems"].characterController;
                   const Game_Result = document.getElementById("game-progress-origin");
                   setTimeout(() => {
-                    if (document.querySelectorAll("[networked-avatar]").length % 2 !== 0) {
+                    if (
+                      window.RedSum >=
+                      window.BlueSum /*document.querySelectorAll("[networked-avatar]").length % 2 !== 0*/
+                    ) {
                       team = "BlueTeam";
                       document.getElementById("Player_name").innerText = meta.profile.displayName;
                       document.documentElement.style.setProperty("--team-color", "rgb(0, 243, 235)");
@@ -2750,7 +2776,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("aircanon_button").addEventListener("click", function() {
-    scene.emit("spawn_pen");
+    //scene.emit("spawn_pen");
+    scene.emit("penButtonPressed");
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {

@@ -405,12 +405,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
       onSuccess: result => {
-        //const idToken = result.getIdToken().getJwtToken(); // IDトークン
-        //const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
-        //const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
-
-        //cognitoUser2.cacheTokens();
-
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
       },
@@ -422,17 +416,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("ログインできません。");
       }
     });
-
-    /*cognitoUser2.getDevice({
-	    onSuccess: function (result) {
-	        console.log('call result: ' + result);
-	    },
-
-      
-	    onFailure: function(err) {
-	        alert(err);
-	    }
-	  });*/
   });
 
   const signoutButton = document.getElementById("signoutButton");
@@ -518,6 +501,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.documentElement.style.setProperty("--display1", "block");
 
   document.getElementById("grid-tl").addEventListener("click", function() {
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(76, 183, 233)");
     document.documentElement.style.setProperty("--sub-color", "rgb(76, 183, 233, 0.3)");
     document.documentElement.style.setProperty("--display1", "block");
@@ -529,6 +514,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("grid-tr").addEventListener("click", function() {
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(255, 124, 124)");
     document.documentElement.style.setProperty("--sub-color", "rgb(255, 124, 124, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -540,6 +527,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("grid-mr").addEventListener("click", function() {
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(255, 253, 108)");
     document.documentElement.style.setProperty("--sub-color", "rgb(255, 253, 108, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -563,6 +552,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("grid-ml").addEventListener("click", function() {
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(93, 255, 128)");
     document.documentElement.style.setProperty("--sub-color", "rgb(93, 255, 128, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -926,6 +917,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.getElementById("grid-bl").addEventListener("click", function() {
     generate_table();
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(255, 93, 215)");
     document.documentElement.style.setProperty("--sub-color", "rgb(255, 93, 215, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
@@ -937,6 +930,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("grid-br").addEventListener("click", function() {
+    document.getElementById("menu-button").style.display = "flex";
+    document.getElementById("hex-grid").style.display = "none";
     document.documentElement.style.setProperty("--main-color", "rgb(185, 185, 185)");
     document.documentElement.style.setProperty("--sub-color", "rgb(185, 185, 185, 0.3)");
     document.documentElement.style.setProperty("--display1", "none");
