@@ -90,7 +90,7 @@ export const EntryToolbar = () => (
     toolbarCenter={
       <>
         <ToolbarButton icon={<MicrophoneIcon />} label="マイク" preset="basic" />
-        <ToolbarButton icon={<ObjectIcon />} label="Place" preset="accent3" />
+        
         <ToolbarButton icon={<ChatIcon />} label="チャット" preset="accent4" />
       </>
     }
