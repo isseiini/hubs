@@ -405,12 +405,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
       onSuccess: result => {
-        //const idToken = result.getIdToken().getJwtToken(); // IDトークン
-        //const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
-        //const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
-
-        //cognitoUser2.cacheTokens();
-
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
       },
@@ -422,17 +416,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("ログインできません。");
       }
     });
-
-    /*cognitoUser2.getDevice({
-	    onSuccess: function (result) {
-	        console.log('call result: ' + result);
-	    },
-
-      
-	    onFailure: function(err) {
-	        alert(err);
-	    }
-	  });*/
   });
 
   const signoutButton = document.getElementById("signoutButton");
@@ -475,7 +458,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               if (confirm("マッチングしました。観光ワールドへ移動します。")) {
                 setTimeout(() => {
                   window.close_flag = false;
-                  location.href = "https://vleap-workspace.com/Epejajo/luxurious-worthwhile-volume"; //goal_url;
+                  location.href = goal_url;
                 }, 1000);
               } else {
                 alert("キャンセルしました。");

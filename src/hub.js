@@ -1213,14 +1213,14 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
       if (close_flag !== true) {
         return null;
       }
       event.preventDefault();
-      /*var ViewPoint_params = {
+      var ViewPoint_params = {
         TableName: "ViewPoint",
         Item: {
           PlayID: "gfdssgf",
@@ -1232,10 +1232,10 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log("error");
         } else {
         }
-      });*/
+      });
       event.returnValue = "";
     });
-  }
+  }*/
 
   window.addEventListener("beforeunload", function(event) {
     if (close_flag !== true) {
@@ -1246,7 +1246,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var room_name = String(current_url[current_url.length - 1]);
 
-    /*var Communication_params = {
+    var Communication_params = {
       TableName: "Communication",
       Item: {
         PlayID: PlayID,
@@ -1298,9 +1298,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("error");
       } else {
         window.close_flag = false;
-        //location.href = "https://virtual-dotonbori.com";
       }
-    });*/
+    });
     event.returnValue = "";
   });
 
@@ -1316,7 +1315,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (cognito_mine != null) {
     cognito_mine.getSession((err, session) => {
       if (err) {
-        //location.href = "https://virtual-dotonbori.com/";
+        location.href = "https://virtual-dotonbori.com/";
       } else {
         cognito_mine.getUserAttributes((err, result) => {
           if (err) {
@@ -1333,7 +1332,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   } else {
-    //location.href = "https://virtual-dotonbori.com/";
+    location.href = "https://virtual-dotonbori.com/";
   }
   var Player_UI = document.getElementById("Player-UI");
   Player_UI.style.display = "none";
@@ -1457,7 +1456,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("guide5").style.top = "0";
   } else {
     //不正なURL
-    //location.href = "https://virtual-dotonbori.com/";
+    location.href = "https://virtual-dotonbori.com/";
   }
 
   function get_cognito_data() {
@@ -2215,13 +2214,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.talk_position = [];
                   window.close_flag = true;
 
-                  //const avatarRig = document.getElementById("avatar-rig").object3D;
-
-                  /*setInterval(() => {
-                    Positionlist.push(avatarRig.position);
-                    ViewPointlist.push(avatarRig.rotation);
-                  }, 1500);*/
-
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
                   toolbar_under.style.display = "none";
@@ -2258,7 +2250,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     var table = "Sightseeing-table";
                   }
 
-                  /*var match = {
+                  var match = {
                     TableName: table,
                     Item: {
                       URL: room_name,
@@ -2273,7 +2265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       console.log("success");
                     }
-                  });*/
+                  });
                 }
                 //自分入場時のゲームワールド全体
                 if (
@@ -2784,7 +2776,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("exit_button").addEventListener("click", function() {
-    /*let arr1 = [
+    let arr1 = [
       "fresh-candid-barbecue",
       "posh-courteous-plane",
       "curly-wicked-conclave",
@@ -2872,7 +2864,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.close_flag = false;
         location.href = "https://virtual-dotonbori.com";
       }
-    });*/
-    location.href = "https://vleap-workspace.com";
+    });
   });
 });
