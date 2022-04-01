@@ -586,12 +586,12 @@ export const keyboardMouseUserBindings = addSetsToBindings({
       dest: { value: paths.actions.cursor.right.scalePenTip },
       xform: xforms.scale(0.03)
     },
-    {
+    /*{
       src: { value: paths.device.mouse.buttonRight },
       dest: { value: togglePenWithRMB },
       xform: xforms.falling,
       priority: 200
-    },
+    },*/
     {
       src: { value: paths.device.keyboard.key("Escape") },
       dest: { value: togglePenWithEsc },
