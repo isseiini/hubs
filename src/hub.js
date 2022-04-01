@@ -1213,14 +1213,14 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+  var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
       if (close_flag !== true) {
         return null;
       }
       event.preventDefault();
-      var ViewPoint_params = {
+      /*var ViewPoint_params = {
         TableName: "ViewPoint",
         Item: {
           PlayID: "gfdssgf",
@@ -1232,7 +1232,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           console.log("error");
         } else {
         }
-      });
+      });*/
       event.returnValue = "";
     });
   }
@@ -1246,7 +1246,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     var room_name = String(current_url[current_url.length - 1]);
 
-    var Communication_params = {
+    /*var Communication_params = {
       TableName: "Communication",
       Item: {
         PlayID: PlayID,
@@ -1300,9 +1300,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         window.close_flag = false;
         //location.href = "https://virtual-dotonbori.com";
       }
-    });
+    });*/
     event.returnValue = "";
-  });*/
+  });
 
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
