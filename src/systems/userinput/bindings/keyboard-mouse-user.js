@@ -127,18 +127,18 @@ export const keyboardMouseUserBindings = addSetsToBindings({
       dest: { value: paths.actions.thaw },
       xform: xforms.falling
     },
-    {
+    /*{
       src: { value: paths.device.keyboard.key("p") },
       dest: { value: togglePenWithP },
       xform: xforms.rising
-    },
+    },*/
     {
       src: { value: paths.device.hud.penButton },
       dest: { value: togglePenWithHud },
       xform: xforms.rising
     },
     {
-      src: [togglePenWithHud, togglePenWithP],
+      src: [togglePenWithHud /*, togglePenWithP*/],
       dest: { value: togglePen },
       xform: xforms.any
     },
@@ -598,7 +598,7 @@ export const keyboardMouseUserBindings = addSetsToBindings({
       xform: xforms.rising
     },
     {
-      src: [togglePenWithRMB, togglePenWithEsc, togglePenWithP, togglePenWithHud],
+      src: [togglePenWithRMB, togglePenWithEsc, /*togglePenWithP,*/ togglePenWithHud],
       dest: { value: togglePen },
       xform: xforms.any
     },
