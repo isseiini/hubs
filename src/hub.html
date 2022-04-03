@@ -1538,14 +1538,14 @@
         renderer="
             antialias: true;
             colorManagement: true;
-            gammaOutput: true;
+            
             sortObjects: true;
             physicallyCorrectLights: true;
-            alpha: true;
+            alpha: false;
             webgl2: true;
             multiview: false;
-            outputEncoding: THREE.GammaEncoding;
-            gammaFactor = -10"
+            outputEncoding: THREE.sRGBEncoding;
+            toneMapping: THREE.ACESFilmicToneMapping"
         shadow="type: pcfsoft;autoUpdate: false"
         networked-scene="audio: true; debug: true; connectOnLoad: false;"
         mute-mic="eventSrc: a-scene; toggleEvents: action_mute"
