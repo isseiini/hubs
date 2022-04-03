@@ -224,7 +224,7 @@ export default class Sky extends Object3D {
     uniforms: UniformsUtils.merge([
       UniformsLib.fog,
       {
-        luminance: { value: 1 },
+        luminance: { value: 10 },
         turbidity: { value: 10 },
         rayleigh: { value: 2 },
         mieCoefficient: { value: 0.005 },
