@@ -35,7 +35,7 @@ function createRenderer(canvas, alpha = false, useDevicePixelRatio = true) {
 
   const renderer = new THREE.WebGLRenderer({ alpha, canvas, context, forceWebVR: true });
   renderer.gammaOutput = true;
-  renderer.gammaFactor = 0;
+  renderer.gammaFactor = 2.2;
   renderer.physicallyCorrectLights = true;
   if (useDevicePixelRatio) {
     renderer.setPixelRatio(window.devicePixelRatio);
