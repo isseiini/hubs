@@ -482,6 +482,7 @@ AFRAME.registerComponent("skybox", {
     if (environmentMapComponent && !isBotMode && quality === "high") {
       const envMap = this.sky.generateEnvironmentMap(renderer);
       environmentMapComponent.updateEnvironmentMap(envMap);
+      this.el.setObject3D("ambient-light", new THREE.AmbientLight(0xffffff, 0.3));
     } else if (quality === "medium") {
       // This extra ambient light is here to normalize lighting with the MeshStandardMaterial.
       // Without it, objects are significantly darker in brighter environments.
