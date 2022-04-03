@@ -1,7 +1,7 @@
 AFRAME.registerComponent("ambient-light", {
   schema: {
     color: { type: "color" },
-    intensity: { default: 10.0 }
+    intensity: { default: 1.0 }
   },
 
   init() {
