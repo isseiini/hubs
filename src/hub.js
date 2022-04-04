@@ -679,11 +679,13 @@ function setupLobbyCamera() {
   camera.removeAttribute("scene-preview-camera");
   camera.setAttribute("scene-preview-camera", "positionOnly: true; duration: 60");
 
-  AFRAME.scenes[0].renderer.outputEncoding = THREE.sRGBEncoding;
   AFRAME.scenes[0].renderer.toneMapping = THREE.ACESFilmicToneMapping;
-
   AFRAME.scenes[0].renderer.toneMappingExposure = 1.5;
 
+  AFRAME.scenes[0].renderer.gammaInput = true;
+  AFRAME.scenes[0].renderer.gammaOutput = true;
+  AFRAME.scenes[0].renderer.gammaFactor = 2.2;
+  AFRAME.scenes[0].renderer.outputEncoding = THREE.sRGBEncoding;
   AFRAME.scenes[0].object3D.traverse(o => {
     if (o.material) o.material.needsUpdate = true;
   });

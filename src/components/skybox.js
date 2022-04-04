@@ -370,6 +370,7 @@ export default class Sky extends Object3D {
       minFilter: THREE.LinearFilter
     });
     cubeCamera.renderTarget.texture.encoding = THREE.sRGBEncoding;
+    cubeCamera.renderTarget.color.convertSRGBToLinear();
     skyScene.add(cubeCamera);
     skyScene.add(this.sky);
     cubeCamera.update(renderer, skyScene);
