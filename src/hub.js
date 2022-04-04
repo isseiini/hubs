@@ -1213,6 +1213,8 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  AFRAME.scenes[0].renderer.toneMapping = "ACESFilmic";
+  AFRAME.scenes[0].renderer.toneMappingExposure = 20;
   /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {
