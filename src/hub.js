@@ -679,7 +679,7 @@ function setupLobbyCamera() {
   camera.removeAttribute("scene-preview-camera");
   camera.setAttribute("scene-preview-camera", "positionOnly: true; duration: 60");
 
-  AFRAME.scenes[0].renderer.outputEncoding = THREE.sRGBEncoding;
+  AFRAME.scenes[0].renderer.outputEncoding = THREE.LinearEncoding;
   AFRAME.scenes[0].renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   AFRAME.scenes[0].renderer.toneMappingExposure = 1.5;
