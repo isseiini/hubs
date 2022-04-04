@@ -1213,11 +1213,6 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  AFRAME.scenes[0].renderer.toneMapping = "Linear";
-  AFRAME.scenes[0].renderer.toneMappingExposure = 2;
-  AFRAME.scenes[0].object3D.traverse(o => {
-    if (o.material) o.material.needsUpdate = true;
-  });
   /*var isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
   if (isOnIOS) {
     window.addEventListener("pagehide", function(event) {

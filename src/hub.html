@@ -1543,7 +1543,9 @@
             alpha: false;
             webgl2: true;
             multiview: false;
-            outputEncoding: new THREE.LinearEncoding;
+            outputEncoding: THREE.LinearEncoding;
+            toneMapping: THREE.ACESFilmicToneMapping;
+            toneMappingExposure: 2;
             gammaFactor: 0.2;
             GammaOutput: true;
             GammaInput: true;"
