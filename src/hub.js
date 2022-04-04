@@ -678,7 +678,9 @@ function setupLobbyCamera() {
 
   camera.removeAttribute("scene-preview-camera");
   camera.setAttribute("scene-preview-camera", "positionOnly: true; duration: 60");
-  AFRAME.scenes[0].renderer.toneMappingExposure = 2.5;
+  AFRAME.scenes[0].renderer.toneMappingExposure = 1.5;
+  AFRAME.scenes[0].renderer.GammaOutput = true;
+  AFRAME.scenes[0].renderer.GammaFactor = 1.0;
 }
 
 let uiProps = {};
