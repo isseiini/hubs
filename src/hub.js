@@ -1213,7 +1213,7 @@ export function Get_Coupon(number) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  AFRAME.scenes[0].renderer.toneMapping = THREE.ACESfilmicToneMapping();
+  AFRAME.scenes[0].renderer.toneMapping = THREE.LinearMapping();
   AFRAME.scenes[0].renderer.toneMappingExposure = 2;
   AFRAME.scenes[0].object3D.traverse(o => {
     if (o.material) o.material.needsUpdate = true;
