@@ -2204,6 +2204,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
                 //自分の入場全体
                 if (isSelf && currentMeta.presence !== meta.presence && meta.presence === "room") {
+                  AFRAME.scenes[0].renderer.toneMapping = "ACESFilmic";
+                  AFRAME.scenes[0].renderer.toneMappingExposure = 20;
+
                   window.PlayID = Math.random()
                     .toString(36)
                     .slice(-8);
