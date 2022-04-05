@@ -680,7 +680,7 @@ function setupLobbyCamera() {
   camera.setAttribute("scene-preview-camera", "positionOnly: true; duration: 60");
 
   AFRAME.scenes[0].renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  AFRAME.scenes[0].renderer.toneMappingExposure = 1;
+  AFRAME.scenes[0].renderer.toneMappingExposure = 0.9;
 
   AFRAME.scenes[0].renderer.gammaInput = true;
   AFRAME.scenes[0].renderer.gammaOutput = true;
