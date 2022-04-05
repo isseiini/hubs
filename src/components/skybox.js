@@ -488,8 +488,8 @@ AFRAME.registerComponent("skybox", {
       // Without it, objects are significantly darker in brighter environments.
       // It's kept to a low value to not wash out objects in very dark environments.
       // This is a hack, but the results are much better than they are without it.
-      this.el.setObject3D("ambient-light", new THREE.AmbientLight(0xffffff, 0.3));
-      this.el.setObject3D("light-probe", this.sky.generateLightProbe(renderer));
+      //this.el.setObject3D("ambient-light", new THREE.AmbientLight(0xffffff, 0.3));
+      //this.el.setObject3D("light-probe", this.sky.generateLightProbe(renderer));
     }
   },
 
