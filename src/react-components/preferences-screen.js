@@ -954,16 +954,16 @@ class PreferencesScreen extends Component {
           {
             key: "globalVoiceVolume",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
-            min: 0,
-            max: 300,
+            min: 400,
+            max: 500,
             step: 5,
             digits: 0,
-            defaultNumber: 250
+            defaultNumber: 400
           },
           {
             key: "globalMediaVolume",
             prefType: PREFERENCE_LIST_ITEM_TYPE.NUMBER_WITH_RANGE,
-            min: 600,
+            min: 3000,
             max: 3000,
             step: 5,
             digits: 0,
