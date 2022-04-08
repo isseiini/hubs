@@ -383,8 +383,7 @@ module.exports = async (env, argv) => {
           loader: "file-loader",
           options: {
             outputPath: "assets/raw-js",
-            name: "[name]-[hash].[ext]",
-            replaceAttrValues: { "renderer.vr": "renderer.xr" }
+            name: "[name]-[hash].[ext]"
           }
         },
         {
@@ -392,14 +391,7 @@ module.exports = async (env, argv) => {
           include: [path.resolve(__dirname, "src")],
           // Exclude JS assets in node_modules because they are already transformed and often big.
           exclude: [path.resolve(__dirname, "node_modules")],
-          use: [
-            {
-              loader: "babel-loader",
-              options: {
-                replaceAttrValues: { "renderer.vr": "renderer.xr" }
-              }
-            }
-          ]
+          loader: "babel-loader"
         },
         {
           test: /\.(scss|css)$/,
@@ -642,6 +634,11 @@ module.exports = async (env, argv) => {
           POSTGREST_SERVER: process.env.POSTGREST_SERVER,
           APP_CONFIG: appConfig
         })
+      }),
+      new webpack.DefinePlugin({
+        renderer: {
+          vr: "renderer.xr"
+        }
       })
     ]
   };
