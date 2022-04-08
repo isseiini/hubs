@@ -383,8 +383,7 @@ module.exports = async (env, argv) => {
           loader: "file-loader",
           options: {
             outputPath: "assets/raw-js",
-            name: "[name]-[hash].[ext]",
-            replaceAttrValues: { "renderer.vr": "renderer.xr" }
+            name: "[name]-[hash].[ext]"
           }
         },
         {
