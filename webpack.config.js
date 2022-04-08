@@ -391,7 +391,14 @@ module.exports = async (env, argv) => {
           include: [path.resolve(__dirname, "src")],
           // Exclude JS assets in node_modules because they are already transformed and often big.
           exclude: [path.resolve(__dirname, "node_modules")],
-          loader: "babel-loader"
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                replaceAttrValues: { "renderer.vr": "renderer.xr" }
+              }
+            }
+          ]
         },
         {
           test: /\.(scss|css)$/,
@@ -507,17 +514,6 @@ module.exports = async (env, argv) => {
       }
     },
     plugins: [
-      new webpack.DefinePlugin({
-        renderer: {
-          vr: JSON.stringify("renderer.xr")
-        }
-      }),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        },
-        comments: require("uglify-save-license")
-      }),
       new BundleAnalyzerPlugin({
         analyzerMode: env && env.bundleAnalyzer ? "server" : "disabled"
       }),
