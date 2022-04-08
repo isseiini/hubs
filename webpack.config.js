@@ -634,11 +634,6 @@ module.exports = async (env, argv) => {
           POSTGREST_SERVER: process.env.POSTGREST_SERVER,
           APP_CONFIG: appConfig
         })
-      }),
-      new webpack.DefinePlugin({
-        renderer: {
-          vr: "renderer.xr"
-        }
       })
     ]
   };
