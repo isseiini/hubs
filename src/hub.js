@@ -371,14 +371,9 @@ NAF.options.syncSource = PHOENIX_RELIABLE_NAF;
 
 let isOAuthModal = false;
 
-/*AWS.config.region = "ap-northeast-1"; // リージョン
+AWS.config.region = "ap-northeast-1"; // リージョン
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
-});*/
-
-AWS.config.region = "ap-northeast-1";
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: "ap-northeast-1:a1a02e43-2870-4cb7-8457-1242546f0d0f"
 });
 
 const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
@@ -2887,32 +2882,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener("keyup", event => {
-    if (event.code === "KeyL") {
-      console.log(window.Positionlist);
+    if (event.code === "KeyV") {
       console.log(window.ViewPointlist);
     }
   });
 
   document.addEventListener("keyup", event => {
     if (event.code === "KeyP") {
-      var PlayID = Math.random()
-        .toString(36)
-        .slice(-8);
-      var Position_params = {
-        TableName: "data",
-        Item: {
-          ramdomKey: PlayID,
-          Position: window.Positionlist,
-          ViewPoint: window.ViewPointlist
-        }
-      };
-      docClient.put(Position_params, function(err, data) {
-        if (err) {
-          console.log("error");
-        } else {
-          console.log("success");
-        }
-      });
+      console.log(window.Positionlist);
     }
   });
 });
