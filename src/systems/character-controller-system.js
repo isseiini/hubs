@@ -115,14 +115,14 @@ export class CharacterControllerSystem {
         avatar_rotation.setFromQuaternion(avatar_quaternion);
         Positionlist.push(
           '{"M":{"x":{"N":"' +
-            avatar_position.position.x +
+            avatar_position.x +
             '"},"y":{"N":"' +
-            avatar_position.position.y +
+            avatar_position.y +
             '"},"z":{"N":"' +
-            avatar_position.position.z +
+            avatar_position.z +
             '"},"isVector3":{"BOOL":true}}}'
         );
-        ViewPointlist.push(avatar_rotation);
+        ViewPointlist.push(avatar_rotation.x);
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
