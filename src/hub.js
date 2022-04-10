@@ -2901,7 +2901,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       var Position_params = {
         TableName: "data",
         Item: {
-          ramdomkey: PlayID,
+          ramdomKey: PlayID,
           Position: window.Positionlist,
           ViewPoint: window.ViewPointlist
         }

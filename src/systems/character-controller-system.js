@@ -128,7 +128,7 @@ export class CharacterControllerSystem {
             '"},"isEuler":{"BOOL":true},"_y":{"N":"' +
             avatar_rotation.y +
             '"},"_order":{"S":"YXZ"},"_z":{"N":"' +
-            avatar_rotation.z +
+            avatar_rotation.z / 1000000000000 +
             '"}}}'
         );
       }, 1500);
