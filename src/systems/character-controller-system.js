@@ -110,7 +110,7 @@ export class CharacterControllerSystem {
 
       setInterval(() => {
         this.avatarRig.object3D.getWorldPosition(avatar_position);
-        this.avatarPOV.object3D.getWorldRotation(avatar_rotation);
+        this.avatarPOV.object3D.getWorldQuaternion(avatar_rotation);
         Positionlist.push(avatar_position.position);
         ViewPointlist.push(avatar_rotation.rotation);
       }, 1500);
