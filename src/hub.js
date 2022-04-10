@@ -2890,6 +2890,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.addEventListener("keyup", event => {
     if (event.code === "KeyP") {
       console.log(window.Positionlist);
+      console.log(window.ViewPointlist);
     }
   });
 });
