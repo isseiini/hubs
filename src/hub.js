@@ -408,15 +408,15 @@ let arr2 = [
   "impressive-easygoing-commons",
   "fine-zigzag-exploration",
   "wee-likable-commons",
-  "envious-shiny-vacation",
-  "luxurious-worthwhile-volume"
+  "envious-shiny-vacation"
 ];
 let arr3 = [
   "devoted-healthy-gala",
   "petty-handsome-plaza",
   "real-qualified-spot",
   "absolute-pertinent-convention",
-  "neat-striking-spot"
+  "neat-striking-spot",
+  "luxurious-worthwhile-volume"
 ];
 let arr4 = [
   "celebrated-calm-rendezvous",
