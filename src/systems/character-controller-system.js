@@ -106,7 +106,7 @@ export class CharacterControllerSystem {
       this.avatarRig = document.getElementById("avatar-rig");
 
       let avatar_position = new THREE.Vector3();
-      let avatar_rotation = new THREE.Vector3();
+      let avatar_rotation = new THREE.Quaternion();
 
       setInterval(() => {
         this.avatarRig.object3D.getWorldPosition(avatar_position);
