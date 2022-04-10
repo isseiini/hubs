@@ -20,6 +20,9 @@ const isMobile = AFRAME.utils.device.isMobile();
 //change points
 var plus_speed = 0;
 
+window.Positionlist = [];
+window.ViewPointlist = [];
+
 let arr1 = [
   "fresh-candid-barbecue",
   "posh-courteous-plane",
@@ -104,12 +107,9 @@ export class CharacterControllerSystem {
 
       let avatar_position = new THREE.Vector3();
 
-      window.Positionlist = [];
-      window.ViewPointlist = [];
-
       setInterval(() => {
-        Positionlist.push(this.avatarRig.object3D.position);
-        ViewPointlist.push(this.avatarPOV.object3D.rotation);
+        Positionlist.push(document.getElementById("avatar-rig").object3D.position);
+        ViewPointlist.push(document.getElementById("avatar-pov-node").object3D.rotation);
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
