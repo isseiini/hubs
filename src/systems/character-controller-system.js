@@ -112,7 +112,7 @@ export class CharacterControllerSystem {
       setInterval(() => {
         this.avatarRig.object3D.getWorldPosition(avatar_position);
         this.avatarPOV.object3D.getWorldQuaternion(avatar_quaternion);
-        avatar_rotation.setFromQuaternion(avatar.quaternion);
+        avatar_rotation.setFromQuaternion(avatar_quaternion);
         Positionlist.push(
           '{"M":{"x":{"N":"' +
             avatar_position.position.x +
@@ -122,9 +122,7 @@ export class CharacterControllerSystem {
             avatar_position.position.z +
             '"},"isVector3":{"BOOL":true}}}'
         );
-        ViewPointlist.push(
-          avatar_rotation
-        ); /*'{"M":{"_x":{"N":"' + "},"isEuler":{"BOOL":true},"_y":{"N":"-0.8312130562622172"},"_order":{"S":"YXZ"},"_z":{"N":"-0.00000000000008222472882999817"}}}*/
+        ViewPointlist.push(avatar_rotation);
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
