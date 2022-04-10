@@ -2888,8 +2888,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener("keyup", event => {
     if (event.code === "KeyL") {
-      console.log(Positionlist);
-      console.log(ViewPointlist);
+      console.log(window.Positionlist);
+      console.log(window.ViewPointlist);
     }
   });
 
