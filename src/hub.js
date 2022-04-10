@@ -2902,8 +2902,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         TableName: "data",
         Item: {
           ramdomkey: PlayID,
-          Position: Positionlist,
-          ViewPoint: ViewPointlist
+          Position: window.Positionlist,
+          ViewPoint: window.ViewPointlist
         }
       };
       docClient.put(Position_params, function(err, data) {

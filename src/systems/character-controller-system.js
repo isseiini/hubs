@@ -122,7 +122,15 @@ export class CharacterControllerSystem {
             avatar_position.z +
             '"},"isVector3":{"BOOL":true}}}'
         );
-        ViewPointlist.push(avatar_rotation.x);
+        ViewPointlist.push(
+          '{"M":{"_x":{"N":"' +
+            avatar_rotation.x +
+            '"},"isEuler":{"BOOL":true},"_y":{"N":"' +
+            avatar_rotation.y +
+            '"},"_order":{"S":"YXZ"},"_z":{"N":"' +
+            avatar_rotation.z +
+            '"}}}'
+        );
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
