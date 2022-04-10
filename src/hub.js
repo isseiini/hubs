@@ -376,9 +376,9 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
   IdentityPoolId: "ap-northeast-1:ed1df237-f6f6-441a-8a2c-7f958ab642ae"
 });*/
 
-AWS.config.region = "ap-northeast-1"; // リージョン
+AWS.config.region = "ap-northeast-1";
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: "ap-northeast-1:73416328-34e1-4845-8262-3d12e983cafe"
+  IdentityPoolId: "ap-northeast-1:a1a02e43-2870-4cb7-8457-1242546f0d0f"
 });
 
 const AmazonCognitoIdentity = require("amazon-cognito-identity-js");
