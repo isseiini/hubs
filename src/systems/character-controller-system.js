@@ -108,10 +108,9 @@ export class CharacterControllerSystem {
       let avatar_position = new THREE.Vector3();
 
       setInterval(() => {
-        var avatarPOV_1 = document.getElementById("avatar-pov-node");
-        var avatarRig_1 = document.getElementById("avatar-rig");
-        Positionlist.push(avatarRig_1.object3D.position);
-        ViewPointlist.push(avatarPOV_1.object3D.rotation);
+        this.avatarRig.object3D.getWorldPosition(avatar_position);
+        Positionlist.push(this.avatarRig.object3D.position);
+        ViewPointlist.push(this.avatarRig.object3D.rotation);
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
