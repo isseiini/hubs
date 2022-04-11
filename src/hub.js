@@ -2893,4 +2893,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log(window.ViewPointlist);
     }
   });
+
+  function get_data(num) {
+    let newResult_Position = window.Positionlist.slice(0, num);
+    let newResult_ViewPoint = window.ViewPointlist.slice(0, num);
+
+    console.log(newResult_Position);
+    console.log(newResult_ViewPoint);
+  }
 });
