@@ -20,6 +20,9 @@ const isMobile = AFRAME.utils.device.isMobile();
 //change points
 var plus_speed = 0;
 
+window.Positionlist = [];
+window.ViewPointlist = [];
+
 let arr1 = [
   "fresh-candid-barbecue",
   "posh-courteous-plane",
@@ -103,13 +106,31 @@ export class CharacterControllerSystem {
       this.avatarRig = document.getElementById("avatar-rig");
 
       let avatar_position = new THREE.Vector3();
-
-      window.Positionlist = [];
-      window.ViewPointlist = [];
+      let avatar_quaternion = new THREE.Quaternion();
+      let avatar_rotation = new THREE.Euler();
 
       setInterval(() => {
-        Positionlist.push(this.avatarRig.object3D.position);
-        ViewPointlist.push(this.avatarPOV.object3D.rotation);
+        this.avatarRig.object3D.getWorldPosition(avatar_position);
+        this.avatarPOV.object3D.getWorldQuaternion(avatar_quaternion);
+        avatar_rotation.setFromQuaternion(avatar_quaternion);
+        Positionlist.push(
+          '{"M":{"x":{"N":"' +
+            avatar_position.x +
+            '"},"y":{"N":"' +
+            avatar_position.y +
+            '"},"z":{"N":"' +
+            avatar_position.z +
+            '"},"isVector3":{"BOOL":true}}}'
+        );
+        ViewPointlist.push(
+          '{"M":{"_x":{"N":"' +
+            avatar_rotation.x +
+            '"},"isEuler":{"BOOL":true},"_y":{"N":"' +
+            avatar_rotation.y +
+            '"},"_order":{"S":"YXZ"},"_z":{"N":"' +
+            avatar_rotation.z / 1000000000000 +
+            '"}}}'
+        );
       }, 1500);
 
       const minimap_player_pos = document.getElementById("Player_pos");
