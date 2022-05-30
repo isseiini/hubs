@@ -434,7 +434,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("hubs-middle").addEventListener("click", function() {
-    const cognito_mine = userPool.getCurrentUser();
+    var result = prompt("遷移先を選んでください。");
+    if (result === "観光前半") {
+      location.href = "https://virtual-dotonbori.com/c2FeUma/conscious-tricky-camp";
+    } else if (result === "観光後半") {
+      location.href = "https://virtual-dotonbori.com/83StxTk/celebrated-calm-rendezvous";
+    } else if (result === "ゲーム前半") {
+      location.href = "https://vleap-workspace.com/p7DEDpy/peru-plush-park";
+    } else if (result === "ゲーム後半") {
+      location.href = "https://virtual-dotonbori.com/ZbxSJ39/devoted-healthy-gala";
+    } else if (result === "とんぼり") {
+      location.href = "https://virtual-dotonbori.com/FRLbWzE/mature-unique-domain";
+    }
+    /*const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine == null) {
       alert("メニューから「ログイン/新規登録」を選択し、ログインをして下さい");
       return;
@@ -467,7 +479,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
         }
       });
-    }
+    }*/
   });
 
   document.getElementById("VRChat-middle").addEventListener("click", function() {
