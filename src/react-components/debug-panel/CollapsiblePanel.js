@@ -11,6 +11,7 @@ function collapse(evt) {
 }
 
 function openLink(url) {
+  window.close_flag = false;
   const win = window.open(url, "_blank");
   win.focus();
 }

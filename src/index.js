@@ -405,12 +405,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 認証処理
     cognitoUser2.authenticateUser(authenticationDetails, {
       onSuccess: result => {
-        //const idToken = result.getIdToken().getJwtToken(); // IDトークン
-        //const accessToken = result.getAccessToken().getJwtToken(); // アクセストークン
-        //const refreshToken = result.getRefreshToken().getToken(); // 更新トークン
-
-        //cognitoUser2.cacheTokens();
-
         // サインイン成功の場合、次の画面へ遷移
         alert("ログインしました。");
       },
@@ -422,17 +416,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("ログインできません。");
       }
     });
-
-    /*cognitoUser2.getDevice({
-	    onSuccess: function (result) {
-	        console.log('call result: ' + result);
-	    },
-
-      
-	    onFailure: function(err) {
-	        alert(err);
-	    }
-	  });*/
   });
 
   const signoutButton = document.getElementById("signoutButton");
@@ -451,7 +434,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.getElementById("hubs-middle").addEventListener("click", function() {
-    const cognito_mine = userPool.getCurrentUser();
+    var result = prompt("遷移先を選んでください。");
+    if (result === "観光前半") {
+      location.href = "https://virtual-dotonbori.com/c2FeUma/conscious-tricky-camp";
+    } else if (result === "観光後半") {
+      location.href = "https://virtual-dotonbori.com/83StxTk/celebrated-calm-rendezvous";
+    } else if (result === "ゲーム前半") {
+      location.href = "https://vleap-workspace.com/p7DEDpy/peru-plush-park";
+    } else if (result === "ゲーム後半") {
+      location.href = "https://virtual-dotonbori.com/ZbxSJ39/devoted-healthy-gala";
+    } else if (result === "とんぼり") {
+      location.href = "https://virtual-dotonbori.com/FRLbWzE/mature-unique-domain";
+    }
+    /*const cognito_mine = userPool.getCurrentUser();
     if (cognito_mine == null) {
       alert("メニューから「ログイン/新規登録」を選択し、ログインをして下さい");
       return;
@@ -475,7 +470,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               if (confirm("マッチングしました。観光ワールドへ移動します。")) {
                 setTimeout(() => {
                   window.close_flag = false;
-                  location.href = "https://vleap-workspace.com/Epejajo/luxurious-worthwhile-volume"; //goal_url;
+                  location.href = goal_url;
                 }, 1000);
               } else {
                 alert("キャンセルしました。");
@@ -484,7 +479,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
         }
       });
-    }
+    }*/
   });
 
   document.getElementById("VRChat-middle").addEventListener("click", function() {

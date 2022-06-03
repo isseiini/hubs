@@ -21,6 +21,7 @@ export function share(opts) {
     const tweetLink = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(
       title
     )}`;
+    window.close_flag = false;
     window.open(tweetLink, "_blank", params);
     return Promise.resolve();
   }

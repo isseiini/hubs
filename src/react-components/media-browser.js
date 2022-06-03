@@ -531,6 +531,7 @@ class MediaBrowserContainer extends Component {
                 onEdit = e => {
                   e.preventDefault();
                   const spokeProjectUrl = getReticulumFetchUrl(`/spoke/projects/${entry.project_id}`);
+                  window.close_flag = false;
                   window.open(spokeProjectUrl);
                 };
               }

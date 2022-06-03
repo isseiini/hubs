@@ -1241,7 +1241,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
       event.returnValue = "";
     });
-  }
+  }*/
 
   window.addEventListener("beforeunload", function(event) {
     if (close_flag !== true) {
@@ -1304,11 +1304,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("error");
       } else {
         window.close_flag = false;
-        //location.href = "https://virtual-dotonbori.com";
       }
     });
     event.returnValue = "";
-  });*/
+  });
 
   var nowTime = new Date();
   var nowYear = nowTime.getFullYear();
@@ -2221,13 +2220,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   window.talk_position = [];
                   window.close_flag = true;
 
-                  //const avatarRig = document.getElementById("avatar-rig").object3D;
-
-                  /*setInterval(() => {
-                    Positionlist.push(avatarRig.position);
-                    ViewPointlist.push(avatarRig.rotation);
-                  }, 1500);*/
-
                   Player_UI.style.display = "block";
                   const toolbar_under = document.getElementById("toolbar_under");
                   toolbar_under.style.display = "none";
@@ -2264,7 +2256,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     var table = "Sightseeing-table";
                   }
 
-                  /*var match = {
+                  var match = {
                     TableName: table,
                     Item: {
                       URL: room_name,
@@ -2279,7 +2271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     } else {
                       console.log("success");
                     }
-                  });*/
+                  });
                 }
                 //自分入場時のゲームワールド全体
                 if (
